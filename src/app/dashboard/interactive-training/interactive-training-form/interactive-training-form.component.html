@@ -1,0 +1,225 @@
+<GridLayout>
+
+
+    <GridLayout class="view">
+
+        <ActionBar flat="true" style="background-color: #fff;" title="">
+            <NavigationButton visibility="collapsed"></NavigationButton>
+            <GridLayout columns="*" width="100%">
+                <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                    <Image src="~/images/back.png" width="18" class=""></Image>
+                    <label text="{{'Back'| L}}"
+                        style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                </StackLayout>
+            </GridLayout>
+        </ActionBar>
+
+        <ScrollView scrollBarIndicatorVisible="false">
+            <StackLayout class="page-layout" [formGroup]="interactiveTrainingForm">
+                <FlexboxLayout flexDirection="row-reverse" class="acc-line" alignItems="center"
+                    justifyContent="space-between" flexWrap="wrap">
+                    <label text="{{'creatInteractiveTr'| L}}" class="acc-head"></label>
+                </FlexboxLayout>
+
+                <StackLayout class="prof-back" style="margin-top:0;">
+                    <Image *ngIf="!id" [src]="newImage" class="prof-img"></Image>
+                    <Image src="{{newImage}}" class="prof-img" *ngIf="id"></Image>
+
+                    <ActivityIndicator [busy]="isUploading" [visibility]="isUploading ?  'visible':'collapse'">
+                    </ActivityIndicator>
+
+                    <FlexboxLayout class="login-btn" (tap)="uploadImage()"
+                        style="width:65%; margin-top: 10; height: 45;  background-color:#1056A5;" alignItems="center"
+                        justifyContent="center">
+                        <label text="{{'upload-traning-pic'| L}}"
+                            style=" font-size: 13; font-weight: 500; vertical-align: middle; text-align: center;"></label>
+                        <Image src="~/images/upload.png" width="24" style="margin: 0 7;"></Image>
+                    </FlexboxLayout>
+
+                </StackLayout>
+
+                <StackLayout class="" style="margin-top: 20;">
+
+                    <label text="{{'NameAr' |L}}" class="form-label"></label>
+                    <TextField hint="{{'NameAr' | L}}" formControlName="nameAr"
+                        [ngClass]="isNotValid('nameAr')?'error' :''" style="placeholder-color:#989BAD" class="">
+                    </TextField>
+
+                    <label text="{{'NameEn' |L}}" class="form-label"></label>
+                    <TextField hint="{{'NameEn' | L}}" formControlName="nameEn"
+                        [ngClass]="isNotValid('nameEn')?'error' :''" style="placeholder-color:#989BAD">
+                    </TextField>
+
+                    <label text="{{'trainingtype' |L}}" class="form-label"></label>
+                    <DropDown [items]="TrainingTypeList" hint="{{'Choose' | L}}" itemsTextAlignment="center"
+                        (selectedIndexChanged)="onTrainingTypeChange($event)" formControlName="trainingTypeId"
+                        [ngClass]="isNotValid('trainingTypeId')?'error' :''">
+                    </DropDown>
+                    <StackLayout *ngIf="(typeOfInteractiveTraining ==TrainingTypeId.Quiz)">
+                        <label text="{{'Quesnum' |L}}" class="form-label"></label>
+                        <TextField hint="{{'Quesnum' |L}}" (focus)="onFocus($event,'showedQuestions')"
+                            (textChange)="onTextFieldChange($event,'showedQuestions')" keyboardType="number"
+                            formControlName="showedQuestions" [ngClass]="isNotValid('showedQuestions')?'error' :''"
+                            style="placeholder-color:#989BAD">
+                        </TextField>
+                        <label text="{{'correctansnum' |L}}" class="form-label"></label>
+                        <TextField hint="{{'correctansnum' |L}}" (focus)="onFocus($event,'minCorrectAnswers')"
+                            (textChange)="onTextFieldChange($event,'minCorrectAnswers')" keyboardType="number"
+                            formControlName="minCorrectAnswers" [ngClass]="isNotValid('minCorrectAnswers')?'error' :''"
+                            style="placeholder-color:#989BAD">
+                        </TextField>
+                        <label text="{{'duration-mi' |L}}" class="form-label"></label>
+                        <TextField hint="{{'duration-mi' |L}}" keyboardType="number"
+                            (focus)="onFocus($event,'durationInSeconds')"
+                            (textChange)="onTextFieldChange($event,'durationInSeconds')"
+                            formControlName="durationInSeconds" [ngClass]="isNotValid('durationInSeconds')?'error' :''"
+                            style="placeholder-color:#989BAD">
+                        </TextField>
+                        <!-- <DropDown [items]="quizTrainingTypeList" hint="{{'Choose' | L}}" itemsTextAlignment="center"
+                            (selectedIndexChanged)="onQuizTrainingTypeChange($event)">
+                        </DropDown> -->
+                        <FlexboxLayout alignItems="center" flexDirection="row-reverse" justifyContent="flex-start"
+                            flexWrap="wrap">
+                            <label text="{{'true-false' |L}}" (tap)="onQuizTrainingTypeChange(TrainingTypeId.TrueFalse)"
+                                class="cate-tags"
+                                [ngClass]="{ 'error': interactiveTrainingForm.get('showedQuestions').value > questions.controls.length}"
+                                style="margin: 5 4 ;padding: 7 10;"></label>
+                            <label text="{{'correctans' |L}}"
+                                (tap)="onQuizTrainingTypeChange(TrainingTypeId.SingleChoice)" class="cate-tags"
+                                [ngClass]="{ 'error': interactiveTrainingForm.get('showedQuestions').value > questions.controls.length}"
+                                style="margin: 5 4 ;padding: 7 10;"></label>
+                            <label text="{{'multicho' |L}}" (tap)="onQuizTrainingTypeChange(TrainingTypeId.MultiChoice)"
+                                class="cate-tags"
+                                [ngClass]="{ 'error': interactiveTrainingForm.get('showedQuestions').value > questions.controls.length }"
+                                style="margin: 5 4 ;padding: 7 10;"></label>
+                        </FlexboxLayout>
+                    </StackLayout>
+                </StackLayout>
+                <!-- Q-->
+
+                <StackLayout formArrayName="questions">
+
+                    <StackLayout class="training-quesions" style="margin-top: 20;"
+                        *ngFor="let q of questions.controls; let j = index">
+                        <label text="&#xf1f8;" class="fas remove-icon" (tap)="removeQuestion(j)"
+                            style="margin: 0;"></label>
+
+                        <StackLayout [formGroupName]="j">
+
+                            <label row="0" text="&#xf067;"
+                                style="font-size: 16; color: #1056A5; margin: 0; margin-top: 10;" class="fas"
+                                (tap)="addQuestion(TrainingTypeId.Survey)"
+                                *ngIf="typeOfQuestion(j) ==TrainingTypeId.Survey"></label>
+
+                            <label text="{{handlename(j,'ar') |L}} {{j+1}}" class="form-label"></label>
+                            <TextField hint="{{handlename(j,'ar') | L}} {{j+1}}" style="placeholder-color:#989BAD"
+                                formControlName="nameAr" [ngClass]="{ 'error': q.invalid && q.touched }" class="">
+                            </TextField>
+                            <!-- <label row="0" text="&#xf00d;" class="fas remove-icon"
+                                style="margin: 0;" (tap)="removeQuestionSurvayQuestion(j)" *ngIf="typeOfQuestion(j) ==TrainingTypeId.Survey"></label>
+                            [checked]="getChecked(j,i)"-->
+                            <label text="{{handlename(j,'en') |L}} {{j+1}}" class="form-label"
+                                *ngIf="typeOfQuestion(j) !=TrainingTypeId.Survey"></label>
+                            <TextField hint="{{handlename(j,'en') |L}} {{j+1}}"
+                                *ngIf="typeOfQuestion(j) !=TrainingTypeId.Survey" style="placeholder-color:#989BAD"
+                                formControlName="nameEN">
+                            </TextField>
+
+                            <StackLayout formArrayName="answers">
+                                <label text="&#xf067;" style="font-size: 16; color: #1056A5;" class="fas"
+                                    (tap)="addAnswer(j)"
+                                    *ngIf="(typeOfQuestion(j) ==TrainingTypeId.Survey||typeOfQuestion(j) ==TrainingTypeId.MultiChoice|| typeOfQuestion(j) ==TrainingTypeId.SingleChoice||typeOfQuestion(j) ==TrainingTypeId.Voting)"></label>
+                                <StackLayout class="option-box"
+                                    *ngFor="let answer of answers(j).controls; let i = index">
+                                    <GridLayout columns="*,60 ,40 " rows="auto,auto" [formGroupName]="i">
+                                        <label row="0" text="&#xf00d;" class="fas remove-icon" style="margin: 0;"
+                                            (tap)="removeAnswer(i,j)"></label>
+                                        <CheckBox:CheckBox verticalAlignment="top" row="1" col="2"
+                                            formControlName="isCorrect"
+                                            (checkedChange)="isCheckboxChecked(j,i,$event.value)"
+                                            style="background-color: #fff;"
+                                            *ngIf="typeOfQuestion(j) !=TrainingTypeId.Voting && typeOfQuestion(j) !=TrainingTypeId.Survey">
+                                        </CheckBox:CheckBox>
+                                        <StackLayout class="" verticalAlignment="top" style="margin-top:0;" row="1"
+                                            col="1" *ngIf="typeOfQuestion(j) ==TrainingTypeId.SingleChoice">
+                                            <FlexboxLayout class="" (tap)="uploadAnswerImage(j,i)"
+                                                style=" background-color:#1056A5; margin-top: 10; width: 30; height: 30; border-radius: 50%;"
+                                                alignItems="center" justifyContent="center">
+                                                <Image src="~/images/upload.png" width="24" style="margin: 0 7;">
+                                                </Image>
+                                            </FlexboxLayout>
+                                            <Image [src]="handleImageView(j,i)" *ngIf="newImageArray.length>0"
+                                                class="prof-img" style="width: 40; height: 40; border-width:0;">
+                                            </Image>
+                                            <ActivityIndicator [busy]="isUploading"
+                                                [visibility]="isUploading ?  'visible':'collapse'">
+                                            </ActivityIndicator>
+
+
+
+                                        </StackLayout>
+                                        <StackLayout row="1" col="0">
+                                            <label text="{{'OptionAr' |L}}" class="form-label"></label>
+                                            <TextField hint="{{'OptionAr' | L}}" formControlName="nameAr"
+                                                [ngClass]="{ 'error': answer.invalid && answer.touched }"
+                                                style="placeholder-color:#989BAD" class=""></TextField>
+
+                                            <label *ngIf="typeOfQuestion(j) !=TrainingTypeId.Survey"
+                                                text="{{'OptionEn' |L}}" class="form-label"></label>
+                                            <TextField *ngIf="typeOfQuestion(j) !=TrainingTypeId.Survey"
+                                                hint="{{'OptionEn' | L}}" formControlName="nameEN"
+                                                style="placeholder-color:#989BAD"></TextField>
+                                        </StackLayout>
+                                    </GridLayout>
+                                </StackLayout>
+
+                            </StackLayout>
+                            <!-- <GridLayout columns="*,60 ,40 " class="option-box" rows="auto,auto">
+                        <label row="0" text="&#xf00d;" class="fas remove-icon" style="margin: 0;"></label>
+                        <CheckBox:CheckBox verticalAlignment="top" row="1" col="2" [checked]="isChecked"
+                            style="background-color: #fff;"></CheckBox:CheckBox>
+                        <StackLayout class="" verticalAlignment="top" style="margin-top:0;" row="1" col="1">
+                            <FlexboxLayout class="" (tap)="uploadImage()"
+                                style=" background-color:#1056A5; margin-top: 10; width: 30; height: 30; border-radius: 50%;"
+                                alignItems="center" justifyContent="center">
+                                <Image src="~/images/upload.png" width="24" style="margin: 0 7;"></Image>
+                            </FlexboxLayout>
+                            <Image [src]="newImage" class="prof-img" style="width: 40; height: 40; border-width:0;">
+                            </Image>
+                            <ActivityIndicator [busy]="isUploading" [visibility]="isUploading ?  'visible':'collapse'">
+                            </ActivityIndicator>
+
+
+
+                        </StackLayout>
+                        <StackLayout row="1" col="0">
+                            <label text="{{'OptionAr' |L}}" class="form-label"></label>
+                            <TextField hint="{{'OptionAr' | L}}" style="placeholder-color:#989BAD" class=""></TextField>
+
+                            <label text="{{'OptionEn' |L}}" class="form-label"></label>
+                            <TextField hint="{{'OptionEn' | L}}" style="placeholder-color:#989BAD"></TextField>
+                        </StackLayout>
+
+                    </GridLayout> -->
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <GridLayout columns="*,*" rows="*,*" style="margin: 20 0;">
+                    <Button row="0" col="1" text="{{'save' |L}}" [isEnabled]="!isSubmitting" (tap)="save(true)"
+                        style="width: 160;background-color: #1056A5; margin-bottom: 15;" class="login-btn"></Button>
+                    <Button row="0" col="0" text="{{'create' |L}}" [isEnabled]="!isSubmitting" (tap)="save(false)"
+                        style="width: 160; background-color: #1056A5; margin-bottom: 15;" class="login-btn"></Button>
+                    <Button row="1" col="1" text="{{'reset' |L}}" (tap)="reset()" style="width: 160"
+                        class="login-btn reset-btn"></Button>
+                    <Button row="1" col="0" text="{{'cancel' |L}}" style="width: 160"
+                        [nsRouterLink]="['/interactive-training-list']" class="login-btn reset-btn"></Button>
+                </GridLayout>
+
+            </StackLayout>
+        </ScrollView>
+        <!-- <GridLayout verticalAlignment="bottom" style="margin-bottom: 60; background-color: #fff; padding: 0 0 10 0;">
+            <Button verticalAlignment="bottom" text="{{'save' |L}}" class="login-btn"></Button>
+        </GridLayout> -->
+    </GridLayout>
+
+</GridLayout>

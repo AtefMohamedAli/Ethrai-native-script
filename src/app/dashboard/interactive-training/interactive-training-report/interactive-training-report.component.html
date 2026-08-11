@@ -1,0 +1,417 @@
+<GridLayout>
+
+
+    <GridLayout class="view" #contant>
+
+        <ActionBar flat="true" style="background-color: #fff;" title="">
+            <NavigationButton visibility="collapsed"></NavigationButton>
+            <GridLayout columns="*" width="100%">
+                <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                    <Image src="~/images/back.png" width="18" class=""></Image>
+                    <label text="{{'Back'| L}}"
+                        style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                </StackLayout>
+            </GridLayout>
+        </ActionBar>
+
+        <ScrollView scrollBarIndicatorVisible="false">
+            <StackLayout class="page-layout">
+                <FlexboxLayout flexDirection="row-reverse" justifyContent="space-between" class="acc-line"
+                    alignItems="center" flexWrap="wrap">
+                    <label text="{{'report' |L}}" class="sign-label" style="margin-top:10"></label>
+                    <!--<Button style="width: 150; height: 45;text-align: center; background-color: #1056A5;"
+                        class="login-btn" (tap)="download()">
+                        <FormattedString>
+                            
+                            <Span text="{{'download' |L}}" style="margin: 0 10;"></Span>
+                        </FormattedString>
+                    </Button>-->
+
+                </FlexboxLayout>
+
+                <StackLayout id="print">
+                    <label text="{{'activity-data' | L}}" class="sign-label"
+                        style="margin-top:10; font-size: 15;"></label>
+                    <StackLayout class="option-box2" style="margin-top: 0;">
+                        <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                            <StackLayout class="stat-back">
+                                <label text="{{'activity-address'| L}}" class="stat-title"></label>
+                                <label text="{{answersData?.interactivetrainingName}}" horizontalAlignment="right"
+                                    class="activiy-data"></label>
+                            </StackLayout>
+                            <StackLayout class="stat-back">
+                                <label text="{{'activity-creator'| L}}" class="stat-title"></label>
+                                <label text="{{answersData?.createdByName}}" horizontalAlignment="right"
+                                    class="activiy-data"></label>
+                            </StackLayout>
+                        </FlexboxLayout>
+                        <label class="line" style="background-color: #fff;"></label>
+
+                        <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                            <StackLayout class="stat-back">
+                                <label text="{{'publish-date'| L}}" class="stat-title"></label>
+                                <label text="{{answersData?.publishDate| date: 'dd/MM/yyyy'}}"
+                                    horizontalAlignment="right" class="activiy-data"></label>
+                            </StackLayout>
+                            <StackLayout class="stat-back">
+                                <label text="{{'publish-time'| L}}" class="stat-title"></label>
+                                <label text="{{answersData?.publishDate| date: 'hh:mm'}}" horizontalAlignment="right"
+                                    class="activiy-data"></label>
+                            </StackLayout>
+                        </FlexboxLayout>
+                        <label class="line" style="background-color: #fff;"></label>
+
+                        <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                            <StackLayout class="stat-back">
+                                <label text="{{'parti-num'| L}}" class="stat-title"></label>
+                                <label text="{{answersData?.totalAnswers}}" horizontalAlignment="right"
+                                    class="activiy-data"></label>
+                            </StackLayout>
+                            <StackLayout class="stat-back"
+                                *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.GuessNumbers||interactiveData?.trainingTypeId==TrainingTypeId.Voting||interactiveData?.trainingTypeId==TrainingTypeId.Evaluation">
+                                <label text="العدد الإجمالي للردود" class="stat-title"></label>
+                                <label text="{{answersData?.totalAnswers}}" horizontalAlignment="right"
+                                    class="activiy-data"></label>
+                            </StackLayout>
+                            <StackLayout class="stat-back"
+                                *ngIf="(interactiveData?.trainingTypeId==TrainingTypeId.TrueFalse||interactiveData?.trainingTypeId==TrainingTypeId.SingleChoice||interactiveData?.trainingTypeId==TrainingTypeId.MultiChoice)">
+                                <label text="{{'true-ans'| L}}" class="stat-title"></label>
+                                <label text="{{answersData?.totalCorrectAnswersPercentage}}" horizontalAlignment="right"
+                                    class="activiy-data"></label>
+                            </StackLayout>
+                        </FlexboxLayout>
+                        <label class="line" style="background-color: #fff;"></label>
+                        <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                            <StackLayout class="stat-back"
+                                *ngIf="(interactiveData?.trainingTypeId==TrainingTypeId.TrueFalse||interactiveData?.trainingTypeId==TrainingTypeId.SingleChoice||interactiveData?.trainingTypeId==TrainingTypeId.MultiChoice)">
+                                <label text="{{'wrong-ans'| L}}" class="stat-title"></label>
+                                <label text="{{answersData?.totalWrongAnswersPercentage}}" horizontalAlignment="right"
+                                    class="activiy-data"></label>
+                            </StackLayout>
+                            <StackLayout class="stat-back">
+                                <label text="{{'activity-status'| L}}" class="stat-title"></label>
+                                <label *ngIf="answersData?.isFinished==true" text="منتهي" horizontalAlignment="right"
+                                    class="activiy-data"></label>
+                                <label *ngIf="answersData?.isFinished!=true" text="غير منتهي"
+                                    horizontalAlignment="right" class="activiy-data"></label>
+
+                            </StackLayout>
+                        </FlexboxLayout>
+
+                    </StackLayout>
+
+                    <!-- <label text="نوع النشاط" class="sign-label" style="margin-top:10; font-size: 15;"></label> -->
+                    <label text=" {{getNameOfInterActive()}}" class="sign-label"
+                        style="margin-top:10; font-size: 16;"></label>
+                    <StackLayout class="option-box2" style=" margin-top: 0;"
+                        *ngIf="(interactiveData?.trainingTypeId==TrainingTypeId.TrueFalse||interactiveData?.trainingTypeId==TrainingTypeId.SingleChoice||interactiveData?.trainingTypeId==TrainingTypeId.MultiChoice)">
+                        <label text="{{answersData?.totalCorrectAnswersPercentage}}%" class="prec-label"
+                            horizontalAlignment="right"></label>
+                        <label text="{{'true-ans'| L}}" class="sign-label" style="margin-top:0; font-size: 15;"></label>
+                        <label class="line" style="background-color: #fff;"></label>
+                        <label text="{{answersData?.totalWrongAnswersPercentage}}%" class="prec-label"
+                            horizontalAlignment="right"></label>
+                        <label text="{{'wrong-ans'| L}}" class="sign-label"
+                            style="margin-top:3; font-size: 15;"></label>
+
+                        <!-- <AnimatedCircle backgroundColor="transparent" width="100" height="100" animated="true" animateFrom="0" rimColor="#fff000" barColor="#ff4081" rimWidth="25" progress="{{ circleProgress }}" text="" textSize="22" textColor="#336699"></AnimatedCircle> -->
+
+
+                    </StackLayout>
+
+                    <!-- exame-report -->
+                    <StackLayout *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.Quiz">
+                        <StackLayout class="option-box2" style=" margin-top: 0;" *ngFor="let ans of quizDetailsList">
+                            <label text=" {{ans.studentName}}" class="course-na" style="color: #1056A5; font-size: 16;"
+                                horizontalAlignment="right"></label>
+                            <label class="line" style="background-color: #fff;"></label>
+                            <GridLayout class="" columns="auto, *" rows="*,*"
+                                *ngFor="let q of ans.questionAnswers;let i=index">
+                                <!--1السوال questionsCountArray-->
+                                <Label col="1" row="0" textWrap="true" class="course-na" text="السؤال {{i+1}}"></Label>
+                                <label col="0" row="0" text="{{q.questionAnswer}}"
+                                    style="color: #1056A5; font-size: 15; " class=""> </label>
+                                <label class="line" colSpan="2" row="1" style="background-color: #fff;"></label>
+                            </GridLayout>
+
+                            <GridLayout class="" columns="auto, *" rows="*">
+                                <Label col="1" row="0" textWrap="true" class="course-na"
+                                    style="font-size: 16; color: #1056A5;" text="النتيجة"></Label>
+                                <label col="0" row="0" text="{{ans.status}}" class="pass-btn"
+                                    style="background-color: #1056A5;"> </label>
+                                <!-- <label col="0" row="0" text="لم يجتاز" class="reject-btn"> </label> -->
+
+                            </GridLayout>
+
+
+                        </StackLayout>
+                    </StackLayout>
+                    <!--voiting-->
+
+                    <StackLayout *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.Voting">
+                        <label text=" {{answersData?.questionNameAr}}" class="sign-label" horizontalAlignment="right"
+                            style="margin-top:10; color: #1056A5; font-size: 15;"></label>
+                        <label text="ردود المشاركين" class="sign-label" style="margin-top:10; font-size: 15;"></label>
+                        <GridLayout class="" columns="*, *" class="option-box2" style=" margin-top: 0;">
+                            <Label col="1" row="0" textWrap="true" class="course-na" style="font-size: 15;"
+                                text=" الخيارات"></Label>
+                            <Label col="0" row="0" textWrap="true" class="course-na" style="font-size: 15;"
+                                text=" نسبة التصويت"></Label>
+                        </GridLayout>
+                        <StackLayout class="option-box2" style=" margin-top: 0;">
+
+                            <GridLayout class="" columns="*, *" rows="*,*" *ngFor="let ans of answersData?.answers">
+                                <label col="1" row="0" textWrap="true" text="{{ans.name}}" style=" font-size: 15; "
+                                    horizontalAlignment="right"> </label>
+                                <label col="0" row="0" textWrap="true" text="{{ans.value}}"
+                                    style="color: #1056A5; font-size: 18; " horizontalAlignment="right"> </label>
+                                <label class="line" colSpan="2" row="1" style="background-color: #fff;"></label>
+                            </GridLayout>
+                            <!--  <GridLayout class="" columns="auto, *" rows="*,*">
+            <Label col="1" row="0" textWrap="true" class="course-na" text=" نسبة التصويت"></Label>
+            <label col="0" row="0" text="{{ans.value}}" style="color: #CA725B; font-size: 15; " class=""> </label>
+            <label class="line" row="1" colSpan="2" style="background-color: #fff;"></label>
+        </GridLayout> -->
+
+
+
+                        </StackLayout>
+                    </StackLayout>
+                      <!--gussesNu-->
+
+                      <StackLayout *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.GuessNumbers">
+                        <label text=" الاجابات" class="sign-label" style="margin-top:10; font-size: 15;"></label>
+                        <GridLayout class="" columns="*, * ,*" class="option-box2" style=" margin-top: 0;">
+                            <Label col="2" row="0" textWrap="true" class="course-na" style="font-size: 15;"
+                                text="الحد الادني"></Label>
+                            <Label col="1" row="0" textWrap="true" class="course-na" style="font-size: 15;"
+                                text="المتوسط"></Label>
+                            <Label col="0" row="0" textWrap="true" class="course-na" style="font-size: 15;"
+                                text="الحد الاقصي"></Label>
+                        </GridLayout>
+                        <GridLayout class="" columns="*, * ,*" class="option-box2" style=" margin-top: 0;">
+                            <Label col="2" row="0" textWrap="true" horizontalAlignment="right"
+                                style="font-size: 18; color: #1056A5;" text="{{guessNumbers?.minNumber}}"></Label>
+                            <Label col="1" row="0" textWrap="true" horizontalAlignment="right"
+                                style="font-size: 18;color: #1056A5;" text="{{guessNumbers?.averageNumber}}"></Label>
+                            <Label col="0" row="0" textWrap="true" horizontalAlignment="right"
+                                style="font-size: 18;color: #1056A5;" text="{{guessNumbers?.maxNumber}}"></Label>
+                        </GridLayout>
+                    </StackLayout>
+                    <!--CloudWords-->
+
+                    <StackLayout *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.CloudWords||interactiveData?.trainingTypeId==TrainingTypeId.GuessNumbers">
+                        <label text=" {{answersData?.questionNameAr}}" horizontalAlignment="right" class="sign-label"
+                            style="margin-top:10; font-size: 15; color: #1056A5;"></label>
+                        <label text="ردود المشاركين" class="sign-label" style="margin-top:10; font-size: 15;"></label>
+
+                        <GridLayout columns="*,*" class="option-box2" style=" margin-top: 0;">
+                            <Label col="1" row="0" textWrap="true" class="course-na" style="font-size: 15;"
+                                text=" الردود"></Label>
+                            <Label col="0" row="0" textWrap="true" class="course-na" style="font-size: 15;"
+                                text="{{handleRepeatName()}}"></Label>
+                        </GridLayout>
+                        <StackLayout class="option-box2" style=" margin-top: 0;">
+
+                            <GridLayout class="" columns="*,*" rows="*,*" *ngFor="let ans of answersData?.answers">
+                                <!-- <Label col="1" row="0" textWrap="true" class="course-na" text=" الردود"></Label> -->
+                                <label col="1" row="0" text="{{ans.name}}" textWrap="true" horizontalAlignment="right"
+                                    style="font-size: 15; " class=""> </label>
+                                <label col="0" row="0" text="{{ans.value}}" textWrap="true" horizontalAlignment="right"
+                                    style="color: #1056A5; font-size: 18; " class=""> </label>
+                                <label class="line" colSpan="2" row="1" style="background-color: #fff;"></label>
+                            </GridLayout>
+                            <!--  <GridLayout class="" columns="auto, *" rows="*,*">
+             <Label col="1" row="0" textWrap="true" class="course-na" text="اجمالي تكرار الكلمة"></Label>
+            <label col="0" row="0" text="{{ans.value}}" style="color: #CA725B; font-size: 15; " class=""> </label>
+            <label class="line" row="1" colSpan="2" style="background-color: #fff;"></label>
+        </GridLayout> -->
+
+
+
+
+
+                        </StackLayout>
+                    </StackLayout>
+                    <!--QestionAnswer-->
+
+                    <!-- <StackLayout *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.QestionAnswer">
+                        <label text=" الاجوبة" class="sign-label" style="margin-top:10; font-size: 15;"></label>
+
+                        <StackLayout class="option-box2" style=" margin-top: 0;"
+                            *ngFor="let ans of answersData?.answers">
+
+                            <GridLayout class="" columns="auto, *" rows="*,*">
+                                <label colSpan="2" row="0" textWrap="true" text="{{ans.name}}" style=" font-size: 15; "
+                                    class=""> </label>
+                            </GridLayout>
+                        </StackLayout>
+                    </StackLayout> -->
+                    <StackLayout *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.QestionAnswer">
+                        <label text=" {{answersData?.questionNameAr}}" class="sign-label" horizontalAlignment="right"
+                            style="margin-top:10; color: #1056A5; font-size: 15;"></label>
+                        <label text="ردود المشاركين" class="sign-label" style="margin-top:10; font-size: 15;"></label>
+
+                        <StackLayout class="option-box2" style=" margin-top: 0;" *ngFor="let ans of evaluationReport">
+
+                            <GridLayout class="" columns="auto, *" rows="*,*">
+                                <!-- <Label col="1" row="0" textWrap="true" class="course-na" text=" الردود"></Label> -->
+                                <label colSpan="2" row="0" text="{{ans.name}}" style="color: #1056A5; font-size: 15; "
+                                    class=""> </label>
+                                <label class="line" colSpan="2" row="1" style="background-color: #fff;"></label>
+                            </GridLayout>
+                            <GridLayout class="" columns="auto, *" rows="*,*">
+                                <Label col="1" row="0" textWrap="true" class="course-na" text=" مجموع التصويت	"></Label>
+                                <label col="0" row="0" text="{{ans.value}}" style="color: #1056A5; font-size: 18; "
+                                    class=""> </label>
+                                <label class="line" row="1" colSpan="2" style="background-color: #fff;"></label>
+                            </GridLayout>
+                            <GridLayout class="" columns="auto, *" rows="*,*">
+                                <Label col="1" row="0" textWrap="true" class="course-na" text="الإعجاب"></Label>
+                                <label col="0" row="0" text="{{ans.likeCount}}" style="color: #1056A5; font-size: 18; "
+                                    class=""> </label>
+                                <label class="line" row="1" colSpan="2" style="background-color: #fff;"></label>
+                            </GridLayout>
+                            <GridLayout class="" columns="auto, *" rows="*,*">
+                                <Label col="1" row="0" textWrap="true" class="course-na" text="عدم الإعجاب"></Label>
+                                <label col="0" row="0" text="{{ans.dislikeCount}}"
+                                    style="color: #CA725B; font-size: 18; " class=""> </label>
+                                <label class="line" row="1" colSpan="2" style="background-color: #fff;"></label>
+                            </GridLayout>
+
+
+
+
+                        </StackLayout>
+                    </StackLayout>
+                    <!--survey-->
+
+                    <StackLayout *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.Survey">
+                        <label text=" البيانات" class="sign-label" style="margin-top:0; font-size: 15;"></label>
+
+
+                        <StackLayout class="option-box2" style=" margin-top: 0;" *ngFor="let ans of resultArray">
+
+                            <GridLayout class="" columns="auto, *" rows="*,*">
+                                <!-- <Label col="1" row="0" textWrap="true" class="course-na" text=" السؤال"></Label> -->
+                                <label colSpan="2" row="0" text="{{ans.questionsName}}"
+                                    style="color: #1056A5; font-size: 15; " class=""> </label>
+                                <label class="line" colSpan="2" row="1" style="background-color: #fff;"></label>
+                            </GridLayout>
+                            <GridLayout class="" columns="*, *" rows="*,*" *ngFor="let s of ans.answers">
+                                <label col="1" row="0" textWrap="true" text="{{s.answerName}}" style=" font-size: 15; "
+                                    horizontalAlignment="right"> </label>
+                                <label col="0" row="0" textWrap="true" text="{{s.answerCount}}"
+                                    style="color: #1056A5; font-size: 18; " horizontalAlignment="right"> </label>
+                                <label class="line" colSpan="2" row="1" style="background-color: #fff;"></label>
+                            </GridLayout>
+                            <!-- <GridLayout class="" columns="auto, *" rows="*,*">
+                                <Label col="1" row="0" textWrap="true" class="course-na" text="لا أوافق"></Label>
+                                <label col="0" row="0" text="{{ans.notAgree}}" style="color: #1056A5; font-size: 18; "
+                                    class=""> </label>
+                                <label class="line" row="1" colSpan="2" style="background-color: #fff;"></label>
+                            </GridLayout>
+                            <GridLayout class="" columns="auto, *" rows="*,*">
+                                <Label col="1" row="0" textWrap="true" class="course-na" text="لا أوافق بشدة"></Label>
+                                <label col="0" row="0" text="{{ans.notAgreeCompletly}}"
+                                    style="color: #1056A5; font-size: 18; " class=""> </label>
+                                <label class="line" row="1" colSpan="2" style="background-color: #fff;"></label>
+                            </GridLayout>
+                            <GridLayout class="" columns="auto, *" rows="*,*">
+                                <Label col="1" row="0" textWrap="true" class="course-na" text="أوافق"></Label>
+                                <label col="0" row="0" text="{{ans.agree}}" style="color: #1056A5; font-size: 18; "
+                                    class=""> </label>
+                                <label class="line" row="1" colSpan="2" style="background-color: #fff;"></label>
+                            </GridLayout>
+                            <GridLayout class="" columns="auto, *" rows="*,*">
+                                <Label col="1" row="0" textWrap="true" class="course-na" text="أوافق الى حد ما"></Label>
+                                <label col="0" row="0" text="{{ans.agreeto}}" style="color: #1056A5; font-size: 18; "
+                                    class=""> </label>
+                                <label class="line" row="1" colSpan="2" style="background-color: #fff;"></label>
+                            </GridLayout>
+                            <GridLayout class="" columns="auto, *" rows="*,*">
+                                <Label col="1" row="0" textWrap="true" class="course-na" text="أوافق بشدة"></Label>
+                                <label col="0" row="0" text="{{ans.agreeCompletly}}"
+                                    style="color: #1056A5; font-size: 18; " class=""> </label>
+                                <label class="line" row="1" colSpan="2" style="background-color: #fff;"></label>
+                            </GridLayout> -->
+
+
+
+                        </StackLayout>
+                    </StackLayout>
+                    <!--Evaluation-->
+
+                    <StackLayout *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.Evaluation">
+                        <!-- <label text=" {{answersData?.questionNameAr}}" class="sign-label" horizontalAlignment="right"
+                            style="margin-top:10; color: #1056A5; font-size: 15;"></label>
+                        <label text="ردود المشاركين" class="sign-label" style="margin-top:10; font-size: 15;"></label>
+
+                        <StackLayout class="option-box2" style=" margin-top: 0;" *ngFor="let ans of evaluationReport">
+
+                            <GridLayout class="" columns="auto, *" rows="*,*">
+                                <label colSpan="2" row="0" text="{{ans.name}}" style="color: #1056A5; font-size: 15; "
+                                    class=""> </label>
+                                <label class="line" colSpan="2" row="1" style="background-color: #fff;"></label>
+                            </GridLayout>
+                            <GridLayout class="" columns="auto, *" rows="*,*">
+                                <Label col="1" row="0" textWrap="true" class="course-na" text=" مجموع التصويت	"></Label>
+                                <label col="0" row="0" text="{{ans.value}}" style="color: #1056A5; font-size: 18; "
+                                    class=""> </label>
+                                <label class="line" row="1" colSpan="2" style="background-color: #fff;"></label>
+                            </GridLayout>
+                            <GridLayout class="" columns="auto, *" rows="*,*">
+                                <Label col="1" row="0" textWrap="true" class="course-na" text="الإعجاب"></Label>
+                                <label col="0" row="0" text="{{ans.likeCount}}" style="color: #1056A5; font-size: 18; "
+                                    class=""> </label>
+                                <label class="line" row="1" colSpan="2" style="background-color: #fff;"></label>
+                            </GridLayout>
+                            <GridLayout class="" columns="auto, *" rows="*,*">
+                                <Label col="1" row="0" textWrap="true" class="course-na" text="عدم الإعجاب"></Label>
+                                <label col="0" row="0" text="{{ans.dislikeCount}}"
+                                    style="color: #CA725B; font-size: 18; " class=""> </label>
+                                <label class="line" row="1" colSpan="2" style="background-color: #fff;"></label>
+                            </GridLayout>
+
+                        </StackLayout> -->
+
+                        
+                        <GridLayout  columns="75,*,*,*,75" class="emoji option-box2">
+                            <StackLayout col="4"  class=" emoji-single ">
+                                <Image src="~/images/green_very_satified.png"  class=""></Image>
+                                <label text=" أوافق بشدة" class="emoji-text"></label>
+                                <label  text="{{evaluationReport.totalyAgreedCount}}" style="color: #089447; font-size: 20; text-align: center;" class="emoji-num"> </label>
+                            </StackLayout>
+                            <StackLayout col="3" flexDirection="column" class=" emoji-single"  alignItems="center"  justifyContent="center" flexWrap="wrap">
+                                <Image src="~/images/green_smile.png"   class=""></Image>
+                                <label text="أوافق" class="emoji-text"></label>
+                                <label  text="{{evaluationReport.agreeCount}}" style="color: #1dc824; font-size: 20; text-align: center;" class="emoji-num"> </label>
+                            </StackLayout>
+                            <StackLayout col="2"  class="emoji-single"  alignItems="center"  justifyContent="center" flexWrap="wrap">
+                                <Image src="~/images/yellow_neutural.png"  class=""></Image>
+                                 <label text="محايد" class="emoji-text" ></label>
+                                 <label  text="{{evaluationReport.iAgreeToSomeExtentCount}}" style="color: #ffbf3e; font-size: 20; text-align: center;" class="emoji-num"> </label>
+                            </StackLayout>
+                            <StackLayout  col="1"  class=" emoji-single" alignItems="center"  justifyContent="center" flexWrap="wrap">
+                                <Image src="~/images/red_sad.png" class=""></Image>
+                                 <label text="لا أوافق" class="emoji-text"></label>
+                                 <label  text="{{evaluationReport.iDoNotAgreeCount}}" style="color: #e65a18; font-size: 20; text-align: center;" class="emoji-num"> </label>
+                            </StackLayout>
+                            <StackLayout col="0" class=" emoji-single"  alignItems="center"  justifyContent="center" flexWrap="wrap">
+                                <Image src="~/images/red_dissatisfied.png"  class=""></Image>
+                                 <label text="لا أوافق بشدة" class="emoji-text" ></label>
+                                 <label  text="{{evaluationReport.stronglyDisagreeCount}}" style="color: #db1b0f; font-size: 20; text-align: center;" class="emoji-num"> </label>
+                            </StackLayout>
+                          
+                            
+                           
+                        </GridLayout>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+
+    </GridLayout>
+
+</GridLayout>

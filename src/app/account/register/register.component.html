@@ -1,0 +1,328 @@
+<GridLayout class="view">
+
+  <ScrollView style="height: 100%;" scrollBarIndicatorVisible="false">
+
+    <StackLayout style="margin-top: 25;" [formGroup]="registerationForm">
+
+      <FlexboxLayout flexDirection="row-reverse" style="margin-top: 30;" alignItems="center" justifyContent="flex-end"
+        (tap)="goBack()">
+        <label text="{{'Back'| L}}" style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+        <Image src="~/images/back.png" width="18" class=""></Image>
+      </FlexboxLayout>
+
+      <Label text="{{'signUp' | L}}" class="sign-label"></Label>
+
+      <label class="form-label">
+        <FormattedString><Span text="{{'ChooseNat' | L}}"></Span><Span text=" *" style="color: red;"></Span>
+        </FormattedString>
+      </label>
+      <GridLayout class="dropdown-wrapper">
+        <DropDown [items]="NationalitiesSource" hint="{{'nationalityHint' | L}}"
+          (selectedIndexChanged)="onNationalityChange($event)" itemsTextAlignment="center"
+          formControlName="nationalityId" selectedIndex="{{nationalitySelectedIndex}}">
+        </DropDown>
+        <Label text="▼" class="dropdown-arrow" horizontalAlignment="left" verticalAlignment="middle"></Label>
+      </GridLayout>
+
+      <FlexboxLayout width="60%" flexDirection="row-reverse" justifyContent="center" alignItems="center"
+        style="margin: 10 0;" *ngIf="!isSaudi">
+
+        <CheckBox:CheckBox checked="false" (checkedChange)="isResident($event.value)" />
+
+        <Label class="check-label plainfont" style="color: #989BAD; font-size: 13;" text="{{ 'SaudiResident' | L }}">
+        </Label>
+
+      </FlexboxLayout>
+
+      <label *ngIf="!muqeem && !isSaudi" class="form-label">
+        <FormattedString><Span text="{{'FirstNameAr' | L}}"></Span><Span text=" *" style="color: red;"></Span>
+        </FormattedString>
+      </label>
+      <GridLayout class="input-wrapper" *ngIf="!muqeem && !isSaudi" [ngClass]="isNotValid('firstNameAr')?'error' :''">
+        <TextField class="input-field" hint="{{'FirstNameAr' | L}}" style="placeholder-color:#989BAD"
+          formControlName="firstNameAr"></TextField>
+      </GridLayout>
+      <Label class="valid-mess" text="{{'ArabicNameRequired' | L}}" *ngIf="isNotValid('firstNameAr')"></Label>
+
+      <label *ngIf="!muqeem && !isSaudi" class="form-label">
+        <FormattedString><Span text="{{'FatherNameAr' | L}}"></Span><Span text=" *" style="color: red;"></Span>
+        </FormattedString>
+      </label>
+      <GridLayout class="input-wrapper" *ngIf="!muqeem && !isSaudi" [ngClass]="isNotValid('fatherNameAr')?'error' :''">
+        <TextField class="input-field" hint="{{'FatherNameAr' | L}}" style="placeholder-color:#989BAD"
+          formControlName="fatherNameAr"></TextField>
+      </GridLayout>
+      <Label class="valid-mess" text="{{'ArabicNameRequired' | L}}" *ngIf="isNotValid('fatherNameAr')"></Label>
+
+      <label *ngIf="!muqeem && !isSaudi" class="form-label">
+        <FormattedString><Span text="{{'FamilyNameAr' | L}}"></Span><Span text=" *" style="color: red;"></Span>
+        </FormattedString>
+      </label>
+      <GridLayout class="input-wrapper" *ngIf="!muqeem && !isSaudi" [ngClass]="isNotValid('familyNameAr')?'error' :''">
+        <TextField class="input-field" hint="{{'FamilyNameAr' | L}}" style="placeholder-color:#989BAD"
+          formControlName="familyNameAr"></TextField>
+      </GridLayout>
+      <Label class="valid-mess" text="{{'ArabicNameRequired' | L}}" *ngIf="isNotValid('familyNameAr')"></Label>
+
+      <label *ngIf="!muqeem && !isSaudi" class="form-label">
+        <FormattedString><Span text="{{'FirstNameAr' | L}} {{'EnglishName' |L}}"></Span><Span text=" *"
+            style="color: red;"></Span></FormattedString>
+      </label>
+      <GridLayout class="input-wrapper" *ngIf="!muqeem && !isSaudi" [ngClass]="isNotValid('firstNameEn')?'error' :''">
+        <TextField class="input-field" hint="{{'FirstNameAr' | L}} {{'EnglishName' |L}}"
+          style="placeholder-color:#989BAD" formControlName="firstNameEn"></TextField>
+      </GridLayout>
+      <Label class="valid-mess" text="{{'EnglishNameRequired' | L}}" *ngIf="isNotValid('firstNameEn')"></Label>
+
+      <label *ngIf="!muqeem && !isSaudi" class="form-label">
+        <FormattedString><Span text="{{'FatherNameAr' | L}} {{'EnglishName' |L}}"></Span><Span text=" *"
+            style="color: red;"></Span></FormattedString>
+      </label>
+      <GridLayout class="input-wrapper" *ngIf="!muqeem && !isSaudi" [ngClass]="isNotValid('fatherNameEn')?'error' :''">
+        <TextField class="input-field" hint="{{'FatherNameAr' | L}} {{'EnglishName' |L}}"
+          style="placeholder-color:#989BAD" formControlName="fatherNameEn"></TextField>
+      </GridLayout>
+      <Label class="valid-mess" text="{{'EnglishNameRequired' | L}}" *ngIf="isNotValid('fatherNameEn')"></Label>
+
+      <label *ngIf="!muqeem && !isSaudi" class="form-label">
+        <FormattedString><Span text="{{'FamilyNameAr' | L}} {{'EnglishName' |L}}"></Span><Span text=" *"
+            style="color: red;"></Span></FormattedString>
+      </label>
+      <GridLayout class="input-wrapper" *ngIf="!muqeem && !isSaudi" [ngClass]="isNotValid('familyNameEn')?'error' :''">
+        <TextField class="input-field" hint="{{'FamilyNameAr' | L}} {{'EnglishName' |L}}"
+          style="placeholder-color:#989BAD" formControlName="familyNameEn"></TextField>
+      </GridLayout>
+      <Label class="valid-mess" text="{{'EnglishNameRequired' | L}}" *ngIf="isNotValid('familyNameEn')"></Label>
+
+      <label class="form-label" *ngIf="!muqeem && !isSaudi">
+        <FormattedString><Span text="{{'gender' | L}}"></Span><Span text=" *" style="color: red;"></Span>
+        </FormattedString>
+      </label>
+      <GridLayout *ngIf="!muqeem && !isSaudi" class="dropdown-wrapper">
+        <DropDown [items]="genderSource" hint="" itemsTextAlignment="center" formControlName="genderId"
+          (selectedIndexChanged)="onGenderChange($event)" [ngClass]="isNotValid('genderId')?'error' :''">
+        </DropDown>
+        <Label text="▼" class="dropdown-arrow" horizontalAlignment="left" verticalAlignment="middle"></Label>
+      </GridLayout>
+
+      <label class="form-label" *ngIf="isSaudi || muqeem">
+        <FormattedString><Span text="{{'SectorName' | L}}"></Span><Span text=" *" style="color: red;"></Span>
+        </FormattedString>
+      </label>
+      <GridLayout *ngIf="isSaudi || muqeem" class="dropdown-wrapper">
+        <DropDown [items]="sectorsSource" hint="" itemsTextAlignment="center" formControlName="sectorId"
+          (selectedIndexChanged)="onSectorChange($event)" [ngClass]="isNotValid('sectorId')?'error' :''">
+        </DropDown>
+        <Label text="▼" class="dropdown-arrow" horizontalAlignment="left" verticalAlignment="middle"></Label>
+      </GridLayout>
+
+      <label *ngIf="muqeem" class="form-label">
+        <FormattedString><Span text="{{'ResidentNumber' | L}}"></Span><Span text=" *" style="color: red;"></Span>
+        </FormattedString>
+      </label>
+      <GridLayout class="input-wrapper" *ngIf="muqeem" [ngClass]="isNotValid('residenceNumber')?'error' :''">
+        <TextField class="input-field" hint="{{'ResidentNumber' | L}}" style="placeholder-color:#989BAD"
+          keyboardType="number" formControlName="residenceNumber"></TextField>
+      </GridLayout>
+      <Label class="valid-mess" text="{{'ResidenceMustBeTen' | L}}" *ngIf="isNotValid('residenceNumber')"></Label>
+
+      <label *ngIf="muqeem" class="form-label">
+        <FormattedString><Span text="{{'KafilNumber' | L}}"></Span><Span text=" *" style="color: red;"></Span>
+        </FormattedString>
+      </label>
+      <GridLayout class="input-wrapper" *ngIf="muqeem" [ngClass]="isNotValid('kafilNumber')?'error' :''">
+        <TextField class="input-field" hint="{{'KafilNumber' | L}}" style="placeholder-color:#989BAD"
+          keyboardType="number" formControlName="kafilNumber"></TextField>
+      </GridLayout>
+      <Label class="valid-mess" text="{{'ResidenceOrNatID' | L}}" *ngIf="isNotValid('kafilNumber')"></Label>
+
+      <label class="form-label" *ngIf="isSaudi">
+        <FormattedString><Span text="{{'nationalID' | L}}"></Span><Span text=" *" style="color: red;"></Span>
+        </FormattedString>
+      </label>
+      <GridLayout class="input-wrapper" *ngIf="isSaudi" [ngClass]="isNotValid('nationalId')?'error' :''">
+        <TextField class="input-field" hint="{{'nationalID' | L}}" style="placeholder-color:#989BAD"
+          keyboardType="number" formControlName="nationalId"></TextField>
+      </GridLayout>
+      <Label class="valid-mess" text="{{'ResidenceOrNatID' | L}}" *ngIf="isNotValid('nationalId')"></Label>
+
+      <label *ngIf="isSaudi" class="form-label">
+        <FormattedString><Span text="{{'HijriBirthdate' |L}}"></Span><Span text=" *" style="color: red;"></Span>
+        </FormattedString>
+      </label>
+      <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="flex-start" *ngIf="isSaudi">
+        <StackLayout>
+          <label text="{{'day' |L}}" class="form-label"></label>
+          <GridLayout class="dropdown-wrapper" width="130">
+            <DropDown [ngClass]="isNotValid('dayHijri')?'error' :''" [items]="days" hint="" itemsTextAlignment="center"
+              formControlName="dayHijri" (selectedIndexChanged)="onDayHijriChange($event)">
+            </DropDown>
+            <Label text="▼" class="dropdown-arrow" horizontalAlignment="left" verticalAlignment="middle"></Label>
+          </GridLayout>
+        </StackLayout>
+        <StackLayout style="margin-right: 5;">
+          <label text="{{'month' |L}}" class="form-label"></label>
+          <GridLayout class="dropdown-wrapper" width="200">
+            <DropDown [ngClass]="isNotValid('monthHijri')?'error' :''" [items]="hijriMonthSource" hint=""
+              itemsTextAlignment="center" formControlName="monthHijri"
+              (selectedIndexChanged)="onMonthHijriChange($event)">
+            </DropDown>
+            <Label text="▼" class="dropdown-arrow" horizontalAlignment="left" verticalAlignment="middle"></Label>
+          </GridLayout>
+        </StackLayout>
+        <StackLayout style="margin-right: 5;">
+          <label text="{{'year' |L}}" class="form-label"></label>
+          <GridLayout class="dropdown-wrapper" width="200">
+            <DropDown [ngClass]="isNotValid('yearHijri')?'error' :''" [items]="years" hint=""
+              itemsTextAlignment="center" formControlName="yearHijri"
+              (selectedIndexChanged)="onYearHijriChange($event)">
+            </DropDown>
+            <Label text="▼" class="dropdown-arrow" horizontalAlignment="left" verticalAlignment="middle"></Label>
+          </GridLayout>
+        </StackLayout>
+      </FlexboxLayout>
+
+      <label *ngIf="!isSaudi" class="form-label">
+        <FormattedString><Span text="{{'birthDate' |L}}"></Span><Span text=" *" style="color: red;"></Span>
+        </FormattedString>
+      </label>
+      <StackLayout *ngIf="!isSaudi" (tap)="openDatePicker()" class="input-wrapper"
+        style="padding: 15; justify-content: center;">
+        <label [text]="selectedBirthdateDisplay || (('birthDate' |L) + ' ▼')"
+          [style.color]="selectedBirthdateDisplay ? '#000' : '#989BAD'"></label>
+      </StackLayout>
+
+      <GridLayout class="" rows="auto" columns="70, *">
+        <StackLayout col="1">
+          <label class="form-label">
+            <FormattedString><Span text="{{'mobile' | L}}"></Span><Span text=" *" style="color: red;"></Span>
+            </FormattedString>
+          </label>
+          <GridLayout class="input-wrapper" [ngClass]="isNotValid('mobile')?'error' :''">
+            <TextField class="input-field" [hint]="mobileHint" style="placeholder-color:#989BAD"
+              formControlName="mobile" keyboardType="number"></TextField>
+          </GridLayout>
+          <Label class="valid-mess" text="{{'IncorrectMobileNumber' | L}}"
+            *ngIf="isNotValid('mobile') && (!isSaudi && !muqeem)"></Label>
+          <Label class="valid-mess" text="{{'IncorrectMobileFormat' | L}}"
+            *ngIf="isNotValid('mobile') && (isSaudi||muqeem)"></Label>
+        </StackLayout>
+        <StackLayout col="0" style="margin-right: 5; margin-top: 0;">
+          <label class="form-label">
+            <FormattedString><Span text="{{'code' | L}}"></Span><Span text=" *" style="color: red;"></Span>
+            </FormattedString>
+          </label>
+          <GridLayout class="dropdown-wrapper" width="130">
+            <DropDown [isEnabled]="!isSaudi" [items]="codesSource" hint="" itemsTextAlignment="center"
+              [selectedIndex]="selectedCodeIndex" formControlName="countryCode"
+              (selectedIndexChanged)="onCodeChange($event)" [ngClass]="isNotValid('countryCode')?'error' :''">
+            </DropDown>
+            <Label text="▼" class="dropdown-arrow" horizontalAlignment="left" verticalAlignment="middle"></Label>
+          </GridLayout>
+        </StackLayout>
+      </GridLayout>
+
+      <GridLayout>
+        <label class="form-label">
+          <FormattedString><Span text="{{'Email' | L}}"></Span><Span text=" *" style="color: red;"></Span>
+          </FormattedString>
+        </label>
+      </GridLayout>
+      <GridLayout class="input-wrapper" [ngClass]="isNotValid('email')?'error' :''">
+        <TextField class="input-field" hint="name@example.com" style="placeholder-color:#989BAD"
+          formControlName="email"></TextField>
+      </GridLayout>
+      <Label class="valid-mess" *ngIf="isNotValid('email')" text="{{'CheckEmailFormat' | L}}"></Label>
+
+      <GridLayout>
+        <label class="form-label">
+          <FormattedString><Span text="{{'emailVerify' | L}}"></Span><Span text=" *" style="color: red;"></Span>
+          </FormattedString>
+        </label>
+      </GridLayout>
+      <GridLayout class="input-wrapper" [ngClass]="isMismatched('confirmEmail','email')?'error' :''">
+        <TextField class="input-field" hint="name@example.com" style="placeholder-color:#989BAD"
+          formControlName="confirmEmail"></TextField>
+      </GridLayout>
+      <Label class="valid-mess" *ngIf="isMismatched('confirmEmail','email')"
+        text="{{'ConfirmEmailNotMatchEmail' |L}}"></Label>
+
+      <!-- ====================== PASSWORD - EYE INSIDE THE FIELD ====================== -->
+      <GridLayout>
+        <label class="form-label">
+          <FormattedString><Span text="{{'Password' | L}}"></Span><Span text=" *" style="color: red;"></Span>
+          </FormattedString>
+        </label>
+      </GridLayout>
+
+      <GridLayout class="input-wrapper" rows="*" columns="55, *" [ngClass]="isNotValid('password')?'error' :''">
+
+        <!-- Eye Icon -->
+        <Label col="0" class="fas eye-toggle" [text]="showPassword ? '&#xf06e;' : '&#xf070;'" (tap)="togglePassword()"
+          verticalAlignment="middle" horizontalAlignment="center">
+        </Label>
+
+        <!-- Password Field -->
+        <TextField col="1" hint="{{'passwordHint' | L}}" style="placeholder-color:#989BAD" [secure]="!showPassword"
+          class="input-field" padding="0 18 0 8" formControlName="password" verticalAlignment="middle">
+        </TextField>
+
+      </GridLayout>
+      <Label class="valid-mess" text="{{'StrongPassword' | L}}" *ngIf="isNotValid('password')"></Label>
+      <!-- ==================================================================== -->
+
+      <!-- ====================== CONFIRM PASSWORD - EYE INSIDE THE FIELD ====================== -->
+      <GridLayout>
+        <label class="form-label">
+          <FormattedString><Span text="{{'passwordVerify' | L}}"></Span><Span text=" *" style="color: red;"></Span>
+          </FormattedString>
+        </label>
+      </GridLayout>
+
+      <GridLayout class="input-wrapper" rows="*" columns="55, *"
+        [ngClass]="isMismatched('confirmPassword','password')?'error' :''">
+
+        <!-- Eye Icon -->
+        <Label col="0" class="fas eye-toggle" [text]="showConfirmPassword ? '&#xf06e;' : '&#xf070;'"
+          (tap)="toggleConfirmPassword()" verticalAlignment="middle" horizontalAlignment="center">
+        </Label>
+
+        <!-- Confirm Password Field -->
+        <TextField col="1" hint="{{'passwordVerifyHint' | L}}" style="placeholder-color:#989BAD"
+          [secure]="!showConfirmPassword" class="input-field" padding="0 18 0 8" formControlName="confirmPassword"
+          verticalAlignment="middle" android:gravity="right|center_vertical">
+        </TextField>
+
+      </GridLayout>
+      <Label class="valid-mess" *ngIf="isMismatched('confirmPassword','password')"
+        text="{{'ConfirmPasswordDoesNotMatchPassword' |L}}"></Label>
+      <!-- ==================================================================== -->
+
+      <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="center" width="100%"
+        style="margin-top: 10; margin-bottom: 10; margin-right: 10; margin-left: 10;">
+        <CheckBox:CheckBox #agree checked="false" />
+
+        <Label class="check-label plainfont" style="color: #989BAD; font-size: 13; flex-shrink: 1;" textWrap="true"
+          text="{{'IAgreeOn'| L}} {{'ServiceConditions'| L}} {{'AndIAgreeOn'| L}} {{'PrivacyPolicy'| L}}">
+        </Label>
+
+      </FlexboxLayout>
+
+      <GridLayout style="height: 520;">
+        <WebView #webView src="{{webViewSource}}" (loadFinished)="onloadFinished($event)"
+          (loadStarted)="onLoadStarted($event)"></WebView>
+      </GridLayout>
+      <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ?  'visible':'collapse'"></ActivityIndicator>
+
+      <Button text="{{'SignUpNew' | L}}" style="margin-top: 10;" class="login-btn" (tap)="register()"
+        [isEnabled]="!isLoading"></Button>
+
+      <FlexboxLayout style="margin-top: 20; margin-bottom: 25;" flexDirection="row-reverse" alignItems="center"
+        justifyContent="center">
+        <label text="{{'AlreadyHaveAnAccount' |L}}" class="d-account" style="margin-top: 0; color: #000;"></label>
+        <label text="{{'LogIn' |L}}" class="d-account" style="margin-top: 0;" [nsRouterLink]="['/login']"></label>
+      </FlexboxLayout>
+
+    </StackLayout>
+  </ScrollView>
+</GridLayout>

@@ -1,0 +1,15 @@
+<!-- <ScrollView>
+<GridLayout rows="auto" class="partener-back" style=" margin-top: 30; border-radius: 20 20 0 0;" >
+    <HtmlView row="0" html="{{ content?.contentAr }}" color="#fff"></HtmlView>
+
+</GridLayout>
+</ScrollView> -->
+
+<ModalStack dismissEnabled="true" class="modal-container">
+    <StackLayout class="modal">
+        <ScrollView scrollBarIndicatorVisible="false" height="100%">
+            <HtmlView html="{{ content?.contentAr }}" color="#000" style="text-align: right; direction: rtl;">
+            </HtmlView>
+        </ScrollView>
+    </StackLayout>
+</ModalStack>

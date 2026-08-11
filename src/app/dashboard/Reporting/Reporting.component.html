@@ -1,0 +1,56 @@
+<GridLayout class="whiteback">
+    <ActionBar flat="true" style="background-color: #fff;" title="">
+        <NavigationButton visibility="collapsed"></NavigationButton>
+        <GridLayout columns="*" width="100%">
+            <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                <Image src="~/images/back.png" width="18" class=""></Image>
+                <label text="{{'Back'| L}}"
+                    style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+            </StackLayout>
+        </GridLayout>
+    </ActionBar>
+    <ScrollView scrollBarIndicatorVisible="false">
+
+        <GridLayout rows="auto,auto,auto,auto,auto" class="contact-back" [formGroup]="reportingForm">
+            <label row="0" text="{{'Reporting'| L}}" class="sign-label"
+                style="margin-bottom: 20; margin-top: 0;"></label>
+
+            <StackLayout row="1" class="form-back">
+                <StackLayout style="margin-right: 5;margin-top: 0;">
+                    <label text="{{'countryCode' | L}}" class="form-label"></label>
+                    <DropDown [ngClass]="isNotValid('countryCode')?'error' :''" [items]="codesSource" hint=""
+                        itemsTextAlignment="center" selectedIndex="{{selectedCodeIndex}}" formControlName="countryCode"
+                        (selectedIndexChanged)="onCodeChange($event)">
+                    </DropDown>
+                </StackLayout>
+                <label text="{{'mobile' | L}}" class="form-label"></label>
+                <TextField hint="000 000 000" style="placeholder-color:#989BAD" keyboardType="phone"
+                    [ngClass]="isNotValid('mobile')?'error' :''" formControlName="mobile"></TextField>
+                <Label class="valid-mess" text="{{'IncorrectMobileNumber' | L}}" *ngIf="isNotValid('mobile')"></Label>
+
+                <label text="{{'fullname' | L}}" class="form-label"></label>
+                <TextField hint="{{'fullname' | L}}" style="placeholder-color:#989BAD" formControlName="fullName">
+                </TextField>
+
+                <label text="{{'Email' | L}}" class="form-label"></label>
+                <TextField hint="name@example.com" style="placeholder-color:#989BAD"
+                    [ngClass]="isNotValid('email')?'error' :''" formControlName="email"></TextField>
+                <Label text="{{'CheckEmailFormat' | L}}" class="valid-mess" *ngIf="isNotValid('email')"></Label>
+                <label text="{{'message' | L}}" class="form-label"></label>
+                <TextView hint="{{'message' | L}}" style="placeholder-color:#989BAD" formControlName="messageContent"
+                    [ngClass]="isNotValid('messageContent')?'error' :''">
+                </TextView>
+            </StackLayout>
+            <GridLayout row="2" height="500" ios:height="200">
+                <WebView #webView src="{{webViewSource}}" (loadFinished)="onloadFinished($event)"
+                    (loadStarted)="onLoadStarted($event)"></WebView>
+            </GridLayout>
+            <ActivityIndicator row="3" [busy]="isSubmitting" [visibility]="isSubmitting ?  'visible':'collapse'">
+            </ActivityIndicator>
+
+            <Button row="4" text="{{'submit' | L}}" class="login-btn" (tap)="submit()"
+                [isEnabled]="!isSubmitting"></Button>
+        </GridLayout>
+    </ScrollView>
+
+</GridLayout>

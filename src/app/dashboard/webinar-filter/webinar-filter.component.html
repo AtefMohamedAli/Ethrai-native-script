@@ -1,0 +1,59 @@
+<ActionBar flat="true" style="background-color: #fff" title="">
+    <NavigationButton visibility="collapsed"></NavigationButton>
+    <GridLayout columns="*" width="100%">   
+        <Label col="0" text="{{'filters'| L}}"  class="page-title text-center"></Label>
+        <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+            <Image src="~/images/back.png" width="18" class="" ></Image>
+            <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+        </StackLayout>   
+        <label text="{{'resetpass'| L}}" col="0" (tap)="reset()" style="font-size: 14px; margin: 0 10; color: #1056A5;" horizontalAlignment="right"></label> 
+    </GridLayout>
+  </ActionBar>
+
+  <GridLayout>
+<GridLayout class="view">
+   
+     <ScrollView  scrollBarIndicatorVisible="false">
+       <StackLayout class="page-layout">
+
+           <label  text="{{'sortby'| L}}" class="sign-label" style="margin-top:0; margin-bottom: 0; font-size:13"></label>
+    
+           <AbsoluteLayout>
+            <DropDown width="100%" style=" background-color: #F5F6F7;border-radius: 10;" color="#000000"
+            [items]="sortBy"
+            itemsTextAlignment="center"
+            (selectedIndexChanged)="onSortChange($event)"
+            [(ngModel)]="selectedSort"
+            >
+           </DropDown>
+           <label text="&#xf078;" class="fas arr-drop" left="10"top="20" style="color: #000;font-size: 14"> </label>
+
+           </AbsoluteLayout> 
+
+           <label  text="{{'webinarTypes' | L}}" class="sign-label" style="margin-top:0; margin-bottom: 0; font-size:13"></label>
+
+           <StackLayout style="margin: 0 0 15;">
+                <FlexboxLayout flexDirection="row-reverse" class="ioscheck iosbottom" *ngFor="let type of webinarTypes;let i=index">
+                    <CheckBox:CheckBox [checked]="type.isChecked" #CB (checkedChange)=" CB.checked !== type.isChecked && onWebinarTypeChange($event,type.value,i)" />
+                    <label class="check-label" text="{{type.text}}"></label>
+                </FlexboxLayout>
+          </StackLayout>
+
+        <label  text="التقييم" class="sign-label" style="margin-top:0; margin-bottom: 0; font-size:13"></label>
+
+        <StackLayout style="margin: 0 0 15;">
+           <FlexboxLayout flexDirection="row-reverse" class="ioscheck iosbottom" *ngFor="let item of ratings">
+               <CheckBox:CheckBox boxType="circle" #CB1 [checked]="item.isChecked" (checkedChange)="CB1.checked !== item.isChecked && onRatingChange($event,item)" />
+               <label class="check-label" text="{{item.text}}"></label>
+           </FlexboxLayout>
+
+       </StackLayout>
+
+        <GridLayout style="margin-bottom: 60;"></GridLayout>
+       </StackLayout>
+    </ScrollView>
+
+        <Button verticalAlignment="bottom"  text="عرض النتائج" class="login-btn" (tap)="showResults()"></Button>
+
+</GridLayout>
+</GridLayout>

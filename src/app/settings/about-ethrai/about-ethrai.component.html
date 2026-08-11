@@ -1,0 +1,134 @@
+<GridLayout class="whiteback">
+    <GridLayout>
+
+        <ActionBar flat="true" style="background-color: #fff;" title="">
+            <NavigationButton visibility="collapsed"></NavigationButton>
+            <GridLayout columns="*" width="100%">
+                <Label col="0" text="{{'about'| L}}" class="page-title text-center"></Label>
+                <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                    <Image src="~/images/back.png" width="18" class=""></Image>
+                    <label text="{{'Back'| L}}"
+                        style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                </StackLayout>
+            </GridLayout>
+        </ActionBar>
+
+        <ScrollView scrollBarIndicatorVisible="false">
+            <StackLayout class="page-layout">
+
+                <StackLayout class="logo-login2" style=" width:38%; margin-top: 10;">
+                    <Image src="~/images/logo-splash.png" class=""></Image>
+                </StackLayout>
+
+                <StackLayout class="album-image" height="240" style="margin-top: 25;" width="100%"
+                    backgroundImage="~/images/about.jpg" borderRadius="20 20 0 0">
+                </StackLayout>
+
+
+                <StackLayout style=" margin-top: 20;" class="container" *ngFor="let item of sections">
+                    <label text="{{item.titleAr}} " style="font-size: 16px; color: #000; font-weight: 600;"></label>
+                    <label [text]="getText(item.contentAr)" class="plainfont"
+                        style="font-size: 16px; color: #000;"></label>
+                    <!--<HtmlView html="{{ item.contentAr }}"></HtmlView>-->
+                </StackLayout>
+
+                <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false" class="container rtl"
+                    style="margin-top: 20;">
+                    <StackLayout orientation="horizontal">
+                        <GridLayout iosOverflowSafeArea="false" *ngFor="let item of sections" class="album-image rtl"
+                            height="200" width="200" borderRadius="20" style="margin-right: 20;">
+                            <Image src="{{item.imageMobileUrl}}"></Image>
+                        </GridLayout>
+                    </StackLayout>
+                </ScrollView>
+
+
+                <!--<StackLayout style=" margin-top: 20;" class="container">
+            <label  text="{{'ourgoal'|L}} "  style="font-size: 16px; color: #000; font-weight: 600;"></label>
+            <label  text="{{'ourgoaltext'|L}}"  class="plainfont" style="font-size: 14px; color: #989BAD; font-weight: 500;"></label>
+        </StackLayout>
+
+        <StackLayout style=" margin-top: 20;" class="container">
+            <label  text="{{'aboutprogpath'|L}} "  style="font-size: 16px; color: #000; font-weight: 600;"></label>
+            <label  text="{{'aboutprogpathtext'|L}}"  class="plainfont" style="font-size: 14px; color: #989BAD; font-weight: 500;"></label>
+        </StackLayout>-->
+
+                <!--<StackLayout style=" margin-top: 20;" class="how-work">
+            <label  text="{{'howitwork'|L}} "  style="font-size: 16px; color: #000; font-weight: 600; margin-bottom: 20;"></label>
+            <GridLayout  class="cr-list-item" rows="auto" columns="*,100" style="margin-bottom: -20;">
+              
+                <StackLayout  row="0" col="1" class="howitborder" style="background-color: #989BAD; width:2; height:90; margin-top: 20; ">
+                </StackLayout>
+
+                <StackLayout  row="0" col="1" class="how-work-back" >
+                     <label text="1" class="fas how-work-icon" ></label> 
+                </StackLayout>
+               
+  
+                <StackLayout row="0" col="0" orientation="vertical" style=" margin: 0 10;">
+                    <Label  textWrap="false" class="course-na" text="{{'howitworkhead'|L}} " ></Label>
+                    <Label  class="plainfont" text="{{'howitworktext'|L}} " style="color: #989BAD;"></Label>  
+                </StackLayout>
+            </GridLayout> 
+
+          
+            
+            <GridLayout  class="cr-list-item" rows="auto" columns="*,100" style="margin-bottom: -20;">
+               
+                <StackLayout  row="0" col="1" class="howitborder" style="background-color: #989BAD; width:2; height:90; margin-top: 20; ">
+                </StackLayout>
+
+                <StackLayout  row="0" col="1" class="how-work-back" >
+                     <label text="2" class="fas how-work-icon" ></label> 
+                </StackLayout>
+  
+                <StackLayout row="0" col="0" orientation="vertical" style=" margin: 0 10;">
+                    <Label  textWrap="false" class="course-na" text="{{'howitworkhead'|L}} " ></Label>
+                    <Label  class=" plainfont" text="{{'howitworktext'|L}} " style="color: #989BAD;"></Label>  
+                </StackLayout>
+            </GridLayout>
+
+            <GridLayout  class="cr-list-item" rows="auto" columns="*,100" >
+                
+                <StackLayout  row="0" col="1" class="howitborder" style="background-color: #f5f6f7; width:2; height:90; margin-top: 20; ">
+                </StackLayout>
+
+                <StackLayout  row="0" col="1" class="how-work-back" >
+                     <label text="3" class="fas how-work-icon" ></label> 
+                </StackLayout>
+  
+                <StackLayout row="0" col="0" orientation="vertical" style=" margin: 0 10;">
+                    <Label  textWrap="false" class="course-na" text="{{'howitworkhead'|L}} " ></Label>
+                    <Label  class=" plainfont" text="{{'howitworktext'|L}} " style="color: #989BAD;"></Label>  
+                </StackLayout>
+            </GridLayout>
+
+          </StackLayout>-->
+
+                <StackLayout class="container" style="margin-bottom: 60; margin-top: 20;">
+                    <label text="{{'visitoursitetest'| L}}" class="acc-head" style="margin-bottom: 10;"></label>
+                    <Button style="background-color: #1056A5; margin-bottom: 10;" text="{{'visitsite' |L}}"
+                        (tap)="gotoWebsite()" class="login-btn"></Button>
+                    <Button style="background-color: #1056A5; margin-bottom: 10;" text="{{'t&c' |L}}" class="login-btn"
+                        (tap)="openModal('terms')"></Button>
+                    <Button style="background-color: #1056A5; margin-bottom: 10;" text="{{'privacy' |L}}"
+                        class="login-btn" (tap)="openModal('privacy')"></Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+    <GridLayout height="80" verticalAlignment="bottom">
+        <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+        </GridLayout>
+        <GridLayout columns="*, *, *, *, *">
+            <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+            <label text="&#xf002;" class="fas menu-icon" col="1" row="0" [nsRouterLink]="['/explore']"></label>
+            <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']"></label>
+            <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']"></label>
+            <StackLayout class="menu-active" col="4" row="0">
+                <label text="&#xf406;" class="fas" [nsRouterLink]="['/account']"></label>
+            </StackLayout>
+        </GridLayout>
+
+    </GridLayout>
+</GridLayout>

@@ -1,0 +1,120 @@
+<GridLayout>
+
+<GridLayout class="view">
+
+    <ActionBar  flat="true" style="background-color: #fff;" title="">
+        <NavigationButton visibility="collapsed"></NavigationButton>
+        <GridLayout columns="*" width="100%">        
+            <Label col="0" text="{{'bookmarks'| L}}"  class="page-title text-center"></Label>
+            <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                <Image src="~/images/back.png" width="18" class="" ></Image>
+                <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+            </StackLayout>  
+             <!-- <Image col="0" *ngIf="isLoggedIn" [nsRouterLink]="['/filter','myProductFilter']" horizontalAlignment="right" style="margin: 0 10;" src="~/images/filter.png" width="28"></Image> -->
+        </GridLayout>
+    </ActionBar>
+
+     <ScrollView  scrollBarIndicatorVisible="false">
+         <StackLayout class="page-layout"  *ngIf="bookmarks?.length==0">
+            <Label text="{{'nobookmarks'|L}}" style="text-align: center; font-size: 16px; color: #1056A5;  padding: 15px; margin-top: 100px;" ></Label>
+
+         </StackLayout>
+       <StackLayout class="page-layout" *ngIf="bookmarks?.length!=0">
+
+
+          <!--<StackLayout ios:opacity="1" class="search-back"  style="margin: 10 0 0;">
+            <SearchBar hint="{{'searchhere'| L}}" backgroundColor="#f5f6f7" (loaded)="loadedSB($event)"
+            [text]="searchPhrase" (textChange)="onTextChanged($event)" (loaded)="searchBarLoaded($event)"
+            (clear)="onClear($event)" (submit)="onSubmit($event)">
+            </SearchBar>
+        </StackLayout>-->
+         
+      <StackLayout [class.dialogOpen]="dialogOpen">
+
+        <GridLayout class="search-back" style="margin: 10 0 0 ;"  height="50" rows="auto" columns="30, *, 30">
+            <Image  col="2" src="~/images/se.png"  class="se-btn" width="20" style="margin-bottom: 15;"></Image>
+            <Image col="2" src="~/images/x.png" class="x-btn"  width="16" style="margin-bottom: 15;" (tap)="onClear()"></Image>
+            <TextField (returnPress)="onSubmit($event)"  returnKeyType="search" [(ngModel)]="searchPhrase" (textChange)="onTextChanged($event)"
+            col="1" style="placeholder-color:#989BAD; color: #000; height: 40;padding: 0 10;"   hint="{{'searchhere'| L}}" ></TextField>
+        </GridLayout>
+      </StackLayout>
+
+          
+
+         <!--    <label  text="{{'ourCategories' | L}}" class="sign-label" style="margin-top:20"></label>
+
+           <ScrollView orientation="horizontal" class="rtl"  scrollBarIndicatorVisible="false" >
+            <FlexboxLayout alignItems="center" width="500" justifyContent="flex-start" flexWrap="wrap">
+                <label  text="{{item.nameAr}}" *ngFor="let item of categories" class="cate-tags rtl" [nsRouterLink]="['/category',item.id,item.nameAr]"></label>
+               </FlexboxLayout>
+            </ScrollView> -->
+
+             <!--    <label  text="المنتجات" class="sign-label" style="margin-top:15;"></label>
+               <ScrollView orientation="horizontal"  scrollBarIndicatorVisible="false" class="rtl"  >
+                <FlexboxLayout alignItems="center" width="500" justifyContent="flex-start" flexWrap="wrap">
+                    <label  text="{{item.nameAr}}" class="cate-tags rtl" *ngFor="let item of subCategories"></label>
+                   </FlexboxLayout>
+                 </ScrollView> -->
+
+                <label  text="{{'bookmarks' | L}}" class="sign-label" style="margin-top:20"></label>
+          
+                <FlexboxLayout alignItems="center" class="rtl" justifyContent="flex-start" flexWrap="wrap" *ngIf="bookmarks?.length!=0;let i=index;">
+                    <label  text="{{'allbookmarks' | L}}" [ngClass]="{'active-book':selectedCourseId=='0'}" class="cate-tags rtl" (tap)="filterBokkmarks('0')"></label>
+                    <label  text="{{item.courseNameAr}}" [ngClass]="{'active-book':selectedCourseId==item.courseId}" class="cate-tags rtl" (tap)="filterBokkmarks(item.courseId)" *ngFor="let item of tempBookmarks"></label>
+             </FlexboxLayout>
+
+            <StackLayout style="margin-top: 10;" *ngFor="let item of bookmarks;let i=index">
+                <FlexboxLayout  horizontalAlignment="right" (tap)="clickme(item)" [visibility]="clickedd == item ? 'collapsed' : 'visible'" flexDirection="row" justifyContent="space-between">
+                    <GridLayout    (tap)="clickme(item)" columns="auto, *" class="bookmark-collapse">
+                        <Label col="1" text="&#xf107;"   class="fas arr-drop" style="color: #000"></Label>
+                        <Label col="1"  horizontalAlignment="right" text='{{item.courseNameAr}}' class="bookmark-course"></Label>
+                    </GridLayout>
+                </FlexboxLayout>
+                <FlexboxLayout  horizontalAlignment="right"  [visibility]="clickedd == item ? 'visible' : 'collapsed'" flexDirection="column">
+                    <GridLayout (tap)="uclickme(item)" columns="auto, *" class="bookmark-collapse ">
+                        <Label col="1" text="&#xf106;"  class="fas arr-drop" style="color: #1056A5"></Label>
+                        <Label col="1"  horizontalAlignment="right" text='{{item.courseNameAr}}' class="bookmark-course"></Label>
+                    </GridLayout>
+          
+                    <StackLayout>
+                        <Label  class="course-cate" text='برنامج تدريبي'></Label>
+                        <StackLayout  class="notifi-back" style="padding: 10;" *ngFor="let bookmark of item.bookmarks;let j=index">
+                            <GridLayout  columns="auto, *" rows="auto">
+                            <label  row="0" col="1" text="{{bookmark.nameAr}}"  class="acc-sett" (tap)="goToCourse(item.courseId,bookmark.courseDetailId)"></label>
+                            <Label row="0" col="0" text="&#xf02e;"  class="fas arr-drop" style="color: #f2d22e" (tap)="removeBookMark(bookmark,i,j)"></Label>
+                           </GridLayout>
+                            <label  text="{{bookmark.bookmarkDate | date:'short'}} : {{'addedat' |L}}"  style="color: #989BAD; text-align: right;" class="acc-sett" (tap)="goToCourse(item.courseId,bookmark.courseDetailId)"></label>
+                            <!-- <label  text="{{bookmark.type}}"  style="color: #989BAD; text-align: right;" class="acc-sett"></label> -->
+
+                        </StackLayout>
+
+                    </StackLayout> 
+                </FlexboxLayout>
+            </StackLayout>
+
+            
+
+            <GridLayout style="height: 80;">
+
+            </GridLayout> 
+
+
+
+    </StackLayout>
+  </ScrollView>
+</GridLayout>
+<GridLayout height="80" verticalAlignment="bottom">
+    <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+    </GridLayout>
+    <GridLayout columns="*, *, *, *, *">
+        <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+        <label text="&#xf002;" class="fas menu-icon" col="1" row="0"  [nsRouterLink]="['/explore']"></label>
+        <StackLayout class="menu-active"  col="2" row="0">
+            <label text="&#xf144;" class="far"  [nsRouterLink]="['/my-products']" ></label>
+        </StackLayout>
+        <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']" ></label>
+        <label text="&#xf406;" class="fas menu-icon" col="4" row="0" [nsRouterLink]="['/account']"></label>
+    </GridLayout>
+  
+</GridLayout>
+</GridLayout>

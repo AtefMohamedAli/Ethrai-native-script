@@ -1,0 +1,119 @@
+<GridLayout>
+
+    <GridLayout class="view">
+
+        <ActionBar flat="true" style="background-color: #fff" title="">
+            <NavigationButton visibility="collapsed"></NavigationButton>
+            <GridLayout columns="*" width="100%">
+                <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                    <Image src="~/images/back.png" width="18" class=""></Image>
+                    <label text="{{'Back'| L}}"
+                        style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                </StackLayout>
+            </GridLayout>
+        </ActionBar>
+        <GridLayout rows="auto,auto,auto" >
+          <StackLayout  row="0"[class.dialogOpen]="dialogOpen">
+
+            <GridLayout class="search-back" style="margin: 10 0 0 ;" height="50" rows="auto" columns="30, *, 30">
+                <Image  col="2" src="~/images/se.png"  class="se-btn" width="20" style="margin-bottom: 15;"></Image>
+                <Image col="2" src="~/images/x.png" class="x-btn"  width="16" style="margin-bottom: 15;" (tap)="onClear()"></Image>
+                <TextField (returnPress)="onSubmit($event)"  returnKeyType="search" [(ngModel)]="searchPhrase" (textChange)="onTextChanged($event)"
+                col="1" style="placeholder-color:#989BAD; color: #000; height: 40;padding: 0 10;"   hint="{{'searchhere'| L}}" ></TextField>
+            </GridLayout>
+          </StackLayout> 
+          
+         
+          <label row="1"  text="{{'TrainingSources' | L}}" class="sign-label" style="margin-top:10"></label>
+          <FlexboxLayout row="2" flexDirection="row-reverse" class="acc-line" alignItems="center"
+              justifyContent="space-between" flexWrap="wrap">
+              <label text="{{'interactive-training' | L}}" class="sign-label"
+                  style="margin-top:10; font-size: 15;"></label>
+                  <StackLayout class="add-training " style="border-radius: 100;">
+                    <label text="&#xf067;" class="fas"  style="padding-top: 13; text-align: center;"
+                    (tap)="goToInterActiveForm()"  ></label>
+                 </StackLayout>
+          </FlexboxLayout>
+       </GridLayout>
+           
+            <GridLayout rows="auto,auto,auto,auto,auto,auto ,auto" class="page-layout" style="margin-top: 180; padding-bottom: 50;">
+               
+
+                <label row="2" text="{{'filterCases' | L}}" style="font-size: 14;" class="form-label"></label>
+                <DropDown row="3" style="margin-bottom: 20;" [items]="filterCases" hint="{{'filterCases' | L}}"
+                    itemsTextAlignment="center" (selectedIndexChanged)="onchangeIT($event)">
+                </DropDown>
+
+
+                <Label row="4" text="{{'NoFilterResults'|L}}"
+                    style="text-align: center; font-size: 16px; color: #1056A5;  padding: 15; margin-top: 100px;"
+                    *ngIf="interactiveTraining.length ==0&&dataItems.length==0 && !isLoading"></Label>
+                <ActivityIndicator row="5" class="spin" [busy]="isLoading"></ActivityIndicator>
+
+                <ListView row="6" [height]="screenHeight" *ngIf="dataItems.length" [items]="dataItems"
+                    loadOnDemandMode="Auto" (loadMoreItems)="onLoadMoreItemsRequested($event)">
+
+                    <ng-template tkListItemTemplate let-item="item" let-i="index">
+                        <GridLayout class="cr-list-item" row="6" rows="auto" columns="*,100">
+                            <GridLayout row="0" col="2" class="album-image"
+                            (tap)="goToDitals(item?.id,item?.isFinished,item?.isActive)" 
+                                backgroundImage="{{item?.imageUrl}}" verticalAlignment="top"
+                                style=" border-radius: 10; width: 100; height: 100;">
+                            </GridLayout>
+                            <WrapLayout row="0" col="0" orientation="vertical" verticalAlignment="top"
+                                style=" margin: 0 10 0 0">
+                                <GridLayout class="" columns="auto, *" rows="*,*">
+                                    <Label col="1" row="0" textWrap="true" class="course-na"
+                                        text="{{item?.nameAr}}" (tap)="goToDitals(item?.id,item?.isFinished,item?.isActive)" ></Label>
+                                        <Label col="1" row="1" textWrap="true" class="course-na"
+                                         (tap)="goToDitals(item?.id,item?.isFinished,item?.isActive)" ></Label>
+                                    
+                                        <label col="0" row="0" *ngIf="item?.isDraft==true" text="&#xf044;"
+                                        style="color: #1056A5; font-size: 16; width: 33; height: 33;" class="fas"
+                                        [nsRouterLink]="['/interactive-training-form',item?.id]"> </label>
+                                    <label col="0" row="1" *ngIf="item?.isDraft==true"  text="&#xf1f8;" style="margin: 0;" class=" fas remove-icon"
+                                        (tap)="openModal(item?.id,i)"></label>
+                                </GridLayout>
+                                <!-- <GridLayout class="" columns="auto, *">
+                                    <Label col="1" textWrap="true" class="course-cate" text="نشاط تفاعلي"></Label>
+                                </GridLayout> -->
+                                <FlexboxLayout flexDirection="row-reverse" class="acc-line" alignItems="center" 
+                                (tap)="goToDitals(item?.id,item?.isFinished,item?.isActive)" 
+                                    flexWrap="wrap" *ngIf="item?.isDraft==false">
+                                    <Label col="1" textWrap="true" class="course-na"
+                                        text="{{item?.modified | date: 'dd/MM/yyyy'}}"></Label>
+                                    <Label col="1" textWrap="true" class="course-na" style="margin: 0 10;"
+                                        text="-"></Label>
+                                    <Label col="1" textWrap="true" class="course-na"
+                                        text="{{item?.modified | date: 'hh:mm'}}"></Label>
+                                </FlexboxLayout>
+                               <!--  <FlexboxLayout row="1" flexDirection="row-reverse" class="acc-line" alignItems="center"
+                                    justifyContent="space-between" flexWrap="wrap" *ngIf="item?.isDraft==true">
+
+                                    <label text="&#xf00d;" class="add-training fas "
+                                        style="border-radius: 100; padding-top: 13;"
+                                        (tap)="openModal(item?.id,i)"></label>
+                                </FlexboxLayout> -->
+
+                            </WrapLayout>
+                        </GridLayout>
+                    </ng-template>
+                </ListView>
+            </GridLayout>
+    </GridLayout>
+
+    <GridLayout height="60" verticalAlignment="bottom">
+        <GridLayout columns="*, *, *, *, *" height="60" backgroundColor="#f1f1f4">
+            <label text="&#xf015;" class="fas menu-icon  " col="0" row="0" [nsRouterLink]="['/highlighted']" height="25"
+                width="25" margin="10"></label>
+            <label text="&#xf002;" class="fas menu-active" col="1" row="0" [nsRouterLink]="['/explore']" height="25"
+                width="25" margin="10"></label>
+            <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']" height="25"
+                width="25" margin="10"></label>
+            <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']" height="25"
+                width="25" margin="10"></label>
+            <label text="&#xf406;" class="fas menu-icon" col="4" row="0" [nsRouterLink]="['/account']" height="25"
+                width="25" margin="10"></label>
+        </GridLayout>
+    </GridLayout>
+</GridLayout>

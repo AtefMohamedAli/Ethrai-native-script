@@ -1,0 +1,122 @@
+<GridLayout class="whiteback">
+
+  <ActionBar flat="true" style="background-color: #fff;" title="">
+    <NavigationButton visibility="collapsed"></NavigationButton>
+    <GridLayout columns="*" width="100%">
+      <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+        <Image src="~/images/back.png" width="18" class=""></Image>
+        <label text="{{'Back'| L}}" style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+      </StackLayout>
+    </GridLayout>
+  </ActionBar>
+
+  <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'"></ActivityIndicator>
+
+  <ScrollView scrollBarIndicatorVisible="false">
+    <StackLayout class="page-layout" style="margin-bottom:60">
+
+      <label *ngIf="isEthrai || !isLoggedIn" text="{{'contact'| L}}" class="sign-label container"
+        style="margin-bottom: 10; margin-top: 0;"></label>
+
+      <GridLayout *ngIf="isEthrai || !isLoggedIn" rows="auto,auto" style="margin-bottom: 10;" class="container">
+        <label row="0" text="العنوان" class="prof-data" style="font-size: 15;"></label>
+        <label row="1" [text]="getText(info.companyTitleAr)" class="prof-label" style="font-size: 14;"></label>
+        <!--<HtmlView row="1" html="{{ info.companyTitleAr }}" class="prof-label" style="font-size: 14;"></HtmlView>-->
+      </GridLayout>
+
+      <GridLayout *ngIf="isEthrai || !isLoggedIn" rows="auto,auto" style="margin-bottom: 10;" class="container">
+        <label row="0" text="أوقات العمل" class="prof-data" style="font-size: 15;"></label>
+        <label row="1" text="{{info.openDayAr}} إلى {{info.closeDayAr}}  {{info.openTime}} --> {{info.closeTime}}  "
+          class="prof-label" style="font-size: 14;"></label>
+      </GridLayout>
+
+
+
+      <GridLayout rows="auto,auto,auto,auto,auto" class="contact-back" [formGroup]="contactForm"
+        *ngIf="!requestSuccess">
+        <label row="0" text="{{'contact'| L}}" class="sign-label" style="margin-bottom: 20; margin-top: 0;"></label>
+
+        <StackLayout row="1" class="form-back">
+          <label text="{{'fullname' | L}}" class="form-label"></label>
+          <TextField hint="{{'fullname' | L}}" style="placeholder-color:#989BAD" formControlName="fullName"></TextField>
+
+          <label text="{{'Email' | L}}" class="form-label"></label>
+          <TextField hint="name@example.com" style="placeholder-color:#989BAD"
+            [ngClass]="isNotValid('email')?'error' :''" formControlName="email"></TextField>
+          <Label text="{{'CheckEmailFormat' | L}}" class="valid-mess" *ngIf="isNotValid('email')"></Label>
+
+          <label text="{{'mobile' | L}}" class="form-label"></label>
+          <TextField hint="+00 000 000 000" style="placeholder-color:#989BAD" keyboardType="phone"
+            [ngClass]="isNotValid('mobile')?'error' :''" formControlName="mobile"></TextField>
+          <Label class="valid-mess" text="{{'IncorrectMobileNumber' | L}}" *ngIf="isNotValid('mobile')"></Label>
+
+          <label text="{{'topic' | L}}" class="form-label"></label>
+          <TextField hint="{{'topic' | L}}" style="placeholder-color:#989BAD" formControlName="topic"></TextField>
+
+          <label text="{{'IssueType' | L}}" class="form-label"></label>
+          <DropDown [items]="issuesSource" hint="" itemsTextAlignment="center" formControlName="issueType"
+            (selectedIndexChanged)="onIssueChange($event)" [ngClass]="isNotValid('issueType')?'error' :''">
+          </DropDown>
+
+          <label *ngIf="showRadioButtons" text="{{title1}}" class="form-label"></label>
+          <FlexboxLayout flexWrap="wrap" flexDirection="row-reverse" style="margin: 10 0;" *ngIf="showRadioButtons">
+            <FlexboxLayout flexWrap="wrap" *ngFor="let item of customProductTypes">
+              <label class="check-label plainfont" style=" color: #989BAD; font-size:13 ;"
+                text="{{item.display}}"></label>
+              <CheckBox:CheckBox #CB [checked]="item.isChecked" boxType="circle"
+                (checkedChange)="CB.checked !== item.isChecked && onProductTypeChange(item)" />
+            </FlexboxLayout>
+          </FlexboxLayout>
+
+          <label text="{{title}}" class="form-label" *ngIf="showProductsDropdown"></label>
+          <DropDown *ngIf="showProductsDropdown" [items]="productsSource" hint="" itemsTextAlignment="center"
+            formControlName="productId" (selectedIndexChanged)="onProductChange($event)"
+            [ngClass]="isNotValid('productId')?'error' :''">
+          </DropDown>
+
+
+          <label text="{{'NatOrResidentNumber' | L}}" class="form-label"></label>
+          <TextField hint="{{'NatOrResidentNumber' | L}}" style="placeholder-color:#989BAD"
+            formControlName="identityOrIqamaNumber" keyboardType="number"></TextField>
+          <Label class="valid-mess" text="{{'ResidenceOrNatID' | L}}"
+            *ngIf="isNotValid('identityOrIqamaNumber')"></Label>
+
+          <label text="{{'message' | L}}" class="form-label"></label>
+          <TextView hint="{{'message' | L}}" style="placeholder-color:#989BAD" formControlName="messageContent"
+            [ngClass]="isNotValid('messageContent')?'error' :''">
+          </TextView>
+        </StackLayout>
+        <GridLayout row="2" ios:height="200" style="height: 500;">
+          <WebView #webView src="{{webViewSource}}" (loadFinished)="onloadFinished($event)"
+            (loadStarted)="onLoadStarted($event)"></WebView>
+        </GridLayout>
+        <ActivityIndicator row="3" [busy]="isSubmitting" [visibility]="isSubmitting ?  'visible':'collapse'">
+        </ActivityIndicator>
+
+        <Button row="4" text="{{'submit' | L}}" class="login-btn" (tap)="submit()" [isEnabled]="!isSubmitting"></Button>
+      </GridLayout>
+      <StackLayout *ngIf="requestSuccess">
+        <StackLayout class="forget-back">
+          <label text="&#xf00c;" class="fas forget-icon"></label>
+        </StackLayout>
+        <label text="{{'Success'| L}}" class="sign-label" style="margin-bottom: 0; text-align: center;"></label>
+        <Button text="{{'OkExcellent' | L}}" class="login-btn" (tap)="showForm()"></Button>
+      </StackLayout>
+    </StackLayout>
+
+  </ScrollView>
+  <GridLayout height="80" verticalAlignment="bottom">
+    <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+    </GridLayout>
+    <GridLayout columns="*, *, *, *, *">
+      <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+      <label text="&#xf002;" class="fas menu-icon" col="1" row="0" [nsRouterLink]="['/explore']"></label>
+      <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']"></label>
+      <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']"></label>
+      <StackLayout class="menu-active" col="4" row="0">
+        <label text="&#xf406;" class="fas" [nsRouterLink]="['/account']"></label>
+      </StackLayout>
+    </GridLayout>
+
+  </GridLayout>
+</GridLayout>

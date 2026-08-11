@@ -1,0 +1,108 @@
+<GridLayout class="view">
+
+  <!-- Hidden ActionBar -->
+  <ActionBar visibility="collapsed" class="view" title="h">
+  </ActionBar>
+
+  <ScrollView scrollBarIndicatorVisible="false">
+    <StackLayout>
+
+      <!-- Back -->
+      <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="flex-end" style="margin-top: 45;"
+        (tap)="goBack()">
+
+        <Label text="{{ 'Back' | L }}" style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;">
+        </Label>
+
+        <Image src="~/images/back.png" width="18">
+        </Image>
+
+      </FlexboxLayout>
+
+      <!-- Logo -->
+      <Image src="~/images/logo-splash.png" class="logo-login2" style="margin-top: 4;">
+      </Image>
+
+      <!-- Title -->
+      <Label text="{{ 'LogIn' | L }}" class="sign-label">
+      </Label>
+
+      <!-- Loader -->
+      <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapsed'">
+      </ActivityIndicator>
+
+      <!-- Email -->
+      <Label text="{{ 'EmailOrID' | L }}" class="form-label">
+      </Label>
+
+      <GridLayout class="input-wrapper" [ngClass]="submitted && mail.invalid ? 'error' : ''">
+        <TextField class="input-field" hint="name@example.com" name="mail" required #mail="ngModel"
+          [(ngModel)]="loginPayload.usernameOrEmail" [pattern]="regex" style="placeholder-color:#989BAD;"
+          verticalAlignment="middle" android:gravity="center_vertical">
+        </TextField>
+      </GridLayout>
+
+      <Label text="{{ 'CheckEmailFormat' | L }}" class="valid-mess" *ngIf="mail.invalid && mail.control.dirty">
+      </Label>
+
+      <!-- Password - FIXED -->
+      <Label text="{{ 'Password' | L }}" class="form-label">
+      </Label>
+
+      <GridLayout class="input-wrapper" rows="*" columns="55, *"
+        [ngClass]="submitted && password.invalid ? 'error' : ''">
+
+        <!-- Eye Icon -->
+        <Label col="0" class="fas eye-toggle" [text]="showPassword ? '&#xf06e;' : '&#xf070;'"
+          (tap)="showPassword = !showPassword" verticalAlignment="middle" horizontalAlignment="center">
+        </Label>
+
+        <!-- Password Field -->
+        <TextField col="1" hint="{{ 'passwordHint' | L }}" style="placeholder-color:#989BAD;" [secure]="!showPassword"
+          class="input-field" padding="0 18 0 8" name="password" required #password="ngModel"
+          [(ngModel)]="loginPayload.password" verticalAlignment="middle" android:gravity="center_vertical">
+        </TextField>
+
+      </GridLayout>
+
+      <!-- Keep logged in -->
+      <FlexboxLayout class="ioscheck" flexDirection="row-reverse" style="margin-top: 5; margin-bottom: 5;">
+
+        <CheckBox:CheckBox [isEnabled]="!isLoading" [checked]="isChecked" style="background-color: #fff;"
+          (checkedChange)="onCheckChange($event)">
+        </CheckBox:CheckBox>
+
+        <Label class="check-label" text="{{ 'keepInSystem' | L }}" style="color: #989BAD;">
+        </Label>
+
+      </FlexboxLayout>
+
+      <!-- Login -->
+      <Button text="{{ 'LogIn' | L }}" class="login-btn" [isEnabled]="!isLoading"
+        (tap)="login(!password.invalid && !mail.invalid)">
+      </Button>
+
+      <!-- Biometric Login -->
+      <Button *ngIf="isBiometricAvailable && hasSavedCredentials"
+        [text]="biometricType === 'face' ? ('FaceIDLogin' | L) : ('TouchIDLogin' | L)" class="login-btn"
+        style="margin-top: 20;" [isEnabled]="!isLoading" (tap)="loginByFingerPrint()">
+      </Button>
+
+      <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="center"
+        style="margin-top: 10; margin-bottom: 10;">
+
+        <Label *ngIf="isAndroid" text="{{ 'signUp' | L }}" class="d-account" style="margin-top: 0;"
+          [nsRouterLink]="['/register']">
+        </Label>
+
+        <Label *ngIf="isAndroid" text="{{ 'or' | L }}" class="or">
+        </Label>
+
+        <Label text="{{ 'ForgotPassword' | L }}" class="Forgot" [nsRouterLink]="['/forgot-password']">
+        </Label>
+
+      </FlexboxLayout>
+    </StackLayout>
+  </ScrollView>
+
+</GridLayout>

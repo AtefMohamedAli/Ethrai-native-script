@@ -1,0 +1,313 @@
+<GridLayout class="whiteback">
+
+  <GridLayout verticalAlignment="top" class="top-bar">
+    <FlexboxLayout flexDirection="row" alignItems="center" justifyContent="space-between">
+
+      <StackLayout orientation="horizontal" alignItems="center" (tap)="goBack()">
+        <Image src="~/images/back.png" width="18" class=""></Image>
+        <label text="{{'Back'| L}}" style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+      </StackLayout>
+
+
+    </FlexboxLayout>
+  </GridLayout>
+
+  <GridLayout verticalAlignment="top" style="margin-top: 70;">
+    <StackLayout class="album-image" height="300" style="margin-top: 0; background-color: #f3f4f5; padding: 20;"
+      borderRadius="20 20 0 0">
+      <Image row="0" col="1" src="{{coursePath?.thumbnail}}"></Image>
+    </StackLayout>
+  </GridLayout>
+
+  <ActionBar visability="collapsed" class="view" title=""> </ActionBar>
+
+  <StackLayout class="page-layout" style="margin-top: 370;">
+
+    <ActivityIndicator *ngIf="isLoading" [busy]="isLoading"></ActivityIndicator>
+
+
+    <MDTabs selectedIndex="1">
+      <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
+      <MDTabStrip>
+        <MDTabStripItem>
+          <Label text="المحتوى"></Label>
+          <!-- <Image src="font://&#xf015;" class="fas"></Image> -->
+        </MDTabStripItem>
+        <MDTabStripItem class="special">
+          <Label text="تفاصيل المسار"></Label>
+          <!-- <Image src="font://&#xf007;" class="fas"></Image> -->
+        </MDTabStripItem>
+      </MDTabStrip>
+
+      <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
+      <MDTabContentItem>
+        <GridLayout>
+          <ScrollView style="height: 100%;" scrollBarIndicatorVisible="false">
+            <!-- progress if purchased  -->
+            <ScrollView orientation="vertical" scrollBarIndicatorVisible="false" class="container rtl">
+              <StackLayout orientation="vertical" style="margin-top: 20; margin-bottom: 80;">
+                <StackLayout class="rtl" *ngFor="let course of coursePath?.courses;let i =index"
+                  (tap)="goToCoursePage(course.course.id,course.course)">
+                  <FlexboxLayout flexDirection="row-reverse" justifyContent="flex-start">
+                    <StackLayout flexDirection="row-reverse" alignItems="center" justifyContent="flex-start">
+                      <StackLayout
+                        [ngClass]=" course?.enrollment?.status=='Success'?'prog-course-active' :'prog-course'">
+                        <label text="{{i+1}}" class="prog-label-course"></label>
+                      </StackLayout>
+                      <StackLayout *ngIf="i &lt; coursePath?.courses?.length-1"
+                        [ngClass]=" course?.enrollment?.status=='Success'?'prog-bar-course-active2' :'prog-bar-course2'">
+                      </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout style="text-align: right; margin: 0 20 ;">
+                      <label text="{{course?.course.nameAr}}" class="prog-label-course"></label>
+                      <label class="plainfont" style="font-size: 13; color: #989BAD; text-align: left;"
+                        text="{{course?.course?.shortSummaryAr}}" class="prog-label-course"></label>
+                    </StackLayout>
+                  </FlexboxLayout>
+                </StackLayout>
+
+              </StackLayout>
+            </ScrollView>
+            <!-- progress if purchased  -->
+          </ScrollView>
+        </GridLayout>
+      </MDTabContentItem>
+      <MDTabContentItem>
+        <GridLayout>
+          <ScrollView style="height: 100%;" scrollBarIndicatorVisible="false">
+
+            <StackLayout>
+              <!--course name collapse-->
+              <StackLayout style="margin-top: 20;" class="container">
+                <FlexboxLayout horizontalAlignment="right" (tap)="clickme(item)"
+                  [visibility]="clickedd == item ? 'collapsed' : 'visible'" flexDirection="row"
+                  justifyContent="space-between">
+                  <GridLayout (tap)="clickme(item)" columns="auto, *" class="bookmark-collapse">
+                    <Label col="1" text="&#xf107;" class="fas arr-drop" style="color: #000"></Label>
+                    <Label col="1" horizontalAlignment="right" text='{{coursePath?.nameAr}}'
+                      class="bookmark-course"></Label>
+                  </GridLayout>
+                </FlexboxLayout>
+                <FlexboxLayout horizontalAlignment="right" [visibility]="clickedd == item ? 'visible' : 'collapsed'"
+                  flexDirection="column">
+                  <GridLayout (tap)="uclickme(item)" columns="auto, *" class="bookmark-collapse ">
+                    <Label col="1" text="&#xf106;" class="fas arr-drop" style="color:#1056A5"></Label>
+                    <Label col="1" horizontalAlignment="right" text='{{coursePath?.nameAr}}'
+                      class="bookmark-course"></Label>
+                  </GridLayout>
+
+                  <Label class="course-cate" style="color:#989bad;font-size: 13;"
+                    text="{{coursePath?.fullDescriptionAr}}"></Label>
+
+                </FlexboxLayout>
+              </StackLayout>
+              <!-- end course name collapse-->
+
+              <StackLayout>
+                <label class="line" style="margin: 20 20;"></label>
+              </StackLayout>
+
+
+              <!--course data -->
+              <StackLayout>
+                <FlexboxLayout flexDirection="row-reverse" class="container" alignItems="center"
+                  justifyContent="space-between">
+                  <label text="{{'dateofpublication'| L}}" class="c-prop"></label>
+                  <label text="{{publishDate}}" class="c-val plainfont"></label>
+                </FlexboxLayout>
+                <FlexboxLayout flexDirection="row-reverse" class="container" alignItems="center"
+                  justifyContent="space-between">
+                  <label text="{{'level'| L}}" class="c-prop"></label>
+                  <label text="{{coursePath?.experienceLevel | L}}" class="c-val plainfont"></label>
+                </FlexboxLayout>
+
+              </StackLayout>
+              <!-- end course data -->
+
+              <StackLayout>
+                <label class="line" style="margin: 20 20;"></label>
+              </StackLayout>
+
+              <!--course tag -->
+              <label text="{{'aquiredc'| L}}" class="c-prop container"></label>
+              <StackLayout class="container">
+                <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="flex-start"
+                  flexWrap="wrap">
+                  <label text="{{item}}" class="cate-tags-light" *ngFor="let item of coursePath?.skillsAr"></label>
+                </FlexboxLayout>
+              </StackLayout>
+              <!-- end course tag -->
+
+              <StackLayout *ngIf="coursePath?.skillsAr?.length>0">
+                <label class="line" style="margin: 20 20;"></label>
+              </StackLayout>
+
+
+
+              <!-- <StackLayout>
+            <label class="line" style="margin: 20 20;"></label>
+           </StackLayout>-->
+
+
+              <!--what you learn collapse -->
+              <StackLayout class="container" *ngIf="coursePath?.whatWillLearn?.length>0">
+                <FlexboxLayout horizontalAlignment="right" (tap)="clickme1(item)"
+                  [visibility]="clickedd1 == item ? 'collapsed' : 'visible'" flexDirection="row"
+                  justifyContent="space-between">
+                  <GridLayout (tap)="clickme1(item)" columns="auto, *" class="bookmark-collapse">
+                    <Label col="1" text="&#xf107;" class="fas arr-drop" style="color: #000"></Label>
+                    <Label col="1" horizontalAlignment="right" text="{{'whatyoulearn'| L}}"
+                      class="bookmark-course"></Label>
+                  </GridLayout>
+                </FlexboxLayout>
+                <FlexboxLayout horizontalAlignment="right" [visibility]="clickedd1 == item ? 'visible' : 'collapsed'"
+                  flexDirection="column">
+                  <GridLayout (tap)="uclickme1(item)" columns="auto, *" class="bookmark-collapse ">
+                    <Label col="1" text="&#xf106;" class="fas arr-drop" style="color:#1056A5"></Label>
+                    <Label col="1" horizontalAlignment="right" text="{{'whatyoulearn'| L}}"
+                      class="bookmark-course"></Label>
+                  </GridLayout>
+
+                  <Label class="course-cate" style="color:#989bad;font-size: 13;"
+                    *ngFor="let item of coursePath?.whatWillLearn" text="{{item.titleAr}}"></Label>
+                </FlexboxLayout>
+              </StackLayout>
+              <!-- end what you learn collapse -->
+
+              <StackLayout *ngIf="coursePath?.whatWillLearn?.length>0">
+                <label class="line" style="margin: 20 20;"></label>
+              </StackLayout>
+
+              <!--course reviews collapse -->
+              <StackLayout class="container">
+                <FlexboxLayout horizontalAlignment="right" (tap)="clickme2(item)"
+                  [visibility]="clickedd2 == item ? 'collapsed' : 'visible'" flexDirection="row"
+                  justifyContent="space-between">
+                  <GridLayout (tap)="clickme2(item)" columns="auto, *" class="bookmark-collapse">
+                    <Label col="1" text="&#xf107;" class="fas arr-drop" style="color: #000"></Label>
+                    <Label col="1" horizontalAlignment="right" text="{{'reviews'| L}}" class="bookmark-course"></Label>
+                  </GridLayout>
+                </FlexboxLayout>
+                <FlexboxLayout horizontalAlignment="right" [visibility]="clickedd2 == item ? 'visible' : 'collapsed'"
+                  flexDirection="column">
+                  <GridLayout (tap)="uclickme2(item)" columns="auto, *" class="bookmark-collapse ">
+                    <Label col="1" text="&#xf106;" class="fas arr-drop" style="color:#1056A5"></Label>
+                    <Label col="1" horizontalAlignment="right" text="{{'reviews'| L}}" class="bookmark-course"></Label>
+                  </GridLayout>
+
+
+                  <ScrollView orientation="horizontal" class="rtl" scrollBarIndicatorVisible="false">
+                    <StackLayout orientation="horizontal">
+                      <StackLayout *ngFor="let feed of feedbacks" iosOverflowSafeArea="false"
+                        flexDirection="row-reverse" class="review-back rtl" width="250" alignItems="center"
+                        justifyContent="space-between" flexWrap="wrap">
+                        <label text="{{feed.createdBy?.fullNameAr}}" class="c-prop"></label>
+                        <FlexboxLayout *ngIf="feed?.rating" flexDirection="row-reverse" style="margin: 8 0;"
+                          alignItems="center" justifyContent="flex-start">
+                          <label text="&#xf005;" class="fas rate-icon"
+                            *ngFor="let i of [].constructor(Math.round(feed.rating))"></label>
+                        </FlexboxLayout>
+                        <FlexboxLayout *ngIf="feed?.rating==0 ||feed?.rating==undefined" flexDirection="row-reverse"
+                          alignItems="center" justifyContent="flex-start" style="margin: 8 0;">
+                          <label text="&#xf005;" class="far rate-icon" *ngFor="let i of [].constructor(5)"></label>
+                        </FlexboxLayout>
+                        <label text="{{feed.description}}" class="c-val"></label>
+                      </StackLayout>
+                      <Label text="{{'noFeedback'|L}}" class="rtl" *ngIf="feedbacks?.length==0"></Label>
+                    </StackLayout>
+                  </ScrollView>
+
+                </FlexboxLayout>
+              </StackLayout>
+              <StackLayout>
+                <label class="line"></label>
+              </StackLayout>
+              <!-- end course reviews collapse -->
+              <!-- similar course  -->
+              <label *ngIf="similarPaths?.length>0" text="{{'highlightedpath' |L}}" class="sign-label container"
+                style="font-size: 14;"></label>
+              <ScrollView orientation="horizontal" class="rtl" scrollBarIndicatorVisible="false">
+                <StackLayout orientation="horizontal">
+                  <StackLayout class="course-block rtl" iosOverflowSafeArea="false" *ngFor="let path of similarPaths"
+                    (tap)="goToPath(path.id)">
+                    <GridLayout class="album-image" height="100" width="180" backgroundImage="{{path.imageUrl}}"
+                      borderRadius="10 10 0 0">
+                      <!--<label  class=" fav-icon far" text="&#xf004;"> </label>-->
+                      <label class=" fav-icon" text="&#xf004;" [ngClass]="path.isFavorite ? 'fas' : 'far'"> </label>
+                    </GridLayout>
+                    <StackLayout class="course-details" height="190">
+                      <!--<FlexboxLayout flexDirection="row" flexWrap="wrap" alignItems="center" justifyContent="space-between">
+                        <FlexboxLayout alignItems="center" justifyContent="flex-start" >
+                            <label  class=" path-icon fas" text="&#xf017;"> </label>
+                            <Label class="path-date" text="2-2-2022 - 10-2-2022"></Label>
+                        </FlexboxLayout>
+                        <label  text="8 أيام"   class="days"></label>
+                    </FlexboxLayout>-->
+                      <Label textWrap="false" class="course-na" text="{{path.nameAr}}"></Label>
+                      <StackLayout>
+                        <Label class="course-list" *ngFor="let course of path.courses.slice(0,3)"
+                          text="{{course.nameAr}}"></Label>
+                      </StackLayout>
+                      <Label class="course-list" *ngIf="path.courses.length>3"
+                        text="+{{path.courses.length-3}} more"></Label>
+                      <Label class="course-cate" text="{{path.categoryNameAr}}"></Label>
+                      <price-template [applePrice]="path.applePrice" [androidPrice]="path.price"></price-template>
+
+                    </StackLayout>
+                  </StackLayout>
+
+                </StackLayout>
+              </ScrollView>
+              <!-- end similar course  -->
+              <StackLayout style="margin-bottom: 70;"></StackLayout>
+              <!--    <StackLayout>
+          <label class="line" style="margin: 20 20;"></label>
+         </StackLayout> -->
+
+              <!--    <FlexboxLayout  (tap)="shareCoursePath()" flexDirection="row-reverse" class=" container" alignItems="center" justifyContent="space-between" flexWrap="wrap">
+          <label  text="{{'sharecourse'| L}}" class="acc-sett" style="font-size: 16;"></label>
+          <label text="&#xf1e0;" class="fas menu-icon" style="color:#1056A5 ; font-size: 18;"></label>
+         </FlexboxLayout>
+
+         <StackLayout>
+          <label class="line" style="margin: 20 20;"></label>
+         </StackLayout>
+-->
+
+
+
+            </StackLayout>
+
+          </ScrollView>
+        </GridLayout>
+      </MDTabContentItem>
+
+    </MDTabs>
+
+
+
+
+  </StackLayout>
+
+  <GridLayout verticalAlignment="bottom" columns="auto, *" style="background-color: #fff; padding: 10 20;"
+    class="iosstyle">
+    <Button col="1" text="أضف إلى منتجاتى" class="class-btn" (tap)="enrollToPath()"
+      *ngIf="showAddToMyProductsButton && !isLoading"></Button>
+    <Button col="1" text="{{'AddedToCart' |L}}" class="class-btn" (tap)="goToShoppingCart()"
+      *ngIf="isAlreadyInCart && !isLoading"></Button>
+    <Button col="1" text="فى انتظار الدفع" verticalAlignment="bottom" isEnabled="false" class="class-btn"
+      *ngIf="showWaitPaymentButton && !isLoading" style="background-color: #1056A5;"></Button>
+    <Button col="1" text="{{'AddTocart' | L}} {{intl.format(coursePath.price)}} ر.س" class="class-btn"
+      (tap)="addToShoppingCart()" *ngIf="showCartButton && !isLoading"></Button>
+    <!-- <Button col="1" *ngIf="showAppleBuyButton" verticalAlignment="bottom" text="{{ 'buy' | L}}"  class="login-btn" style="background-color: #1056A5;" (tap)="queryProducts()" [isEnabled]="!isQueryProduct"></Button> -->
+    <Button col="1" *ngIf="showCertificate" verticalAlignment="bottom" text="{{'downloadCertificate' | L}}"
+      class="login-btn" style="background-color: #1056A5;" (tap)="downloadCertificate()"></Button>
+    <Button col="1" *ngIf="showProcessingButton" verticalAlignment="bottom" text="{{'proceessing' |L}}"
+      class="login-btn" style="background-color: #1056A5;" isEnabled="false"></Button>
+    <Label col="1" *ngIf="isAndroid"></Label>
+    <label col="0" horizontalAlignment="left" text="&#xf004;" class="far"
+      style="color: #1056A5; margin-top: 5; font-size: 25; width: 40; height: 40; "> </label>
+
+  </GridLayout>
+</GridLayout>

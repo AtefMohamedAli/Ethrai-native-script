@@ -1,0 +1,9 @@
+<Label text="{{'addreview'|L}}" style="font-size: 15;" class=""></Label>
+<GridLayout   class="" rows="auto,auto"  columns="auto, *">
+ <TextView required #desc row="0" col="1"   hint="{{'addreview' | L}}"  style="placeholder-color:#989BAD; " [(ngModel)]="description">
+ </TextView>
+ <StarRating row="1" col="1" horizontalAlignment="right" style="margin-top: 0;" background='#fff' style="width:240;"  verticalAlignment="center"
+ emptyBorderColor="#f5f4f3" emptyColor="#f5f4f3" filledBorderColor="gold" filledColor="gold"
+  max="5" required (valueChange)="getRating($event)"  [value]="rating" ></StarRating>
+ <Button row="0" col="0" text="{{'submit' | L}}" [isEnabled]="description !=''" class="login-btn" style="width: 60; height: 40; margin-top: 30;" (tap)="addReview()"></Button>
+</GridLayout>

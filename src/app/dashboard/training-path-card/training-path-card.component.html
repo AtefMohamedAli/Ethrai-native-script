@@ -1,0 +1,39 @@
+<GridLayout   class="cr-list-item" rows="auto" columns="*,100" >
+    <StackLayout row="0" col="2" class="album-image"  backgroundImage="{{path?.thumbnail?path?.thumbnail:path?.imageUrl}}" [nsRouterLink]="['/course-path-details',path?.id]" verticalAlignment="top"  style=" border-radius: 10; width: 100; height: 100;">
+    <!-- <Image  style=" border-radius: 10;" [src]="path?.thumbnail?path?.thumbnail:path?.imageUrl"  [nsRouterLink]="['/course-path-details',path?.id]"></Image>   -->
+   </StackLayout>
+    <StackLayout row="0" col="0" orientation="vertical" verticalAlignment="top" style=" margin:0 10 0 0;">
+        <GridLayout   class=""  columns="auto, *">
+         <Label  col="1" textWrap="true" class="course-na" text="{{path?.nameAr}}"></Label>
+         <label  col="0"  class=" " [ngClass]="path?.isFavorite ? 'fas' : 'far'" text="&#xf004;"  style="color: #1056A5; font-size: 18px; width: 33; height: 33;" (tap)="setFavorite(path?.id,path?.isFavorite)"> </label>
+
+     </GridLayout>
+    <FlexboxLayout flexDirection="row-reverse" flexWrap="wrap" alignItems="center" justifyContent="space-between" [nsRouterLink]="['/course-path-details',path?.id]">
+         <FlexboxLayout alignItems="center" justifyContent="flex-start" >
+             <Label class="path-date" text="{{publishDate}}"></Label>
+             <label  class=" path-icon fas" text="&#xf017;"> </label>
+         </FlexboxLayout>
+     </FlexboxLayout>
+         <Label class="course-list" *ngFor="let course of path?.courses?.slice(0,3)" text="{{course?.nameAr}}" [nsRouterLink]="['/course-path-details',path?.id]"></Label>
+     <Label class="course-list"  *ngIf="path?.courses?.length>3" text="+{{path?.courses?.length-3}} more"></Label>
+     <FlexboxLayout *ngIf="pageName=='my-products' && path?.statistics.rating" flexDirection="row-reverse"  alignItems="center" justifyContent="flex-start" margin="-5 0" >
+        <label  text="&#xf005;"   class="fas rate-icon" *ngFor="let i of [].constructor(Math.round(path?.statistics.rating))"></label>
+        <label  text="({{intl.format(path?.statistics.numberOfRatings)}})" style="color: #777; margin: 0 4; font-weight: 600;"></label>
+    </FlexboxLayout>
+    <FlexboxLayout *ngIf="pageName=='my-products'&&(path?.statistics.rating==0 ||path?.statistics.rating==undefined)" flexDirection="row-reverse"  alignItems="center" justifyContent="flex-start" margin="-5 0">
+        <label  text="&#xf005;"   class="far rate-icon" *ngFor="let i of [].constructor(5)"></label>
+    </FlexboxLayout>
+    <FlexboxLayout *ngIf="pageName!='my-products' && path?.rating" flexDirection="row-reverse"  alignItems="center" justifyContent="flex-start" margin="-5 0" >
+        <label  text="&#xf005;"   class="fas rate-icon" *ngFor="let i of [].constructor(Math.round(path?.rating))"></label>
+    </FlexboxLayout>
+    <FlexboxLayout *ngIf="(pageName!=='my-products'&&(path?.rating==0||path?.rating==undefined ))" flexDirection="row-reverse"  alignItems="center" justifyContent="flex-start" margin="-5 0">
+        <label  text="&#xf005;"   class="far rate-icon" *ngFor="let i of [].constructor(5)"></label>
+    </FlexboxLayout>
+     <Label  class="course-cate" text="{{'traingpath' |L}}" visibility="{{ showType ? 'visible' : 'collapsed' }}" ></Label>
+     <price-template [applePrice]="path.applePrice" [androidPrice]="path.price"></price-template>
+
+
+     <Label *ngIf="pageName=='my-products'"class="" text=" {{'wathpath' | L}} {{path?.courseCount}}/{{path?.completedCourses}} {{'path' | L}} " style="color: #1056A5;font-weight: 600;"></Label>  
+  </StackLayout>
+
+</GridLayout> 

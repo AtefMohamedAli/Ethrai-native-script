@@ -1,0 +1,40 @@
+.input-wrapper {
+    background-color: #F5F6F7;
+    border-radius: 12;
+    border-width: 1;
+    border-color: #E5E7EB;
+    height: 58;
+    margin-bottom: 8;
+}
+
+.input-field {
+    padding: 0 18;
+    font-size: 16;
+    color: #1F2937;
+    background-color: transparent;
+    vertical-align: middle;
+    text-align: right;
+    direction: rtl;
+}
+
+.eye-toggle {
+    font-family: "Font Awesome 5 Free", "fa-solid-900";
+    font-weight: 900;
+    font-size: 22;
+    color: #9CA3AF;
+    width: 55;
+    text-align: center;
+}
+
+.eye-toggle:active {
+    color: #1056A5;
+}
+
+.input-wrapper:focus-within {
+    border-color: #1056A5;
+}
+
+/* Optional: error state (you can remove if you already have it elsewhere) */
+.input-wrapper.error {
+    border-color: #ef4444;
+}

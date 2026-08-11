@@ -1,0 +1,113 @@
+<GridLayout>
+    <GridLayout class="view">
+
+        <ActionBar flat="true" style="background-color: #fff;" title="">
+            <NavigationButton visibility="collapsed"></NavigationButton>
+            <GridLayout columns="*" width="100%">
+                <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                    <Image src="~/images/back.png" width="18" class=""></Image>
+                    <label text="{{'Back'| L}}"
+                        style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                </StackLayout>
+                <Image col="0" (tap)="addFilter()" horizontalAlignment="right" style="margin: 0 10;"
+                    src="~/images/filter.png" width="22"></Image>
+            </GridLayout>
+        </ActionBar>
+
+        <GridLayout verticalAlignment="top" style="z-index: 9999 ;">
+            <label text="{{'searchResults' |L}} ({{totalProductCount}})" class="sign-label"
+                style="margin-top:0; margin-bottom: 20;"></label> <!---->
+        </GridLayout>
+
+        <GridLayout style="margin-top: 30;padding-bottom: 50; ">
+
+            <!--   <FlexboxLayout flexDirection="row-reverse" style="margin-top: 45;"  alignItems="center" justifyContent="space-between">
+            <StackLayout (tap)="addFilter()" class="">
+                <Image src="~/images/filter.png" width="28" class="" ></Image>
+            </StackLayout>
+            <FlexboxLayout flexDirection="row-reverse"  alignItems="center" justifyContent="flex-end" (tap)="goBack()">
+                <label  text="{{'Back'| L}}" style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                <Image src="~/images/back.png" width="18" class="" ></Image>
+            </FlexboxLayout>
+        </FlexboxLayout> -->
+
+
+            <Label style="font-size: 16px; color: #1056A5;text-align: center;" class="course-na"
+                text="{{'noResult'| L}}" *ngIf="dataItems.length==0 && !isCoursesLoading"></Label>
+
+            <ListView *ngIf="dataItems.length>0" [height]="screenHeight" [items]="dataItems">
+                <ng-template let-item="item" let-i="index">
+                    <!--<GridLayout  class="cr-list-item" rows="auto" columns="*,100" [nsRouterLink]="['/course-details',item?.id]">
+                        <Image  row="0" col="1"  src="{{item.imageUrl}}" class="cr-img" *ngIf="item"></Image>
+          
+                        <StackLayout row="0" col="0" orientation="vertical" style=" margin: 0 10;">
+                            <Label  textWrap="false" class="course-na" [text]="item.nameAr" *ngIf="item"></Label>
+                            <FlexboxLayout *ngIf="item &&item.rating" flexDirection="row-reverse"  alignItems="center" justifyContent="flex-start">
+                                <label  text="&#xf005;"   class="fas rate-icon" *ngFor="let i of [].constructor(item.rating)"></label>
+                               <label *ngIf="item.numberOfRatings" text="({{item.numberOfRatings}})" style="color: #777; margin: 0 4; font-weight: 600;"></label>
+                            </FlexboxLayout>
+                            <Label *ngIf="item" class="course-cate" text="{{'traingprogram' |L}}"></Label>
+                            <Label *ngIf="item" class="course-price" text="{{item.price}} ر.س"></Label>  
+                        </StackLayout>
+                    </GridLayout>-->
+                    <GridLayout>
+
+                        <training-program-card [screenName]="'search_result'" [course]="item"
+                            *ngIf="item?.type=='course'" [showType]="true"></training-program-card>
+                        <ke-webinar-card [product]="item" [productType]="'Ke'" *ngIf="item?.type=='ke'"
+                            [showType]="true" [screenName]="'search_result'"></ke-webinar-card>
+                        <ke-webinar-card [product]="item" [productType]="'Webinar'" *ngIf="item?.type=='webinar'"
+                            [showType]="true" [screenName]="'search_result'"></ke-webinar-card>
+                        <training-path-card [path]="item" *ngIf="item?.type=='path'" [pageName]="'search-result'"
+                            [showType]="true"></training-path-card>
+
+                    </GridLayout>
+                </ng-template>
+            </ListView>
+            <!-- <ListView *ngIf="dataItems.length>0" [height]="screenHeight" [items]="dataItems.coursePaths" loadOnDemandMode="Auto" (loadMoreItems)="onLoadMoreItemsRequested($event)">
+                <ng-template let-item="item" let-i="index">
+
+                    <GridLayout   class="cr-list-item" rows="auto" columns="*,100"  [nsRouterLink]="['/course-path-details',item?.id]">
+                        <Image row="0" col="1"  src="{{item?.thumbnail}}" class="cr-img" *ngIf="item"></Image>  
+                      
+                        <StackLayout row="0" col="0" orientation="vertical" style=" margin: 0 10;">
+                         <GridLayout   class="" rows="auto" columns="40,*">
+                         <Label  row="0" col="1" textWrap="true" class="course-na" text="{{item?.nameAr}}"></Label>
+                         <label row="0" col="0" class=" fav-icon" [ngClass]="item?.isFavorite ? 'fas' : 'far'" text="&#xf004;"  style="color: #1056A5;"> </label>
+                         </GridLayout>
+                        <FlexboxLayout flexDirection="row-reverse" flexWrap="wrap" alignItems="center" justifyContent="space-between">
+                             <FlexboxLayout alignItems="center" justifyContent="flex-start" >
+                                 <Label class="path-date" text="{{item.publishedDate}} - 00-00-0000"></Label>
+                                 <label  class=" path-icon fas" text="&#xf017;"> </label>
+                             </FlexboxLayout>
+                             <label  text="8 أيام"   class="days"></label>
+                         </FlexboxLayout>
+                             <Label class="course-list" *ngFor="let course of item?.courses?.slice(0,3)" text="{{course?.nameAr}}"></Label>
+                         <Label class="course-list"  *ngIf="item?.courses?.length>3" text="+{{item?.courses?.length-3}} more"></Label>
+                         <Label  class="course-cate" text="{{'traingpath' |L}}" ></Label>
+                         <Label class="course-price" text="{{item?.price}}ر.س"></Label>
+                         <Label class="" text="{{'startcousre' | L}}" style="color: #1056A5;font-weight: 600;"></Label>  
+                      </StackLayout>
+                    </GridLayout>
+
+                </ng-template>
+            </ListView>-->
+            <GridLayout style="height: 60;"></GridLayout>
+        </GridLayout>
+
+    </GridLayout>
+    <GridLayout height="80" verticalAlignment="bottom">
+        <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+        </GridLayout>
+        <GridLayout columns="*, *, *, *, *">
+            <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+            <StackLayout class="menu-active" col="1" row="0">
+                <label text="&#xf002;" class="fas" [nsRouterLink]="['/explore']"></label>
+            </StackLayout>
+            <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']"></label>
+            <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']"></label>
+            <label text="&#xf406;" class="fas menu-icon" col="4" row="0" [nsRouterLink]="['/account']"></label>
+        </GridLayout>
+
+    </GridLayout>
+</GridLayout>

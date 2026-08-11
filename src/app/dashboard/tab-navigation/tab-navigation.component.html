@@ -1,0 +1,41 @@
+
+
+<GridLayout height="60" verticalAlignment="bottom">
+	<GridLayout columns="*, *, *, *, *" height="60" backgroundColor="#f1f1f4">
+        <label text="&#xf015;" class="fas menu-icon" col="0" row="0" [nsRouterLink]="['/highlighted']"    height="25" width="25"
+         margin="10" ></label>
+         <label text="&#xf002;" class="fas menu-icon" col="1" row="0" [nsRouterLink]="['/explore']"  height="25" width="25"
+         margin="10"></label>
+         <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']"   height="25" width="25"
+         margin="10"></label> 
+          <label text="&#xf004;" class="fas menu-icon" col="3" row="0"  [nsRouterLink]="['/favorites']"   height="25" width="25"
+         margin="10"></label> 
+          <label text="&#xf406;" class="fas menu-icon" col="4" row="0"  [nsRouterLink]="['/account']"  height="25" width="25"
+         margin="10" ></label>
+
+    
+ </GridLayout>
+</GridLayout> 
+
+<!--  <GridLayout height="60" verticalAlignment="bottom">
+
+	<GridLayout columns="*, *, *, *, *" height="60" backgroundColor="#0D0D12">
+		<GridLayout #tabHighlight col="0" backgroundColor="#F8A200"></GridLayout>
+		<GridLayout col="0"  (tap)="selectTab(0)" [nsRouterLink]="['/']"  routerLinkActive="active">
+			<Image #image1 src="~/images/filter.png" height="23" width="23"></Image>
+		</GridLayout>
+		<GridLayout col="1"  (tap)="selectTab(1)" [nsRouterLink]="['/filter']">
+			<Image #image1 src="~/images/home.png" height="23" width="23"></Image>
+		</GridLayout>
+		<GridLayout col="2" (tap)="selectTab(2)">
+			<Image #image1 src="~/images/filter.png" height="23" width="23"></Image>
+		</GridLayout>
+		<GridLayout col="3" (tap)="selectTab(3)">
+			<Image #image1 src="~/images/filter.png" height="23" width="23"></Image>
+		</GridLayout>
+		<GridLayout col="4" (tap)="selectTab(4)">
+			<Image #image1 src="~/images/filter.png" height="23" width="23"></Image>
+		</GridLayout>
+	</GridLayout>
+
+</GridLayout>  -->

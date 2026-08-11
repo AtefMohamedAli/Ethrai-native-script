@@ -1,0 +1,133 @@
+<GridLayout>
+
+    <GridLayout class="view">
+
+        <ActionBar flat="true" style="background-color: #fff;" title="">
+            <NavigationButton visibility="collapsed"></NavigationButton>
+            <GridLayout columns="*" width="100%">
+                <Label col="0" text="{{'profile'| L}}" class="page-title text-center"></Label>
+                <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                    <Image src="~/images/back.png" width="18" class=""></Image>
+                    <label text="{{'Back'| L}}"
+                        style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                </StackLayout>
+            </GridLayout>
+        </ActionBar>
+
+        <ScrollView scrollBarIndicatorVisible="false">
+            <StackLayout class="page-layout">
+
+
+                <StackLayout class="prof-back" style="margin-top: 0;">
+                    <Image src="{{profile.photoUrl}}" class="prof-img" *ngIf="profile.photoUrl"></Image>
+                    <label text="&#xf2bd;" class="far " style="font-size: 70px; color: #989BAD;"
+                        *ngIf="!profile.photoUrl"></label>
+                    <label text="{{profile.fullNameAr}}" class="prof-name"></label>
+                </StackLayout>
+
+                <StackLayout class="" style="margin-top: 20;">
+                    <FlexboxLayout flexDirection="row-reverse" class="acc-line" alignItems="center"
+                        justifyContent="space-between" flexWrap="wrap">
+                        <label text="{{'personalinformation'| L}}" class="acc-head"></label>
+                        <StackLayout class="social-back" style="background-color: #f5f6f7; width:40;height:40;"
+                            (tap)="navigateToProfileForm()">
+                            <label text="&#xf304;" class="fas social-icon" style="font-size: 15;"></label>
+                        </StackLayout>
+                    </FlexboxLayout>
+                    <StackLayout style="margin-bottom: 10;">
+                        <label text="{{'firstname'| L}}" class="prof-label"></label>
+                        <label text="{{profile.firstNameAr}}" class="prof-data"></label>
+                    </StackLayout>
+                    <StackLayout style="margin-bottom: 10;">
+                        <label text="{{'lastname'| L}}" class="prof-label"></label>
+                        <label text="{{profile.familyNameAr}}" class="prof-data"></label>
+                    </StackLayout>
+                    <StackLayout style="margin-bottom: 10;">
+                        <label text="{{'mobile'| L}}" class="prof-label"></label>
+                        <label text="{{profile.mobile}}" class="prof-data" style="text-align: right;"></label>
+                    </StackLayout>
+                    <StackLayout style="margin-bottom: 10;">
+                        <label text="{{'Email'| L}}" class="prof-label"></label>
+                        <label text="{{email}}" class="prof-data" style="text-align: right;"></label>
+                    </StackLayout>
+                    <!-- <StackLayout style="margin-bottom: 10;">
+                <label  text="{{'nationality'| L}}" class="prof-label"></label>
+                <label  text="سعودي" class="prof-data"></label>
+            </StackLayout>-->
+                    <StackLayout style="margin-bottom: 10;" *ngIf="isSaudi">
+                        <label text="{{'sectorHint'| L}}" class="prof-label"></label>
+                        <label *ngIf="profile.sectorId==0" text="غير موظف" class="prof-data"
+                            style="text-align: right;"></label>
+                        <label *ngIf="profile.sectorId==1" text="قطاع خاص" class="prof-data"
+                            style="text-align: right;"></label>
+                        <label *ngIf="profile.sectorId==2" text="قطاع عام" class="prof-data"
+                            style="text-align: right;"></label>
+
+                    </StackLayout>
+                    <StackLayout style="margin-bottom: 10;" *ngIf="isSaudi">
+                        <label text="{{'nationalID'| L}}" class="prof-label"></label>
+                        <label text="{{profile.nationalId}}" class="prof-data" style="text-align: right;"></label>
+                    </StackLayout>
+                    <StackLayout style="margin-bottom: 10;">
+                        <label text="{{'birthDate'| L}}" class="prof-label"></label>
+                        <label text="{{profile.birthdate | date: 'dd/MM/yyyy'}}" class="prof-data"
+                            style="text-align: right;"></label>
+                    </StackLayout>
+
+                </StackLayout>
+
+                <label class="line"></label>
+
+                <StackLayout>
+                    <label text="{{'mypreference' |L}}" class="acc-head"></label>
+                </StackLayout>
+                <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false" class="rtl">
+                    <FlexboxLayout alignItems="center" width="500" justifyContent="flex-start" flexWrap="wrap">
+                        <label text="{{i.nameAr}}" class="cate-tags rtl" *ngFor="let i of userTags"></label>
+                    </FlexboxLayout>
+                </ScrollView>
+
+                <label class="line"></label>
+
+                <StackLayout class="" style="margin-bottom: 60;">
+                    <label text="{{'profile'| L}}" class="acc-head"></label>
+                    <FlexboxLayout flexDirection="row-reverse" [nsRouterLink]="['/certificates']" class="acc-line"
+                        alignItems="center" justifyContent="space-between" flexWrap="wrap">
+                        <label text="{{'mycertificates'| L}}" class="acc-sett"></label>
+                        <Image src="~/images/back.png" width="18" class=""></Image>
+                    </FlexboxLayout>
+                    <FlexboxLayout *ngIf="isEthrai" flexDirection="row-reverse" [nsRouterLink]="['/purchases']"
+                        class="acc-line" alignItems="center" justifyContent="space-between" flexWrap="wrap">
+                        <label text="{{'purchases'| L}}" class="acc-sett"></label>
+                        <Image src="~/images/back.png" width="18" class=""></Image>
+                    </FlexboxLayout>
+                    <!--   <FlexboxLayout  flexDirection="row-reverse" class="acc-line" alignItems="center" justifyContent="space-between" flexWrap="wrap" [nsRouterLink]="['/profile-form',email]">
+                    <label  text="{{'edit'| L}}" class="acc-sett"></label>
+                    <Image src="~/images/back.png" width="18" class=""></Image>
+                </FlexboxLayout> -->
+                    <FlexboxLayout flexDirection="row-reverse" class="acc-line" alignItems="center"
+                        justifyContent="space-between" flexWrap="wrap" [nsRouterLink]="['/change-password']">
+                        <label text="{{'changepassword'| L}}" class="acc-sett"></label>
+                        <Image src="~/images/back.png" width="18" class=""></Image>
+                    </FlexboxLayout>
+                </StackLayout>
+
+
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+    <GridLayout height="60" verticalAlignment="bottom">
+        <GridLayout columns="*, *, *, *, *" height="60" backgroundColor="#f1f1f4">
+            <label text="&#xf015;" class="fas menu-icon  " col="0" row="0" [nsRouterLink]="['/highlighted']" height="25"
+                width="25" margin="10"></label>
+            <label text="&#xf002;" class="fas menu-icon " col="1" row="0" [nsRouterLink]="['/explore']" height="25"
+                width="25" margin="10"></label>
+            <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']" height="25"
+                width="25" margin="10"></label>
+            <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']" height="25"
+                width="25" margin="10"></label>
+            <label text="&#xf406;" class="fas menu-icon menu-active" col="4" row="0" [nsRouterLink]="['/account']"
+                height="25" width="25" margin="10"></label>
+        </GridLayout>
+    </GridLayout>
+</GridLayout>

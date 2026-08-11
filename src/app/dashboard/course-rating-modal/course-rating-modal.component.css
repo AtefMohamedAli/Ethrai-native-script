@@ -1,0 +1,14 @@
+.modal {
+    border-radius: 8;
+    horizontal-align: center;
+    vertical-align: middle;
+    background-color: white;
+    padding: 15;
+    height: 420;
+  }
+   
+  .modal-container {
+    padding: 20;
+  }
+
+  TextView{margin: 0;}

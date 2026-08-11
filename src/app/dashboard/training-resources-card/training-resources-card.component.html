@@ -1,0 +1,29 @@
+<GridLayout class="cr-list-item" row="5" rows="auto" columns="*,100">
+    <GridLayout row="0" col="2" class="album-image" (tap)="goToDetails()"
+        backgroundImage="{{data?.imageUrl}}" verticalAlignment="top"
+        style=" border-radius: 10; width: 100; height: 100;">
+    </GridLayout>
+    <WrapLayout row="0" col="0" orientation="vertical" verticalAlignment="top"
+        style=" margin: 0 10 0 0">
+        <GridLayout class="" columns="auto, *">
+            <Label col="1" textWrap="true" class="course-na" text="{{data?.nameAr}}"></Label>
+            <!--  <label  col="0"  text="&#xf004;" style="color: #1056A5; font-size: 18; width: 33; height: 33;"
+                    [ngClass]="course &&course.isFavorite ? 'fas' : 'far'" (tap)="setFavorite(course?.id,'Course',course?.isFavorite)"> </label> -->
+            <!-- <label col="0" text="&#xf004;"
+                style="color: #1056A5; font-size: 18; width: 33; height: 33;" class="fas"> </label> -->
+        </GridLayout>
+
+        <!--  <FlexboxLayout  flexDirection="row-reverse"  alignItems="center" justifyContent="flex-start">
+                    <label  text="&#xf005;"  [ngClass]="course?.rating ? 'fas' : 'far'" class="rate-icon" *ngFor="let i of [].constructor(Math.round(course?.rating))"></label>
+                    </FlexboxLayout> -->
+        <!-- <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="flex-start">
+            <label text="&#xf005;" class="rate-icon fas"></label>
+        </FlexboxLayout> -->
+
+        <Label class="course-cate" text="{{data?.trainingFieldNameAr}}"  *ngIf="type!='CASESESTUDY'&&!isDigitalLibrary"></Label>
+        <Label class="course-cate" text="{{data?.descriptionAr}}"  *ngIf="isDigitalLibrary"></Label>
+
+    </WrapLayout>
+
+
+</GridLayout>

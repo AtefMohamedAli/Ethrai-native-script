@@ -1,0 +1,136 @@
+<GridLayout class="whiteback">
+
+  <ActionBar visability="collapsed" class="view" title=""> </ActionBar>
+  <ScrollView scrollBarIndicatorVisible="false">
+
+    <StackLayout style="margin-bottom: 60;" [class.dialogOpen]="dialogOpen">
+
+      <AbsoluteLayout>
+        <label [class.overlay_conf]="overlay_conf" left="0" top="0"></label>
+        <label class="overlay_conf2" left="0" top="0"></label>
+
+
+        <!-- <StackLayout ios:opacity="1" class="search-back">
+            <SearchBar hint="{{'searchhere'| L}}" backgroundColor="#f5f6f7"
+             (loaded)="loadedSB($event)"
+            [text]="searchPhrase"  (loaded)="searchBarLoaded($event)"
+            (submit)="onSubmit($event)">
+            </SearchBar>
+        </StackLayout>  -->
+
+        <StackLayout class="ov" left="0" top="0" width="100%" (tap)="closeDialog()">
+
+          <StackLayout style="margin: 0 20;">
+            <label text="{{'mostsearched'| L}}" class="sign-label" style="margin-top:15"></label>
+          </StackLayout>
+          <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible':'collapse'"></ActivityIndicator>
+          <ScrollView orientation="horizontal" class="rtl" scrollBarIndicatorVisible="false" style="margin: 0 20;">
+            <FlexboxLayout alignItems="center" width="500" justifyContent="flex-start" flexWrap="wrap">
+              <label text="{{item.nameAr}}" class="cate-tags rtl" *ngFor="let item of courses"
+                (tap)="goToMostSearched(item.id,item)"></label>
+            </FlexboxLayout>
+          </ScrollView>
+
+          <StackLayout class="maincate-back">
+            <label text="{{'maincate'| L}}" class="sign-label" style="margin-top:0"></label>
+            <FlexboxLayout *ngFor="let category of categories" flexDirection="row-reverse" alignItems="center"
+              justifyContent="space-between" flexWrap="wrap" (tap)="goToCategory(category.id,category.nameAr)">
+
+              <label text="{{category.nameAr}}" class="cate-main"></label>
+              <!-- <label text="&#xf060;" class="fas icon-arr" ></label> -->
+              <Image src="~/images/back.png" width="18" class=""></Image>
+
+            </FlexboxLayout>
+          </StackLayout>
+        </StackLayout>
+
+        <StackLayout class="" left="0" top="0" width="100%">
+          <GridLayout class="search-back" height="50" rows="auto" columns="30, *, 30">
+            <Image col="2" src="~/images/se.png" class="se-btn" width="20" style="margin-bottom: 15;"></Image>
+            <Image col="2" src="~/images/x.png" class="x-btn" width="16" style="margin-bottom: 15;" (tap)="clear()">
+            </Image>
+            <TextField (tap)="overlay($event)" (returnPress)="onSubmit($event)" #searchBar returnKeyType="search"
+              [(ngModel)]="searchPhrase" (textChange)="getSearchSuggestions($event)" col="1"
+              style="placeholder-color:#989BAD; color: #000; height: 40;padding: 0 10;" hint="{{'searchhere'| L}}">
+            </TextField>
+            <Image col="0" src="~/images/ba.png" class="ba-btn" [class.b_btn2]="b_btn2" (tap)="closeDialog()" width="18"
+              style="margin-bottom: 15;"></Image>
+          </GridLayout>
+          <AbsoluteLayout class="dialog-wrapper">
+            <StackLayout class="dialog">
+              <label col="0" text="{{'traingprogram' |L}}" horizontalAlignment="right" class="sugg-head"></label>
+              <Label text="{{'noInfo'|L}}" class="no-info" *ngIf="courses?.length==0 && !isSearchLoading"></Label>
+              <ListView [items]="courses" class="list-group-sugg" *ngIf="courses?.length">
+                <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                  <GridLayout class="" rows="auto" columns="*, 50" class="sugg-word"
+                    (tap)="goToCoursePage(item.id,item)">
+                    <!-- <Image   col="1" src="~/images/se-s.png" width="20" class="img-sugg"></Image> -->
+                    <Image col="1" width="50" height="50" src="{{item.imageUrl}}"></Image>
+
+                    <label col="0" [text]="item.nameAr" horizontalAlignment="right" class="sugg"></label>
+                  </GridLayout>
+                </ng-template>
+              </ListView>
+              <Label text="{{'showall'|L}}" class="all" *ngIf="courses?.length!=0"
+                (tap)="showAll(searchBar.text)"></Label>
+
+              <label col="0" text="{{'webinars' |L}}" horizontalAlignment="right" class="sugg-head"></label>
+              <Label text="{{'noInfo'|L}}" class="no-info" *ngIf="webinars?.length==0 && !isSearchLoading"></Label>
+              <ListView [items]="webinars" class="list-group-sugg" *ngIf="webinars?.length">
+                <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                  <GridLayout class="" rows="auto" columns="*, 50" class="sugg-word" (tap)="goToWebinar(item.id,item)">
+                    <!-- <Image   col="1" src="~/images/se-s.png" width="20" class="img-sugg"></Image> -->
+                    <Image col="1" width="50" height="50" src="{{item.imageUrl}}"></Image>
+                    <label col="0" [text]="item.nameAr" horizontalAlignment="right" class="sugg"></label>
+                  </GridLayout>
+                </ng-template>
+              </ListView>
+              <Label text="{{'showall'|L}}" class="all" *ngIf="webinars?.length!=0"
+                (tap)="showAll(searchBar.text)"></Label>
+
+              <label col="0" text="{{'KnowledgeEnrichment' |L}}" horizontalAlignment="right" class="sugg-head"></label>
+              <Label text="{{'noInfo'|L}}" class="no-info" *ngIf="kes?.length==0 && !isSearchLoading"></Label>
+              <ListView [items]="kes" class="list-group-sugg" *ngIf="kes?.length">
+                <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                  <GridLayout class="search-back" rows="auto" columns="*, 50" class="sugg-word"
+                    (tap)="goToKe(item.id,item)">
+                    <!-- <Image   col="1" src="~/images/se-s.png" width="20" class="img-sugg"></Image> -->
+                    <Image col="1" width="50" height="50" src="{{item.imageUrl}}"></Image>
+                    <label col="0" [text]="item.nameAr" horizontalAlignment="right" class="sugg"></label>
+                  </GridLayout>
+                </ng-template>
+              </ListView>
+              <Label text="{{'showall'|L}}" class="all" *ngIf="kes?.length!=0" (tap)="showAll(searchBar.text)"></Label>
+
+            </StackLayout>
+          </AbsoluteLayout>
+
+        </StackLayout>
+
+
+
+      </AbsoluteLayout>
+
+
+
+
+    </StackLayout>
+  </ScrollView>
+
+
+  <GridLayout height="80" verticalAlignment="bottom">
+    <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+    </GridLayout>
+    <GridLayout columns="*, *, *, *, *">
+      <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+      <StackLayout class="menu-active" col="1" row="0">
+        <label text="&#xf002;" class="fas" [nsRouterLink]="['/explore']"></label>
+      </StackLayout>
+      <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']"></label>
+      <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']"></label>
+      <label text="&#xf406;" class="fas menu-icon" col="4" row="0" [nsRouterLink]="['/account']"></label>
+    </GridLayout>
+
+  </GridLayout>
+
+</GridLayout>

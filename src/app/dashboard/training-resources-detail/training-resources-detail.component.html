@@ -1,0 +1,332 @@
+<GridLayout class="whiteback">
+
+    <GridLayout verticalAlignment="top" class="top-bar" *ngIf="isFullscreen == false">
+        <FlexboxLayout flexDirection="row" alignItems="center" justifyContent="space-between">
+
+
+            <GridLayout columns="*,*">
+                <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                    <Image src="~/images/back.png" width="18" class=""></Image>
+                    <label text="{{'Back'| L}}"
+                        style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                </StackLayout>
+                <AbsoluteLayout col="1" horizontalAlignment="right"
+                    [visibility]="globalService.isLoggedIn&&isEthrai ? 'visible' : 'collapsed'"
+                    [nsRouterLink]="['/shopping-cart']">
+                    <label text="&#xf07a;" col="0" class="fas"
+                        style="font-size: 18px; margin: 8 7; color: #000;"></label>
+                    <label text="{{globalService.shoppinCartItemsCount}}"
+                        [visibility]="globalService.shoppinCartItemsCount>0 ? 'visible' : 'collapsed'" col="0"
+                        class="cart-badge"></label>
+                </AbsoluteLayout>
+            </GridLayout>
+
+        </FlexboxLayout>
+    </GridLayout>
+    <ActivityIndicator *ngIf="isLoading" [busy]="isLoading"></ActivityIndicator>
+
+
+    <GridLayout verticalAlignment="top" style="margin-top: 70;">
+
+        <StackLayout class="album-image" [height]="isFullscreen ? '740' : '300'"
+            style="margin-top: 0; background-color: #f3f4f5; padding: 0;" borderRadius="20 20 0 0">
+            <!-- <Image row="0" col="1" width="100%" height="100%" src="~/images/course1.jpg"></Image> -->
+
+
+            <GridLayout
+                *ngIf="attachmantType !='Video'&&url!='https://docs.google.com/gview?embedded=true&url=' && !isLoading">
+
+                <WebView src="{{url}}" (loadFinished)="onloadFinishedPdf($event)" displayZoomControls="true"></WebView>
+            </GridLayout>
+
+            <GridLayout *ngIf="attachmantType == 'Video' && !isLoading">
+                <WebView (loadFinished)="onLoadFinishedAliBaba($event)"></WebView>
+            </GridLayout>
+        </StackLayout>
+        <StackLayout verticalAlignment="top" *ngIf="attachmantType !='Video' && !isLoading"
+            style="width: 30 ;height: 30; margin-top: 25; margin-right: 10;" horizontalAlignment="right"
+            (tap)="toggleHeight()">
+            <Image src="~/images/fullscreen.png" *ngIf="isFullscreen == false" width="30" class=""></Image>
+            <Image src="~/images/fullesc.png" *ngIf="isFullscreen == true" width="30" class=""></Image>
+        </StackLayout>
+    </GridLayout>
+
+    <ActionBar visability="collapsed" class="view" title=""> </ActionBar>
+
+    <StackLayout class="page-layout" style="margin-top: 370;" *ngIf="isFullscreen == false">
+
+        <!-- <ActivityIndicator *ngIf="isLoading" [busy]="isLoading"></ActivityIndicator> -->
+
+
+        <MDTabs selectedIndex="1">
+            <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
+            <MDTabStrip>
+                <MDTabStripItem>
+                    <Label text="الآراء"></Label>
+                    <!-- <Image src="font://&#xf015;" class="fas"></Image> -->
+                </MDTabStripItem>
+                <MDTabStripItem class="special">
+                    <Label text="وصف المحتوي"></Label>
+                    <!-- <Image src="font://&#xf007;" class="fas"></Image> -->
+                </MDTabStripItem>
+            </MDTabStrip>
+
+            <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
+            <MDTabContentItem>
+                <!--course reviews collapse -->
+                <ScrollView style="height: 100%;" scrollBarIndicatorVisible="false">
+                    <StackLayout class="container">
+
+                        <ScrollView orientation="horizontal" class="rtl" scrollBarIndicatorVisible="false">
+                            <StackLayout orientation="horizontal">
+                                <StackLayout *ngFor="let feed of feedbacks" iosOverflowSafeArea="false"
+                                    flexDirection="row-reverse" class="review-back rtl" width="250" alignItems="center"
+                                    justifyContent="space-between" flexWrap="wrap">
+                                    <!-- <label  text="{{feed.createdBy?.fullNameAr}}" class="c-prop"></label> -->
+                                    <FlexboxLayout *ngIf="feed?.rating" flexDirection="row-reverse" style="margin: 8 0;"
+                                        alignItems="center" justifyContent="flex-start">
+                                        <label text="&#xf005;" class="fas rate-icon"
+                                            *ngFor="let i of [].constructor(Math.round(feed.rating))"></label>
+                                    </FlexboxLayout>
+                                    <FlexboxLayout *ngIf="feed?.rating==0 ||feed?.rating==undefined"
+                                        flexDirection="row-reverse" alignItems="center" justifyContent="flex-start"
+                                        style="margin: 8 0;">
+                                        <label text="&#xf005;" class="far rate-icon"
+                                            *ngFor="let i of [].constructor(5)"></label>
+                                    </FlexboxLayout>
+                                    <label text="{{feed.description}}" class="c-val"></label>
+                                </StackLayout>
+                                <Label text="{{'noFeedback'|L}}" class="rtl" *ngIf="feedbacks?.length==0"></Label>
+                            </StackLayout>
+                        </ScrollView>
+                        <product-feedback (feedback)="showFeedback($event)" *ngIf="showReviewForm" [productType]="type"
+                            [productId]="detailsId"></product-feedback>
+                        <!-- <ScrollView orientation="horizontal" class="rtl" scrollBarIndicatorVisible="false">
+                            <StackLayout orientation="horizontal">
+                                <StackLayout iosOverflowSafeArea="false" flexDirection="row-reverse"
+                                    class="review-back rtl" width="250" alignItems="center"
+                                    justifyContent="space-between" flexWrap="wrap">
+                                    <label text="name" class="c-prop"></label>
+                                    <FlexboxLayout flexDirection="row-reverse" style="margin: 8 0;" alignItems="center"
+                                        justifyContent="flex-start">
+                                        <label text="&#xf005;" class="fas rate-icon"></label>
+                                    </FlexboxLayout>
+
+                                    <label text="نص التقييم" class="c-val"></label>
+                                </StackLayout> -->
+                        <!-- <Label text="{{'noFeedback'|L}}" class="rtl" *ngIf="feedbacks?.length==0"></Label> -->
+                        <!-- </StackLayout>
+                        </ScrollView>
+                        <product-feedback></product-feedback> -->
+
+                    </StackLayout>
+                </ScrollView>
+            </MDTabContentItem>
+            <MDTabContentItem>
+                <GridLayout>
+                    <ScrollView style="height: 100%;" scrollBarIndicatorVisible="false">
+
+                        <StackLayout>
+
+                            <!-- summary -->
+                            <label text="{{'summary'| L}}" class="c-prop container" style="margin-top: 10;"></label>
+                            <StackLayout class="container">
+                                <FlexboxLayout flexDirection="row-reverse" alignItems="center"
+                                    justifyContent="flex-start" flexWrap="wrap">
+                                    <label text="{{details.descriptionAr}}" class="c-val plainfont"></label>
+
+                                </FlexboxLayout>
+                            </StackLayout>
+
+                            <StackLayout>
+                                <label class="line"></label>
+                            </StackLayout>
+
+                            <!-- publicgola -->
+                            <label text="{{'publicgoal'| L}}" class="c-prop container"></label>
+                            <StackLayout class="container">
+                                <FlexboxLayout flexDirection="row-reverse" alignItems="center"
+                                    justifyContent="flex-start" flexWrap="wrap">
+                                    <label text="{{details.generalpurpose}}" class="c-val plainfont"></label>
+
+                                </FlexboxLayout>
+                            </StackLayout>
+
+                            <StackLayout>
+                                <label class="line"></label>
+                            </StackLayout>
+
+                            <!-- detailedgolas -->
+                            <label text="{{'detailedgolas'| L}}" class="c-prop container"></label>
+                            <StackLayout class="container">
+                                <FlexboxLayout flexDirection="row-reverse" alignItems="center"
+                                    justifyContent="flex-start" flexWrap="wrap">
+                                    <label text="{{details.detailedpurpose}}" class="c-val plainfont"></label>
+
+                                </FlexboxLayout>
+                            </StackLayout>
+
+                            <StackLayout>
+                                <label class="line"></label>
+                            </StackLayout>
+
+                            <!--course tag -->
+                            <label text="{{'aquiredc'| L}}" class="c-prop container"></label>
+                            <StackLayout class="container">
+                                <FlexboxLayout flexDirection="row-reverse" alignItems="center"
+                                    justifyContent="flex-start" flexWrap="wrap">
+                                    <label text="{{item.nameAr}}" class="cate-tags-light"
+                                        *ngFor="let item of skills"></label>
+
+                                </FlexboxLayout>
+                            </StackLayout>
+                            <!-- end course tag -->
+
+
+                            <!-- <StackLayout>
+                                <label class="line"></label>
+                            </StackLayout> -->
+
+                            <!-- share -->
+                            <!-- <label text="{{'shareVia'| L}}" class="c-prop container"></label>
+                            <StackLayout class="container">
+                                <FlexboxLayout flexDirection="row-reverse" class="acc-line" alignItems="center"
+                                    justifyContent="flex-start" flexWrap="wrap">
+                                    <StackLayout class="social-back">
+                                        <label text="&#xf39e;" class="fab social-icon"></label>
+                                    </StackLayout>
+                                    <StackLayout class="social-back">
+                                      <Image src="~/images/twitter.png" width="20" class=""></Image>
+                                    </StackLayout>
+                                    <StackLayout class="social-back">
+                                        <label text="&#xf0e1;" class="fab social-icon"></label>
+                                    </StackLayout> 
+                                    <StackLayout class="social-back">
+                                        <label text="&#xf0e0;" class="far social-icon"></label>
+                                    </StackLayout>
+                                    <StackLayout class="social-back">
+                                        <label text="&#xf0c5;" class="far social-icon"></label>
+                                    </StackLayout>
+                                    
+                                </FlexboxLayout>
+                            </StackLayout> -->
+                            <label class="line" style="margin: 20 20;"></label>
+
+                            <FlexboxLayout (tap)="share()" flexDirection="row-reverse" class=" container"
+                                alignItems="center" justifyContent="space-between" flexWrap="wrap">
+                                <label text="{{'shareRES'| L}}" class="acc-sett" style="font-size: 16;"></label>
+                                <label text="&#xf1e0;" class="fas menu-icon"
+                                    style="color:#1056A5 ; font-size: 18; margin: 0;"></label>
+                            </FlexboxLayout>
+
+                            <label class="line" style="margin: 20 20;"></label>
+                            <!-- <StackLayout>
+                                <label class="line"></label>
+                            </StackLayout> -->
+                            <StackLayout class="training-quesions container"
+                                *ngIf="isLoggedIn && type != 'CASESESTUDY'">
+                                <survey *ngIf="type != 'CASESESTUDY' &&details.isSurveyAnswered!=true&&SurveyData"
+                                    [SurveyId]="SurveyId" [productId]="detailsId" [SurveyData]="SurveyData"
+                                    [type]="type"></survey>
+                                <StackLayout *ngIf="type != 'CASESESTUDY' &&details.isSurveyAnswered==true">
+                                    <label text="{{'survey' |L}}" class="c-prop "> </label>
+                                    <label text="{{'surveyDone'|L}}" class="acc-sett"
+                                        style="font-size: 14;color: #1056A5;"></label>
+
+                                </StackLayout>
+                            </StackLayout>
+                            <label class="line"></label>
+                            <FlexboxLayout style="margin-top: 20;" *ngIf="(type != 'CASESESTUDY') "
+                                flexDirection="row-reverse" alignItems="center" justifyContent="center">
+                                <label text="{{'ReportingText' | L}}" class="Forgot"></label>
+                                <label (tap)="goReporting()" text="{{'ReportingBtn' | L}}" class=" d-account"
+                                    style="margin-top: 0; text-decoration: none;"></label>
+                            </FlexboxLayout>
+
+
+                            <!-- similar course  -->
+                            <label *ngIf=" similar?.length>0" text="{{'mayLike' |L}}" class="c-prop container container"
+                                style="font-size: 14;"></label>
+                            <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false" class="container"
+                                style="margin-bottom: 100; transform: scaleX(-1.0)">
+                                <StackLayout orientation="horizontal">
+                                    <GridLayout rows="auto,auto" class="course-block rtl" iosOverflowSafeArea="false"
+                                        *ngFor="let item of similar ;let i=index">
+                                        <GridLayout row="0" class="album-image" height="100" width="180"
+                                            (tap)="goToDetails(item.id)" backgroundImage="{{item?.imageUrl}}"
+                                            borderRadius="10 10 0 0">
+                                        </GridLayout>
+                                        <!--   <label class=" fav-icon fas" horizontalAlignment="right" text="&#xf004;"
+                                            width="26" height="26"
+                                            style=" font-size: 18; vertical-align: top; z-index: 99999;"
+                                            [ngClass]="item &&item.isFavorite ? 'fav-blue' : 'fav-white'"> </label> -->
+                                        <!-- <label class=" fav-icon fas" horizontalAlignment="right" text="&#xf004;"
+                                            width="26" height="26"
+                                            style=" font-size: 18; vertical-align: top; z-index: 99999;"> </label> -->
+
+                                        <StackLayout row="1" class="course-details">
+                                            <Label textWrap="false" class="course-na" text=" {{item?.nameAr}}"></Label>
+
+                                            <Label class="course-cate" text=" {{item?.categoryNameAr}}"></Label>
+                                            <FlexboxLayout flexDirection="row-reverse" alignItems="center"
+                                                justifyContent="flex-start">
+                                                <label text="&#xf005;" [ngClass]="item?.rating ? 'fas' : 'far'"
+                                                    class="rate-icon"
+                                                    *ngFor="let i of [].constructor(Math.round(item?.rating?item?.rating:5))"></label>
+                                            </FlexboxLayout>
+
+                                        </StackLayout>
+                                    </GridLayout>
+
+                                </StackLayout>
+                            </ScrollView>
+                            <!-- end similar course  -->
+                            <!-- <StackLayout style="margin-bottom: 70;"></StackLayout> -->
+
+
+                        </StackLayout>
+
+                    </ScrollView>
+                </GridLayout>
+            </MDTabContentItem>
+
+        </MDTabs>
+
+
+
+
+    </StackLayout>
+
+    <!-- <GridLayout verticalAlignment="bottom" columns="auto, *" style="background-color: #fff; padding: 10 20;"
+        class="iosstyle">
+        <Button col="1" text="{{'AddTocart' | L}} (30) ر.س" class="class-btn"></Button>
+        <label col="0" horizontalAlignment="left" text="&#xf004;" class="far"
+            style="color: #1056A5; margin-top: 5; font-size: 25; width: 40; height: 40; "> </label>
+*ngIf="isEthrai || !isLoggedIn"
+    </GridLayout> -->
+    <GridLayout verticalAlignment="bottom" columns="auto, *" style="background-color: #fff; padding: 10 20;"
+        class="iosstyle" *ngIf="(type == 'CASESESTUDY') && isEthrai &&(isFullscreen == false)">
+        <Button col="1" text="{{'AddedToCart' |L}}" class="class-btn" (tap)="goToShoppingCart()"
+            *ngIf="isAlreadyInCart && !isLoading"></Button>
+        <Button col="1" text="فى انتظار الدفع" verticalAlignment="bottom" isEnabled="false" class="class-btn"
+            *ngIf="showWaitPaymentButton && !isLoading" style="background-color: #1056A5;"></Button>
+        <Button col="1" text="{{'AddTocart' | L}} {{intl.format(details?.spPrice)}} ر.س" class="class-btn"
+            (tap)="addToShoppingCart()" *ngIf="showCartButton && !isLoading"></Button>
+
+        <Button col="1" *ngIf="showAppleBuyButton" verticalAlignment="bottom" text="{{ 'buy' | L}}" class="login-btn"
+            style="background-color: #1056A5;" (tap)="queryProducts()" [isEnabled]="!isQueryProduct"></Button>
+        <Button col="1" *ngIf="showProcessingButton" verticalAlignment="bottom" text="{{'proceessing' |L}}"
+            class="login-btn" style="background-color: #1056A5;" isEnabled="false"></Button>
+        <Label col="1" *ngIf="isAndroid"></Label>
+        <label col="0" horizontalAlignment="left" text="&#xf019;" class="fas" *ngIf="showFile && !isLoading"
+            (tap)="downloadFile()" style="color: #1056A5; margin-top: 5; font-size: 25; width: 40; height: 40; ">
+        </label>
+
+    </GridLayout>
+    <GridLayout verticalAlignment="bottom" columns="auto, *" style="background-color: #fff; padding: 10 20;"
+        class="iosstyle" *ngIf="(type == 'CASESESTUDY') && !isLoggedIn &&(isFullscreen == false)">
+
+        <Button col="1" text="{{'AddTocart' | L}} {{intl.format(details?.spPrice)}} ر.س" class="class-btn"
+            (tap)="LogInPLz()"></Button>
+    </GridLayout>
+</GridLayout>

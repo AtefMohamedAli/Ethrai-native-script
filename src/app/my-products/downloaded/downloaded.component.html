@@ -1,0 +1,109 @@
+<GridLayout>
+
+<GridLayout class="view">
+
+    <ActionBar  flat="true" style="background-color: #fff;" title="">
+        <NavigationButton visibility="collapsed"></NavigationButton>
+        <GridLayout columns="*" width="100%">        
+            <Label col="0" text="{{'downloaded'| L}}"  class="page-title text-center"></Label>
+            <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                <Image src="~/images/back.png" width="18" class="" ></Image>
+                <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+            </StackLayout>  
+             <!-- <Image col="0" *ngIf="isLoggedIn" [nsRouterLink]="['/filter','myProductFilter']" horizontalAlignment="right" style="margin: 0 10;" src="~/images/filter.png" width="28"></Image> -->
+        </GridLayout>
+    </ActionBar>
+
+     <ScrollView  scrollBarIndicatorVisible="false">
+       <StackLayout class="page-layout">
+
+        
+           <GridLayout class="search-back" style="margin: 0 0 0;">
+            <SearchBar hint="ابحث هنا ..."
+            [text]="searchPhrase" (textChange)="onTextChanged($event)"  (loaded)="loadedSB($event)"
+            (clear)="onClear($event)" (submit)="onSubmit($event)">
+            </SearchBar>
+          </GridLayout>
+
+          
+
+            <label  text="{{'ourCategories' | L}}" class="sign-label" style="margin-top:20"></label>
+
+           <ScrollView orientation="horizontal" class="rtl"  scrollBarIndicatorVisible="false" >
+            <FlexboxLayout alignItems="center" width="500" justifyContent="flex-start" flexWrap="wrap">
+                <label  text="{{category.nameAr}}" *ngFor="let category of categories" class="cate-tags rtl" [nsRouterLink]="['/category',category.id,category.nameAr]"></label>
+               </FlexboxLayout>
+            </ScrollView>
+
+                <label  text="{{'subCategories' |L}}" class="sign-label" style="margin-top:15;"></label>
+               <ScrollView orientation="horizontal" class="rtl"  scrollBarIndicatorVisible="false" >
+                <FlexboxLayout alignItems="center" width="500" justifyContent="flex-start" flexWrap="wrap">
+                    <label  text="تقنية المعلومات" class="cate-tags rtl"></label>
+                   </FlexboxLayout>
+                 </ScrollView>
+
+             <label  text="{{'myproducts' | L}}" class="sign-label" style="margin-top:20"></label>
+            <GridLayout   class="cr-list-item" rows="auto" columns="*,100">
+                <Image row="0" col="1"  src="~/images/course1.jpg" class="cr-img"></Image>  
+              
+                <StackLayout row="0" col="0" orientation="vertical" style=" margin: 0 10;">
+                    <GridLayout   class="" rows="auto" columns="40,*">
+                        <Label  row="0" col="1" textWrap="true" class="course-na" text=" أساسيات قواعد البيانات"></Label>
+                        <label row="0" col="0" class=" fav-icon fas" text="&#xf004;"  style="color: #1056A5;"> </label>
+                    </GridLayout>
+                    <FlexboxLayout flexDirection="row-reverse"  alignItems="center" justifyContent="flex-start" margin="-5 0">
+                        <label  text="&#xf005;"   class="fas rate-icon"></label>
+                        <label  text="(22)" style="color: #777; margin: 0 4; font-weight: 600;"></label>
+                    </FlexboxLayout>
+                    <GridLayout   class="" rows="auto" columns="40,*">
+                        <Label  row="0" col="1" textWrap="true"  class="course-cate" text="تقنية المعلومات"></Label>
+                        <label row="0" col="0" class=" fav-icon fas" text="&#xf358;"  style="color: #1056A5;"> </label>
+                    </GridLayout>
+                    <Label class="" text="{{'startcousre' | L}}" style="color: #1056A5;font-weight: 600;"></Label>  
+              </StackLayout>
+            </GridLayout>
+
+            <GridLayout   class="cr-list-item" rows="auto" columns="*,100">
+                <Image row="0" col="1"  src="~/images/course1.jpg" class="cr-img"></Image>  
+              
+                <StackLayout row="0" col="0" orientation="vertical" style=" margin: 0 10;">
+                    <GridLayout   class="" rows="auto" columns="40,*">
+                        <Label  row="0" col="1" textWrap="true" class="course-na" text=" أساسيات قواعد البيانات"></Label>
+                        <label row="0" col="0" class=" fav-icon far" text="&#xf004;"  style="color: #1056A5;"> </label>
+                    </GridLayout>
+                    <FlexboxLayout flexDirection="row-reverse"  alignItems="center" justifyContent="flex-start" margin="-5 0">
+                        <label  text="&#xf005;"   class="fas rate-icon"></label>
+                        <label  text="(22)" style="color: #777; margin: 0 4; font-weight: 600;"></label>
+                    </FlexboxLayout>
+                    <GridLayout   class="" rows="auto" columns="40,*">
+                        <Label  row="0" col="1" textWrap="true"  class="course-cate" text="تقنية المعلومات"></Label>
+                        <label row="0" col="0" class=" fav-icon far" text="&#xf358;"  style="color: #1056A5;"> </label>
+                    </GridLayout>
+                    <Label class="" text="{{'startcousre' | L}}" style="color: #1056A5;font-weight: 600;"></Label>  
+              </StackLayout>
+            </GridLayout>
+
+            <GridLayout style="height: 60;">
+
+            </GridLayout> 
+
+
+
+    </StackLayout>
+  </ScrollView>
+</GridLayout>
+<GridLayout height="80" verticalAlignment="bottom">
+    <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+    </GridLayout>
+    <GridLayout columns="*, *, *, *, *">
+        <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+        <label text="&#xf002;" class="fas menu-icon" col="1" row="0"  [nsRouterLink]="['/explore']"></label>
+        <StackLayout class="menu-active"  col="2" row="0">
+            <label text="&#xf144;" class="far"  [nsRouterLink]="['/my-products']" ></label>
+        </StackLayout>
+        <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']" ></label>
+        <label text="&#xf406;" class="fas menu-icon" col="4" row="0" [nsRouterLink]="['/account']"></label>
+    </GridLayout>
+  
+</GridLayout>
+</GridLayout>

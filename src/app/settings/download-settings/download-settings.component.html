@@ -1,0 +1,69 @@
+
+
+<GridLayout class="view">
+
+  <ActionBar  flat="true" style="background-color: #fff;" title="">
+    <NavigationButton visibility="collapsed"></NavigationButton>
+    <GridLayout columns="*" width="100%">  
+      <Label col="0" text="{{'downloadsett'| L}}"  class="page-title text-center"></Label>      
+        <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+            <Image src="~/images/back.png" width="18" class="" ></Image>
+            <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+        </StackLayout>  
+    </GridLayout>
+</ActionBar>
+
+     <ScrollView  scrollBarIndicatorVisible="false">
+       <StackLayout class="page-layout">
+           
+         <!--   <FlexboxLayout flexDirection="row" style="margin-top: 45;"  alignItems="center" justifyContent="space-between">
+
+            <FlexboxLayout flexDirection="row-reverse"  alignItems="center" justifyContent="flex-end" (tap)="goBack()">
+                <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                <Image src="~/images/back.png" width="18" class="" ></Image>
+            </FlexboxLayout>
+
+           </FlexboxLayout> -->
+
+
+           <StackLayout class="" style="margin-top: 0;">
+           <!--  <label  text="{{'downloadsett'| L}}"  class="acc-head" style="margin-top: 20;" ></label>
+            <label class="line"></label> -->
+            <FlexboxLayout  flexDirection="row-reverse" class="acc-line" alignItems="center" justifyContent="space-between" flexWrap="wrap">
+                <label  text="{{'downloadquality'| L}}" class="acc-sett"></label>
+               <AbsoluteLayout>
+                <DropDown width="80" style=" background-color: #fff;border-radius: 20;" color="#000000"
+                [items]="items" hint="Auto"
+                itemsTextAlignment="center">
+               </DropDown> 
+               <label text="&#xf077;" class="fas arr-drop" left="50"top="10" style="color: #000;font-size: 14;"> </label>
+               <label text="&#xf078;" class="fas arr-drop" left="50"top="30" style="color: #000;font-size: 14"> </label>
+               </AbsoluteLayout>
+            </FlexboxLayout>
+            <FlexboxLayout  flexDirection="row-reverse" class="acc-line" alignItems="center" justifyContent="space-between" flexWrap="wrap">
+                <label  text="{{'wifionly'| L}}" class="acc-sett"></label>
+                <Switch checked="true" (checkedChange)="onCheckedChange($event)"> </Switch>
+            </FlexboxLayout>
+            <FlexboxLayout  flexDirection="row-reverse" class="acc-line" alignItems="center" justifyContent="space-between" flexWrap="wrap">
+                <label  text="{{'askfordownload'| L}}" class="acc-sett"></label>
+                <Switch checked="true" (checkedChange)="onCheckedChange($event)"> </Switch>
+               </FlexboxLayout>
+           </StackLayout>
+
+    </StackLayout>
+  </ScrollView>
+</GridLayout>
+<GridLayout height="80" verticalAlignment="bottom">
+  <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+  </GridLayout>
+  <GridLayout columns="*, *, *, *, *">
+      <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+      <label text="&#xf002;" class="fas menu-icon" col="1" row="0"  [nsRouterLink]="['/explore']"></label>
+      <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']" ></label>
+      <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']" ></label>
+      <StackLayout class="menu-active"  col="4" row="0">
+        <label text="&#xf406;" class="fas" [nsRouterLink]="['/account']"></label>
+      </StackLayout>
+  </GridLayout>
+
+</GridLayout> 

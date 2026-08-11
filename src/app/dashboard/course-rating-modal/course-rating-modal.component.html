@@ -1,0 +1,20 @@
+<ModalStack dismissEnabled="true" class="modal-container">
+    <StackLayout class="modal" >
+        <ScrollView scrollBarIndicatorVisible="false">
+            <StackLayout>
+                <Image src="~/images/cong.png" class="" width="80" class="logo-login2" style="margin-top: 0;" ></Image>
+
+                <label  text="{{'congrats' | L}}"  style="font-size: 18; color: #000; text-align: center;"></label>
+                <label  text="{{'congratstext' | L}}"  style="font-size: 16; color: #666; text-align: center;"></label>
+            <TextView horizontalAlignment="right"  (returnPress)="closeKeyboard($event)" returnKeyType="done" style="margin-bottom: 20; margin-top: 10; placeholder-color:#989BAD ;width: 100%;" [(ngModel)]="description" id="d" type="text"   hint="اكتب تعليقك" required>
+            </TextView>
+            <FlexboxLayout  flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                <StarRating row="0" col="1" horizontalAlignment="center" style="margin-top: 0;" background='#fff' style="width:240;"  verticalAlignment="center"
+            emptyBorderColor="#f5f4f3" emptyColor="#f5f4f3" filledBorderColor="gold" filledColor="gold"
+            (valueChange)="setScore($event)" row="2" max="5" [value]="score"  required></StarRating>
+         <Button row="0" col="0" width="75" class="login-btn" text="أضف رأي" style="margin-top: 0; border-radius: 10;" [isEnabled]="!isSubmitting" (tap)="save()"></Button> 
+        </FlexboxLayout>
+    </StackLayout>
+    </ScrollView>
+    </StackLayout>
+  </ModalStack>

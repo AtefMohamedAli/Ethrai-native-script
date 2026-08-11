@@ -1,0 +1,60 @@
+<WrapLayout>
+
+  <GridLayout rows="auto,auto,auto" style="margin-top: 20;" *ngFor="let item of detail;let i=index">
+
+    <GridLayout row="0" rows="auto,auto" columns="auto, *" *ngIf="item?.type !=='Label'"
+      [ngClass]="item===selectedItem ? 'active-content' : ''" class="notifi-back" style="padding: 10 20;">
+      <Label row="0" col="0" style="width:30" text="&#xf02e;" class="fas arr-drop"
+        [ngStyle]="{'color':item?.isBookmark ===true? '#f2d22e':'#989BAD'}" (tap)="toggleBookMark(item,i)"></Label>
+      <label (tap)="onTap(item)" row="0" col="1" text="{{item?.nameAr}}" class="acc-sett"></label>
+      <FlexboxLayout (tap)="onTap(item)" row="1" colspan="2" flexDirection="row-reverse" alignItems="center"
+        justifyContent="flex-start">
+        <label *ngIf="item?.type =='Video'"
+          text="{{Math.floor(item?.numberOfSeconds/60)}}:{{(item?.numberOfSeconds)%60}}"
+          style="color: #989BAD; margin-left: 10;" class="acc-sett"></label>
+        <label *ngIf="item?.type =='Video' && item!==selectedItem  &&(item?.isAvailableWithoutRegister ||isEnrolled)"
+          text="&#xf04b;" style="color: #31c0cc; margin: 0 10; font-size: 14;" class="fas"></label>
+        <label *ngIf="item?.type =='Video' && item===selectedItem &&!isVideoPlayed" text="&#xf04b;"
+          style="color: #31c0cc; margin: 0 10; font-size: 14;" class="fas"></label>
+
+        <!-- if video play-->
+        <label *ngIf="item?.type =='Video' && item===selectedItem &&isVideoPlayed" text="&#xf04c;"
+          style="color: #31c0cc; margin: 0 10; font-size: 14;" class="fas"></label>
+
+        <label *ngIf="item?.type =='pdf'" text="&#xf1c1;" style="color: #989BAD;font-size: 18;  margin-left:10;"
+          class=" far"></label>
+        <label *ngIf="item?.type =='Text'" text="&#xf035;" style="color: #989BAD;font-size: 18;   margin-left:10;"
+          class=" fas"></label>
+        <label *ngIf="item?.type =='Image'" text="&#xf03e;" style="color: #989BAD;font-size: 18;  margin-left:10;"
+          class=" far"></label>
+        <label *ngIf="item?.type =='Activity'" text="&#xf0ae;" style="color: #989BAD;font-size: 16;  margin-left:10;"
+          class=" fas"></label>
+        <label *ngIf="(!(item?.isAvailableWithoutRegister) && !isEnrolled)" text="&#xf023;"
+          style="color: #989BAD; margin: 0 10 ;font-size: 14;" class="fas"></label>
+        <Label *ngIf="isTracked(item)" text="&#xf00c;"
+          style="color: #31c0cc; margin: 0 10; font-size: 16; text-align: left;" class="fas fa-check"></Label>
+
+      </FlexboxLayout>
+    </GridLayout>
+
+    <FlexboxLayout row="1" *ngIf="item?.type =='Label'" horizontalAlignment="right" (tap)="clickme1(item)"
+      [visibility]="clickedd1 == item ? 'collapsed' : 'visible'" flexDirection="row" justifyContent="space-between">
+      <GridLayout columns="auto, *" class="bookmark-collapse">
+        <Label col="0" text="&#xf107;" class="fas arr-drop" style="color: #000;width: 20;"></Label>
+        <Label col="1" horizontalAlignment="right" text="{{item?.nameAr}}" class="bookmark-course"></Label>
+      </GridLayout>
+    </FlexboxLayout>
+    <FlexboxLayout row="2" *ngIf="item?.type =='Label'" horizontalAlignment="right"
+      [visibility]="clickedd1 == item ? 'visible' : 'collapsed'" flexDirection="column">
+      <GridLayout (tap)="uclickme1()" columns="auto, *" class="bookmark-collapse ">
+        <Label col="0" text="&#xf106;" class="fas arr-drop" style="color:#1056A5; width: 20;"></Label>
+        <Label col="1" horizontalAlignment="right" text="{{item?.nameAr}}" class="bookmark-course"></Label>
+      </GridLayout>
+      <details-tree [selectedItem]="selectedItem" [detail]="item?.details"
+        *ngIf="item?.details?.length >0 && clickedd1 == item" [isEnrolled]="isEnrolled" [courseId]="courseId"
+        [tracking]="tracking" [isVideoFinished]="isVideoFinished" [isVideoPlayed]="isVideoPlayed"></details-tree>
+
+    </FlexboxLayout>
+  </GridLayout>
+
+</WrapLayout>

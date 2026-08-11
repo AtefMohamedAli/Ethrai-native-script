@@ -1,0 +1,80 @@
+<GridLayout class="view">
+
+  <ActionBar visability="collapsed" *ngIf="!showNafathWebView" class="view" title=""> </ActionBar>
+
+  <ScrollView *ngIf="!showNafathWebView" scrollBarIndicatorVisible="false">
+
+    <StackLayout>
+
+      <!--   <FlexboxLayout class="box-ani" verticalAlignment="center" horizontalAlignment="center" 
+          style=" width:35;height: 35; background-color:#17204D;" >
+       </FlexboxLayout >  
+
+       <FlexboxLayout class="log-ani" verticalAlignment="center" horizontalAlignment="center" style="width: 65%;" >
+         <Image src="~/images/logo-splash.png" class="" ></Image>
+       </FlexboxLayout> -->
+
+      <StackLayout class="logo-login2">
+        <Image src="~/images/logo-splash.png" class=""></Image>
+      </StackLayout>
+
+
+
+
+    </StackLayout>
+  </ScrollView>
+  <StackLayout *ngIf="!showNafathWebView" class="login-page" verticalAlignment="middle">
+
+    <StackLayout>
+      <label text="{{'LogIn' |L }}" class="sign-label"></label>
+      <Button style="font-size: 12;" text="{{ 'nafathLogin' | L }}" (tap)="startNafathLogin()"
+        class="login-btn nafath-btn">
+      </Button>
+
+      <Label text="{{ 'or' | L }}" class="or-label" horizontalAlignment="center"
+        style="margin-top: 10; margin-bottom: 10;">
+      </Label>
+      <Button style="font-size: 12;" text="{{'emailOrIDLogin' |L}}" [nsRouterLink]="['/login-by-mail']"
+        class="login-btn"></Button>
+    </StackLayout>
+
+    <!-- <label text="{{'or' |L }}" class="or-label"></label> -->
+
+    <!--    <StackLayout>
+            <GridLayout class="border-login" rows="auto,auto" columns="100,*">
+                <label text="&#xf179;" class="fab t-18" style="font-size: 25;"></label>
+                <label style="font-size: 13;" row="0" col="1" text="{{'appleLogin' |L}}" class=""></label>
+              </GridLayout>
+
+              <GridLayout class="border-login" rows="auto,auto" columns="100,*">
+                 <Image row="0" col="0" class="face-log" src="~/images/facebook.png"></Image>
+                <label style="font-size: 13;" row="0" col="1" text="{{'facebookLogin' |L}}" class=" "></label>
+              </GridLayout>
+
+              <GridLayout class="border-login" rows="auto,auto" columns="100,*">
+                 <Image row="0" col="0" class="face-log" src="~/images/google.png"></Image> 
+                <label style="font-size: 13;" row="0" col="1" text="{{'googleLogin' |L}}" class=""></label>
+              </GridLayout>
+
+          
+        </StackLayout> -->
+
+
+
+
+  </StackLayout>
+  <GridLayout *ngIf="showNafathWebView" rows="auto, *" class="nafath-webview-container">
+    <GridLayout row="0" columns="*, auto">
+      <Label text=" " col="0"></Label>
+      <Button style="margin-top: 25;" col="1" text="✕" (tap)="cancelNafathLogin()" class="close-btn">
+      </Button>
+    </GridLayout>
+
+    <WebView row="1" (loaded)="onWebViewLoaded($event)"></WebView>
+  </GridLayout>
+  <GridLayout rows="auto,auto" verticalAlignment="bottom" style="margin-bottom: 25;" *ngIf="!showNafathWebView">
+    <label row="0" text="{{'signUp' | L}}" class="d-account" [nsRouterLink]="['/register']"></label>
+
+    <label row="1" text="{{'enterAsGuest' |L}}" class="guest" [nsRouterLink]="['/highlighted']"></label>
+  </GridLayout>
+</GridLayout>

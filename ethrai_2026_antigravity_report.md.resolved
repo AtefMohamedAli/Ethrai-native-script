@@ -1,0 +1,47 @@
+# 2026 Ethrai Fixed Issues Report (Antigravity History)
+
+This report details the specific issues fixed and features successfully implemented in the **Ethrai** project during the year **2026**, directly extracted from the Antigravity (AI assistant) conversational history.
+
+## 🔴 Critical Fixes & Implementations
+
+### 1. Android Video Progress Tracking Fix
+*   **The Problem:** Video progress tracking worked on iOS via `WKScriptMessageHandler`, but finishing a video on Android never updated the progress percentage because NativeScript's default `WebViewClient` was overridden, silently swallowing `loadStarted` events.
+*   **The Fix:** 
+    *   Updated `inline-video-webview.android.ts` by adding a custom `WebChromeClient`.
+    *   Tied into `onJsPrompt` as the new JS-to-Native bridge.
+    *   Updated the `AlibabaHTMLGenerator.ts` shim so the JavaScript player calls `prompt('ns-bridge:eventName|data')`. The native layer intercepts this prompt and properly executes `notify()` back to the `CourseDetailsComponent`.
+    *   This restored critical `end`, `play`, `pause`, and `percentwatchedchanged` events on Android, allowing `setTrackedItem()` to reliably record progress via API.
+
+### 2. Apple Guideline 5.1.1(v) — Account Deletion
+*   **The Problem:** The iOS application lacked an accessible in-app account deletion mechanism, which is a mandatory requirement for App Store approval under Guideline 5.1.1(v).
+*   **The Fix:**
+    *   Added a "حذف الحساب" (Delete Account) button directly into `account-page.component.html`.
+    *   Extended `global.service.ts` to manage a local deleted accounts ledger using `ApplicationSettings` (`addDeletedAccount`, `isAccountDeleted`, and `getDeletedAccounts`).
+    *   Updated `login-by-mail.component.ts` to intercept logins with deleted emails, blocking the API call and warning the user: "تم حذف هذا الحساب ولا يمكن تسجيل الدخول".
+    *   Added localizations mapping `removeaccount`, `removeaccountconfirm`, and `accountdeleted` in `ar.default.json`.
+
+### 3. Certificate Download URL Fix
+*   **The Problem:** Certificate downloads were pulling from obsolete static URLs (`static.ethrai.sa/coursecerts/...`) or utilizing the deprecated `checkCertificate(enrollmentId)` API which returned expiring URLs.
+*   **The Fix:**
+    *   Transitioned to the modern media endpoint: `api/media/certificate/{type}/{code}`.
+    *   Added an extraction regex in [dashboard.service.ts](file:///Users/hussiennouh/Desktop/WORK/Giza/ethrai/src/app/dashboard/dashboard.service.ts) to parse raw cert codes out of the static URLs (e.g., parsing `1_17qd8d0hil31b9`).
+    *   Retrofitted download and sharing methods globally across `course-details.component.ts`, `certificates.component.ts`, `webinar-details.component.ts`, and `course-path-details.component.ts` to execute dynamic fetches by passing `productType` (Course=1, Webinar=2, CoursePath=3).
+
+## 🟡 Medium Code Reviews & Architecture Improvements
+
+### 4. Certificate Flow Code Review & Modal Validation
+*   **The Scope:** Validated the orchestrated flow between `Feedback → Survey Popup → Certificate Availability`.
+*   **Major Validations:**
+    *   Ensured the API schemas for `GET Lookups/survey/active/Course/{tenantId}` and `POST UserData/survey/course/answers` strictly match backend contracts.
+    *   Verified the `SurveyModalComponent` successfully blocks flow progress unless explicitly `submitted: true`.
+    *   Verified safe error handling fallback behavior (if no survey exists, gracefully skip to polling mechanism).
+*   **Actionable Findings:** Discovered pre-existing platform behavior where dismissing the Feedback UI marks feedback as "submitted" unconditionally, enabling future refinement tickets.
+
+### 5. Senior Code Review — Course Details Architecture
+*   **The Scope:** Conducted a comprehensive deep-dive into the 1614-line `CourseDetailsComponent` to uncover memory leaks and scaling risks.
+*   **Critical Findings Logged:**
+    *   **Memory Leak:** Identified stacked and un-cleaned subscriptions to `activatedRoute.paramMap`.
+    *   **Duplicate Event Listeners:** Found colliding video event registration logic (`onloadFinished` vs. `registerCustomEvents`) capable of corrupting playback state.
+    *   **Missing Cleanup:** Spotted that `goBack()` and `goToCourse()` functions were correctly dumping the video instance on iOS `if (isIOS && this.webview)`, but abandoning state completely inside the Android tree.
+    *   **Data Vulnerability:** Noted that Activity/SelfAssessment tracking is bound directly to `ApplicationSettings` with disabled backend syncing, guaranteeing data loss upon app reinstallation. 
+    *   These items were formulated into a prioritized sprint backlog for immediate triage (P0-P3).

@@ -1,0 +1,220 @@
+<GridLayout class="whiteback">
+
+  <GridLayout verticalAlignment="top" class="top-bar">
+    <FlexboxLayout flexDirection="row" alignItems="center" justifyContent="space-between">
+
+      <StackLayout orientation="horizontal" alignItems="center" (tap)="goBack()">
+        <Image src="~/images/back.png" width="18" class=""></Image>
+        <label text="{{'Back'| L}}" style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+      </StackLayout>
+
+    </FlexboxLayout>
+  </GridLayout>
+  <GridLayout verticalAlignment="top" style="margin-top: 90;">
+
+    <StackLayout *ngIf="ke?.ke?.type == 'l'" class="album-image" height="340"
+      style="margin-top:0; background-color: #f3f4f5; padding: 20;" borderRadius="20 20 0 0">
+      <Image row="0" col="1" src="{{ke?.ke?.imageUrl}}"></Image>
+    </StackLayout>
+
+    <GridLayout height="340" *ngIf="ke?.ke?.type == 'Outline'">
+      <WebView src="{{ke.ke.documentUrl}}"></WebView>
+    </GridLayout>
+
+    <GridLayout height="340" *ngIf="ke?.ke?.type == 'Document'">
+      <WebView src="http://docs.google.com/gview?embedded=true&url={{ke.ke.documentUrl}}"></WebView>
+    </GridLayout>
+
+    <GridLayout height="340" *ngIf="ke?.ke?.type == 'Video' && !isLoading &&urlProtected?.streamingSources?.length>0">
+      <WebView (loadFinished)="onLoadFinishedAliBaba($event)"></WebView>
+    </GridLayout>
+
+  </GridLayout>
+
+  <ActionBar visability="collapsed" class="view" title=""> </ActionBar>
+
+
+  <StackLayout class="page-layout" style="margin-top: 430;">
+
+    <ActivityIndicator *ngIf="isLoading" [busy]="isLoading"></ActivityIndicator>
+
+
+    <MDTabs selectedIndex="1">
+      <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
+      <MDTabStrip>
+        <MDTabStripItem>
+          <Label text="عن الإضاءة"></Label>
+          <!-- <Image src="font://&#xf015;" class="fas"></Image> -->
+        </MDTabStripItem>
+
+      </MDTabStrip>
+
+      <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
+      <MDTabContentItem>
+        <GridLayout>
+          <ScrollView style="height: 100%;" scrollBarIndicatorVisible="false">
+
+            <StackLayout>
+              <!--course name collapse-->
+              <StackLayout style="margin-top: 20;" class="container">
+                <FlexboxLayout horizontalAlignment="right" (tap)="clickme(item)"
+                  [visibility]="clickedd == item ? 'collapsed' : 'visible'" flexDirection="row"
+                  justifyContent="space-between">
+                  <GridLayout (tap)="clickme(item)" columns="auto, *" class="bookmark-collapse">
+                    <Label col="1" text="&#xf107;" class="fas arr-drop" style="color: #000"></Label>
+                    <Label col="1" horizontalAlignment="right" text='{{ke?.ke?.nameAr}}'
+                      class="bookmark-course"></Label>
+                  </GridLayout>
+                </FlexboxLayout>
+                <FlexboxLayout horizontalAlignment="right" [visibility]="clickedd == item ? 'visible' : 'collapsed'"
+                  flexDirection="column">
+                  <GridLayout (tap)="uclickme(item)" columns="auto, *" class="bookmark-collapse ">
+                    <Label col="1" text="&#xf106;" class="fas arr-drop" style="color:#1056A5"></Label>
+                    <Label col="1" horizontalAlignment="right" text='{{ke?.ke?.nameAr}}'
+                      class="bookmark-course"></Label>
+                  </GridLayout>
+
+                  <Label class="course-cate" style="color:#989bad;font-size: 13;"
+                    text="{{getText(ke?.ke?.descriptionAr)}}"></Label>
+
+                </FlexboxLayout>
+              </StackLayout>
+              <!-- end course name collapse-->
+
+              <StackLayout>
+                <label class="line" style="margin: 20 20;"></label>
+              </StackLayout>
+
+
+              <!--course data -->
+              <StackLayout>
+
+                <FlexboxLayout flexDirection="row-reverse" class="container" alignItems="center"
+                  justifyContent="space-between">
+                  <label text="{{'dateofpublication'| L}}" class="c-prop"></label>
+                  <label text="{{publishDate}}" class="c-val plainfont"></label>
+                </FlexboxLayout>
+              </StackLayout>
+              <!-- end course data -->
+
+              <StackLayout>
+                <label class="line" style="margin: 20 20;"></label>
+              </StackLayout>
+
+
+
+              <!--course reviews collapse -->
+              <StackLayout class="container">
+                <FlexboxLayout horizontalAlignment="right" (tap)="clickme1(item)" *ngIf="clickedd1 != item "
+                  flexDirection="row" justifyContent="space-between">
+                  <GridLayout (tap)="clickme1(item)" columns="auto, *" class="bookmark-collapse">
+                    <Label col="1" text="&#xf107;" class="fas arr-drop" style="color: #000"></Label>
+                    <Label col="1" horizontalAlignment="right" text="{{'reviews'| L}}" class="bookmark-course"></Label>
+                  </GridLayout>
+                </FlexboxLayout>
+                <FlexboxLayout horizontalAlignment="right" *ngIf="clickedd1 == item" flexDirection="column">
+                  <GridLayout (tap)="uclickme1(item)" columns="auto, *" class="bookmark-collapse ">
+                    <Label col="1" text="&#xf106;" class="fas arr-drop" style="color:#1056A5"></Label>
+                    <Label col="1" horizontalAlignment="right" text="{{'reviews'| L}}" class="bookmark-course"></Label>
+                  </GridLayout>
+
+
+                  <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false" class="rtl">
+                    <StackLayout orientation="horizontal">
+                      <StackLayout *ngFor="let feed of feedbacks" iosOverflowSafeArea="false"
+                        flexDirection="row-reverse" class="review-back rtl" width="250" alignItems="center"
+                        justifyContent="space-between" flexWrap="wrap">
+                        <label text="{{feed.createdBy?.fullNameAr}}" class="c-prop"></label>
+                        <FlexboxLayout *ngIf="feed?.rating" flexDirection="row-reverse" style="margin: 8 0;"
+                          alignItems="center" justifyContent="flex-start">
+                          <label text="&#xf005;" class="fas rate-icon"
+                            *ngFor="let i of [].constructor(Math.round(feed.rating))"></label>
+                        </FlexboxLayout>
+                        <FlexboxLayout *ngIf="feed?.rating==0 ||feed?.rating==undefined" style="margin: 8 0;"
+                          flexDirection="row-reverse" alignItems="center" justifyContent="flex-start">
+                          <label text="&#xf005;" class="far rate-icon" *ngFor="let i of [].constructor(5)"></label>
+                        </FlexboxLayout>
+                        <label text="{{feed.description}}" class="c-val"></label>
+                      </StackLayout>
+                      <Label text="{{'noFeedback'|L}}" class="rtl" *ngIf="feedbacks?.length==0 ||!feedbacks"></Label>
+                    </StackLayout>
+                  </ScrollView>
+
+                  <product-feedback (feedback)="showFeedback($event)" *ngIf="showReviewForm" [productType]="'Ke'"
+                    [productId]="keId"></product-feedback>
+
+                </FlexboxLayout>
+              </StackLayout>
+              <!-- end course reviews collapse -->
+
+              <StackLayout>
+                <label class="line" style="margin: 20 20;"></label>
+              </StackLayout>
+
+              <!--Attachments-->
+              <StackLayout class="container">
+                <FlexboxLayout horizontalAlignment="right" (tap)="clickme2(knowledge)"
+                  [visibility]="clickedd2 == knowledge ? 'collapsed' : 'visible'" flexDirection="row"
+                  justifyContent="space-between">
+                  <GridLayout (tap)="clickme2(knowledge)" columns="auto, *" class="bookmark-collapse">
+                    <Label col="1" text="&#xf107;" class="fas arr-drop" style="color: #000"></Label>
+                    <Label col="1" horizontalAlignment="right" text='المرفقات' class="bookmark-course"></Label>
+                  </GridLayout>
+                </FlexboxLayout>
+                <FlexboxLayout horizontalAlignment="right"
+                  [visibility]="clickedd2 == knowledge ? 'visible' : 'collapsed'" flexDirection="column">
+                  <GridLayout (tap)="uclickme2()" columns="auto, *" class="bookmark-collapse ">
+                    <Label col="1" text="&#xf106;" class="fas arr-drop" style="color:#1056A5"></Label>
+                    <Label col="1" horizontalAlignment="right" text='المرفقات' class="bookmark-course"></Label>
+                  </GridLayout>
+
+                  <FlexboxLayout flexDirection="column" style="padding: 10 0;"
+                    *ngFor="let knowledge of ke?.ke?.attachments">
+                    <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between"
+                      (tap)="downloadFile(knowledge.url)">
+                      <label [text]="knowledge?.descriptionAr" class="acc-sett"></label>
+                      <label class=" path-icon far" text="&#xf358;" style="color:#1056A5 ;font-size: 22;"> </label>
+                    </FlexboxLayout>
+                    <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="flex-start">
+                      <label text="&#xf1c1;" style="color: #575966;font-size: 18;" class=" far"></label>
+                    </FlexboxLayout>
+                  </FlexboxLayout>
+                  <Label *ngIf="ke?.ke?.attachments?.length==0 ||ke?.ke?.attachments==undefined"
+                    text="{{'NoAttachments' |L}}"></Label>
+                </FlexboxLayout>
+              </StackLayout>
+              <!-- Attachments-->
+              <StackLayout>
+                <label class="line" style="margin: 20 20;"></label>
+              </StackLayout>
+
+              <FlexboxLayout (tap)="shareKe()" flexDirection="row-reverse" class=" container" alignItems="center"
+                justifyContent="space-between" flexWrap="wrap">
+                <label text="{{'shareKe'| L}}" class="acc-sett" style="font-size: 16;"></label>
+                <label text="&#xf1e0;" class="fas menu-icon" style="color:#1056A5 ; font-size: 18;"></label>
+              </FlexboxLayout>
+
+              <StackLayout height="85">
+                <label class="line" style="margin: 20 20;"></label>
+              </StackLayout>
+
+
+
+
+            </StackLayout>
+
+          </ScrollView>
+        </GridLayout>
+      </MDTabContentItem>
+
+    </MDTabs>
+
+
+  </StackLayout>
+  <GridLayout verticalAlignment="bottom" columns="auto, *" style="background-color: #fff; padding: 10 20;"
+    class="iosstyle">
+    <label col="0" horizontalAlignment="left" text="&#xf004;" [ngClass]="ke?.ke?.isFavorite ? 'fas' : 'far'"
+      style="color: #1056A5; margin-top: 5; font-size: 25; width: 40; height: 40;"
+      (tap)="toggleFavorite(ke.ke.isFavorite)"> </label>
+  </GridLayout>
+</GridLayout>

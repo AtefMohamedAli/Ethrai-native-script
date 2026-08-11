@@ -1,0 +1,352 @@
+<GridLayout>
+
+    <GridLayout class="whiteback">
+
+        <ActionBar flat="true" style="background-color: #fff;" title="">
+            <NavigationButton visibility="collapsed"></NavigationButton>
+            <GridLayout columns="*" width="100%">
+                <Label col="0" text="{{'account'| L}}" class="page-title text-center"></Label>
+                <!--  <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                <Image src="~/images/back.png" width="18" class="" ></Image>
+                <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+            </StackLayout> -->
+            </GridLayout>
+        </ActionBar>
+
+        <ScrollView scrollBarIndicatorVisible="false">
+            <StackLayout class="page-layout">
+
+
+                <StackLayout class="prof-back container" *ngIf="isLoggedIn" style="margin-top:10; margin-bottom: 30;">
+                    <Image src="{{profile.photoUrl}}" class="prof-img" *ngIf="profile.photoUrl"></Image>
+                    <label text="&#xf2bd;" class="far " style="font-size: 70px; color: #989BAD; text-align: center;"
+                        *ngIf="!profile.photoUrl"></label>
+
+                    <label text="{{fullName}}" class="prof-name"></label>
+                </StackLayout>
+
+                <FlexboxLayout flexDirection="row-reverse" class="acc-line container" alignItems="center"
+                    justifyContent="space-between" flexWrap="wrap" *ngIf="isLoggedIn">
+                    <label text="{{'profile'| L}}" class="acc-head" style="font-size: 16; margin-top: 5;"></label>
+                    <StackLayout class="social-back" style="background-color: #f5f6f7; width:40;height:40;"
+                        (tap)="navigateToProfileForm()">
+                        <label text="&#xf304;" class="fas social-icon" style="font-size: 15;"></label>
+                    </StackLayout>
+                </FlexboxLayout>
+
+                <StackLayout style="margin-top: 20;" class="container" *ngIf="isLoggedIn">
+                    <FlexboxLayout horizontalAlignment="right" (tap)="clickme(elem)" *ngIf="clickedd != elem "
+                        flexDirection="row" justifyContent="space-between">
+                        <GridLayout (tap)="clickme(elem)" columns="auto, *" class="bookmark-collapse">
+                            <Label col="1" text="&#xf107;" class="fas arr-drop" style="color: #000"></Label>
+                            <Label col="1" horizontalAlignment="right" text="{{'personalinformation'| L}}"
+                                class="bookmark-course" style="font-size: 15;"></Label>
+                        </GridLayout>
+                    </FlexboxLayout>
+                    <FlexboxLayout horizontalAlignment="right" *ngIf="clickedd == elem" flexDirection="column">
+                        <GridLayout (tap)="uclickme(elem)" columns="auto, *" class="bookmark-collapse ">
+                            <Label col="1" text="&#xf106;" class="fas arr-drop" style="color: #1056A5"></Label>
+                            <Label col="1" horizontalAlignment="right" text="{{'personalinformation'| L}}"
+                                class="bookmark-course" style="font-size: 15;"></Label>
+                        </GridLayout>
+
+                        <StackLayout class="" style="margin-top: 10;">
+
+                            <StackLayout style="margin-bottom: 10;">
+                                <label text="{{'firstname'| L}}" class="prof-label"></label>
+                                <label text="{{profile.firstNameAr}}" class="prof-data"></label>
+                            </StackLayout>
+                            <StackLayout style="margin-bottom: 10;">
+                                <label text="{{'lastname'| L}}" class="prof-label"></label>
+                                <label text="{{profile.familyNameAr}}" class="prof-data"></label>
+                            </StackLayout>
+                            <StackLayout style="margin-bottom: 10;">
+                                <label text="{{'mobile'| L}}" class="prof-label"></label>
+                                <label text="{{profile.mobile}}" class="prof-data" style="text-align: right;"></label>
+                            </StackLayout>
+                            <StackLayout style="margin-bottom: 10;">
+                                <label text="{{'Email'| L}}" class="prof-label"></label>
+                                <label text="{{email}}" class="prof-data" style="text-align: right;"></label>
+                            </StackLayout>
+                            <!-- <StackLayout style="margin-bottom: 10;">
+                        <label  text="{{'nationality'| L}}" class="prof-label"></label>
+                        <label  text="سعودي" class="prof-data"></label>
+                    </StackLayout>-->
+                            <StackLayout style="margin-bottom: 10;" *ngIf="isSaudi">
+                                <label text="{{'sectorHint'| L}}" class="prof-label"></label>
+                                <label *ngIf="profile.sectorId==0" text="غير موظف" class="prof-data"></label>
+                                <label *ngIf="profile.sectorId==1" text="قطاع خاص" class="prof-data"></label>
+                                <label *ngIf="profile.sectorId==2" text="قطاع عام" class="prof-data"></label>
+
+                            </StackLayout>
+                            <StackLayout style="margin-bottom: 10;" *ngIf="isSaudi">
+                                <label text="{{'nationalID'| L}}" class="prof-label"></label>
+                                <label text="{{profile.nationalId}}" class="prof-data"
+                                    style="text-align: right;"></label>
+                            </StackLayout>
+                            <StackLayout style="margin-bottom: 10;">
+                                <label text="{{'birthDate'| L}}" class="prof-label"></label>
+                                <label text="{{profile.birthdate | date: 'dd/MM/yyyy'}}" class="prof-data"
+                                    style="text-align: right;"></label>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </FlexboxLayout>
+                </StackLayout>
+
+
+                <StackLayout *ngIf="isLoggedIn" class="container" style="margin-top: 20;">
+                    <label text="{{'mypreference' |L}}" class="acc-head"></label>
+                </StackLayout>
+                <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false" class="rtl container"
+                    *ngIf="isLoggedIn">
+                    <FlexboxLayout alignItems="center" width="500" justifyContent="flex-start" flexWrap="wrap">
+                        <label text="{{i.nameAr}}" class="cate-tags rtl" *ngFor="let i of userTags"></label>
+                    </FlexboxLayout>
+                </ScrollView>
+
+                <label *ngIf="isLoggedIn" class="line container"></label>
+
+
+                <StackLayout class="container" style="margin-top: 10;">
+                    <!-- <label  text="{{'profile'| L}}" class="acc-head" ></label> -->
+                    <FlexboxLayout *ngIf="isLoggedIn" flexDirection="row-reverse" [nsRouterLink]="['/certificates']"
+                        class="acc-line" alignItems="center" justifyContent="space-between" flexWrap="wrap">
+                        <label text="{{'mycertificates'| L}}" class="acc-sett"></label>
+                        <Image src="~/images/back.png" width="18" class=""></Image>
+                    </FlexboxLayout>
+                    <FlexboxLayout *ngIf="isEthrai && isLoggedIn" flexDirection="row-reverse"
+                        [nsRouterLink]="['/purchases']" class="acc-line" alignItems="center"
+                        justifyContent="space-between" flexWrap="wrap">
+                        <label text="{{'purchases'| L}}" class="acc-sett"></label>
+                        <Image src="~/images/back.png" width="18" class=""></Image>
+                    </FlexboxLayout>
+                    <!--   <FlexboxLayout  flexDirection="row-reverse" class="acc-line" alignItems="center" justifyContent="space-between" flexWrap="wrap" [nsRouterLink]="['/profile-form',email]">
+                  <label  text="{{'edit'| L}}" class="acc-sett"></label>
+                  <Image src="~/images/back.png" width="18" class=""></Image>
+              </FlexboxLayout> -->
+                    <FlexboxLayout *ngIf="isLoggedIn" flexDirection="row-reverse" class="acc-line" alignItems="center"
+                        justifyContent="space-between" flexWrap="wrap" [nsRouterLink]="['/change-password']">
+                        <label text="{{'changepassword'| L}}" class="acc-sett"></label>
+                        <Image src="~/images/back.png" width="18" class=""></Image>
+                    </FlexboxLayout>
+                </StackLayout>
+
+                <label *ngIf="isLoggedIn" class="line container"></label>
+
+                <label text="{{'account'| L}}" *ngIf="isLoggedIn" class="acc-head container"
+                    style="font-size: 16; margin-top: 20;"></label>
+
+                <StackLayout style="margin-top: 20;" class="container" *ngIf="isLoggedIn">
+                    <FlexboxLayout horizontalAlignment="right" (tap)="clickme1(elem)" *ngIf="clickedd1 != elem"
+                        flexDirection="row" justifyContent="space-between">
+                        <GridLayout (tap)="clickme1(elem)" columns="auto, *" class="bookmark-collapse">
+                            <Label col="1" text="&#xf107;" class="fas arr-drop" style="color: #000"></Label>
+                            <Label col="1" horizontalAlignment="right" text="{{'activity'| L}}" class="bookmark-course"
+                                style="font-size: 15;"></Label>
+                        </GridLayout>
+                    </FlexboxLayout>
+                    <FlexboxLayout horizontalAlignment="right" *ngIf="clickedd1 == elem" flexDirection="column">
+                        <GridLayout (tap)="uclickme1(elem)" columns="auto, *" class="bookmark-collapse ">
+                            <Label col="1" text="&#xf106;" class="fas arr-drop" style="color: #1056A5"></Label>
+                            <Label col="1" horizontalAlignment="right" text="{{'activity'| L}}" class="bookmark-course"
+                                style="font-size: 15;"></Label>
+                        </GridLayout>
+
+                        <StackLayout class="stat-block" style="margin-top: 10; margin-bottom: 10;">
+
+                            <FlexboxLayout flexDirection="row-reverse" alignItems="center"
+                                justifyContent="space-between">
+                                <StackLayout class="stat-back">
+                                    <label text="{{'courseinprogress'| L}}" class="stat-title"></label>
+                                    <label text="{{intl.format(inProgressCourses)}}" class="stat-no"></label>
+                                </StackLayout>
+                                <StackLayout class="stat-back">
+                                    <label text="{{'coursecomplete'| L}}" class="stat-title"></label>
+                                    <label text="{{intl.format(completedCourses)}}" class="stat-no"></label>
+                                </StackLayout>
+                            </FlexboxLayout>
+                            <label class="line"></label>
+                            <FlexboxLayout flexDirection="row" alignItems="center" justifyContent="flex-end">
+                                <!--<StackLayout class="stat-back" >
+                                <label text="{{'exersisemin'| L}}"  class="stat-title"></label>
+                                <label text="521"  class="stat-no"></label>
+                            </StackLayout>-->
+                                <StackLayout class="stat-back">
+                                    <label text="{{'totalmin'| L}}" class="stat-title"></label>
+                                    <label text="{{intl.format(learningMinutesCount)}}" class="stat-no"></label>
+                                </StackLayout>
+                            </FlexboxLayout>
+
+                        </StackLayout>
+
+                    </FlexboxLayout>
+                </StackLayout>
+
+                <label *ngIf="isLoggedIn && competences?.length>0" class="line container"></label>
+
+                <label text="{{'aquiredcom' |L}}" *ngIf="isLoggedIn && competences?.length>0" class="acc-head container"
+                    style="margin-top: 10; margin-bottom: 15;"></label>
+
+                <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false" class="rtl"
+                    *ngIf="isLoggedIn && competences?.length>0" style="margin-bottom: 5;">
+                    <FlexboxLayout alignItems="center" width="600" justifyContent="flex-start" flexWrap="wrap"
+                        style="background-color: #f5f6f7; border-radius: 10; padding: 20;">
+                        <FlexboxLayout *ngFor="let comp of competences" alignItems="center" justifyContent="flex-start"
+                            flexWrap="wrap" class="cate-tags rtl"
+                            style="background-color: #fff; border-radius: 10; border-width: 0; padding: 10;">
+                            <label style="font-size: 14;" text="{{comp.nameAr}}" class=""></label>
+                            <Image src="~/images/medal.png" width="18" class="" style="margin-left: 10;"></Image>
+                        </FlexboxLayout>
+                    </FlexboxLayout>
+                </ScrollView>
+
+                <!--   <StackLayout class="">
+            <label *ngIf="isLoggedIn" text="{{'contentpre'| L}}"  class="acc-head" ></label>
+             <FlexboxLayout *ngIf="isLoggedIn" flexDirection="row-reverse" class="acc-line" alignItems="center" justifyContent="space-between" flexWrap="wrap" [nsRouterLink]="['/video-settings']">
+                <label  text="{{'videosett'| L}}" class="acc-sett"></label>
+                <Image src="~/images/back.png" width="18" class=""></Image>
+            </FlexboxLayout> -->
+                <!-- <FlexboxLayout *ngIf="isLoggedIn" flexDirection="row-reverse" class="acc-line" alignItems="center" justifyContent="space-between" flexWrap="wrap" [nsRouterLink]="['/download-settings']">
+                <label  text="{{'downloadsett'| L}}" class="acc-sett"></label>
+                <Image src="~/images/back.png" width="18" class=""></Image>
+            </FlexboxLayout>
+             <FlexboxLayout *ngIf="isLoggedIn" flexDirection="row-reverse" class="acc-line" alignItems="center" justifyContent="space-between" flexWrap="wrap" [nsRouterLink]="['/content-language']">
+                <label  text="{{'languagesett'| L}}" class="acc-sett"></label>
+                <Image src="~/images/back.png" width="18" class=""></Image>
+            </FlexboxLayout> 
+           </StackLayout>
+
+           <label class="line"></label>-->
+
+
+                <label *ngIf="isLoggedIn" class="line container"></label>
+
+
+                <StackLayout class="container" style="margin-top: 10;">
+                    <label *ngIf="isLoggedIn" text="{{'accountpre'| L}}" class="acc-head"></label>
+                    <!--<FlexboxLayout *ngIf="isLoggedIn"  flexDirection="row-reverse" class="acc-line" alignItems="center" justifyContent="space-between" flexWrap="wrap" [nsRouterLink]="['/learning-reminder']">
+                <label  text="{{'learingreminder'| L}}" class="acc-sett"></label>
+                <Image src="~/images/back.png" width="18" class=""></Image>
+            </FlexboxLayout>-->
+                    <FlexboxLayout *ngIf="isLoggedIn" flexDirection="row-reverse" class="acc-line" alignItems="center"
+                        justifyContent="space-between" flexWrap="wrap" [nsRouterLink]="['/notifications']">
+                        <label text="{{'notification'| L}}" class="acc-sett"></label>
+                        <Image src="~/images/back.png" width="18" class=""></Image>
+                    </FlexboxLayout>
+                    <FlexboxLayout *ngIf="isLoggedIn" flexDirection="row-reverse" class="acc-line" alignItems="center"
+                        justifyContent="space-between" flexWrap="wrap" (tap)="navigateToProfileForm()">
+                        <label text="{{'profile'| L}}" class="acc-sett"></label>
+                        <Image src="~/images/back.png" width="18" class=""></Image>
+                    </FlexboxLayout>
+                </StackLayout>
+
+                <label *ngIf="isLoggedIn" class="line container"></label>
+
+                <StackLayout class="container">
+                    <label text="{{'ethrai'| L}}" class="acc-head"></label>
+                    <FlexboxLayout flexDirection="row-reverse" class="acc-line" alignItems="center"
+                        justifyContent="space-between" flexWrap="wrap" [nsRouterLink]="['/about-ethrai']">
+                        <label text="{{'about'| L}}" class="acc-sett"></label>
+                        <Image src="~/images/back.png" width="18" class=""></Image>
+                    </FlexboxLayout>
+                    <FlexboxLayout flexDirection="row-reverse" class="acc-line" alignItems="center"
+                        justifyContent="space-between" flexWrap="wrap" [nsRouterLink]="['/helpcenter']">
+                        <label text="{{'helpcenter'| L}}" class="acc-sett"></label>
+                        <Image src="~/images/back.png" width="18" class=""></Image>
+                    </FlexboxLayout>
+                </StackLayout>
+
+                <label class="line container"></label>
+
+                <StackLayout class="partener-back  album-image" backgroundImage="~/images/partner.png"
+                    style=" border-radius: 10 10 0 0 ;" *ngIf="isEthrai">
+                    <label text="{{'bePartner' | L}}" class="part-label"></label>
+                    <!--<HtmlView html="{{ htmlString }}" color="#fff"></HtmlView>-->
+                    <label text="{{bePart}}" style="font-size: 14;" color="#fff"></label>
+                    <label text="مزيد من المعلومات"
+                        style="margin-top: 20; background-color: #1056A5; border-color: #1056A5; text-align: center;"
+                        class="part-btn" [nsRouterLink]="['/become-partner']"></label>
+                </StackLayout>
+
+                <GridLayout *ngIf="isEthrai || !isLoggedIn" rows="auto,auto,auto,auto" class="partener-back"
+                    style="margin-bottom: 10; margin-top: 20; border-radius: 20 20 0 0;">
+                    <label row="0" text="{{'corparatetrain' | L}}" class="part-label"></label>
+                    <!--<HtmlView row="1" html="{{ trainingHTMLString }}" color="#fff"></HtmlView>-->
+                    <label row="1" text="{{training}}" style="font-size: 14;" color="#fff"></label>
+                    <label row="2" text="مزيد من المعلومات" style="margin-top: 20;" class="part-btn"
+                        [nsRouterLink]="['/corporate-training']"></label>
+                </GridLayout>
+
+                <StackLayout class="container" style="margin-top: 15;">
+                    <label text="{{'anyquestion'| L}}" class="acc-head" style="margin-bottom: 0;"></label>
+                    <label text="{{'contactushelp'|L}}"
+                        style="font-size: 14px; color: #989BAD; font-weight: 500;"></label>
+                    <Button style="background-color: #1056A5; margin-bottom: 20; margin-top: 10;"
+                        [nsRouterLink]="['/contactus']" text="{{'contact' |L}}" class="login-btn"></Button>
+
+                    <FlexboxLayout (tap)="rateApp()" flexDirection="row-reverse" class="acc-line" alignItems="center"
+                        justifyContent="space-between" flexWrap="wrap">
+                        <label text="{{'rate'| L}}" class="acc-sett" style="font-size: 16;"></label>
+                        <label text="&#xf005;" class="fas menu-icon" style="color:#1056A5 ; font-size: 18"></label>
+                    </FlexboxLayout>
+                    <FlexboxLayout (tap)="shareApp()" flexDirection="row-reverse" class="acc-line" alignItems="center"
+                        justifyContent="space-between" flexWrap="wrap">
+                        <label text="{{'share'| L}}" class="acc-sett" style="font-size: 16;"></label>
+                        <label text="&#xf1e0;" class="fas menu-icon" style="color:#1056A5 ; font-size: 18;"></label>
+                    </FlexboxLayout>
+                </StackLayout>
+
+                <StackLayout class="container" style="margin-bottom: 60; margin-top: 20;">
+                    <label text="{{'follow'| L}}" class="acc-head"></label>
+                    <FlexboxLayout flexDirection="row-reverse" class="acc-line" alignItems="center"
+                        justifyContent="flex-start" flexWrap="wrap">
+                        <!--<StackLayout class="social-back" *ngFor="let link of links">
+                    <Image src="{{link.icon}}" class="prof-img" (tap)="openURL(link.link)"></Image>
+                </StackLayout>-->
+                        <StackLayout class="social-back" (tap)="openURL(faceBookLink)">
+                            <label text="&#xf09a;" class="fab social-icon"></label>
+                        </StackLayout>
+                        <StackLayout class="social-back" (tap)="openURL(twitterLink)">
+                            <label text="&#xf099;" class="fab social-icon"></label>
+                        </StackLayout>
+                        <StackLayout class="social-back" (tap)="openURL(instagramLink)">
+                            <label text="&#xf16d;" class="fab social-icon"></label>
+                        </StackLayout>
+                        <!--  <StackLayout class="social-back" (tap)="openURL(googleLink)">
+                <label text="&#xf1a0;" class="fab social-icon"></label>
+               </StackLayout> -->
+                    </FlexboxLayout>
+
+                    <label *ngIf="isLoggedIn" text="{{'signout'| L}}" class="acc-sett"
+                        style="text-align: center; margin-top: 10;margin-bottom: 10;" (tap)="logOut()"></label>
+
+                    <!-- <label *ngIf="isLoggedIn" text="{{'removeaccount'| L}}" class="acc-sett"
+                        style="text-align: center; margin-bottom: 30; color: #E53935; font-size: 14;"
+                        (tap)="removeAccount()"></label> -->
+
+                    <!-- visitor -->
+                    <Button *ngIf="!isLoggedIn" text="{{'LogIn' | L}}" class="login-btn"
+                        style=" margin-top: 20;margin-bottom: 40;" [nsRouterLink]="['/login-by-mail']"></Button>
+                    <!-- endvisitor -->
+
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+    <GridLayout height="80" verticalAlignment="bottom">
+        <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+        </GridLayout>
+        <GridLayout columns="*, *, *, *, *">
+            <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+            <label text="&#xf002;" class="fas menu-icon" col="1" row="0" [nsRouterLink]="['/explore']"></label>
+            <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']"></label>
+            <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']"></label>
+            <StackLayout class="menu-active" col="4" row="0">
+                <label text="&#xf406;" class="fas" [nsRouterLink]="['/account']"></label>
+            </StackLayout>
+        </GridLayout>
+
+    </GridLayout>
+</GridLayout>

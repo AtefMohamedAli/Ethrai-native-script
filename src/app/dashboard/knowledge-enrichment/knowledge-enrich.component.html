@@ -1,0 +1,62 @@
+<GridLayout>
+
+<GridLayout class="view">
+
+    <ActionBar flat="true" style="background-color: #fff" title="">
+        <NavigationButton visibility="collapsed"></NavigationButton>
+        <GridLayout columns="*" width="100%">        
+            <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                <Image src="~/images/back.png" width="18" class="" ></Image>
+                <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+            </StackLayout>   
+            <Image col="0"  (tap)="addFilter()" horizontalAlignment="right" style="margin: 0 10;" src="~/images/filter.png" width="22"></Image>
+        </GridLayout>
+      </ActionBar> 
+
+       <StackLayout  class="page-layout" style="padding-bottom: 50; ">
+           
+         <!--   <FlexboxLayout flexDirection="row-reverse" style="margin-top: 45;"  alignItems="center" justifyContent="space-between">
+               <StackLayout class="" [nsRouterLink]="['/filter']" >
+                   <Image src="~/images/filter.png" width="28" class="" ></Image>
+               </StackLayout>
+               <FlexboxLayout flexDirection="row-reverse"  alignItems="center" justifyContent="flex-end" (tap)="goBack()">
+                   <label  text="Back"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"  class="fas"></label>
+                   <Image src="~/images/back.png" width="18" class="" ></Image>
+               </FlexboxLayout>
+           </FlexboxLayout> -->
+
+           <label  text="{{'KnowledgeEnrichment' |L}}"  class="sign-label" style="margin-top:0"></label>
+
+           <Label text="{{'NoFilterResults'|L}}" style="text-align: center; font-size: 16px; color: #1056A5;  padding: 15; margin-top: 100px;" *ngIf="dataItems.length ==0 && !isLoading"></Label>
+
+           <ListView [height]="screenHeight" *ngIf="dataItems.length" [items]="dataItems" loadOnDemandMode="Auto" (loadMoreItems)="onLoadMoreItemsRequested($event)">
+            <ng-template let-item="item" let-i="index">
+                <ke-webinar-card [product]="item" [productType]="'Ke'" [showType]="false" [screenName]="'ke_list_by_category'"></ke-webinar-card>
+            </ng-template>
+        </ListView>
+        <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
+
+
+               <StackLayout style="height: 60;">
+
+            </StackLayout> 
+
+  </StackLayout>
+
+</GridLayout>
+
+<GridLayout height="80" verticalAlignment="bottom">
+    <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+    </GridLayout>
+    <GridLayout columns="*, *, *, *, *">
+        <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+        <StackLayout class="menu-active"  col="1" row="0">
+        <label text="&#xf002;" class="fas"  [nsRouterLink]="['/explore']"></label>
+       </StackLayout>
+        <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']" ></label>
+        <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']" ></label>
+        <label text="&#xf406;" class="fas menu-icon" col="4" row="0" [nsRouterLink]="['/account']"></label>
+    </GridLayout>
+  
+</GridLayout> 
+</GridLayout>

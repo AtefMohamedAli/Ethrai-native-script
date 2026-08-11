@@ -1,0 +1,74 @@
+@keyframes show {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* .dialogOpen .content {
+    opacity: 0.2;
+} */
+.overlay_conf { z-index: -1; background-color: #000; opacity: .3; height: 1080; width: 100%;}
+ .ov {  z-index: -2;}
+
+.dialogOpen .overlay_conf2 { z-index: -1; background-color: #000; opacity: .3; height: 1080; width: 100%;}
+.ov{margin-top: 110;}
+.dialogOpen .ov {  z-index: -2;}
+.dialogOpen .search-back{ border-radius: 30 30 0 0; background-color: #fff;}
+.dialogOpen .search-back TextField{ background-color: #fff;}
+
+
+.dialogOpen .dialog-wrapper {
+    visibility: visible;
+    animation-name: show;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    margin: 0 20;
+}
+.dialogOpen .ba-btn {
+    visibility: visible;
+    opacity: 1;
+}
+.dialog-wrapper {
+    visibility: collapse;
+    opacity: 0;
+    z-index: 99999;
+
+}
+.ba-btn {
+    visibility: collapse;
+    opacity: 0;
+}
+
+.dialogOpen .se-btn {
+    visibility: collapse;
+    opacity: 0;
+}
+
+.x-btn {
+    visibility: collapse;
+    opacity: 0;
+}
+.b_btn2 {
+    visibility: visible;
+    opacity: 1;
+}
+.dialogOpen .x-btn {
+    visibility: visible;
+    opacity: 1;
+}
+
+.dialog {
+    border-top-width:  1;
+    border-top-color: #989BAD;
+    background-color:#fff;
+    border-radius: 0 0 30 30 ;
+    width: 100%;
+    margin-top: 0;
+    padding: 0;
+}
+.img-sugg{filter: grayscale();}
+.sugg{ color: #989BAD; font-size: 14; margin: 0 10;}
+.sugg-head{ font-size: 14; color: #000; margin: 0 20; margin-top: 5; margin-bottom: -10;}
+.no-info{ color: #989BAD; margin: 0 20; font-size: 14;}
+.list-group-sugg{height: 220;}
+.sugg-word{ padding-left: 20; padding-right: 20; }
+.all{ color: #1056A5; font-size: 14; text-align: center;}

@@ -1,0 +1,82 @@
+<GridLayout>
+
+<GridLayout class="view">
+
+  <ActionBar  flat="true" style="background-color: #fff;" title="">
+    <NavigationButton visibility="collapsed"></NavigationButton>
+    <GridLayout columns="*" width="100%">  
+        <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+            <Image src="~/images/back.png" width="18" class="" ></Image>
+            <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+        </StackLayout>  
+    </GridLayout>
+ </ActionBar>
+
+     <ScrollView  scrollBarIndicatorVisible="false">
+       <StackLayout class="page-layout">
+
+            <label   text="{{'faqcate'| L}}" class="sign-label" style="margin-bottom: 10; margin-top: 0;"></label>
+            <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'"></ActivityIndicator>
+
+          <ScrollView orientation="horizontal"  class="rtl" scrollBarIndicatorVisible="false">
+            <FlexboxLayout alignItems="center" width="500" justifyContent="flex-start" flexWrap="wrap">
+                <label  text="{{item.nameAr}}"   class="rtl" *ngFor="let item of qAndA" (tap)="selectTopic(item)"
+                [ngClass]=" item ==selectedTopic?'cate-tags-active' :'cate-tags'"></label>
+                <!--<label  text="أسئلة عامة"   class="cate-tags-active rtl"></label>-->
+               </FlexboxLayout>
+             </ScrollView>
+ 
+            <label   text="{{selectedTopic.nameAr}}" class="sign-label" style="margin-bottom: 0;"></label>
+
+          <GridLayout rows="auto,auto" style="margin-top: 20;" *ngFor="let element of selectedTopic.faqs">
+            <FlexboxLayout row="0" horizontalAlignment="right" (tap)="clickme(element)" [visibility]="clickedd == element ? 'collapsed' : 'visible'" flexDirection="row" justifyContent="space-between">
+                <GridLayout  columns="auto, *" class="bookmark-collapse">
+                    <Label col="0" text="&#xf107;"   class="fas arr-drop" style="color: #000; width:20" ></Label>
+                    <Label col="1"  horizontalAlignment="right" text='{{element.questionAr}}' class="bookmark-course" style="font-size: 14;"></Label>
+                </GridLayout>
+            </FlexboxLayout>
+            <FlexboxLayout row="1" horizontalAlignment="right"  [visibility]="clickedd == element ? 'visible' : 'collapsed'" flexDirection="column">
+                <GridLayout (tap)="uclickme()" columns="auto, *" class="bookmark-collapse ">
+                    <Label col="0" text="&#xf106;"  class="fas arr-drop" style="color:#1056A5; width:20"></Label>
+                    <Label col="1"  horizontalAlignment="right" text='{{element.questionAr}}' class="bookmark-course" style="font-size: 14;"></Label>
+                </GridLayout>
+      
+                    <Label  class="course-cate plainfont" style="color:#222;font-size: 13;" [text]="getText(element.answerAr)" ></Label>
+                    <!--<HtmlView row="1" html="{{ element.answerAr }}" class="course-cate plainfont" style="color:#222;font-size: 13;"></HtmlView>-->
+
+            </FlexboxLayout>
+          </GridLayout>
+
+          <StackLayout style="margin-top: 20;">
+            <label  text="{{'anyquestion2'| L}}"  class="acc-head" style="margin-bottom: 0;" ></label>
+            <label  text="{{'contactushelp'|L}}"  style="font-size: 14px; color: #989BAD; font-weight: 500;"></label>
+            <Button style="background-color: #1056A5; margin-bottom: 20; margin-top: 10;"  [nsRouterLink]="['/contactus']" text="{{'contact' |L}}"  class="login-btn"></Button>
+
+          </StackLayout>
+
+
+          <StackLayout style="height: 60;">
+
+        </StackLayout> 
+
+     </StackLayout>
+
+   </ScrollView>
+ </GridLayout>
+ <GridLayout height="80" verticalAlignment="bottom">
+  <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+  </GridLayout>
+  <GridLayout columns="*, *, *, *, *">
+      <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+      <label text="&#xf002;" class="fas menu-icon" col="1" row="0"  [nsRouterLink]="['/explore']"></label>
+      <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']" ></label>
+      <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']" ></label>
+      <StackLayout class="menu-active"  col="4" row="0">
+        <label text="&#xf406;" class="fas" [nsRouterLink]="['/account']"></label>
+      </StackLayout>
+  </GridLayout>
+
+</GridLayout> 
+
+</GridLayout>
+

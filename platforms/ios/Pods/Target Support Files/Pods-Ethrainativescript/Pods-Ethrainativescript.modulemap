@@ -1,0 +1,6 @@
+framework module Pods_Ethrainativescript {
+  umbrella header "Pods-Ethrainativescript-umbrella.h"
+
+  export *
+  module * { export * }
+}

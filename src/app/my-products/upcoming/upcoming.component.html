@@ -1,0 +1,93 @@
+<GridLayout class="whiteback">
+  <ActionBar  flat="true" style="background-color: #fff;" title="">
+   <NavigationButton visibility="collapsed"></NavigationButton>
+   <GridLayout columns="*" width="100%">        
+       <Label col="0" text="{{'upcomingWebinars'| L}}"  class="page-title text-center"></Label>
+       <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+           <Image src="~/images/back.png" width="18" class="" ></Image>
+           <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+       </StackLayout>  
+   </GridLayout>
+ </ActionBar>
+
+
+   <StackLayout class="page-layout container">
+
+        <label  text="{{'upcomingtoday' | L}}" class="sign-label" style="margin-top:0"></label>
+  
+       <GridLayout *ngFor="let item of myWebinars" (tap)="goToWebinarsPage(item.webinarId,item)" style="margin:10 0; background-color: #f5f6f7; padding: 10; border-radius: 10;" rows="auto" columns="*,100" >
+          <Image row="0" col="1"  src="{{item.logoUrl}}" class="cr-img"></Image>  
+        
+          <StackLayout row="0" col="0" orientation="vertical" style=" margin: 0 10;">
+           <FlexboxLayout flexDirection="row-reverse" flexWrap="wrap" alignItems="center" justifyContent="space-between">
+              <Label class="course-na" text="{{item.nameAr}} "></Label>
+              <label  class=" path-icon" text="&#xf004;" [ngClass]="item.isFavorite ? 'fas' : 'far'" style="color:#1056A5;font-size: 15;"> </label>
+           </FlexboxLayout>
+              <Label class="course-cate" text="المؤتمرات الإلكترونية"></Label>
+              <label  class=" course-price" text="مجاني"> </label>
+        
+        </StackLayout>
+      </GridLayout>
+
+      <!-- <Label text="{{'noWebinars' |L}}" *ngIf="myWebinars?.length==0"></Label> -->
+
+       <!--<ScrollView orientation="horizontal"  scrollBarIndicatorVisible="false" class="rtl">
+        <FlexboxLayout alignItems="center" class="" width="500" justifyContent="flex-start" flexWrap="wrap">
+            <label  text="اسم"  class="cate-tags rtl" ></label>
+           </FlexboxLayout>
+        </ScrollView>
+
+
+            <label  text="{{'subCategories' |L}}" class="sign-label" style="margin-top:20; margin-bottom: 5;"></label>
+           <ScrollView orientation="horizontal"  scrollBarIndicatorVisible="false" class="rtl">
+            <FlexboxLayout alignItems="center" width="500" justifyContent="flex-start" flexWrap="wrap">
+                <label  text="اسم"   class="cate-tags rtl"></label>
+               </FlexboxLayout>
+             </ScrollView>
+
+
+      <label  text="{{'upcomingEvents' | L}}" class="sign-label" style="margin-top:20"></label>
+
+     <GridLayout  style="margin:10 0;" rows="auto" columns="*,100">
+        <Image row="0" col="1"  src="~/images/course1.jpg" class="cr-img"></Image>  
+      
+        <StackLayout row="0" col="0" orientation="vertical" style=" margin: 0 10;">
+         <FlexboxLayout flexDirection="row-reverse" flexWrap="wrap" alignItems="center" justifyContent="space-between">
+            <Label class="course-na" text="اسم "></Label>
+            <label  class=" path-icon fas" text="&#xf004;" style="color:#1056A5;font-size: 15;"> </label>
+         </FlexboxLayout>
+            <Label class="course-cate" text="المؤتمرات الإلكترونية"></Label>
+            <label  class=" course-price" text="مجانا"> </label>
+      
+      </StackLayout>
+    </GridLayout>
+
+
+    -->
+    <label  text="{{'webinars' |L}}"  class="sign-label" style="margin-top:0"></label>
+
+    <ListView style="padding-bottom: 50; " height="500" [items]="dataItems" loadOnDemandMode="Auto" (loadMoreItems)="onLoadMoreItemsRequested($event)">
+     <ng-template let-item="item" let-i="index">
+         <ke-webinar-card [product]="item" [productType]="'Webinar'" [showType]="false" [screenName]="'upcoming_webinars'"></ke-webinar-card>
+     </ng-template>
+ </ListView>
+    <GridLayout style="height: 60;">
+    </GridLayout>
+
+  </StackLayout>
+<GridLayout height="80" verticalAlignment="bottom">
+   <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+   </GridLayout>
+   <GridLayout columns="*, *, *, *, *">
+       <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+       <label text="&#xf002;" class="fas menu-icon" col="1" row="0"  [nsRouterLink]="['/explore']"></label>
+       <StackLayout class="menu-active"  col="2" row="0">
+         <label text="&#xf144;" class="far"  [nsRouterLink]="['/my-products']" ></label>
+       </StackLayout>
+       <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']" ></label>
+       <label text="&#xf406;" class="fas menu-icon" col="4" row="0" [nsRouterLink]="['/account']"></label>
+   </GridLayout>
+ 
+</GridLayout>
+</GridLayout>
+

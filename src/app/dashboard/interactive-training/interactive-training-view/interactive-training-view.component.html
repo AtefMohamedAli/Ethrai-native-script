@@ -1,0 +1,308 @@
+<GridLayout>
+
+
+    <GridLayout class="view">
+
+        <ActionBar flat="true" style="background-color: #fff;" title="">
+            <NavigationButton visibility="collapsed"></NavigationButton>
+            <GridLayout columns="*" width="100%">
+                <!-- <Button col="0" row="1" style="width: 150; height: 45;text-align: center; background-color: #1056A5;"
+                        class="login-btn" (tap)="refresh()"></Button> -->
+                        <label text="&#xf021;" (tap)="refresh()" col="0" class="fas" horizontalAlignment="right" style="font-size: 18px; margin: 0 10; color: #000;"></label>
+                <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                    <Image src="~/images/back.png" width="18" class=""></Image>
+                    <label text="{{'Back'| L}}"
+                        style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                </StackLayout>
+            </GridLayout>
+        </ActionBar>
+
+        <ScrollView scrollBarIndicatorVisible="false">
+            <StackLayout class="page-layout">
+                <FlexboxLayout flexDirection="row-reverse" class="acc-line" alignItems="center" flexWrap="wrap">
+                    <label text="إسم النشاط" class="acc-head"></label>
+                    <label text="/" class="acc-head" style="margin-left: 5; margin-right: 5;"></label>
+                    <label [text]="getNameOfInterActive()" class="acc-head" style="color: #1056A5;"></label>
+                </FlexboxLayout>
+
+
+                <GridLayout columns="*,*" rows="*,*" class=""
+                    style=" padding: 10; background-color: #f5f6f7; border-radius: 10;">
+                    <StackLayout row="0" col="1" class="" *ngIf="interactiveData?.trainingTypeId!=TrainingTypeId.Quiz">
+                        <label *ngIf="act.checked==true" text="{{'active' |L}}" class="acc-sett"
+                            style="margin: 0;"></label>
+                        <label *ngIf="act.checked==false" text="غير نشط" class="acc-sett" style="margin: 0;"></label>
+
+                        <Switch checked="{{interactiveData?.isActive}}" #act (checkedChange)="onCheckedChange($event)"
+                            style="margin: 0;"> </Switch>
+                    </StackLayout>
+
+                    <Button row="0" col="0" text="{{'training-result' |L}}"
+                        [nsRouterLink]="['/interactive-training-report',detailsId]"
+                        style="width: 150; height: 45;text-align: center; background-color: #1056A5;"
+                        class="login-btn"></Button>
+                </GridLayout>
+
+                <FlexboxLayout style="margin-top: 20;" flexDirection="row-reverse" alignItems="center"
+                    justifyContent="center">
+                    <label text="{{'endactivity' | L}}" class="Forgot"></label>
+                    <label (tap)="openModal()" text="{{'finish-actvity' | L}}" class=" d-account"
+                        style="margin-top: 0; text-decoration: none;"></label>
+                </FlexboxLayout>
+
+                <StackLayout class="option-box2" style=" margin-top: 20;"
+                    *ngIf="(interactiveData?.trainingTypeId==TrainingTypeId.TrueFalse||interactiveData?.trainingTypeId==TrainingTypeId.SingleChoice||interactiveData?.trainingTypeId==TrainingTypeId.MultiChoice)">
+                    <label text="{{answersData?.questionNameAr}}" horizontalAlignment="right" class="acc-que"></label>
+                    <FlexboxLayout *ngFor="let ans of answersData?.answers" flexDirection="row-reverse"
+                        alignItems="center" justifyContent="space-between">
+                        <label text="{{ans.name}}" class="acc-ans"></label>
+                        <label text="{{ans.value}}" style="color:#1056A5"></label>
+                    </FlexboxLayout>
+                </StackLayout>
+                
+                <!--Quiz-->
+                <StackLayout class="option-box2" style="margin-top: 20;"
+                    *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.Quiz">
+                    <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                        <StackLayout class="stat-back">
+                            <label text="{{'Quesnum'| L}}" class="stat-title"></label>
+                            <label text="{{interactiveData?.showedQuestions}}" class="activiy-data"></label>
+                        </StackLayout>
+                        <StackLayout class="stat-back">
+                            <label text="{{'duration-mi'| L}}" class="stat-title"></label>
+                            <label text="{{interactiveData?.durationInSeconds}}" class="activiy-data"></label>
+                        </StackLayout>
+                    </FlexboxLayout>
+                    <label class="line" style="background-color: #fff;"></label>
+                    <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                        <StackLayout class="stat-back" style="width: 100%;">
+                            <label text="{{'correctansnum'| L}}" class="stat-title"></label>
+                            <label text="{{interactiveData?.minCorrectAnswers}}" class="activiy-data"></label>
+                        </StackLayout>
+                    </FlexboxLayout>
+
+
+                </StackLayout>
+                <StackLayout class="option-box2" style=" margin-top: 20;"
+                    *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.Quiz">
+                    <StackLayout *ngFor="let q of interactiveData.questions;let i=index">
+                        <FlexboxLayout style="margin-top: 20;" flexDirection="row-reverse" alignItems="center">
+                            <Image src="~/images/qustion_mark.png" width="25" class=""></Image>
+                            <label text="السؤال {{i+1}}" style="margin: 0 5;" class="acc-que"></label>
+                            <label text="{{getQestionType(q.trainingTypeId)}}" class="acc-que"
+                                style="color: #1056A5;"></label>
+                        </FlexboxLayout>
+                        <label class="line" style="background-color: #b4b4b4;"></label>
+                        <label text=" {{q.nameAr}}" horizontalAlignment="right" class="acc-que"></label>
+                        <StackLayout *ngFor="let ans of q.answers;let j=index">
+
+                            <label text="خيار{{j+1}}" class="form-label"></label>
+                            <TextField hint="{{ans.nameAr}}" editable="false"
+                                style="placeholder-color:#989BAD; background-color: #fff;">
+                            </TextField>
+                        </StackLayout>
+                    </StackLayout>
+
+                </StackLayout>
+
+                <!-- QA-->
+                <!-- <StackLayout class="" style=" margin-top: 20;"
+                    *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.QestionAnswer">
+                    <FlexboxLayout flexDirection="row-reverse" alignItems="center" style="margin-bottom:10 ;">
+                        <Image src="~/images/qustion_mark.png" width="25" class=""></Image>
+                        <label text="{{answersData?.questionNameAr}}" style="margin: 0 5 ;" horizontalAlignment="right"
+                            class="acc-que"></label>
+                    </FlexboxLayout>
+                    <FlexboxLayout *ngFor="let ans of answersData?.answers" flexDirection="row-reverse"
+                        alignItems="center" class="option-box2" style=" margin-top: 0;" justifyContent="space-between">
+                        <label text="{{ans.name}}" class="acc-ans" style="color: #1056A5;"></label>
+                    </FlexboxLayout>
+                </StackLayout> -->
+                <StackLayout *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.QestionAnswer">
+                    <label text=" {{answersData?.questionNameAr}}" class="sign-label"
+                        style="margin-top:10; font-size: 15;" horizontalAlignment="right"></label>
+
+                    <StackLayout class="option-box2" style=" margin-top: 0;" *ngFor="let ans of answersData?.answers">
+
+                        <GridLayout class="" columns="auto, *">
+                            <label col="1" text="{{ans.name}}" horizontalAlignment="right" style=" font-size: 15; " class="">
+                            </label>
+                            <label col="0" text="{{ans.value}}" style="color: #1056A5; font-size: 18; text-align: center; " class="emoji-num">
+                            </label>
+                        </GridLayout>
+
+                    </StackLayout>
+                </StackLayout>
+                <!--gussesNu-->
+                <StackLayout *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.GuessNumbers">
+                    <label text=" الاجابات" class="sign-label" style="margin-top:10; font-size: 15;"></label>
+                    <GridLayout class="" columns="*, * ,*" class="option-box2" style=" margin-top: 0;">
+                        <Label col="2" row="0" textWrap="true" class="course-na" style="font-size: 15;"
+                            text="الحد الادني"></Label>
+                        <Label col="1" row="0" textWrap="true" class="course-na" style="font-size: 15;"
+                            text="المتوسط"></Label>
+                        <Label col="0" row="0" textWrap="true" class="course-na" style="font-size: 15;"
+                            text="الحد الاقصي"></Label>
+                    </GridLayout>
+                    <GridLayout class="" columns="*, * ,*" class="option-box2" style=" margin-top: 0;">
+                        <Label col="2" row="0" textWrap="true" horizontalAlignment="right"
+                            style="font-size: 18; color: #1056A5;" text="{{guessNumbers?.minNumber}}"></Label>
+                        <Label col="1" row="0" textWrap="true" horizontalAlignment="right"
+                            style="font-size: 18;color: #1056A5;" text="{{guessNumbers?.averageNumber}}"></Label>
+                        <Label col="0" row="0" textWrap="true" horizontalAlignment="right"
+                            style="font-size: 18;color: #1056A5;" text="{{guessNumbers?.maxNumber}}"></Label>
+                    </GridLayout>
+                    <!--  <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                        <StackLayout class="stat-back">
+                            <label text="الحد الادني" class="stat-title"></label>
+                            <label text="{{guessNumbers?.minNumber}}" class="activiy-data"></label>
+                        </StackLayout>
+                        <StackLayout class="stat-back">
+                            <label text="المتوسط" class="stat-title"></label>
+                            <label text="{{guessNumbers?.minNumber}}" class="activiy-data"></label>
+                        </StackLayout>
+                        <StackLayout class="stat-back">
+                            <label text="الحد الاقصي" class="stat-title"></label>
+                            <label text="{{guessNumbers?.averageNumber}}" class="activiy-data"></label>
+                        </StackLayout>
+                    </FlexboxLayout> -->
+                </StackLayout>
+
+                <!--CloudWords-->
+                <StackLayout *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.CloudWords">
+                    <label text=" {{answersData?.questionNameAr}}" class="sign-label"
+                        style="margin-top:10; font-size: 15;" horizontalAlignment="right"></label>
+
+                    <WrapLayout class="option-box2" style=" margin-top: 0;" >
+                        <StackLayout  style="margin: 0 10;" *ngFor="let ans of answersData?.answers">
+                            <label  text="{{ans.name}}" horizontalAlignment="right"
+                            [ngStyle]="{'font-size': ans.value+15}"  style="color: #1056A5; " class="">
+                            </label>
+                          </StackLayout>
+                      <!--   <GridLayout class="" columns="auto, *" rows="*,*">
+                           
+                            <label col="0" row="0" text="{{ans.value}}"
+                            [ngStyle]="{'font-size': ans.value+15}" style=" "
+                            class=""> </label>
+                        </GridLayout> -->
+
+                    </WrapLayout>
+                </StackLayout>
+
+
+                <!--Evaluation-->
+                <StackLayout *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.Evaluation">
+                    <label text=" {{answersData?.questionNameAr}}" class="sign-label"
+                        style="margin-top:10; font-size: 15;" horizontalAlignment="right"></label>
+
+                  <!--   <StackLayout class="option-box2" style=" margin-top: 0;" *ngFor="let ans of answersData?.answers">
+
+                        <GridLayout class="" columns="auto, *">
+                            <label col="1" text="{{ans.name}}" style=" font-size: 15; " class="">
+                            </label>
+                            <label col="0" text="{{ans.value}}" style="color: #1056A5; font-size: 18; " class="">
+                            </label>
+                        </GridLayout>
+
+                    </StackLayout> -->
+
+                    <!--new desing-->
+                    <StackLayout class="option-box2" style=" margin-top: 0;" >
+
+                        <GridLayout  columns="75,*,*,*,75" class="emoji">
+                            <StackLayout col="4"  class=" emoji-single ">
+                                <Image src="~/images/grey_very_satisfied.png"  class=""></Image>
+                                <label text=" أوافق بشدة" class="emoji-text"></label>
+                            </StackLayout>
+                            <StackLayout col="3" flexDirection="column" class=" emoji-single"  alignItems="center"  justifyContent="center" flexWrap="wrap">
+                                <Image src="~/images/grey_smile.png"   class=""></Image>
+                                <label text="أوافق" class="emoji-text"></label>
+                            </StackLayout>
+                            <StackLayout col="2"  class="emoji-single"  alignItems="center"  justifyContent="center" flexWrap="wrap">
+                                <Image src="~/images/grey_neutural.png"  class=""></Image>
+                                 <label text="محايد" class="emoji-text"></label>
+                            </StackLayout>
+                            <StackLayout  col="1"  class=" emoji-single" alignItems="center"  justifyContent="center" flexWrap="wrap">
+                                <Image src="~/images/grey_sad.png" class=""></Image>
+                                 <label text="لا أوافق" class="emoji-text"></label>
+                            </StackLayout>
+                            <StackLayout col="0" class=" emoji-single"  alignItems="center"  justifyContent="center" flexWrap="wrap">
+                                <Image src="~/images/grey_dissatisfied.png"  class=""></Image>
+                                 <label text="لا أوافق بشدة" class="emoji-text"></label>
+                            </StackLayout>
+                          
+                            
+                           
+                        </GridLayout>
+
+                    </StackLayout>
+                </StackLayout>
+                <!--Voting-->
+
+
+
+                <StackLayout *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.Voting">
+                    <label text=" {{answersData?.questionNameAr}}" class="sign-label" horizontalAlignment="right"
+                        style="margin-top:10; font-size: 15;"></label>
+                    <GridLayout class="" columns="*, *" class="option-box2" style=" margin-top: 0;">
+                        <Label col="1" row="0" textWrap="true" class="course-na" style="font-size: 15;"
+                            text=" الخيارات"></Label>
+                        <Label col="0" row="0" textWrap="true" class="course-na" style="font-size: 15;"
+                            text=" نسبة التصويت"></Label>
+                    </GridLayout>
+                    <StackLayout class="option-box2" style=" margin-top: 0;" *ngFor="let ans of answersData?.answers">
+
+                        <GridLayout class="" columns="*, *">
+                            <label col="1" row="0" text="{{ans.name}}" horizontalAlignment="right"
+                                style="font-size: 15; " class="">
+                            </label>
+                            <label col="0" row="0" text="{{ans.value}}" horizontalAlignment="right"
+                                style="color: #1056A5; font-size: 18; " class=""> </label>
+                        </GridLayout>
+                    </StackLayout>
+                </StackLayout>
+
+
+                <!--Survey-->
+
+
+
+                <StackLayout *ngIf="interactiveData?.trainingTypeId==TrainingTypeId.Survey">
+                    <!-- <label text=" {{answersData?.questionNameAr}}" class="sign-label" style="margin-top:10; font-size: 15;"></label> -->
+                    <label text="{{'msSurvy' | L}}" class="" style="margin: 10 0; font-size: 14;"></label>
+
+                    <StackLayout class="option-box2" style=" margin-top: 0;"
+                        *ngFor="let ans of interactiveData?.questions">
+                        <label text="{{ans.nameAr}}" horizontalAlignment="right" style="color: #1056A5; font-size: 15;">
+                        </label>
+
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout class="option-box2" style=" margin-top: 20;">
+
+                    <label text="{{'share-a' | L}}" class="acc-head"></label>
+                    <label (tap)="share()" text="{{link}}" class="acc-ans" style="color: #1056A5;"></label>
+                    <label class="line" style="background-color: #f9f9f9;"></label>
+                    <label text="{{'qr' | L}}" class="acc-head"></label>
+                   <!--  <Image src="~/images/qr.png" width="60"></Image> -->
+                   <Image src="" row="1" col="0" width="100" (loaded)="onImageLoaded($event)"></Image>
+                </StackLayout>
+                
+
+                <StackLayout class="training-quesions" style="margin: 10 0;">
+                    <survey *ngIf="interactiveData?.isSurveyAnswered!=true&&SurveyData" [SurveyId]="SurveyId"
+                        [productId]="detailsId" [SurveyData]="SurveyData" [type]="type"></survey>
+                    <StackLayout *ngIf="interactiveData?.isSurveyAnswered==true">
+                        <label text="{{'survey' |L}}" class="c-prop container container"> </label>
+                        <label text="{{'surveyDone'|L}}" class="acc-sett" style="font-size: 16;"></label>
+
+                    </StackLayout>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+
+
+    </GridLayout>
+
+</GridLayout>

@@ -1,0 +1,239 @@
+<GridLayout class="whiteback">
+  <GridLayout>
+
+    <ActionBar flat="true" style="background-color: #fff;" title="">
+      <NavigationButton visibility="collapsed"></NavigationButton>
+      <GridLayout columns="*" width="100%">
+        <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+          <Image src="~/images/back.png" width="18" class=""></Image>
+          <label text="{{'Back'| L}}"
+            style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+        </StackLayout>
+      </GridLayout>
+    </ActionBar>
+
+
+    <ScrollView scrollBarIndicatorVisible="false">
+      <StackLayout class="page-layout" style="margin-bottom: 60;">
+
+        <StackLayout class="album-image album-ios-ma" height="240" width="100%" backgroundImage="~/images/bepartner.jpg"
+          borderRadius="20 20 0 0">
+        </StackLayout>
+
+        <label text="{{'advbepartner'| L}}" class="container advbepartnerlabel"></label>
+
+
+        <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false" class="container rtl"
+          style="margin-top: 20;">
+          <StackLayout orientation="horizontal">
+            <GridLayout rows="auto,auto,auto" iosOverflowSafeArea="false" class="advpartner rtl">
+              <label row="0" text="&#xf0ac;" class="fas icon-partner" horizontalAlignment="right"></label>
+              <label row="1" text="{{'joinethrai'| L}}" class="head-partner"></label>
+              <label row="2" text="{{'joinethraitext'| L}}" class=" text-partner plainfont"></label>
+            </GridLayout>
+            <GridLayout rows="auto,auto,auto" iosOverflowSafeArea="false" class="advpartner rtl">
+              <label row="0" text="&#xf108;" class="fas icon-partner" horizontalAlignment="right"></label>
+              <label row="1" text="{{'achievem'| L}}" class="head-partner"></label>
+              <label row="2" text="{{'achievemtext'| L}}" class=" text-partner plainfont"></label>
+            </GridLayout>
+            <GridLayout rows="auto,auto,auto" iosOverflowSafeArea="false" class="advpartner rtl">
+              <label row="0" text="&#xf51c;" class="fas icon-partner" horizontalAlignment="right"></label>
+              <label row="1" text="{{'trainingcont'| L}}" class="head-partner"></label>
+              <label row="2" text="{{'trainingconttext'| L}}" class=" text-partner plainfont"></label>
+            </GridLayout>
+
+          </StackLayout>
+        </ScrollView>
+
+
+        <!-- <StackLayout style=" margin-top: 20;" class="container">
+                <label  text="{{'aboutprogpath'|L}} "  style="font-size: 16px; color: #000; font-weight: 600;"></label>
+                <label  text="{{'aboutprogpathtext'|L}}"  class="plainfont" style="font-size: 14px; color: #989BAD; font-weight: 500;"></label>
+            </StackLayout>-->
+        <StackLayout style=" margin-top: 20;" class="how-work">
+          <label text="{{'howitwork'|L}} "
+            style="font-size: 16px; color: #000; font-weight: 600; margin-bottom: 20;"></label>
+
+          <StackLayout orientation="horizontal" class="rtl">
+            <StackLayout class="rtl">
+              <StackLayout class="prog-course-active">
+                <label text="1" class="prog-label-course"></label>
+              </StackLayout>
+              <StackLayout class="prog-bar-course-active2"></StackLayout>
+            </StackLayout>
+
+            <StackLayout style="margin: 0 20 ;" class="rtl">
+              <label text="{{'howitworkhead1'|L}} " class="prog-label-course"></label>
+              <label class="plainfont" style="font-size: 13; color: #989BAD;" text="{{'howitworktext1'|L}} "></label>
+            </StackLayout>
+          </StackLayout>
+
+          <StackLayout orientation="horizontal" class="rtl">
+            <StackLayout class="rtl">
+              <StackLayout class="prog-course-active">
+                <label text="2" class="prog-label-course"></label>
+              </StackLayout>
+              <StackLayout class="prog-bar-course-active2"></StackLayout>
+            </StackLayout>
+
+            <StackLayout style="margin: 0 20 ;" class="rtl">
+              <label text="{{'howitworkhead2'|L}} " class="prog-label-course"></label>
+              <label class="plainfont" style="font-size: 13; color: #989BAD;" text="{{'howitworktext2'|L}} "></label>
+            </StackLayout>
+          </StackLayout>
+
+          <StackLayout orientation="horizontal" class="rtl">
+            <StackLayout class="rtl">
+              <StackLayout class="prog-course-active">
+                <label text="3" class="prog-label-course"></label>
+              </StackLayout>
+              <StackLayout class="prog-bar-course-active2"></StackLayout>
+            </StackLayout>
+
+            <StackLayout style="margin: 0 20 ;" class="rtl">
+              <label text="{{'howitworkhead3'|L}} " class="prog-label-course"></label>
+              <label class="plainfont" style="font-size: 13; color: #989BAD;" text="{{'howitworktext3'|L}} "></label>
+            </StackLayout>
+          </StackLayout>
+
+          <StackLayout orientation="horizontal" class="rtl">
+            <StackLayout class="rtl">
+              <StackLayout class="prog-course-active">
+                <label text="4" class="prog-label-course"></label>
+              </StackLayout>
+              <!-- <StackLayout class="prog-bar-course-active2"></StackLayout> -->
+            </StackLayout>
+
+            <StackLayout style="margin: 0 20 ;" class="rtl">
+              <label text="{{'howitworkhead4'|L}} " class="prog-label-course"></label>
+              <label class="plainfont" style="font-size: 13; color: #989BAD;" text="{{'howitworktext4'|L}} "></label>
+            </StackLayout>
+          </StackLayout>
+
+
+        </StackLayout>
+
+        <StackLayout style=" margin-top: 20;" class="container">
+          <label text="{{info?.titleAr}} " style="font-size: 16px; color: #000; font-weight: 600;"></label>
+          <label [text]="getText(info?.contentAr)" class="plainfont"
+            style="font-size: 14px; color: #989BAD; font-weight: 500;"></label>
+          <!--<HtmlView html="{{ info?.contentAr }}" class="plainfont" style="font-size: 14px; color: #989BAD; font-weight: 500;"></HtmlView>-->
+
+        </StackLayout>
+
+        <StackLayout class="album-image" height="240" style="margin-top: 25;" width="100%"
+          backgroundImage="{{info?.imageMobileUrl}}">
+        </StackLayout>
+
+        <GridLayout rows="auto,auto,auto,auto,auto" class="contact-back" *ngIf="!requestSuccess">
+          <label row="0" text="{{'registernow'| L}}" class="sign-label"
+            style="margin-bottom: 20; margin-top: 0;"></label>
+
+          <StackLayout row="1" class="form-back" [formGroup]="contactForm">
+
+            <label text="{{'choosetype' | L}} *" class="form-label"></label>
+            <AbsoluteLayout>
+              <DropDown width="100%" style="background-color: #F5F6F7;border-radius: 10;" color="#000000"
+                [items]="typesSource" hint="{{'choosetype' | L}}" itemsTextAlignment="center"
+                (selectedIndexChanged)="onTypeChange($event)" formControlName="type" selectedIndex="{{selectedType}}"
+                [ngClass]="isNotValid('type')?'error' :''">
+              </DropDown>
+              <label text="&#xf078;" class="fas arr-drop" left="10" top="20" style="color: #000;font-size: 14"> </label>
+            </AbsoluteLayout>
+
+            <TextField formControlName="companyName" *ngIf="showOrgnizationData" hint="{{'OrgName' | L}}"
+              style="placeholder-color:#989BAD" [ngClass]="isNotValid('companyName')?'error' :''">
+            </TextField>
+
+            <TextField formControlName="fullContactName" *ngIf="showOrgnizationData" hint="{{'AssignedSupervisor' | L}}"
+              style="placeholder-color:#989BAD" [ngClass]="isNotValid('fullContactName')?'error' :''">
+            </TextField>
+
+            <label *ngIf="!showOrgnizationData" text="{{'trainename' | L}} *" class="form-label"></label>
+            <TextField formControlName="fullContactName" *ngIf="!showOrgnizationData" hint="{{'trainename' | L}}"
+              style="placeholder-color:#989BAD" [ngClass]="isNotValid('fullContactName')?'error' :''"></TextField>
+
+
+
+            <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="flex-start">
+              <StackLayout>
+                <label text="{{'mobile' | L}} *" class="form-label"></label>
+                <TextField keyboardType="phone" [ngClass]="isNotValid('phoneNumber')?'error' :''"
+                  formControlName="phoneNumber" hint="{{'mobile' | L}}" style="placeholder-color:#989BAD"></TextField>
+              </StackLayout>
+              <!--<StackLayout style="margin-right: 5; margin-top: 5;">
+                            <label  text="{{'code' | L}}" class="form-label"></label>
+                            <TextField keyboardType="number"  formControlName="areaCode" hint="00966" style="placeholder-color:#989BAD;" width="110"></TextField>
+                        </StackLayout>-->
+              <StackLayout style="margin-right: 5;margin-top: 0;">
+                <label text="{{'code' | L}} *" class="form-label"></label>
+                <DropDown width="130" height="55" [ngClass]="isNotValid('areaCode')?'error' :''" [items]="codesSource"
+                  hint="" itemsTextAlignment="center" selectedIndex="{{selectedCodeIndex}}" formControlName="areaCode"
+                  (selectedIndexChanged)="onCodeChange($event)">
+                </DropDown>
+              </StackLayout>
+            </FlexboxLayout>
+
+            <label text="{{'Email' | L}} *" class="form-label"></label>
+            <TextField [ngClass]="isNotValid('email')?'error' :''" formControlName="email" hint="name@example.com"
+              style="placeholder-color:#989BAD"></TextField>
+
+            <StackLayout style="margin-right: 5;margin-top: 0;">
+              <label text="{{'qualification' | L}} *" class="form-label"></label>
+              <DropDown height="55" [items]="qualificationsSource" hint="" itemsTextAlignment="center"
+                formControlName="qualification" (selectedIndexChanged)="onQualificationChange($event)"
+                [ngClass]="isNotValid('qualification')?'error' :''">
+              </DropDown>
+            </StackLayout>
+
+            <label text="{{'tellus' | L}} *" class="form-label"></label>
+            <TextView formControlName="message" hint="{{'tellus' | L}}" style="placeholder-color:#989BAD; "
+              [ngClass]="isNotValid('message')?'error' :''">
+            </TextView>
+
+            <!-- <label  text="{{'BusinessTemplates' | L}}" class="form-label"></label> -->
+            <!-- <Button  text="{{'UploadFile' | L}}" class="login-btn" (tap)="openPicker()"></Button>
+                   <Label text="{{selectedFileName}}"></Label>
+                   <label  text="{{'or' | L}}" class="form-label"></label>
+
+                   <TextField  formControlName="urlLink" hint="{{'Url' | L}}" style="placeholder-color:#989BAD;"></TextField> -->
+
+          </StackLayout>
+          <GridLayout row="2" height="300">
+            <WebView #webView src="{{webViewSource}}" (loadFinished)="onloadFinished($event)"
+              (loadStarted)="onLoadStarted($event)"></WebView>
+          </GridLayout>
+          <ActivityIndicator row="3" [busy]="isSending" [visibility]="isSending ?  'visible':'collapse'">
+          </ActivityIndicator>
+
+          <Button row="4" text="{{'submit' | L}}" class="login-btn" (tap)="submit()" [isEnabled]="!isSending"></Button>
+
+        </GridLayout>
+
+        <!--confirm message-->
+        <StackLayout *ngIf="requestSuccess">
+          <StackLayout class="forget-back">
+            <label text="&#xf00c;" class="fas forget-icon"></label>
+          </StackLayout>
+          <label text="{{'Success'| L}}" class="sign-label" style="margin-bottom: 0; text-align: center;"></label>
+          <Button text="{{'OkExcellent' | L}}" class="login-btn" (tap)="showForm()"></Button>
+        </StackLayout>
+      </StackLayout>
+    </ScrollView>
+  </GridLayout>
+
+  <GridLayout height="80" verticalAlignment="bottom">
+    <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+    </GridLayout>
+    <GridLayout columns="*, *, *, *, *">
+      <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+      <label text="&#xf002;" class="fas menu-icon" col="1" row="0" [nsRouterLink]="['/explore']"></label>
+      <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']"></label>
+      <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']"></label>
+      <StackLayout class="menu-active" col="4" row="0">
+        <label text="&#xf406;" class="fas" [nsRouterLink]="['/account']"></label>
+      </StackLayout>
+    </GridLayout>
+
+  </GridLayout>
+</GridLayout>

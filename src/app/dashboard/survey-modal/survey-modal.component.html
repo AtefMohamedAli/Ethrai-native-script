@@ -1,0 +1,10 @@
+<ModalStack dismissEnabled="true" class="modal-container">
+    <StackLayout class="modal">
+        <ScrollView scrollBarIndicatorVisible="false">
+            <StackLayout style="padding: 10;">
+                <survey [SurveyId]="surveyId" [productId]="productId" [SurveyData]="surveyData" [type]="type"
+                    [enrollmentId]="enrollmentId" (surveySubmitted)="onSurveySubmitted()"></survey>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ModalStack>

@@ -1,0 +1,23 @@
+post_install do |pi|
+    pi.pods_project.targets.each do |t|
+        if ['Cosmos'].include? t.name
+            t.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '4.2'
+            end
+        end
+        if t.respond_to?(:product_type) and t.product_type == "com.apple.product-type.bundle"
+            t.build_configurations.each do |config|
+                config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+            end
+        end
+        # Make it work with GoogleDataTransport
+        if t.name.start_with? "GoogleDataTransport"
+            t.build_configurations.each do |config|
+            config.build_settings['CLANG_WARN_STRICT_PROTOTYPES'] = 'NO' 
+            end
+        end
+        t.build_configurations.each do |config|
+            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+        end
+    end
+end

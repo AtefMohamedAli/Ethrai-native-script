@@ -1,0 +1,38 @@
+.dialogOpen .ba-btn {
+    visibility: visible;
+    opacity: 1;
+}
+.dialog-wrapper {
+    visibility: collapse;
+    opacity: 0;
+    z-index: 9999;
+
+}
+.ba-btn {
+    visibility: collapse;
+    opacity: 0;
+}
+
+.dialogOpen .se-btn {
+    visibility: collapse;
+    opacity: 0;
+}
+
+.x-btn {
+    visibility: collapse;
+    opacity: 0;
+}
+.dialogOpen .x-btn {
+    visibility: visible;
+    opacity: 1;
+}
+
+.dialog {
+    border-top-width:  1;
+    border-top-color: #989BAD;
+    background-color:#fff;
+    border-radius: 0 0 30 30 ;
+    width: 100%;
+    margin-top: 0;
+    padding: 0;
+}

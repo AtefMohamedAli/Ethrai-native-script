@@ -1,0 +1,22 @@
+<ModalStack dismissEnabled="true" class="modal-container">
+    <GridLayout class="modal">
+        <ScrollView scrollBarIndicatorVisible="false">
+          <StackLayout>
+          <StackLayout class="forget-back" style="background-color:#5bacca; width: 70; height: 70;" >
+            <label text="&#xf00d;" class="fas forget-icon" ></label>
+        </StackLayout>
+       <Label text="{{'finishAlert' |L}}" color="#000" style="margin-top: 40px; text-align: center; font-size: 16px;"></Label>
+     
+       <GridLayout columns="*,*"  style="margin: 30 0;">
+        <Button row="0" col="1" text="{{'yes' |L}}" (tap)="finish()"style="width: 120;background-color: #CA725B;"
+            class="login-btn"></Button>
+        <Button row="0" col="0" text="{{'no' |L}}" (tap)="closePopup()" style="width: 120;color: #5bacca;"
+            class="login-btn reset-btn"></Button>
+    </GridLayout>
+
+      </StackLayout>
+      
+
+    </ScrollView>
+    </GridLayout>
+  </ModalStack> 

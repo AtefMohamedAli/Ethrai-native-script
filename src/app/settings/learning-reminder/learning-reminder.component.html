@@ -1,0 +1,123 @@
+<GridLayout>
+
+<GridLayout class="view">
+
+    <ActionBar  flat="true" style="background-color: #fff;" title="">
+        <NavigationButton visibility="collapsed"></NavigationButton>
+        <GridLayout columns="*" width="100%">  
+          <Label col="0" text="{{'learingreminder'| L}}"  class="page-title text-center"></Label>      
+            <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                <Image src="~/images/back.png" width="18" class="" ></Image>
+                <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+            </StackLayout>  
+        </GridLayout>
+    </ActionBar>
+
+     <ScrollView  scrollBarIndicatorVisible="false">
+       <StackLayout class="page-layout">
+           
+          <!--  <FlexboxLayout flexDirection="row" style="margin-top: 45;"  alignItems="center" justifyContent="space-between">
+
+            <FlexboxLayout flexDirection="row-reverse"  alignItems="center" justifyContent="flex-end" (tap)="goBack()">
+                <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                <Image src="~/images/back.png" width="18" class="" ></Image>
+            </FlexboxLayout>
+
+           </FlexboxLayout>
+ -->
+
+           <StackLayout class="" style="margin-bottom: 60; margin-top:0;">
+            <!-- <label  text="{{'learingreminder'| L}}"  class="acc-head" ></label> -->
+            <FlexboxLayout  flexDirection="row-reverse" class="acc-line" alignItems="center" justifyContent="space-between" flexWrap="wrap">
+                <label  text="{{'learingremindertext'| L}}" class="acc-sett" style="color: #989BAD;"></label>
+            </FlexboxLayout>
+            <FlexboxLayout  flexDirection="row-reverse" class="acc-line" alignItems="center" justifyContent="space-between" flexWrap="wrap">
+                <label  text="{{'uselearingreminder'| L}}" class="acc-sett"></label>
+                <Switch checked="true" (checkedChange)="onCheckedChange($event)"> </Switch>
+            </FlexboxLayout>
+            <label  text="{{'howoftenremind'| L}}"  class="acc-head" style="margin-top: 10;" ></label>
+
+            <label  text="{{'day'| L}}"  class="acc-sett" ></label>
+            <FlexboxLayout flexDirection="row-reverse">
+                <CheckBox:CheckBox  checked="true" />
+                <label class="check-label" text="{{'alldays'| L}}"></label>
+            </FlexboxLayout>
+            <FlexboxLayout flexDirection="row-reverse">
+                <CheckBox:CheckBox  checked="true" />
+                <label class="check-label" text="{{'sat'| L}}"></label>
+            </FlexboxLayout>
+            <FlexboxLayout flexDirection="row-reverse">
+                <CheckBox:CheckBox  checked="true" />
+                <label class="check-label" text="{{'sun'| L}}"></label>
+            </FlexboxLayout>
+            <FlexboxLayout flexDirection="row-reverse">
+                <CheckBox:CheckBox  checked="true" />
+                <label class="check-label" text="{{'mon'| L}}"></label>
+            </FlexboxLayout>
+            <FlexboxLayout flexDirection="row-reverse">
+                <CheckBox:CheckBox  checked="true" />
+                <label class="check-label" text="{{'tue'| L}}"></label>
+            </FlexboxLayout>
+            <FlexboxLayout flexDirection="row-reverse">
+                <CheckBox:CheckBox  checked="true" />
+                <label class="check-label" text="{{'wen'| L}}"></label>
+            </FlexboxLayout>
+            <FlexboxLayout flexDirection="row-reverse">
+                <CheckBox:CheckBox  checked="true" />
+                <label class="check-label" text="{{'thr'| L}}"></label>
+            </FlexboxLayout>
+            <FlexboxLayout flexDirection="row-reverse">
+                <CheckBox:CheckBox  checked="true" />
+                <label class="check-label" text="{{'fri'| L}}"></label>
+            </FlexboxLayout>
+
+
+            <label  text="{{'time'| L}}"  class="acc-sett" style="margin-top: 20;" ></label>
+            <FlexboxLayout flexDirection="row-reverse">
+                <CheckBox:CheckBox  checked="true" />
+                <label class="check-label" text="{{'morning'| L}}"></label>
+            </FlexboxLayout>
+            <FlexboxLayout flexDirection="row-reverse">
+                <CheckBox:CheckBox  checked="true" />
+                <label class="check-label" text="{{'forenoon'| L}}"></label>
+            </FlexboxLayout>
+            <FlexboxLayout flexDirection="row-reverse">
+                <CheckBox:CheckBox  checked="true" />
+                <label class="check-label" text="{{'noon'| L}}"></label>
+            </FlexboxLayout>
+            <FlexboxLayout flexDirection="row-reverse">
+                <CheckBox:CheckBox  checked="true" />
+                <label class="check-label" text="{{'afternoon'| L}}"></label>
+            </FlexboxLayout>
+            <FlexboxLayout flexDirection="row-reverse">
+                <CheckBox:CheckBox  checked="true" />
+                <label class="check-label" text="{{'evening'| L}}"></label>
+            </FlexboxLayout>
+            <FlexboxLayout flexDirection="row-reverse">
+                <CheckBox:CheckBox  checked="true" />
+                <label class="check-label" text="{{'night'| L}}"></label>
+            </FlexboxLayout>
+
+            <label  text="{{'learingreminderpermission'| L}}" class="acc-sett" style="margin: 20 0; font-size: 13;"></label>
+
+
+           </StackLayout>
+
+    </StackLayout>
+  </ScrollView>
+</GridLayout>
+<GridLayout height="80" verticalAlignment="bottom">
+    <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+    </GridLayout>
+    <GridLayout columns="*, *, *, *, *">
+        <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+        <label text="&#xf002;" class="fas menu-icon" col="1" row="0"  [nsRouterLink]="['/explore']"></label>
+        <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']" ></label>
+        <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']" ></label>
+        <StackLayout class="menu-active"  col="4" row="0">
+            <label text="&#xf406;" class="fas" [nsRouterLink]="['/account']"></label>
+        </StackLayout>
+    </GridLayout>
+  
+</GridLayout> </GridLayout>
+

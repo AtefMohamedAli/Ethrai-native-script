@@ -1,0 +1,77 @@
+<GridLayout class="whiteback" >
+    <!-- <Image src="~/images/on1.png" scaleX="1.6" scaleY="1.4" fill="aspectFill"></Image> -->
+
+    <ActionBar  visability="collapsed"  class="view" title="">   </ActionBar>    
+
+        <StackLayout>
+
+    <StackLayout class=" my-back-on3"  height="330">
+        <FlexboxLayout flexDirection="row-reverse" class="container" style="margin-top: 45;"  alignItems="center" justifyContent="flex-end" (tap)="goBack()">
+            <label  text="{{'Back' |L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+            <Image src="~/images/back.png" width="18" class="" ></Image>
+        </FlexboxLayout>
+
+        <FlexboxLayout flexDirection="row-reverse" style="margin-top: 40;"  alignItems="center" justifyContent="center">
+            <StackLayout class="prog" style="border-width: 5;" >
+                <label text="&#xf00c;" class=" fas prog-label"></label>
+            </StackLayout>
+
+            <StackLayout class="prog-bar2" >
+            </StackLayout>
+
+            <StackLayout class="prog"  style="border-width: 5;" >
+                <label text="&#xf00c;" class=" fas prog-label"></label>
+            </StackLayout>
+
+            <StackLayout class="prog-bar2" >
+            </StackLayout>
+            
+            <StackLayout class="prog" >
+                <label text="3" class="prog-label" ></label>
+            </StackLayout>
+
+        </FlexboxLayout>
+
+
+        <StackLayout class="on-icon-back" >
+            <label text="&#xf19d;" class="fas on-icon" ></label>
+        </StackLayout>
+       
+
+     </StackLayout>
+  
+      
+      <label  text="{{'levelknowledg' |L}}" class="sign-label container" style="margin-bottom: 0; margin-top: 0;"></label>
+      <label  text="{{'levelknowledgtext' |L}}" style="margin-bottom: 10;" class="forget-text container"></label>
+      
+      <ScrollView   scrollBarIndicatorVisible="false"  class="container">
+
+        <StackLayout style="margin-bottom: 50;">
+
+        <label text="{{'Beginner' |L}}" class="cate-active" (tap)="addDuration('Beginner')"
+        [ngClass]="{'cate':!(selectedLevels?.includes('Beginner')), 'cate-active' : selectedLevels?.includes('Beginner') }"></label>
+
+        <label text="{{'Intermediate' |L}}" class="cate-active" (tap)="addDuration('Intermediate')"
+        [ngClass]="{'cate':!(selectedLevels?.includes('Intermediate')), 'cate-active' : selectedLevels?.includes('Intermediate') }"></label>
+
+        <label text="{{'Advanced' |L}}" class="cate-active" (tap)="addDuration('Advanced')"
+        [ngClass]="{'cate':!(selectedLevels?.includes('Advanced')), 'cate-active' : selectedLevels?.includes('Advanced') }"></label>
+
+
+        <label text="كل المستويات" (tap)="addDuration('all')"
+        [ngClass]="{'cate':!(selectedLevels?.includes('all')), 'cate-active' : selectedLevels?.includes('all') }"></label>
+
+
+      </StackLayout>
+
+      </ScrollView>
+
+  
+
+    </StackLayout>
+
+    <GridLayout verticalAlignment="bottom" class="container" style="background-color: #fff; padding: 0 0 10 0;">
+        <Button verticalAlignment="bottom"text="{{'finish' |L}}"  (tap)="save()" class="login-btn" [isEnabled]="selectedLevels?.length>0"></Button>
+     </GridLayout>
+
+  </GridLayout>

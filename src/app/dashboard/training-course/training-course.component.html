@@ -1,0 +1,148 @@
+<GridLayout>
+
+    <GridLayout class="view">
+
+        <ActionBar flat="true" style="background-color: #fff" title="">
+            <NavigationButton visibility="collapsed"></NavigationButton>
+            <GridLayout columns="*" width="100%">
+                <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                    <Image src="~/images/back.png" width="18" class=""></Image>
+                    <label text="{{'Back'| L}}"
+                        style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                </StackLayout>
+                <Image col="0" (tap)="addFilter()" horizontalAlignment="right" style="margin: 0 10;"
+                    src="~/images/filter.png" width="22"></Image>
+            </GridLayout>
+        </ActionBar>
+
+        <StackLayout class="page-layout" style="padding-bottom: 50; ">
+            <label text="{{categoryNameAr}}" class="sign-label" style="margin-top:0"></label>
+
+            <Label text="{{'NoFilterResults'|L}}"
+                style="text-align: center; font-size: 16px; color: #1056A5;  padding: 15; margin-top: 100px;"
+                *ngIf="dataItems.length ==0 && !isLoading"></Label>
+
+            <ListView [height]="screenHeight" *ngIf="dataItems.length" [items]="dataItems" loadOnDemandMode="Auto"
+                (loadMoreItems)="onLoadMoreItemsRequested($event)">
+
+                <ng-template tkListItemTemplate let-item="item" let-i="index">
+                    <GridLayout class="cr-list-item" rows="auto" columns="*,100">
+                        <StackLayout row="0" col="2" class="album-image" *ngIf="item"
+                            (tap)="goToCoursePage(item.id,item)" backgroundImage="{{item.imageUrl}}"
+                            verticalAlignment="top" style=" border-radius: 10; width: 100; height: 100;">
+                            <!-- <Image  style="border-radius: 10;" src="{{item.imageUrl}}" class="" *ngIf="item" (tap)="goToCoursePage(item.id,item)"></Image>   -->
+                        </StackLayout>
+                        <StackLayout row="0" col="0" orientation="vertical" style=" margin: 0 10 0 0" *ngIf="item">
+                            <GridLayout class="" columns="auto, *">
+                                <Label col="1" textWrap="true" class="course-na" text="{{item.nameAr}}"
+                                    (tap)="goToCoursePage(item.id,item)"></Label>
+                                <!-- <label row="0" col="0" class=" fav-icon" text="&#xf004;"  style="color: #1056A5; font-size: 18;" [ngClass]="item.isFavorite ? 'fas' : 'far'" *ngIf="item" > </label> -->
+                                <label col="0" class="" text="&#xf004;"
+                                    style="color: #1056A5; font-size: 18; width: 33; height: 33; "
+                                    [ngClass]="item &&item.isFavorite ? 'fas' : 'far'"
+                                    (tap)="setFavoriteC(item?.id,'Course',item?.isFavorite,i)"> </label>
+
+                            </GridLayout>
+                            <FlexboxLayout *ngIf="item?.rating" flexDirection="row-reverse" alignItems="center"
+                                justifyContent="flex-start">
+                                <label text="&#xf005;" class="fas rate-icon"
+                                    *ngFor="let i of [].constructor(Math.round(item.rating))"></label>
+                            </FlexboxLayout>
+                            <FlexboxLayout row="1" *ngIf="item?.rating==0 ||item?.rating==undefined"
+                                flexDirection="row-reverse" alignItems="center" justifyContent="flex-start">
+                                <label text="&#xf005;" class="far rate-icon"
+                                    *ngFor="let i of [].constructor(5)"></label>
+                            </FlexboxLayout>
+                            <!--<Label  class="course-cate" text="{{'trainingCourses' |L}}" [nsRouterLink]="['/course-details',item?.id]"></Label>-->
+                            <price-template [applePrice]="item.applePrice" [androidPrice]="item.price"></price-template>
+
+
+                        </StackLayout>
+                    </GridLayout>
+                </ng-template>
+
+                <ng-template tkListViewHeader>
+                    <GridLayout rows="auto,auto,auto">
+                        <ActivityIndicator class="spin" [busy]="isHighlightedLoading"></ActivityIndicator>
+
+                        <label row="0" *ngIf="highlighted?.length>0" text="البرامج التدريبية المقترحة"
+                            class="sign-label" style="margin-top:15;font-size: 14;"></label>
+
+                        <ScrollView row="1" *ngIf="highlighted?.length>0" orientation="horizontal" class="rtl"
+                            scrollBarIndicatorVisible="false">
+
+                            <StackLayout orientation="horizontal">
+                                <GridLayout rows="auto,auto" class="course-block rtl" iosOverflowSafeArea="false"
+                                    *ngFor="let course of highlighted;let i= index">
+                                    <GridLayout class="album-image" height="100" width="180" row="0"
+                                        backgroundImage="{{course.imageUrl}}" (tap)="goToCoursePage(course.id,course)"
+                                        borderRadius="10 10 0 0">
+                                        <!--<label  class=" fav-icon far" text="&#xf004;"> </label>-->
+                                        <!-- <label class=" fav-icon" text="&#xf004;" [ngClass]="course.isFavorite ? 'fas' : 'far'"> </label> -->
+                                        <!-- <Image src="{{course.imageUrl}}" class="prof-img" "></Image> -->
+
+                                    </GridLayout>
+                                    <label class=" fav-icon fas" text="&#xf004;" horizontalAlignment="right" width="33"
+                                        height="33" style=" font-size: 18; vertical-align: top; z-index: 99999;"
+                                        [ngClass]="course &&course.isFavorite ? 'fav-blue' : 'fav-white'"
+                                        (tap)="setFavoriteH(course?.id,'Course',course?.isFavorite,i)"> </label>
+
+                                    <GridLayout row="1" class="course-details" rows="auto,auto,auto,auto" height="150"
+                                        (tap)="goToCoursePage(course.id,course)">
+                                        <Label row="0" textWrap="false" class="course-na"
+                                            text="{{course.nameAr}}"></Label>
+                                        <FlexboxLayout *ngIf="course?.rating" row="1" flexDirection="row-reverse"
+                                            alignItems="center" justifyContent="flex-start">
+                                            <label text="&#xf005;" class="fas rate-icon"
+                                                *ngFor="let i of [].constructor(Math.round(course.rating))"></label>
+                                            <label *ngIf="course.numberOfRatings"
+                                                text="({{intl.format(course.numberOfRatings)}})"
+                                                style="color: #777; margin: 0 4; font-weight: 600;"></label>
+                                        </FlexboxLayout>
+                                        <FlexboxLayout *ngIf="course?.rating==0 ||course?.rating==undefined" row="1"
+                                            flexDirection="row-reverse" alignItems="center" justifyContent="flex-start">
+                                            <label text="&#xf005;" class="far rate-icon"
+                                                *ngFor="let i of [].constructor(5)"></label>
+                                        </FlexboxLayout>
+                                        <Label row="2" class="course-cate" text="{{'trainingCourses' |L}}"></Label>
+                                        <price-template row="3" [applePrice]="course.applePrice"
+                                            [androidPrice]="course.price"></price-template>
+
+                                    </GridLayout>
+                                </GridLayout>
+                            </StackLayout>
+                        </ScrollView>
+                        <label row="2" text="كل البرامج التدريبية" class="sign-label"
+                            style="margin-top:15;font-size: 14;"></label>
+
+                    </GridLayout>
+                </ng-template>
+
+
+            </ListView>
+            <!--<ActivityIndicator [busy]="isLoading"></ActivityIndicator>-->
+
+
+
+            <GridLayout style="height: 60;">
+
+            </GridLayout>
+
+        </StackLayout>
+    </GridLayout>
+
+    <GridLayout height="80" verticalAlignment="bottom">
+        <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+        </GridLayout>
+        <GridLayout columns="*, *, *, *, *">
+            <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+            <StackLayout class="menu-active" col="1" row="0">
+                <label text="&#xf002;" class="fas" [nsRouterLink]="['/explore']"></label>
+            </StackLayout>
+            <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']"></label>
+            <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']"></label>
+            <label text="&#xf406;" class="fas menu-icon" col="4" row="0" [nsRouterLink]="['/account']"></label>
+        </GridLayout>
+
+    </GridLayout>
+</GridLayout>

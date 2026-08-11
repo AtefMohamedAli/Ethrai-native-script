@@ -1,0 +1,188 @@
+<GridLayout>
+    <!-- <GridLayout verticalAlignment="top"class="top-bar">
+    
+
+    <FlexboxLayout flexDirection="row-reverse"  alignItems="center" justifyContent="center">
+          <label text="{{'shoppingcart'| L}}"  class="page-title"></label>
+    </FlexboxLayout>
+
+    <FlexboxLayout flexDirection="row-reverse"  alignItems="center" justifyContent="flex-end" (tap)="goBack()">
+        <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+        <Image src="~/images/back.png" width="18" class="" ></Image>
+    </FlexboxLayout>
+
+  </GridLayout> -->
+
+    <GridLayout class="view">
+
+        <ActionBar flat="true" style="background-color: #fff;" title="">
+            <NavigationButton visibility="collapsed"></NavigationButton>
+            <GridLayout columns="*" width="100%">
+                <Label col="0" text="{{'shoppingcart'| L}}" class="page-title text-center"></Label>
+                <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                    <Image src="~/images/back.png" width="18" class=""></Image>
+                    <label text="{{'Back'| L}}"
+                        style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                </StackLayout>
+            </GridLayout>
+        </ActionBar>
+
+        <ScrollView scrollBarIndicatorVisible="false">
+            <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ?  'visible':'collapse'"></ActivityIndicator>
+            <StackLayout class="page-layout" *ngIf="products?.length!=0">
+                <label text="{{'ordersu'| L}}" class="order-su"></label>
+                <StackLayout class="order-su-back" style="margin-top: 10;">
+                    <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                        <label text="{{'TotalBeforeVat'| L}}" class="order-de"></label>
+                        <label text="{{totalWithoutVatRounded}} ر.س" class="order-de"></label>
+                    </FlexboxLayout>
+                    <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                        <label text="{{'DiscountValueIfExists'| L}}" class="order-de"></label>
+                        <label text="{{discountRounded}} ر.س" class="order-de"></label>
+                    </FlexboxLayout>
+                    <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                        <label text="{{'TaxValueAdded'| L}}" class="order-de"></label>
+                        <label text="{{vatRounded}} ر.س" class="order-de"></label>
+                    </FlexboxLayout>
+                    <label class="line-dark"></label>
+                    <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                        <label text="{{'totalcoast'| L}}" class="order-de"></label>
+                        <label text="{{totalCost}} ر.س" class="order-de"></label>
+                    </FlexboxLayout>
+                </StackLayout>
+
+                <!--  <StackLayout class="order-su-back" style="margin-top: 10;">
+                    <label  text="{{'promocode'| L}}" class="order-de"></label>
+                    <TextField  hint="{{'PromoCode' |L}} {{coupon.touched}}" style="placeholder-color:#989BAD; background-color: #fff;" #coupon></TextField>  
+                    <Label *ngIf="couponMessage" text="{{'InvalidCoupons' |L}}"></Label>
+                    <ActivityIndicator class="spin" [busy]="isCouponLoading"></ActivityIndicator>
+                    <Button (tap)="applyCoupon(coupon.text)" text="{{'use' | L}}" class="login-btn"></Button>                  
+            </StackLayout> -->
+
+                <StackLayout class="order-su-back" style="margin-top: 10;">
+                    <FlexboxLayout horizontalAlignment="right" (tap)="clickme(elem)"
+                        [visibility]="clickedd == elem ? 'collapsed' : 'visible'" flexDirection="row"
+                        justifyContent="space-between">
+                        <GridLayout (tap)="clickme(elem)" columns="auto, *" class="bookmark-collapse">
+                            <Label col="1" text="&#xf107;" class="fas arr-drop" style="color: #000"></Label>
+                            <Label col="1" horizontalAlignment="right" text="{{'promocode'| L}}" class="bookmark-course"
+                                style="font-size: 15;"></Label>
+                        </GridLayout>
+                    </FlexboxLayout>
+                    <FlexboxLayout horizontalAlignment="right" [visibility]="clickedd == elem ? 'visible' : 'collapsed'"
+                        flexDirection="column">
+                        <GridLayout (tap)="uclickme(elem)" columns="auto, *" class="bookmark-collapse ">
+                            <Label col="1" text="&#xf106;" class="fas arr-drop" style="color: #1056A5"></Label>
+                            <Label col="1" horizontalAlignment="right" text="{{'promocode'| L}}" class="bookmark-course"
+                                style="font-size: 15;"></Label>
+                        </GridLayout>
+
+                        <StackLayout style="margin-top: 10; margin-bottom: 10;">
+
+                            <TextField style="placeholder-color:#989BAD; background-color: #fff;" #coupon></TextField>
+                            <Label *ngIf="couponMessage" text="{{'InvalidCoupons' |L}}"></Label>
+                            <ActivityIndicator class="spin" [busy]="isCouponLoading"></ActivityIndicator>
+                            <Button (tap)="applyCoupon(coupon.text)" text="{{'use' | L}}" class="login-btn"></Button>
+
+                        </StackLayout>
+
+                    </FlexboxLayout>
+                </StackLayout>
+
+                <label text="{{'orderdetails' | L}}" class="sign-label" style="margin-top:20"></label>
+
+                <GridLayout class="cr-list-item" rows="auto,auto" columns="*,100"
+                    *ngFor="let item of products;let i=index;" style="margin-top:10">
+                    <StackLayout row="0" col="2" class="album-image" backgroundImage="{{item.imgUrl}}"
+                        verticalAlignment="top" style=" border-radius: 10; width: 100; height: 100;">
+                        <!-- <Image row="0" col="1"  src="{{item.imgUrl}}" class="cr-img"></Image>   -->
+                    </StackLayout>
+                    <StackLayout row="0" col="0" orientation="vertical" style=" margin: 0 10 0 0;">
+                        <Label textWrap="true" horizontalAlignment="right" class="course-na"
+                            text="{{item.productName}}"></Label>
+
+                        <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="flex-start">
+
+                            <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="flex-start"
+                                style="margin-left: 25;" (tap)="toggleFavorite(item,i)">
+                                <label text="&#xf004;" class="fas order-icon"
+                                    [ngClass]="item?.isFavorite ? 'fav-blue' : 'fav-gray'"></label>
+                                <label text="{{'buylater' | L}}" class="order-action"></label>
+                            </FlexboxLayout>
+
+                            <FlexboxLayout (tap)="removeFromCart(item.id,i,item)" flexDirection="row-reverse"
+                                alignItems="center" justifyContent="flex-start">
+                                <label text="&#xf1f8;" class="fas order-icon"></label>
+                                <label text="{{'remove' | L}}" class=""></label>
+                            </FlexboxLayout>
+
+                        </FlexboxLayout>
+                        <Label *ngIf="item.discount>0" class="course-price" text="{{item.amountWithVat}} ر.س"></Label>
+                        <Label *ngIf="item.discount==0" class="course-price" text="{{item.amount}} ر.س"></Label>
+
+                    </StackLayout>
+
+                    <label row="1" colSpan="2" class="line"></label>
+
+                </GridLayout>
+
+
+                <label *ngIf="recommendedCourses?.length>0" text="{{'highlightedByPrefrence' |L}}" class="sign-label"
+                    style="margin-top:15;font-size: 14;"></label>
+
+                <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false">
+                    <StackLayout orientation="horizontal">
+                        <GridLayout rows="auto,auto" class="course-block" *ngFor="let item of recommendedCourses">
+                            <GridLayout row="0" class="album-image" height="100" (tap)="goToCoursePage(item.id,item)"
+                                width="180" backgroundImage="{{item.imageUrl}}" borderRadius="10 10 0 0">
+                            </GridLayout>
+                            <label class=" fav-icon far" text="&#xf004;" horizontalAlignment="right"
+                                style=" vertical-align: top; z-index: 99999; width: 33; height: 33;"
+                                [ngClass]="item.isFavorite ? 'fas' : 'far'"></label>
+
+                            <StackLayout row="1" class="course-details" (tap)="goToCoursePage(item.id,item)">
+                                <Label textWrap="false" class="course-na" text="{{item.nameAr}}"></Label>
+                                <FlexboxLayout *ngIf="item?.rating" flexDirection="row-reverse" alignItems="center"
+                                    justifyContent="flex-start">
+                                    <label text="&#xf005;" class="fas rate-icon"
+                                        *ngFor="let i of [].constructor(Math.round(item.rating))"></label>
+                                    <label *ngIf="item.numberOfRatings" text="({{intl.format(item.numberOfRatings)}})"
+                                        style="color: #777; margin: 0 4; font-weight: 600;"></label>
+                                </FlexboxLayout>
+                                <FlexboxLayout *ngIf="item?.rating==0 ||item?.rating==undefined"
+                                    flexDirection="row-reverse" alignItems="center" justifyContent="flex-start">
+                                    <label text="&#xf005;" class="far rate-icon"
+                                        *ngFor="let i of [].constructor(5)"></label>
+                                </FlexboxLayout>
+                                <Label class="course-cate" text="{{item.categoryNameAr}}"></Label>
+                                <FlexboxLayout flexDirection="row-reverse" alignItems="center"
+                                    justifyContent="space-between">
+                                    <Label class="course-price" text="{{intl.format(item.price)}} ر.س"></Label>
+                                    <!--<AnimatedCircle *ngIf="item.attendedSeconds &&item.attendedSeconds&lt;item.numberOfSeconds" backgroundColor="transparent" width="40" height="40" animated="true" animateFrom="0" rimColor="#1056A5" barColor="#999" rimWidth="15"  [progress]="getCourseProgressPercent(item.attendedSeconds,item.numberOfSeconds)" text="{{getCourseProgressPercent(item.attendedSeconds,item.numberOfSeconds)}}" textSize="18" textColor="#1056A5"></AnimatedCircle>-->
+                                    <Label *ngIf="item.attendedSeconds &&item.attendedSeconds&lt;item.numberOfSeconds"
+                                        text="{{getCourseProgressPercent(item.attendedSeconds,item.numberOfSeconds)}}"
+                                        class="fas cert" style="font-size: 13;"></Label>
+
+                                    <Label text="&#xf559;" class="fas cert"
+                                        *ngIf="item?.numberOfSeconds &&item?.attendedSeconds==item?.numberOfSeconds"></Label>
+                                </FlexboxLayout>
+                            </StackLayout>
+                        </GridLayout>
+                    </StackLayout>
+                </ScrollView>
+
+                <GridLayout style="height: 60;">
+
+                </GridLayout>
+            </StackLayout>
+            <Label text="{{'emptyshopcart'|L}}"
+                style="text-align: center; font-size: 16px; color: #1056A5;  padding: 15; margin-top: 100px;"
+                *ngIf="!isLoading &&products.length ==0"></Label>
+
+        </ScrollView>
+        <GridLayout verticalAlignment="bottom" style="background-color: #fff; margin-bottom: 0;"
+            *ngIf="products?.length>0">
+            <Button verticalAlignment="bottom" text="{{'buy' | L}}" (tap)="goToCheckout()" class="login-btn"></Button>
+        </GridLayout>
+    </GridLayout>
+</GridLayout>

@@ -1,0 +1,22 @@
+<GridLayout class="view" >
+    
+    <ActionBar  visability="collapsed"  class="view" title="">   </ActionBar>    
+
+    <ScrollView  scrollBarIndicatorVisible="false">
+      
+      <StackLayout>
+     
+        <StackLayout class="" style="margin-top: 100; text-align: center;" >
+            <label style="color: #ca725b; font-size: 100;" text="&#xf119;" class="far forget-icon" ></label>
+        </StackLayout>
+
+        <StackLayout style="text-align: center;">
+          <label  text="{{'paymentfailed'| L}}" class="sign-label" style="margin-bottom: 0;"></label>
+          <label  text="{{'paymentfailedtext'| L}}" class="forget-text"></label>
+          <Button text="{{'tryagain' | L}}"  style="margin-top: 20;" class="login-btn" (tap)="goToCart()"></Button>
+        </StackLayout>
+  
+  
+      </StackLayout>
+    </ScrollView>
+  </GridLayout>

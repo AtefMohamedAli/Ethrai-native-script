@@ -1,0 +1,99 @@
+    <GridLayout class="view">
+    
+        <ActionBar  flat="true" style="background-color: #fff;" title="">
+            <NavigationButton visibility="collapsed"></NavigationButton>
+            <GridLayout columns="*" width="100%">        
+                <Label col="0" text="{{'instprofile'| L}}"  class="page-title text-center"></Label>
+                <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                    <Image src="~/images/back.png" width="18" class="" ></Image>
+                    <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                </StackLayout>  
+            </GridLayout>
+        </ActionBar> 
+
+        <ScrollView  scrollBarIndicatorVisible="false">
+            <StackLayout class="page-layout">
+                <label   text="{{'instname'| L}}" class="sign-label" style="margin-bottom: 15; margin-top: 15;"></label>
+               
+                <FlexboxLayout  flexDirection="row-reverse" class="inst-name-b" alignItems="center" justifyContent="flex-start" flexWrap="wrap">
+                    <Image  src="{{instructorData.imageUrl}}" *ngIf="instructorData.imageUrl" width="55" height="55"  class="prof-img"></Image> 
+                    <label text="&#xf2bd;" class="far" style="font-size: 55px; color: #989BAD;" *ngIf="!instructorData.imageUrl"></label>
+                    <Label  textWrap="true"  class="course-na" style="margin:0 10" text="{{instructorData.fullNameAr}}"></Label>
+                </FlexboxLayout>
+
+                <label class="line" style="margin: 20 0;"></label>
+
+                <label  text="{{'instbio'| L}}" class="sign-label" style="margin-bottom: 15; margin-top: 10;" ></label>
+                <FlexboxLayout  flexDirection="row-reverse"  alignItems="center" justifyContent="space-between">
+                    <label  text="{{getText(instructorData.bioAr)}}" class="c-prop" ></label>
+                </FlexboxLayout>
+                <label class="line" style="margin: 20 0;"></label>
+
+                    <label  text="{{'insinformaion'| L}}" class="sign-label" style="margin-bottom: 15; margin-top: 10;" ></label>
+                    <FlexboxLayout  flexDirection="row-reverse"  alignItems="center" justifyContent="space-between">
+                        <label  text="{{'programno'| L}}" class="c-prop" ></label>
+                        <label  text=" {{instructorData?.courses?.length}}" class="c-val plainfont" ></label>
+                    </FlexboxLayout>
+                    <FlexboxLayout  flexDirection="row-reverse"  alignItems="center" justifyContent="space-between">
+                        <label  text="{{'regitrainee'| L}}" class="c-prop" ></label>
+                        <label  text="{{intl.format(instructorData.enrollmentsNumber)}}" class="c-val plainfont" ></label>
+                    </FlexboxLayout>
+                    <FlexboxLayout  flexDirection="row-reverse"  alignItems="center" justifyContent="space-between">
+                        <label  text="{{'reviewsnum'| L}}" class="c-prop" ></label>
+                        <label  text="{{intl.format(instructorData.ratingNumber)}}" class="c-val plainfont" ></label>
+                    </FlexboxLayout>
+                <!-- <label class="line" style="margin: 20 0;"></label> -->
+<!-- 
+                <label  text="{{'reviews'| L}}" class="sign-label" style="margin-bottom: 15; margin-top: 10;" ></label>
+                <ScrollView orientation="horizontal" class="rtl"  scrollBarIndicatorVisible="false">
+                    <StackLayout orientation="horizontal">
+                      <StackLayout  class="review-back rtl" width="250" alignItems="center" justifyContent="space-between" flexWrap="wrap">
+                        <label  text="الاسم" class="c-prop"></label>
+                        <FlexboxLayout flexDirection="row-reverse" style="margin: 8 0;" alignItems="center" justifyContent="flex-start">
+                          <label  text="&#xf005;"   class="fas rate-icon" ></label>
+                          <label  text="&#xf5c0;"   class="fas rate-icon rtl" ></label>
+                        </FlexboxLayout>
+                        <label  text="تفاصيل" class="c-val plainfont"></label>
+                     </StackLayout>
+                      <Label text="{{'noFeedback'|L}}" class="rtl" *ngIf="feedbacks?.length==0"></Label> 
+                   </StackLayout>
+                   
+                 </ScrollView> -->
+
+                 <label class="line" style="margin: 20 0;"></label>
+
+                 <label  text="{{'instructorcourses'| L}}" class="sign-label" style="margin-bottom: 15; margin-top: 10;" ></label>
+                 <GridLayout class="view">
+                    <StackLayout class="page-layout">
+                        <GridLayout   class="cr-list-item" rows="auto" columns="*,100" *ngFor="let course of courses;let i=index">
+                            <StackLayout row="0" col="2" class="album-image"  (tap)="goToCoursePage(course?.id,course)"  backgroundImage="{{course?.imageUrl}}" verticalAlignment="top"  style=" border-radius: 10; width: 100; height: 100;">
+                             <!-- <Image row="0" col="1"  src="{{course?.imageUrl}}" class="cr-img" (tap)="goToCoursePage(course?.id,course)" ></Image>   -->
+                                </StackLayout>      
+                            <StackLayout row="0" col="0" orientation="vertical" style=" margin: 0 10 0 0;">
+                                <GridLayout   class=""  columns="auto, *">
+                                    <Label   col="1" textWrap="true" class="course-na" text="{{course?.nameAr}}" (tap)="goToCoursePage(course.id,course)"></Label>
+                                    <label  col="0" class="" text="&#xf004;"  style="color: #1056A5; font-size: 18; width: 33; height: 33;" [ngClass]="course &&course.isFavorite ? 'fas' : 'far'" (tap)="setFavorite(course?.id,'Course',course?.isFavorite,i)"> </label>
+                                </GridLayout>
+                                <FlexboxLayout *ngIf="course?.rating" flexDirection="row-reverse"  alignItems="center" justifyContent="flex-start">
+                                    <label  text="&#xf005;"   class="fas rate-icon" *ngFor="let i of [].constructor(Math.round(course?.rating))"></label>
+                
+                                </FlexboxLayout>
+                                <FlexboxLayout *ngIf="course?.rating==0 ||course?.rating==undefined" flexDirection="row-reverse"  alignItems="center" justifyContent="flex-start">
+                                    <label  text="&#xf005;"   class="far rate-icon" *ngFor="let i of [].constructor(5)"></label>
+                                </FlexboxLayout> 
+                                <Label class="course-cate" text="{{course.categoryNameEn}}" ></Label>
+
+                                <price-template [applePrice]="course?.applePrice" [androidPrice]="course?.price"></price-template>
+                   
+
+                            </StackLayout>
+                        </GridLayout>
+                
+                    </StackLayout>
+                </GridLayout>
+
+
+            </StackLayout>
+        </ScrollView>
+
+</GridLayout>

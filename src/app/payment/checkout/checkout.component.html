@@ -1,0 +1,158 @@
+<GridLayout>
+    <!-- <GridLayout verticalAlignment="top" class="top-bar">
+    
+
+    <FlexboxLayout flexDirection="row-reverse"  alignItems="center" justifyContent="center">
+          <label text="{{'checkout'| L}}"  class="page-title"></label>
+    </FlexboxLayout>
+
+    <FlexboxLayout flexDirection="row-reverse"  alignItems="center" justifyContent="flex-end" (tap)="goBack()">
+        <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+        <Image src="~/images/back.png" width="18" class="" ></Image>
+    </FlexboxLayout>
+
+  </GridLayout> -->
+
+    <GridLayout class="view">
+
+        <ActionBar flat="true" style="background-color: #fff;" title="">
+            <NavigationButton visibility="collapsed"></NavigationButton>
+            <GridLayout columns="*" width="100%">
+                <Label col="0" text="{{'checkout'| L}}" class="page-title text-center"></Label>
+                <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                    <Image src="~/images/back.png" width="18" class=""></Image>
+                    <label text="{{'Back'| L}}"
+                        style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                </StackLayout>
+            </GridLayout>
+        </ActionBar>
+
+        <ScrollView scrollBarIndicatorVisible="false">
+            <StackLayout class="page-layout">
+
+                <label text="{{'billing'| L}}" class="order-su" style="margin-top:0;"></label>
+                <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ?  'visible':'collapse'">
+                </ActivityIndicator>
+
+                <label text="{{'paymentmethod' |L}}" class="form-label"></label>
+                <!-- <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                    <FlexboxLayout (tap)="setPaymentMethod('Mada')"
+                        [ngClass]="!sadadPay? 'pay-method-active' : 'pay-method'" flexDirection="row-reverse"
+                        alignItems="center" justifyContent="center">
+                        <label text="&#xf09d;" class="fas pay-icon"></label>
+                        <label text="{{'card' |L}}" class="pay-de"></label>
+                    </FlexboxLayout>
+                    <FlexboxLayout (tap)="setPaymentMethod('Sadad')"
+                        [ngClass]="sadadPay? 'pay-method-active' : 'pay-method'" flexDirection="row-reverse"
+                        alignItems="center" justifyContent="center">
+                        <label text="&#xf19c;" class="fas pay-icon"></label>
+                        <label text="{{'sadad' |L}}" class="pay-de"></label>
+                    </FlexboxLayout> -->
+
+                                    <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="center">
+                    <FlexboxLayout (tap)="setPaymentMethod('Mada')"
+                        class="pay-method-active" flexDirection="row-reverse"
+                        alignItems="center" justifyContent="center">
+                        <label text="&#xf09d;" class="fas pay-icon"></label>
+                        <label text="{{'card' |L}}" class="pay-de"></label>
+                    </FlexboxLayout>
+                </FlexboxLayout>
+
+                <!--<FlexboxLayout flexDirection="row-reverse"  alignItems="center" justifyContent="space-between">
+                <FlexboxLayout (tap)="queryProducts()" *ngIf="isIOS" class="pay-method-active" flexDirection="row-reverse"  alignItems="center" justifyContent="center">
+                    <label  text="&#xf179;"   class="fab pay-icon"></label>
+                    <label  text="Apple Pay" class="pay-de"></label>
+                </FlexboxLayout>
+        
+            </FlexboxLayout> -->
+
+                <label text="{{'orderdetails' | L}}" class="sign-label" style="margin-top:20"></label>
+                <GridLayout class="cr-list-item" rows="auto" columns="*,100" *ngFor="let item of products;let i=index;">
+                    <Image row="0" col="1" src="{{item.imgUrl}}" class="cr-img"></Image>
+
+                    <StackLayout row="0" col="0" orientation="vertical" style=" margin: 0 10;">
+                        <Label textWrap="true" class="course-na" text="{{item.productName}}"></Label>
+
+                        <Label *ngIf="item.discount>0" class="course-price" text="{{item.amountWithVat}} ر.س"></Label>
+                        <Label *ngIf="item.discount==0" class="course-price" text="{{item.amount}} ر.س"></Label>
+                    </StackLayout>
+                </GridLayout>
+
+                <StackLayout class="order-su-back" style="margin-top:10;">
+                    <label text="{{'ordersu'| L}}" class="order-su"></label>
+                    <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                        <label text="{{'TotalBeforeVat'| L}}" class="order-de"></label>
+                        <label text="{{totalWithoutVatRounded}} ر.س" class="order-de"></label>
+                    </FlexboxLayout>
+                    <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                        <label text="{{'DiscountValueIfExists'| L}}" class="order-de"></label>
+                        <label text="{{discount}} ر.س" class="order-de"></label>
+                    </FlexboxLayout>
+                    <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                        <label text="{{'TaxValueAdded'| L}}" class="order-de"></label>
+                        <label text="{{vatRounded}} ر.س" class="order-de"></label>
+                    </FlexboxLayout>
+                    <label class="line-dark"></label>
+                    <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                        <label text="{{'totalcoast'| L}}" class="order-de"></label>
+                        <label text="{{totalCost}} ر.س" class="order-de"></label>
+                    </FlexboxLayout>
+                </StackLayout>
+
+                <!--<FlexboxLayout flexDirection="row-reverse" style="margin-top: 20;">
+            <CheckBox:CheckBox  checked="true" />
+            <label class="check-label" text="{{'buyingactivate'| L}}"></label>
+        </FlexboxLayout>-->
+                <label *ngIf="recommendedCourses?.length>0" text="{{'similarcourse' |L}}" class="sign-label container"
+                    style="margin-top:20;font-size: 14;"></label>
+
+
+                <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false" class="rtl"
+                    style="margin: 0 20;">
+                    <StackLayout orientation="horizontal" *ngIf="recommendedCourses?.length>0">
+                        <GridLayout rows="auto,auto" class="course-block rtl"
+                            *ngFor="let course of recommendedCourses ;let i=index">
+                            <GridLayout row="0" class="album-image" height="100" width="180"
+                                (tap)="goToCoursePage(course.id,course)" backgroundImage="{{course.imageUrl}}"
+                                borderRadius="10 10 0 0">
+                            </GridLayout>
+                            <label class=" fav-icon fas" text="&#xf004;" horizontalAlignment="right" width="22"
+                                height="22" style=" font-size: 18; vertical-align: top; z-index: 99999;"
+                                [ngClass]="course &&course.isFavorite ? 'fav-blue' : 'fav-white'"
+                                (tap)="setFavoriteRC(course?.id,'course',course?.isFavorite,i)"> </label>
+
+                            <StackLayout row="1" class="course-details" (tap)="goToCoursePage(course.id,course)">
+                                <FlexboxLayout *ngIf="course?.rating" flexDirection="row-reverse" alignItems="center"
+                                    justifyContent="flex-start" margin="-5 0">
+                                    <label text="&#xf005;" class="fas rate-icon"
+                                        *ngFor="let i of [].constructor(Math.round(course.rating))"></label>
+                                </FlexboxLayout>
+                                <FlexboxLayout *ngIf="course?.rating==0 ||course?.rating==undefined "
+                                    flexDirection="row-reverse" alignItems="center" justifyContent="flex-start"
+                                    margin="-5 0">
+                                    <label text="&#xf005;" class="far rate-icon"
+                                        *ngFor="let i of [].constructor(5)"></label>
+                                </FlexboxLayout>
+                                <Label textWrap="false" class="course-na" text="{{course.nameAr}}"></Label>
+                                <Label class="course-cate" text="{{course.categoryNameAr}}"></Label>
+                                <price-template [applePrice]="course.applePrice"
+                                    [androidPrice]="course.price"></price-template>
+
+                            </StackLayout>
+                        </GridLayout>
+
+                    </StackLayout>
+                </ScrollView>
+
+                <GridLayout style="height: 60;">
+
+                </GridLayout>
+
+            </StackLayout>
+        </ScrollView>
+        <GridLayout verticalAlignment="bottom" style="background-color: #fff;">
+            <Button verticalAlignment="bottom" text="{{'checkoutcomplete' | L}}" [isEnabled]="!isLoading"
+                (tap)="buyProducts()" class="login-btn"></Button>
+        </GridLayout>
+    </GridLayout>
+</GridLayout>

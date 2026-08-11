@@ -1,0 +1,175 @@
+<GridLayout>
+
+
+  <GridLayout class="view">
+
+    <ActionBar flat="true" style="background-color: #fff;" title="">
+      <NavigationButton visibility="collapsed"></NavigationButton>
+      <GridLayout columns="*" width="100%">
+        <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+          <Image src="~/images/back.png" width="18" class=""></Image>
+          <label text="{{'Back'| L}}"
+            style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+        </StackLayout>
+      </GridLayout>
+    </ActionBar>
+
+    <ScrollView scrollBarIndicatorVisible="false">
+      <StackLayout class="page-layout">
+
+        <StackLayout class="prof-back" style="margin-top:0;">
+          <Image [src]="newImage" class="prof-img"></Image>
+          <ActivityIndicator [busy]="isUploading" [visibility]="isUploading ?  'visible':'collapse'">
+          </ActivityIndicator>
+          <!--  <Button   style="width:40%; margin-top: 10; height: 45; background-color:#1056A5;" class="login-btn" (tap)="uploadImage()">
+              <FormattedString>
+                <Span  text="{{'upload' |L}}"></Span>
+                <Span text="&#xf382;"  class="fas"></Span>
+              </FormattedString>
+          </Button> -->
+          <FlexboxLayout class="login-btn" (tap)="uploadImage()"
+            style="width:45%; margin-top: 10; height: 45;  background-color:#1056A5;" alignItems="center"
+            justifyContent="center">
+            <label text="{{'upload'| L}}"
+              style=" font-size: 13; font-weight: 500; vertical-align: middle; text-align: center;"></label>
+            <Image src="~/images/upload.png" width="24" style="margin: 0 7;"></Image>
+          </FlexboxLayout>
+
+        </StackLayout>
+
+        <StackLayout class="" style="margin-top: 20;">
+          <FlexboxLayout flexDirection="row-reverse" class="acc-line" alignItems="center" justifyContent="space-between"
+            flexWrap="wrap">
+            <label text="{{'personalinformation'| L}}" class="acc-head"></label>
+          </FlexboxLayout>
+
+          <StackLayout [formGroup]="registerationForm">
+
+            <label text="{{'firstname' |L}}" class="form-label"></label>
+            <TextField style="placeholder-color:#989BAD" class="" formControlName="firstNameAr"
+              [ngClass]="isNameEditable?'edita' :''" [editable]="isNameEditable"></TextField>
+            <Label class="valid-mess" *ngIf="isNotValid('firstNameAr')" text=""></Label>
+
+
+            <label text="{{'lastname' |L}}" class="form-label"></label>
+            <TextField style="placeholder-color:#989BAD" formControlName="familyNameAr"
+              [ngClass]="isNameEditable?'edita' :''" [editable]="isNameEditable"></TextField>
+
+
+            <!--<label  text="{{'mobile' |L}}" class="form-label"></label>
+               <TextField   hint="+00 000 000 000" style="placeholder-color:#989BAD"  formControlName="mobile" keyboardType="phone"></TextField>
+               <Label class="valid-mess" text="{{'IncorrectMobileNumber' | L}}" *ngIf="isNotValid('mobile') && !isSaudi"></Label>
+               <Label class="valid-mess" text="{{'IncorrectMobileFormat' | L}}" *ngIf="isNotValid('mobile') && isSaudi"></Label>-->
+
+            <GridLayout class="" rows="auto" columns="70, *">
+              <StackLayout col="1">
+                <label text="{{'mobile' | L}}" class="form-label"></label>
+                <TextField class="edita" hint="+00 000 000 000" style="placeholder-color:#989BAD"
+                  formControlName="mobile" keyboardType="number"></TextField>
+                <Label class="valid-mess" text="{{'IncorrectMobileNumber' | L}}"
+                  *ngIf="isNotValid('mobile') && !isSaudiPhone"></Label>
+                <Label class="valid-mess" text="{{'IncorrectMobileFormat' | L}}"
+                  *ngIf="isNotValid('mobile') && isSaudiPhone"></Label>
+              </StackLayout>
+              <StackLayout col="0" style="margin-right: 5; margin-top: 0;">
+                <label text="{{'code' | L}}" class="form-label"></label>
+                <DropDown width="130" height="55" class="edita" [items]="codesSource" hint=""
+                  itemsTextAlignment="center" selectedIndex="{{selectedCodeIndex}}"
+                  (selectedIndexChanged)="onCodeChange($event)" formControlName="countryCode"
+                  [ngClass]="isNotValid('countryCode')?'error' :''">
+                </DropDown>
+              </StackLayout>
+            </GridLayout>
+
+            <label text="{{'Email' | L}}" class="form-label"></label>
+            <TextField editable="false" formControlName="email" hint="name@example.com"
+              style="placeholder-color:#989BAD"></TextField>
+            <Label class="valid-mess" *ngIf="isNotValid('email')" text="{{'CheckEmailFormat' | L}}"></Label>
+
+            <!--<label  text="{{'ChooseNat' | L}}" class="form-label"></label>
+                <DropDown  
+                [items]="NationalitiesSource" hint="{{'nationalityHint' | L}}"
+                (selectedIndexChanged)="onNationalityChange($event)"
+                itemsTextAlignment="center"
+                formControlName="nationalityId"
+                selectedIndex="{{selectedNationalityIndex}}"
+                >
+               </DropDown>
+    
+               <label  text="{{'SectorName' | L}}" class="form-label" *ngIf="isSaudi"></label>
+               <DropDown  *ngIf="isSaudi"
+               [items]="sectorsSource" hint="{{'sectorHint' | L}}"
+               itemsTextAlignment="center"
+               (selectedIndexChanged)="onSectorChange($event)"
+               selectedIndex="{{ profile.sectorId }}"
+               >
+              </DropDown>-->
+
+            <!--
+                  <label  text="{{'nationalID' | L}}" class="form-label" *ngIf="isSaudi"></label>
+                <TextField  *ngIf="isSaudi" hint="{{'nationalID' | L}}" style="placeholder-color:#989BAD" keyboardType="number"  editable="false"></TextField>
+                <Label class="valid-mess" text="{{'ResidenceOrNatID' | L}}" *ngIf="isNotValid('nationalId')"></Label>-->
+
+            <label text="{{'birthDate' |L}}" class="form-label"></label>
+            <TextField hint="MM/DD/YYYY" style="placeholder-color:#989BAD" formControlName="birthdate" class=""
+              editable="false"></TextField>
+            <Label class="valid-mess" text="{{'ValidationDateOfBirth' | L}}" *ngIf="isNotValid('birthdate')"></Label>
+
+          </StackLayout>
+
+
+        </StackLayout>
+
+        <label class="line"></label>
+
+        <!-- My Preferences Header with Add Button -->
+        <FlexboxLayout flexDirection="row-reverse" class="acc-line" alignItems="center" justifyContent="space-between"
+          flexWrap="wrap">
+          <label text="{{'mypreference' |L}}" class="acc-head"></label>
+          <!-- Add New Interest Button - positioned left of header -->
+          <AbsoluteLayout width="50" height="50">
+            <DropDown [items]="tagsSource" hint="" (selectedIndexChanged)="onTagChange($event)"
+              (closed)="onDropdownClosed()" itemsTextAlignment="center" class="rtl" width="50" height="50"
+              style="border-radius: 100%; opacity: 0;" #dd>
+            </DropDown>
+            <label (tap)="addTag()" text="&#xf067;" class="fas social-icon" left="10" width="30" height="30"
+              style="background-color: #f5f6f7; border-radius: 100%; text-align: center; "></label>
+          </AbsoluteLayout>
+        </FlexboxLayout>
+
+        <!-- Tags Scroll Area -->
+        <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false" style="margin-bottom: 210;" class="rtl">
+          <FlexboxLayout alignItems="center" width="500" justifyContent="flex-start" flexWrap="wrap">
+            <StackLayout *ngFor="let tag of userTags" orientation="horizontal" class="cate-tags rtl">
+              <label style="font-size: 14;" text="{{tag.nameAr}}"></label>
+              <label text="&#xf00d;" class="fas remove-icon" (tap)="removeTag(tag)"></label>
+            </StackLayout>
+          </FlexboxLayout>
+        </ScrollView>
+
+        <label class="line"></label>
+
+
+
+      </StackLayout>
+    </ScrollView>
+    <GridLayout verticalAlignment="bottom" style="margin-bottom: 60; background-color: #fff; padding: 0 0 10 0;">
+      <Button verticalAlignment="bottom" text="{{'save' |L}}" class="login-btn" (tap)="saveProfile()"
+        [isEnabled]="!isSubmitting"></Button>
+    </GridLayout>
+  </GridLayout>
+  <GridLayout height="80" verticalAlignment="bottom">
+    <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+    </GridLayout>
+    <GridLayout columns="*, *, *, *, *">
+      <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+      <label text="&#xf002;" class="fas menu-icon" col="1" row="0" [nsRouterLink]="['/explore']"></label>
+      <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']"></label>
+      <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']"></label>
+      <StackLayout class="menu-active" col="4" row="0">
+        <label text="&#xf406;" class="fas" [nsRouterLink]="['/account']"></label>
+      </StackLayout>
+    </GridLayout>
+
+  </GridLayout>
+</GridLayout>

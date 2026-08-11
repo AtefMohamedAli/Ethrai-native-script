@@ -1,0 +1,53 @@
+<ScrollView orientation="horizontal" scrollBarIndicatorVisible="false" class="rtl" style="margin: 0 20;">
+    <WrapLayout orientation="horizontal" *ngIf="data?.length>0">
+        <GridLayout rows="auto,auto" class="course-block rtl" iosOverflowSafeArea="false"
+            *ngFor="let item of data ;let i=index">
+            <GridLayout row="0" class="album-image" height="100" (tap)="goToDetails(item?.id,item)" width="180"
+                backgroundImage="{{item?.imageUrl}}" borderRadius="10 10 0 0">
+            </GridLayout>
+            <!--   <label class=" fav-icon fas" horizontalAlignment="right" text="&#xf004;"
+                width="26" height="26"
+                style=" font-size: 18; vertical-align: top; z-index: 99999;"
+                [ngClass]="item &&item.isFavorite ? 'fav-blue' : 'fav-white'"> </label> -->
+            <!-- <label class=" fav-icon fas" horizontalAlignment="right" text="&#xf004;"
+                width="26" height="26"
+                style=" font-size: 18; vertical-align: top; z-index: 99999;"> </label> -->
+
+            <StackLayout row="1" class="course-details">
+                <Label textWrap="false" class="course-na" text="{{item?.nameAr}}"></Label>
+                <!-- <FlexboxLayout [visibility]="item?.rating? 'visible' : 'collapsed'"
+                    flexDirection="row-reverse" alignItems="center"
+                    justifyContent="flex-start">
+                    <label text="&#xf005;" class="fas rate-icon"
+                        *ngFor="let i of [].constructor(Math.round(item.rating))"></label>
+                    <label [visibility]="item.numberOfRatings? 'visible' : 'collapsed'"
+                        text="({{intl.format(item.numberOfRatings)}})"
+                        style="color: #777; margin: 0 4; font-weight: 600;"></label>
+                </FlexboxLayout>
+                <FlexboxLayout [visibility]="!item?.rating? 'visible' : 'collapsed'"
+                    flexDirection="row-reverse" alignItems="center"
+                    justifyContent="flex-start">
+                    <label text="&#xf005;" class="far rate-icon"
+                        *ngFor="let i of [].constructor(5)"></label>
+                </FlexboxLayout> -->
+                <Label class="course-cate" text="{{item?.trainingFieldNameAr}}" *ngIf="type!='CASESESTUDY'"></Label>
+                <!--  <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+                <price-template [applePrice]="item.applePrice" [androidPrice]="item.price"></price-template>
+
+            </FlexboxLayout> -->
+            </StackLayout>
+        </GridLayout>
+
+        <GridLayout class="course-block rtl" columns="*" rows="140" iosOverflowSafeArea="false">
+            <Button col="0" row="0" class="view-all" style="margin-top: 0;" text="{{'viewall' |L}}"
+                nsRouterLink="{{path}}"></Button>
+        </GridLayout>
+
+    </WrapLayout>
+    <GridLayout class="course-block rtl" columns="*" rows="*" iosOverflowSafeArea="false">
+
+        <Button class="view-all" style="margin-top: 0;" text="{{'creatInteractiveTr'| L}}" (tap)="goToInterActiveForm()"
+            *ngIf="type=='TrainingSources'"></Button>
+    </GridLayout>
+
+</ScrollView>

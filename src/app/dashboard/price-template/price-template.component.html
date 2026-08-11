@@ -1,0 +1,3 @@
+<Label class="course-price" text="{{intl.format(androidPrice)}} ر.س" *ngIf="isAndroid && androidPrice && (isEthrai&&isLoggedIn || !isLoggedIn)"></Label>
+<Label class="course-price" text="{{intl.format(applePrice)}} ر.س" *ngIf="isIOS && applePrice  && (isEthrai&&isLoggedIn || !isLoggedIn)"></Label>
+<Label class="course-price" text="{{'free' | L}}" *ngIf="(isIOS && applePrice==0) || (isAndroid && androidPrice==0) || (!isEthrai &&isLoggedIn)"></Label>

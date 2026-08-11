@@ -1,0 +1,113 @@
+<GridLayout>
+    <!-- <GridLayout verticalAlignment="top" class="top-bar">
+        <FlexboxLayout flexDirection="row-reverse"  alignItems="center" justifyContent="space-between">
+    
+            <FlexboxLayout  flexDirection="row-reverse" alignItems="center" justifyContent="flex-start" (tap)="reset()">
+                <label text="إعادة تعيين" class="" style="color: #1056A5; font-size: 14;"></label>
+            </FlexboxLayout>
+    
+                <label text="الفلاتر" class="page-title"></label>
+    
+            <FlexboxLayout flexDirection="row-reverse"  alignItems="center" justifyContent="flex-end" (tap)="goBack()">
+                <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                <Image src="~/images/back.png" width="18" class="" ></Image>
+            </FlexboxLayout>
+        </FlexboxLayout>
+    </GridLayout> -->
+    
+    <GridLayout class="view">
+    
+        <ActionBar flat="true" style="background-color: #fff" title="5">
+            <NavigationButton visibility="collapsed"></NavigationButton>
+            <GridLayout columns="*" width="100%">   
+                <Label col="0" text="{{'filters'| L}}"  class="page-title text-center"></Label>
+                <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                    <Image src="~/images/back.png" width="18" class="" ></Image>
+                    <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                </StackLayout>   
+                <label text="{{'resetpass'| L}}" col="0" (tap)="reset()" style="font-size: 14px; margin: 0 10; color: #1056A5;" horizontalAlignment="right"></label> 
+            </GridLayout>
+          </ActionBar>
+
+         <ScrollView  scrollBarIndicatorVisible="false">
+           <StackLayout class="page-layout" >
+               
+               <label text="{{'purchases'| L}} : {{intl.format(purchasesCount)}}"  class="sign-label" style="margin-top:0"></label>
+    
+               <label  text="{{'sortby'| L}}" class="sign-label" style="margin-top:0; margin-bottom: 0; font-size:13"></label>
+    
+               <AbsoluteLayout>
+                <DropDown width="100%" style=" background-color: #F5F6F7;border-radius: 10;" color="#000000"
+                [items]="sortBy"
+                itemsTextAlignment="center"
+                (selectedIndexChanged)="onSortChange($event)"
+                [(ngModel)]="selectedSort"
+                >
+               </DropDown> 
+               <label text="&#xf078;" class="fas arr-drop" left="10"top="20" style="color: #000;font-size: 14"> </label>
+               </AbsoluteLayout>
+       
+               <label  text="{{'price'| L}}" class="sign-label" style="margin-top:10; margin-bottom: 0; font-size:13"></label>
+               <FlexboxLayout flexDirection="row-reverse"  justifyContent="space-between">
+                <GridLayout  rows="auto,auto,auto"  >
+                   <!-- <label row="0" text="{{ intl.format(sliderMinValue | number)}} ر.س"
+                        class="sign-label" style="margin-top:0; margin-bottom: -20; font-size:16;text-align: center;"></label>
+                    <Slider width="100%" row="1" backgroundColor="#1056A5" color="#1056A5" class="rtl"
+                    value="{{ sliderMinValue }}" minValue="0" maxValue="600"
+                    (valueChange)="onSliderMinValueChange($event)"></Slider>-->
+                    <DropDown row="2" width="90%" style=" background-color: #F5F6F7;border-radius: 10;" color="#000000"
+                    [items]="prices"
+                    itemsTextAlignment="center"
+                    (selectedIndexChanged)="onSliderMinValueChange($event)"
+                    [(ngModel)]="selectedMinIndex"
+                    >
+                   </DropDown> 
+                    <label row="0"  text="{{'from'| L}}" class="sign-label" style=" margin-bottom: 0; font-size:15;text-align: center;"></label>
+                  </GridLayout>
+                  <!-- <label class="slider-com" col="1" style="background-color: #1056A5; width: 40;  ;"></label> -->
+
+                  <GridLayout rows="auto,auto" >
+                    <DropDown row="1" width="90%" style=" background-color: #F5F6F7;border-radius: 10;" color="#000000"
+                    [items]="prices"
+                    itemsTextAlignment="center"
+                    (selectedIndexChanged)="onSliderMaxValueChange($event)"
+                    [(ngModel)]="selectedMaxIndex"
+                    ></DropDown>
+                    <!--<label row="0" text="{{ intl.format(sliderMaxValue | number)}} ر.س"
+                    class="sign-label" style="margin-top:0; margin-bottom: -20; font-size:16;text-align: center;"></label>
+                    <Slider width="100%" row="1" backgroundColor="#1056A5" color="#1056A5" class="rtl"
+                    value="{{ sliderMaxValue }}" minValue="{{ sliderMinValue }}" maxValue="600"
+                    (valueChange)="onSliderMaxValueChange($event)"></Slider>-->
+                    <label row="0" text="{{'to'| L}}" class="sign-label" style=" margin-bottom: 0; font-size:15;text-align: center;"></label>
+                 </GridLayout>
+               </FlexboxLayout>
+
+            <label *ngIf="isAndroid" text="وسيلة الدفع" class="sign-label" style="margin-top:0; margin-bottom: 0; font-size:13"></label>
+
+            <StackLayout *ngIf="isAndroid" style="margin: 0 0 15;">
+                <FlexboxLayout flexDirection="row-reverse"  *ngFor="let item of paymentMethods">
+                    <CheckBox:CheckBox boxType="circle" #CB [checked]="item.isChecked" style="background-color: #fff;" (checkedChange)="CB.checked !== item.isChecked && onMethodChange(item)" />
+                    <label class="check-label" text="{{item.display}}"></label>
+                </FlexboxLayout>
+     
+            </StackLayout>
+
+
+            <label text="حالة الدفع" class="sign-label" style="margin-top:0; margin-bottom: 0; font-size:13"></label>
+
+            <StackLayout style="margin: 0 0 15;">
+                <FlexboxLayout flexDirection="row-reverse" class="ioscheck iosbottom" *ngFor="let item of paymentStatus">
+                    <CheckBox:CheckBox boxType="circle" style="background-color: #fff;" #CB [checked]="item.isChecked" (checkedChange)="CB.checked !== item.isChecked && onStatusChange(item)" />
+                    <label class="check-label" text="{{item.display}}"></label>
+                </FlexboxLayout>
+     
+            </StackLayout>
+    
+           </StackLayout>
+        </ScrollView>
+    
+            <Button verticalAlignment="bottom" style="margin-bottom: 30;" text="عرض النتائج" class="login-btn" (tap)="showResults()"></Button>
+    
+    </GridLayout>
+    </GridLayout>
+    

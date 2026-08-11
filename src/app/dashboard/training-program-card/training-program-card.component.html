@@ -1,0 +1,37 @@
+<GridLayout class="cr-list-item" rows="auto" columns="*,100">
+    <GridLayout row="0" col="2" class="album-image" backgroundImage="{{course?.imageUrl}}"
+        (tap)="goToCoursePage(course.id,course)" verticalAlignment="top"
+        style=" border-radius: 10; width: 100; height: 100;">
+        <!-- <Image   src="{{course?.imageUrl}}" style="border-radius: 10;" class="" (tap)="goToCoursePage(course.id,course)"></Image>   -->
+    </GridLayout>
+    <WrapLayout row="0" col="0" orientation="vertical" verticalAlignment="top" style=" margin: 0 10 0 0">
+        <GridLayout class="" columns="auto, *">
+            <Label col="1" textWrap="true" class="course-na" text="{{course?.nameAr}}"
+                (tap)="goToCoursePage(course.id,course)"></Label>
+            <label col="0" text="&#xf004;" style="color: #1056A5; font-size: 18; width: 33; height: 33;"
+                [ngClass]="course &&course.isFavorite ? 'fas' : 'far'"
+                (tap)="setFavorite(course?.id,'Course',course?.isFavorite)"> </label>
+
+        </GridLayout>
+
+        <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="flex-start">
+            <label text="&#xf005;" [ngClass]="course?.rating ? 'fas' : 'far'" class="rate-icon"
+                *ngFor="let i of [].constructor(Math.round(course?.rating?course?.rating:5))"></label>
+        </FlexboxLayout>
+
+        <Label class="course-cate" text="{{'trainingCourses' |L}}" *ngIf="showType"></Label>
+        <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="space-between">
+            <price-template [applePrice]="course?.applePrice" [androidPrice]="course?.price"></price-template>
+
+            <!-- <AnimatedCircle *ngIf="course?.attendedSeconds &&course.attendedSeconds&lt;course.numberOfSeconds" backgroundColor="transparent" width="25" height="25" animated="true" animateFrom="0" rimColor="#1056A5" barColor="#999" rimWidth="6"  [progress]="getCourseProgressPercent(course.attendedSeconds,course.numberOfSeconds)" text="%{{getCourseProgressPercent(course.attendedSeconds,course.numberOfSeconds)}}" textSize="20" textColor="#1056A5"></AnimatedCircle> -->
+            <Label *ngIf="course?.attendedSeconds &&course.attendedSeconds&lt;course.numberOfSeconds"
+                text="{{getCourseProgressPercent(course.attendedSeconds,course.numberOfSeconds)}}" class="fas cert"
+                style="font-size: 13;"></Label>
+
+            <Label text="&#xf559;" class="fas cert"
+                *ngIf="course?.numberOfSeconds &&course?.attendedSeconds>=course?.numberOfSeconds"></Label>
+        </FlexboxLayout>
+    </WrapLayout>
+
+
+</GridLayout>

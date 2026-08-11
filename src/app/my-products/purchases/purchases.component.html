@@ -1,0 +1,117 @@
+<GridLayout class="whiteback">
+
+  <ActionBar  flat="true" style="background-color: #fff;" title="">
+    <NavigationButton visibility="collapsed"></NavigationButton>
+    <GridLayout columns="*" width="100%">        
+        <Label col="0" text="{{'purchases'| L}}"  class="page-title text-center"></Label>
+        <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+            <Image src="~/images/back.png" width="18" class="" ></Image>
+            <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+        </StackLayout>  
+          <Image col="0"  [nsRouterLink]="['/purchase-filter',purchasesCount]" horizontalAlignment="right" style="margin: 0 10;" src="~/images/filter.png" width="22"></Image>
+    </GridLayout>
+  </ActionBar>
+
+   <ScrollView  scrollBarIndicatorVisible="false">
+
+   <StackLayout class="page-layout container">
+
+        <label  text="{{'purchases' | L}}" class="sign-label" style="margin-top:0"></label>
+
+       <ActivityIndicator  class="spin" [busy]="isLoading"></ActivityIndicator>
+
+       <Label *ngIf="!isLoading &&purchases.length==0 && !filter" text="{{'NoPrevPayments' | L}}"></Label>
+       <Label *ngIf="!isLoading &&purchases.length==0 && filter" text="{{'NoFilterPayments' | L}}"></Label>
+
+        <StackLayout style="margin-top:15px; margin-bottom: 40px; padding: 10; " class="notifi-back" *ngFor="let item of purchases">
+            <StackLayout (tap)="clickme(item)" [visibility]="clickedd == item ? 'collapsed' : 'visible'">
+                <GridLayout (tap)="clickme(item)" rows="auto, *,auto,auto,auto" class="bookmark-collapse">
+                    <Label row="0" col="1" text="&#xf107;"  class="fas arr-drop" style="color:#000;" ></Label>
+                    <StackLayout *ngFor="let prod of item.details;let i=index"  row="{{i}}" col="1">
+                        <Label   horizontalAlignment="right" text="{{prod.productName}}" class="bookmark-course" ></Label>
+                        <Label   *ngIf="prod.productType=='Course'" class="course-cate" text="{{'trainingCourses' |L}}"></Label>
+                        <Label   *ngIf="prod.productType=='CoursePath'" class="course-cate" text="{{'traingpath' |L}}"></Label>
+                    </StackLayout>
+                </GridLayout>
+            </StackLayout>
+
+            <FlexboxLayout *ngIf="clickedd == item" horizontalAlignment="right"  flexDirection="column">
+                    <GridLayout (tap)="uclickme(item)" rows="auto, * ,auto,auto,auto" class="bookmark-collapse">
+                        <Label row="0" col="1" text="&#xf106;"  class="fas arr-drop" style="color:hsl(212, 82%, 35%);" ></Label>
+                        <StackLayout *ngFor="let prod of item.details;let i=index"  row="{{i}}" col="{{i}}">
+                            <Label   horizontalAlignment="right" text="{{prod.productName}}" class="bookmark-course" ></Label>
+                            <Label   *ngIf="prod.productType=='Course'" class="course-cate" text="{{'trainingCourses' |L}}"></Label>
+                            <Label   *ngIf="prod.productType=='CoursePath'" class="course-cate" text="{{'traingpath' |L}}"></Label>
+                        </StackLayout>
+                    </GridLayout>
+
+                    <GridLayout  class="" rows="auto,auto,auto,auto" columns="*,180">
+                        <StackLayout row="0"  column="1" style="margin-bottom: 10;">
+                            <Label  textWrap="true" class="pur-title"   text="{{'paymentmethod' |L}}"></Label>
+                            <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="flex-start">
+                            <Label *ngIf="item.invoice.paymentMethod=='Mada'" textWrap="true" class="pur-value" text="{{item.invoice.paymentMethod|L}}"></Label>
+                            <Label *ngIf="item.invoice.paymentMethod=='Free'" textWrap="true" class="pur-value" text="قسيمة شرائية"></Label>
+                            <!-- <Image *ngIf="item.invoice.paymentMethod=='Sadad'" src="~/images/sad.png" width="50" class="" style="margin: 0 10;" ></Image> -->
+                            <Label  *ngIf="item.invoice.paymentMethod=='AppleInAppPurchase'" text="Apple"></Label>
+                        </FlexboxLayout>
+                       </StackLayout>  
+                       <StackLayout row="0"  column="0"  style="margin-bottom: 10;">
+                        <Label  textWrap="true" class="pur-title"   text="{{'dateofpurchase' |L}}"></Label>
+                        <Label  textWrap="true" class="pur-value" text="{{getDate(item.created)}}"></Label>
+                       </StackLayout>
+
+                       <StackLayout row="1"  column="1"  style="margin-bottom: 10;">
+                        <Label  textWrap="true" class="pur-title"   text="{{'status' |L}}"></Label>
+                        <Label  textWrap="true" class="pur-value" horizontalAlignment="right" text="{{item.invoice.status |L}}"></Label>
+                       </StackLayout>  
+                       <StackLayout row="1"  column="0"  style="margin-bottom: 10;">
+                        <Label  textWrap="true" class="pur-title"   text="{{'amount' |L}}"></Label>
+                        <Label  textWrap="true" class="pur-value" horizontalAlignment="right" *ngIf="item.invoice.paymentMethod !='AppleInAppPurchase'" text="{{intl.format(Math.round(item.invoice.amount))}}ر.س"></Label>
+                        <Label  textWrap="true" class="pur-value" horizontalAlignment="right" *ngIf="item.invoice.paymentMethod=='AppleInAppPurchase'"  text="{{intl.format(item.appleDisplayAmount)}}ر.س"></Label>
+   
+                    </StackLayout>
+
+                       <!-- <StackLayout row="2"  column="1"  style="margin-bottom: 10;">
+                        <Label  textWrap="true" class="pur-title"   text="{{'SadadNo' |L}}"></Label>
+                        <Label *ngIf="item.invoice.sadadId !=''" horizontalAlignment="right" textWrap="true" class="pur-value" text="{{item.invoice.sadadId}}"></Label>
+                        <Label *ngIf="item.invoice.sadadId ==''" horizontalAlignment="right" textWrap="true" class="pur-value" text="{{'undefined' |L}}"></Label>
+                       </StackLayout>   -->
+                       <StackLayout row="2"  column="0"  style="margin-bottom: 10;">
+                        <Label  textWrap="true" class="pur-title"   text="{{'orderno' |L}}"></Label>
+                        <Label  textWrap="true" class="pur-value" horizontalAlignment="right" text="{{item.invoice.paymentNumber}}"></Label>
+                       </StackLayout>
+                    </GridLayout>
+                   
+                  
+                    
+            </FlexboxLayout>
+
+        </StackLayout> 
+
+       
+
+
+
+        <GridLayout style="height: 60;">
+        </GridLayout>
+
+        </StackLayout>
+
+</ScrollView>
+
+<GridLayout height="80" verticalAlignment="bottom">
+    <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+    </GridLayout>
+    <GridLayout columns="*, *, *, *, *">
+        <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+        <label text="&#xf002;" class="fas menu-icon" col="1" row="0"  [nsRouterLink]="['/explore']"></label>
+        <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']" ></label>
+        <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']" ></label>
+        <StackLayout class="menu-active"  col="4" row="0">
+            <label text="&#xf406;" class="fas" [nsRouterLink]="['/account']"></label>
+        </StackLayout>
+    </GridLayout>
+  
+</GridLayout> 
+</GridLayout>
+

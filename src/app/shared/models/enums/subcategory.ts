@@ -1,0 +1,9 @@
+export enum Subcategory{
+    ALL=1,
+    TRAINING_PROGRAMS=2,
+    WEBINARS=3,
+    ENRICHING_ILLUMINATION=4,
+    COURSE_PATHS=5,
+    BROADCAST=6,
+    ONLINE_EVENT=7
+}

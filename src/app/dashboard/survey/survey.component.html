@@ -1,0 +1,65 @@
+<label text="{{'survey' |L}}" class="c-prop  " style="font-size: 14;"></label>
+<label *ngIf="isSurvey==true" text="{{'surveyDone'|L}}" class="acc-sett" style="font-size: 16;"></label>
+
+<StackLayout [formGroup]="formGroup" *ngIf="isSurvey==false">
+
+    <StackLayout class="survey-box coll_height" *ngFor="let item of newSurveyData;let i=index">
+        <FlexboxLayout horizontalAlignment="right" [hidden]="!item.isActive" (tap)="toggleActiveState(item)"
+            flexDirection="row" justifyContent="space-between">
+            <GridLayout columns="auto, *" class="bookmark-collapse">
+                <Label col="1" text="&#xf107;" class="fas arr-drop" style="color: #000"></Label>
+                <Label col="1" horizontalAlignment="right" text="{{item.nameAr}}" class="bookmark-course"
+                    style="font-size: 14; font-weight: 500;"></Label>
+            </GridLayout>
+        </FlexboxLayout>
+        <FlexboxLayout horizontalAlignment="right" [hidden]="item.isActive" 
+            flexDirection="column">
+            <GridLayout columns="auto, *" class="bookmark-collapse" (tap)="toggleActiveState(item)">
+                <Label col="1" text="&#xf106;" class="fas arr-drop" style="color: #1056A5"></Label>
+                <Label col="1" horizontalAlignment="right" text="{{item.nameAr}}" class="bookmark-course"
+                    style="font-size: 14; font-weight: 400;"></Label>
+            </GridLayout>
+            <label class="line"></label>
+            <StackLayout class="stat-block-survey" *ngFor="let q of item?.questions;let j=index">
+
+                <GridLayout columns="120,*" rows="auto">
+
+                    <label row="0" col="1" textWrap="true" text="{{q.questionAr}}" class=""></label>
+                    <!-- <DropDown row="0" col="0" *ngIf="q.answerType == 'SingleChoice'"  
+                 [items]="handleQ(q.answerChoices,j,item.questions.length)" hint="{{'Choose' | L}}" itemsTextAlignment="center" 
+                 (selectedIndexChanged)="onChange($event,q?.id,q.answerChoices,j,item.questions.length)"  [ngClass]="isNotValid(q?.id)?'error' :''" [formControlName]="getControlFormName(q?.id)" >
+                </DropDown> -->
+                    <DropDown row="0" col="0" *ngIf="q.answerType == 'SingleChoice'"  
+                 [items]="q?.surveyOption" hint="{{'Choose' | L}}" itemsTextAlignment="center" 
+                 (selectedIndexChanged)="onChange($event,q?.id,q?.surveyOption,j,item.questions.length)"
+                   [ngClass]="isNotValid(q?.id)?'error' :''" [formControlName]="getControlFormName(q?.id)" >
+                </DropDown>
+
+                    <!-- <StackLayout style="margin: 0 0 15;" *ngIf="q.answerType == 'SingleChoice'">
+                        <FlexboxLayout flexDirection="row-reverse" class="ioscheck iosbottom"
+                            *ngFor="let t of q?.surveyOption; let k = index">
+                            <CheckBox:CheckBox boxType="circle" #CB{{k}} [checked]="isCheckedFun(t)" style="background-color:transparent!important;width: 20;"
+                                [ngClass]="isNotValid(q?.id)?'error' :''" [formControlName]="getControlFormName(q?.id)"
+                                (checkedChange)="checkBoxId(k).checked !== t.isChecked && onAnswerChange($event,t,i,j,k,q?.id)" />
+                            <label class="check-label" text="{{t.title}}"></label>
+                        </FlexboxLayout>
+                    </StackLayout>
+                    <label class="line" style="background-color: #fff;"></label>
+                </GridLayout>
+                <!-- <label class="line"  type="hidden" [formControlName]="getControlFormName(q?.id)"></label> -->
+                </GridLayout>
+
+            </StackLayout>
+
+        </FlexboxLayout>
+
+
+    </StackLayout>
+    <GridLayout columns="*,*" rows="*,*" style="margin: 20 0;">
+        <Button row="0" [isEnabled]="!isSubmitting && !isLoading" col="1" text="{{'Send' |L}}"
+            style="width: 160; background-color: #1056A5;" (tap)="save()" class="login-btn"></Button>
+        <Button row="0" col="0" text="{{'reset' |L}}" stoyle="width: 160" class="login-btn reset-btn"
+            (tap)="reset()"></Button>
+    </GridLayout>
+
+</StackLayout>

@@ -1,0 +1,213 @@
+<GridLayout class="whiteback">
+    <GridLayout>
+
+        <ActionBar flat="true" style="background-color: #fff;" title="">
+            <NavigationButton visibility="collapsed"></NavigationButton>
+            <GridLayout columns="*" width="100%">
+                <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+                    <Image src="~/images/back.png" width="18" class=""></Image>
+                    <label text="{{'Back'| L}}"
+                        style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+                </StackLayout>
+            </GridLayout>
+        </ActionBar>
+
+
+        <ScrollView scrollBarIndicatorVisible="false">
+            <StackLayout class="page-layout" style="margin-bottom: 60;">
+
+                <StackLayout class="album-image album-ios-ma" height="240" width="100%"
+                    backgroundImage="~/images/corporate.jpg" borderRadius="20 20 0 0">
+                </StackLayout>
+
+                <label text="{{'advcorporate'| L}}" class="container advbepartnerlabel"></label>
+                <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false" class="container rtl"
+                    style="margin-top: 20;">
+                    <StackLayout orientation="horizontal">
+                        <StackLayout iosOverflowSafeArea="false">
+                            <StackLayout class="advpartner rtl" style="margin-bottom: 10;">
+                                <label text="&#xf2c2;" class="fas icon-partner" horizontalAlignment="right"></label>
+                                <label text="{{'advcor1'| L}}" class="head-partner"></label>
+                            </StackLayout>
+                            <StackLayout class="advpartner rtl" style="margin-bottom: 10;">
+                                <label text="&#xf1da;" class="fas icon-partner" horizontalAlignment="right"></label>
+                                <label text="{{'advcor2'| L}}" class="head-partner"></label>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <StackLayout iosOverflowSafeArea="false">
+                            <StackLayout class="advpartner rtl" style="margin-bottom: 10;">
+                                <label text="&#xf21d;" class="fas icon-partner" horizontalAlignment="right"></label>
+                                <label text="{{'advcor3'| L}}" class="head-partner"></label>
+                            </StackLayout>
+                            <StackLayout class="advpartner rtl" style="margin-bottom: 10;">
+                                <label text="&#xf500;" class="fas icon-partner" horizontalAlignment="right"></label>
+                                <label text="{{'advcor4'| L}}" class="head-partner"></label>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <StackLayout iosOverflowSafeArea="false">
+                            <StackLayout class="advpartner rtl" style="margin-bottom: 10;">
+                                <label text="&#xf5a2;" class="fas icon-partner" horizontalAlignment="right"></label>
+                                <label text="{{'advcor5'| L}}" class="head-partner"></label>
+                            </StackLayout>
+                            <StackLayout class="advpartner rtl" style="margin-bottom: 10;">
+                                <label text="&#xf15c;" class="fas icon-partner" horizontalAlignment="right"></label>
+                                <label text="{{'advcor6'| L}}" class="head-partner"></label>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <StackLayout iosOverflowSafeArea="false">
+                            <StackLayout class="advpartner rtl" style="margin-bottom: 10;">
+                                <label text="&#xf5fd;" class="fas icon-partner" horizontalAlignment="right"></label>
+                                <label text="{{'advcor7'| L}}" class="head-partner"></label>
+                            </StackLayout>
+                            <StackLayout class="advpartner rtl" style="margin-bottom: 10;">
+                                <label text="&#xf201;" class="fas icon-partner" horizontalAlignment="right"></label>
+                                <label text="{{'advcor8'| L}}" class="head-partner"></label>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <StackLayout iosOverflowSafeArea="false">
+                            <StackLayout class="advpartner rtl" style="margin-bottom: 10;">
+                                <label text="&#xf108;" class="fas icon-partner" horizontalAlignment="right"></label>
+                                <label text="{{'advcor9'| L}}" class="head-partner"></label>
+                            </StackLayout>
+                            <StackLayout class="advpartner rtl" style="margin-bottom: 10;">
+                                <label text="&#xf086;" class="fas icon-partner" horizontalAlignment="right"></label>
+                                <label text="{{'advcor10'| L}}" class="head-partner"></label>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <StackLayout iosOverflowSafeArea="false">
+                            <StackLayout class="advpartner rtl" style="margin-bottom: 10;">
+                                <label text="&#xf5c1;" class="fas icon-partner" horizontalAlignment="right"></label>
+                                <label text="{{'advcor11'| L}}" class="head-partner"></label>
+                            </StackLayout>
+                            <StackLayout class="advpartner rtl" style="margin-bottom: 10;">
+                                <label text="&#xf559;" class="fas icon-partner" horizontalAlignment="right"></label>
+                                <label text="{{'advcor12'| L}}" class="head-partner"></label>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <StackLayout iosOverflowSafeArea="false" class="advpartner rtl" style="margin-bottom: 10;">
+                            <label text="&#xf013;" class="fas icon-partner" horizontalAlignment="right"></label>
+                            <label text="{{'advcor13'| L}}" class="head-partner"></label>
+                        </StackLayout>
+
+                    </StackLayout>
+                </ScrollView>
+
+
+                <StackLayout style=" margin-top: 20;" class="container">
+                    <label text="{{info[0]?.titleAr}} " style="font-size: 16px; color: #000; font-weight: 600;"></label>
+                    <label [text]="getText(info[0]?.contentAr)" class="plainfont"
+                        style="font-size: 14px; color: #989BAD; font-weight: 500;"></label>
+                    <!--<HtmlView html="{{ info[0]?.contentAr }}" class="plainfont" style="font-size: 14px; color: #989BAD; font-weight: 500;"></HtmlView>-->
+                    <!--<Button style="background-color: #1056A5;" text="{{'registernow' |L}}" class="login-btn"></Button>-->
+
+                </StackLayout>
+
+                <StackLayout class="album-image" height="240" style="margin-top: 25;" width="100%"
+                    backgroundImage="{{info[0]?.imageMobileUrl}}">
+                </StackLayout>
+
+
+                <StackLayout style=" margin-top: 20;" class="container">
+                    <label text="{{info[1]?.titleAr}} " style="font-size: 16px; color: #000; font-weight: 600;"></label>
+                    <label [text]="getText(info[1]?.contentAr)" class="plainfont"
+                        style="font-size: 14px; color: #989BAD; font-weight: 500;"></label>
+                    <!--<HtmlView html="{{ info[1]?.contentAr }}" class="plainfont" style="font-size: 14px; color: #989BAD; font-weight: 500;"></HtmlView>-->
+
+                </StackLayout>
+
+                <StackLayout class="album-2" height="240" style="margin-top: 25;margin-bottom:70 ;" width="100%"
+                    backgroundImage="{{info[1]?.imageUrl}}">
+                </StackLayout>
+
+                <GridLayout rows="auto,auto,auto,auto,auto,auto" class="contact-back" *ngIf="!requestSuccess">
+                    <label row="0" text="{{'registernow'| L}}" class="sign-label"
+                        style="margin-bottom: 20; margin-top: 0;"></label>
+
+                    <StackLayout row="1" class="form-back" [formGroup]="contactForm">
+                        <label text="{{'fullname' | L}} *" class="form-label"></label>
+                        <TextField hint="{{'fullname' | L}}" style="placeholder-color:#989BAD"
+                            [ngClass]="isNotValid('fullContactName')?'error' :''" formControlName="fullContactName">
+                        </TextField>
+
+                        <label text="{{'job' | L}} *" class="form-label"></label>
+                        <TextField hint="{{'job' | L}}" style="placeholder-color:#989BAD" formControlName="jobTitle"
+                            [ngClass]="isNotValid('jobTitle')?'error' :''">
+                        </TextField>
+
+                        <label text="{{'Email' | L}} *" class="form-label"></label>
+                        <TextField hint="name@example.com" style="placeholder-color:#989BAD"
+                            [ngClass]="isNotValid('email')?'error' :''" formControlName="email"></TextField>
+
+                        <label text="{{'companyname' | L}}" class="form-label"></label>
+                        <TextField hint="{{'companyname' | L}}" style="placeholder-color:#989BAD"
+                            formControlName="companyName"></TextField>
+
+                        <label text="{{'companys' | L}}" class="form-label"></label>
+                        <TextField hint="{{'companys' | L}}" style="placeholder-color:#989BAD"
+                            formControlName="companySize"></TextField>
+
+                        <label text="{{'emloyeeno' | L}}" class="form-label"></label>
+                        <TextField hint="{{'emloyeeno' | L}}" style="placeholder-color:#989BAD"
+                            formControlName="howManyEmployeesNeedTraining" keyboardType="number"></TextField>
+
+                        <FlexboxLayout flexDirection="row-reverse" alignItems="center" justifyContent="flex-start">
+                            <StackLayout>
+                                <label text="{{'mobile' | L}} *" class="form-label"></label>
+                                <TextField hint="{{'mobile' | L}}" style="placeholder-color:#989BAD"
+                                    keyboardType="number" [ngClass]="isNotValid('phoneNumber')?'error' :''"
+                                    formControlName="phoneNumber"></TextField>
+                            </StackLayout>
+                            <StackLayout style="margin-right: 5; margin-top: 5;">
+                                <label text="{{'code' | L}} *" class="form-label"></label>
+                                <TextField hint="00966" style="placeholder-color:#989BAD;" keyboardType="number"
+                                    width="110" formControlName="areaCode"></TextField>
+                            </StackLayout>
+                        </FlexboxLayout>
+
+                    </StackLayout>
+                    <GridLayout row="2" ios:height="200" style="height: 300;">
+                        <WebView #webView src="{{webViewSource}}" (loadFinished)="onloadFinished($event)"
+                            (loadStarted)="onLoadStarted($event)">
+                        </WebView>
+                    </GridLayout>
+                    <ActivityIndicator row="3" [busy]="isLoading" [visibility]="isLoading ?  'visible':'collapse'">
+                    </ActivityIndicator>
+                    <Button row="4" text="{{'submit' | L}}" class="login-btn" (tap)="submit()"
+                        [isEnabled]="!isLoading"></Button>
+
+                </GridLayout>
+                <!--confirm message-->
+                <StackLayout *ngIf="requestSuccess">
+                    <StackLayout class="forget-back">
+                        <label text="&#xf00c;" class="fas forget-icon"></label>
+                    </StackLayout>
+                    <label text="{{'Success'| L}}" class="sign-label"
+                        style="margin-bottom: 0; text-align: center;"></label>
+                    <Button text="{{'OkExcellent' | L}}" class="login-btn" (tap)="showForm()"></Button>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+
+    <GridLayout height="80" verticalAlignment="bottom">
+        <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+        </GridLayout>
+        <GridLayout columns="*, *, *, *, *">
+            <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+            <label text="&#xf002;" class="fas menu-icon" col="1" row="0" [nsRouterLink]="['/explore']"></label>
+            <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']"></label>
+            <label text="&#xf004;" class="fas menu-icon" col="3" row="0" [nsRouterLink]="['/favorites']"></label>
+            <StackLayout class="menu-active" col="4" row="0">
+                <label text="&#xf406;" class="fas" [nsRouterLink]="['/account']"></label>
+            </StackLayout>
+        </GridLayout>
+
+    </GridLayout>
+</GridLayout>

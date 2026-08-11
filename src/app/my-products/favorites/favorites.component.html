@@ -1,0 +1,119 @@
+<GridLayout>
+
+<GridLayout class="view">
+
+  <ActionBar  flat="true" style="background-color: #fff;" title="">
+    <NavigationButton visibility="collapsed"></NavigationButton>
+    <GridLayout columns="*" width="100%">        
+        <Label col="0" text="{{'favorites'| L}}"  class="page-title text-center"></Label>
+       <!--  <StackLayout col="0" horizontalAlignment="left" orientation="horizontal" (tap)="goBack()">
+            <Image src="~/images/back.png" width="18" class="" ></Image>
+            <label  text="{{'Back'| L}}"  style="font-size: 16px; color: #1056A5; font-weight: 500; margin-left: 5;"></label>
+        </StackLayout> -->  
+         <!-- <Image col="0" *ngIf="isLoggedIn" [nsRouterLink]="['/filter','myProductFilter']" horizontalAlignment="right" style="margin: 0 10;" src="~/images/filter.png" width="28"></Image> -->
+    </GridLayout>
+</ActionBar>
+
+     <ScrollView  scrollBarIndicatorVisible="false">
+      <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ?  'visible':'collapse'"></ActivityIndicator>
+
+       <FlexboxLayout flexDirection="column"  class="page-layout" *ngIf="!isLoading">
+
+             <!-- visitor -->
+        <GridLayout rows="auto,auto,auto,auto" class="container" style="margin-top: 20;" *ngIf="!isLoggedIn ">
+            <label row="0"  text="{{'signinvisit'| L}}" class="sign-label" style="margin-bottom: 0;"></label>
+            <label  row="1" text="{{'signinvisittextfav'| L}}" class="forget-text"></label>
+            <Button row="2" text="{{'LogIn' | L}}"  class="login-btn" style="margin-top: 10;"  [nsRouterLink]="['/login-by-mail']"></Button>
+          </GridLayout>
+     <!-- endvisitor -->
+
+   
+      <StackLayout [class.dialogOpen]="dialogOpen" *ngIf="isLoggedIn && !isEmpty">
+
+        <GridLayout class="search-back" style="margin: 10 0 0 ;" height="50" rows="auto" columns="30, *, 30">
+            <Image  col="2" src="~/images/se.png"  class="se-btn" width="20" style="margin-bottom: 15;"></Image>
+            <Image col="2" src="~/images/x.png" class="x-btn"  width="16" style="margin-bottom: 15;" (tap)="onClear()"></Image>
+            <TextField (returnPress)="onSubmit($event)"  returnKeyType="search" [(ngModel)]="searchPhrase" (textChange)="onTextChanged($event)"
+            col="1" style="placeholder-color:#989BAD; color: #000; height: 40;padding: 0 10;"   hint="{{'searchhere'| L}}" ></TextField>
+        </GridLayout>
+      </StackLayout>
+          <!--<StackLayout ios:opacity="1" class="search-back"  style="margin: 10 0 0;" *ngIf="isLoggedIn && !isEmpty">
+            <SearchBar hint="{{'searchhere'| L}}" backgroundColor="#f5f6f7" (loaded)="loadedSB($event)"
+            [text]="searchPhrase" (textChange)="onTextChanged($event)" (loaded)="searchBarLoaded($event)"
+            (clear)="onClear($event)" (submit)="onSubmit($event)">
+            </SearchBar>
+        </StackLayout>-->
+
+          
+
+         <!--    <label  *ngIf="isLoggedIn && !isEmpty"  text="{{'ourCategories' | L}}" class="sign-label" style="margin-top:20;margin-bottom: 10;"></label>
+           <ScrollView orientation="horizontal"  scrollBarIndicatorVisible="false" *ngIf="isLoggedIn && !isEmpty" class="rtl" >
+            <FlexboxLayout alignItems="center" width="500" justifyContent="flex-start" flexWrap="wrap">
+                <label  text="{{category.nameAr}}" *ngFor="let category of categories" class="cate-tags rtl" [nsRouterLink]="['/category',category.id,category.nameAr]"></label>
+               </FlexboxLayout>
+            </ScrollView> -->
+
+                <label  *ngIf="isLoggedIn && !isEmpty" text="المنتجات" class="sign-label" style="margin-top:20; margin-bottom: 10;"></label>
+               <ScrollView orientation="horizontal"  scrollBarIndicatorVisible="false" *ngIf="isLoggedIn && !isEmpty" class="rtl">
+                <FlexboxLayout alignItems="center" width="500" justifyContent="flex-start" flexWrap="wrap">
+                    <label  text="{{sub.nameAr}}" *ngFor="let sub of subCategories" [ngClass]="{'cate-tags-active' : sub.id===selectedSubCategoryId , 'cate-tags':sub.id!==selectedSubCategoryId}" class="rtl" (tap)="getFavProducts(sub.id)"></label>
+                </FlexboxLayout>
+               </ScrollView>
+
+            <FlexboxLayout flexDirection="column"  *ngIf="!isEmpty">
+                  <label *ngIf="isLoggedIn && showCourse" text="{{'trainingCourses' | L}}" class="sign-label" style="margin-top:20"></label>
+            
+                <Label *ngIf="!isLoading && isLoggedIn && showCourse &&favourites?.courses.length==0" text="{{'NoPrograms' |L}}"></Label>
+                
+                <training-program-card [screenName]="'favorites'" [showType]="true" [course]="course" *ngFor="let course of favourites?.courses" (favRemoved)="delete('course',course.id)"></training-program-card>
+
+                <label  *ngIf="isLoggedIn && showPath &&favourites?.coursesPath.length" text="{{'paths' | L}}" class="sign-label" style="margin-top:20"></label>
+              <!--<Label *ngIf="!isLoading && isLoggedIn && showPath&&favourites?.coursesPath.length==0" text="{{'NoTrainingPaths' |L}}"></Label>-->
+
+              <training-path-card [showType]="true" [path]="item" [pageName]="'favorites'" *ngFor="let item of favourites?.coursesPath" (favRemoved)="delete('path',item.id)"></training-path-card>
+
+
+              <label *ngIf="isLoggedIn && isEthrai&& showWebinar" text="{{'webinars' | L}}" class="sign-label" style="margin-top:20"></label>
+            <Label *ngIf="!isLoading&& isEthrai && isLoggedIn && showWebinar &&favourites?.webinars.length==0" text="{{'NoConferences' |L}}"></Label>
+
+            <ke-webinar-card [showType]="true" [product]="class" [productType]="'Webinar'" *ngFor="let class of favourites?.webinars" (favRemoved)="delete('Webinar',class.id)" [screenName]="'favorites'"></ke-webinar-card>
+
+
+              <label *ngIf="isLoggedIn && isEthrai&&showKes" text="{{'KnowledgeEnrichment' | L}}" class="sign-label" style="margin-top:20"></label>
+            <Label *ngIf="!isLoading&& isEthrai && isLoggedIn && showKes &&favourites?.kes.length==0" text="{{'highlightEnrichment' |L}}"></Label>
+            <ke-webinar-card [showType]="true" [product]="ke" [productType]="'Ke'" *ngFor="let ke of favourites?.kes" (favRemoved)="delete('Ke',ke.id)" [screenName]="'favorites'"></ke-webinar-card>
+          </FlexboxLayout>
+
+            <GridLayout style="height: 60;">
+
+            </GridLayout> 
+
+            <StackLayout *ngIf="!isLoading && isLoggedIn &&isEmpty" verticalAlignment="center">
+              <StackLayout class="forget-back" style="width: 140; height: 140;" >
+                <label text="&#xf004;" class="fas forget-icon" style="font-size: 70;" ></label>
+            </StackLayout>
+              <label  text="{{'nofavorite' |L}}"  class="sign-label" style="margin-bottom:25; margin-top: 25;"></label>
+              <Button text="{{'exploreproduct' |L}}"   [nsRouterLink]="['/explore']" class="login-btn"></Button>
+              <!-- <label  text="{{'nofavoritetext' |L}}"  class="sign-label" style="margin-bottom: 0; margin-top: 20;"></label> -->
+              <!-- <Button text="استعرض المنتجات"   [nsRouterLink]="['/highlighted']" class="login-btn"></Button> -->
+      
+            </StackLayout>
+
+    </FlexboxLayout>
+  </ScrollView>
+</GridLayout>
+<GridLayout height="80" verticalAlignment="bottom">
+  <GridLayout verticalAlignment="bottom" height="60" backgroundColor="#f1f1f4">
+  </GridLayout>
+  <GridLayout columns="*, *, *, *, *">
+      <label text="&#xf015;" class="fas menu-icon " col="0" row="0" [nsRouterLink]="['/highlighted']"></label>
+      <label text="&#xf002;" class="fas menu-icon" col="1" row="0"  [nsRouterLink]="['/explore']"></label>
+      <label text="&#xf144;" class="far menu-icon" col="2" row="0" [nsRouterLink]="['/my-products']" ></label>
+      <StackLayout class="menu-active"  col="3" row="0">
+        <label text="&#xf004;" class="fas" [nsRouterLink]="['/favorites']" ></label>
+      </StackLayout>
+      <label text="&#xf406;" class="fas menu-icon" col="4" row="0" [nsRouterLink]="['/account']"></label>
+  </GridLayout>
+
+</GridLayout> 
+</GridLayout>
