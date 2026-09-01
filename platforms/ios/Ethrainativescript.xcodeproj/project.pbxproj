@@ -7,45 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		039739967FA24C35A16FFDB2 /* TNSWidgets.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1590973207954BFDA1D39E61 /* TNSWidgets.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		0CD79A1F8CCE4F1CAC4A8D0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78A1CCD5D867413DBA6F0910 /* LaunchScreen.storyboard */; };
-		1F81201DA8824A37B997AE29 /* NativeScriptMainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36958086FD174BBBA2FB255B /* NativeScriptMainWindow.swift */; };
-		1FD9FF1A9A5941AFB0A73EE0 /* TNSWidgets.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1590973207954BFDA1D39E61 /* TNSWidgets.xcframework */; };
-		241CF03C4005432F938BC487 /* NSCFirebaseMessagingCoreLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA3155E2831462CA9DF8EF1 /* NSCFirebaseMessagingCoreLoader.m */; };
-		259B6EC5DF1C453492BD224C /* TNSListView.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98A008AAA1CC48C8A36CF980 /* TNSListView.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		262C69DE7D2A44EF94682C69 /* TNSChart.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 010082F48E4A45E7A93D5A6F /* TNSChart.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		28F76C77724A4BC5B0EED0CD /* TNSFirebaseCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4779BC51EBE444099A0C7CE4 /* TNSFirebaseCore.m */; };
+		042AFC5F88F641CFAE91C136 /* app.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = E34A0A429F19468AA3C4753B /* app.entitlements */; };
+		049B8AC7FB404D75B62848CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2903BC20ED8A4020BFB29DF6 /* Assets.xcassets */; };
+		05C855FAA3E641019EABEAA0 /* TNSAutoComplete.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27F4E500A70D454781FA90C0 /* TNSAutoComplete.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		0DE73974AF9D4D3DB6C99B8E /* NSCWinterTC.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CFF1FE7BED174A8D847BF3AC /* NSCWinterTC.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		128DCC966EDA46998AB5C3A9 /* NSCFirebaseMessagingCoreLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 763E4932CF994FE49ACAAB05 /* NSCFirebaseMessagingCoreLoader.m */; };
+		1E188E4327AF47B1AE20F55F /* NativeScriptEmbedder.m in Sources */ = {isa = PBXBuildFile; fileRef = 044C3D99FC0340959FCD63B5 /* NativeScriptEmbedder.m */; };
 		39940D9122C4EF600050DDE1 /* NativeScript.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39940D8C22C4EAAA0050DDE1 /* NativeScript.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		39940E1C22C5DFFF0050DDE1 /* TKLiveSync.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39940E1B22C5DFFF0050DDE1 /* TKLiveSync.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3C4E9CA391AD4C1D9E326DB8 /* UIApplicationDelegate+LaunchExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C28B1FFD90D463E968DBBC4 /* UIApplicationDelegate+LaunchExtension.m */; };
-		3D21E62AB2094F6AB4D9F09E /* NativeScriptEmbedder.m in Sources */ = {isa = PBXBuildFile; fileRef = E1928BD6BEB844FBA680A02F /* NativeScriptEmbedder.m */; };
-		3F68249E6ED74173BF7B3754 /* TNSChart.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010082F48E4A45E7A93D5A6F /* TNSChart.xcframework */; };
-		4A187FA74CB34ACA8D38F12C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9872570E4B743D18C24327A /* GoogleService-Info.plist */; };
-		58DF24E445C54822A0C3619C /* NSCFirebaseMessagingCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAE137946B94D2C95A6ADCD /* NSCFirebaseMessagingCore.m */; };
-		5AEA1924DB43466FB9E54675 /* TNSListView.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A008AAA1CC48C8A36CF980 /* TNSListView.xcframework */; };
-		5EF91C6A1A2C427B8C21DD97 /* NSCFIRMessagingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A343CDD23A03489B9D981AB3 /* NSCFIRMessagingDelegate.swift */; };
-		7F89F1B372E3419F9D5B0974 /* TNSCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FCE8BECFB1A940E2BD87B8A5 /* TNSCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		815B1ADFB6CB4873AE38835D /* ar.lproj in Resources */ = {isa = PBXBuildFile; fileRef = CD9C6B03C8ED4C6ABA9E2D28 /* ar.lproj */; };
+		3A94965889C0400593C634C5 /* TNSChart.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1026DC0A4D3749AB9B9BB86A /* TNSChart.xcframework */; };
+		67A0442076D3A0467FF021C2 /* Pods_Ethrainativescript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D1735D0651311FFEB664A9 /* Pods_Ethrainativescript.framework */; };
+		6A38F1BFBB374FBDA74A2D1A /* build.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D4EF685638FE4509A351FC47 /* build.xcconfig */; };
+		6E949AC6C33F4C3ABD57A6C0 /* TNSFirebaseCore.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B63601934B460882EF7BF5 /* TNSFirebaseCore.m */; };
+		71564E5CB8FB4376B9510DF5 /* TNSCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD099A5597E471A8EA075AD /* TNSCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		73F830410AA94EEF91CE9380 /* TNSAutoComplete.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F4E500A70D454781FA90C0 /* TNSAutoComplete.xcframework */; };
+		7A3E3A311DBD4D5E84CD3C08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A27D7FAE27A4721848F000F /* LaunchScreen.storyboard */; };
+		7D9CDC3300554BF5A61A07FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27E1D789DF104699A2F1481A /* GoogleService-Info.plist */; };
+		8159B8BB0D844BA7BBC320D3 /* UIView+NativeScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEB1FDB74604C2492E4DA89 /* UIView+NativeScript.m */; };
 		858B842D18CA22B800AB12DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 858B833A18CA111C00AB12DE /* InfoPlist.strings */; };
-		9755B6D4BF238B4B07BFBACA /* Pods_Ethrainativescript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA585AE9CEF589584E73CA81 /* Pods_Ethrainativescript.framework */; };
-		99E35D4854B646E886B22F58 /* TNSAutoComplete.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D66AEB681042F0949AD417 /* TNSAutoComplete.xcframework */; };
-		9D1D62732FB84EA8A93367F6 /* NSCUNUserNotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF0EFA14A0411E988C4149 /* NSCUNUserNotificationCenterDelegate.swift */; };
-		9FC0B3F9F79E46EBAE7D5798 /* Pods in Resources */ = {isa = PBXBuildFile; fileRef = F2430CD3FA064F91934BF9F6 /* Pods */; };
-		A160B3AF240C40FC961B61C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D1F28B9D48B4A4CB7B1FE5B /* Assets.xcassets */; };
-		A20AFA7AD2EB4ACE8039B67A /* NSCWinterTC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914C203E280B42E787F35120 /* NSCWinterTC.xcframework */; };
+		9AE731C5C9134335AB5C00BB /* Pods in Resources */ = {isa = PBXBuildFile; fileRef = 300F228E66204AF288412F66 /* Pods */; };
+		9EC9ABEEFE104840A2ECCEE1 /* NSCFIRMessagingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53F95BEC8E44CB28E5D095A /* NSCFIRMessagingDelegate.swift */; };
+		A26A5AB564CD4965B8259A40 /* TNSWidgets.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C841C0F2D04075B3C3C534 /* TNSWidgets.xcframework */; };
+		A6D8D29C24AA48FAB16C92C4 /* NativeScriptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8A982326314C77A9E7D888 /* NativeScriptUtils.m */; };
+		A96E8341D8714D59AF005B3D /* TNSCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD099A5597E471A8EA075AD /* TNSCore.xcframework */; };
 		AAA0AADB2A54B96B00EE55A4 /* NativeScriptStart.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA0AADA2A54B96B00EE55A4 /* NativeScriptStart.m */; };
-		B100E806B5DC4D31B83C46E2 /* NativeScriptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7FE1EBE44749928CA1F48A /* NativeScriptUtils.m */; };
-		B153297F5B694185BFDD66BF /* TNSAutoComplete.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87D66AEB681042F0949AD417 /* TNSAutoComplete.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		B268938637394870A99486CF /* TNSCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE8BECFB1A940E2BD87B8A5 /* TNSCore.xcframework */; };
-		B5E0945FCF6544B293FD5964 /* NSCNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0522AACAB30E4FB2878FD2B6 /* NSCNotificationHelper.swift */; };
-		BAC3546E29064B87B803A2A3 /* UIView+NativeScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 284A37F6396B4DB28DF9F214 /* UIView+NativeScript.m */; };
+		AE1C9FFA5C11493BAF44E5A0 /* NativeScriptMainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C757DDE2174FBAA90C7A61 /* NativeScriptMainWindow.swift */; };
+		AFD4410AABD4444A9F8F143E /* UIApplicationDelegate+LaunchExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44FD1EFC5F4D899A4F7452 /* UIApplicationDelegate+LaunchExtension.m */; };
+		B3CF28BE544F4DC4B5F3FD09 /* NSCNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D729836199A40D38357CF5F /* NSCNotificationHelper.swift */; };
+		B9F575F6C3534F41A5DFC3D6 /* ar.lproj in Resources */ = {isa = PBXBuildFile; fileRef = C5A2901A3BD540728CBD8A94 /* ar.lproj */; };
+		C1BD4180457C42EA9F7C0EA3 /* NSCUIApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F32768B7D049C1807A9347 /* NSCUIApplicationDelegate.swift */; };
+		C4506462B8A844C4A5F4DAC8 /* TNSChart.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1026DC0A4D3749AB9B9BB86A /* TNSChart.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		CC99C578F7534B10A82A079E /* TNSListView.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 57BC048C1A1C40429DF65BFB /* TNSListView.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		CD45EE7C18DC2D5800FB50C0 /* app in Resources */ = {isa = PBXBuildFile; fileRef = CD45EE7A18DC2D5800FB50C0 /* app */; };
 		CD62955D1BB2678900AE3A93 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CD62955C1BB2678900AE3A93 /* main.m */; };
-		D2E9EB3BA3344B53A99A4A77 /* build.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 58447E8E0253405FB73C734B /* build.xcconfig */; };
-		D79D2C2F756C402498139597 /* app.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 965A16E7402448059938A0EF /* app.entitlements */; };
-		DFB0ADB0940647218269AF22 /* NSCUIApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F72FFDB1664DAEA791432A /* NSCUIApplicationDelegate.swift */; };
-		E1D4884DAA014D0D803CEC56 /* NSCFirebaseRemoteMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295CC8EEF2B94DB9BC8951F6 /* NSCFirebaseRemoteMessage.swift */; };
-		E623921610D649DC90BAA8D8 /* NSCWinterTC.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 914C203E280B42E787F35120 /* NSCWinterTC.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		DF1B5B2AB1B444D8A3EFDBB9 /* TNSListView.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BC048C1A1C40429DF65BFB /* TNSListView.xcframework */; };
+		E39AA5A039D14E0A8BE36BE0 /* TNSWidgets.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 25C841C0F2D04075B3C3C534 /* TNSWidgets.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		E5323A0F791B492AA716588C /* NSCFirebaseMessagingCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5AC85F2A69424BA458F79F /* NSCFirebaseMessagingCore.m */; };
+		EA807CBB0A9F4F07B91ECCBB /* NSCUNUserNotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94919E633634424B4EFC89E /* NSCUNUserNotificationCenterDelegate.swift */; };
+		F744F7856F124B438531D5A5 /* NSCWinterTC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFF1FE7BED174A8D847BF3AC /* NSCWinterTC.xcframework */; };
+		FC5AA858C4E24B31A49BBA8E /* NSCFirebaseRemoteMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBF55517BD042DD98FB2B59 /* NSCFirebaseRemoteMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,12 +57,12 @@
 			files = (
 				39940D9122C4EF600050DDE1 /* NativeScript.xcframework in Embed Frameworks */,
 				39940E1C22C5DFFF0050DDE1 /* TKLiveSync.xcframework in Embed Frameworks */,
-				E623921610D649DC90BAA8D8 /* NSCWinterTC.xcframework in Embed Frameworks */,
-				039739967FA24C35A16FFDB2 /* TNSWidgets.xcframework in Embed Frameworks */,
-				B153297F5B694185BFDD66BF /* TNSAutoComplete.xcframework in Embed Frameworks */,
-				262C69DE7D2A44EF94682C69 /* TNSChart.xcframework in Embed Frameworks */,
-				259B6EC5DF1C453492BD224C /* TNSListView.xcframework in Embed Frameworks */,
-				7F89F1B372E3419F9D5B0974 /* TNSCore.xcframework in Embed Frameworks */,
+				0DE73974AF9D4D3DB6C99B8E /* NSCWinterTC.xcframework in Embed Frameworks */,
+				E39AA5A039D14E0A8BE36BE0 /* TNSWidgets.xcframework in Embed Frameworks */,
+				05C855FAA3E641019EABEAA0 /* TNSAutoComplete.xcframework in Embed Frameworks */,
+				C4506462B8A844C4A5F4DAC8 /* TNSChart.xcframework in Embed Frameworks */,
+				CC99C578F7534B10A82A079E /* TNSListView.xcframework in Embed Frameworks */,
+				71564E5CB8FB4376B9510DF5 /* TNSCore.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,74 +70,74 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		010082F48E4A45E7A93D5A6F /* TNSChart.xcframework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TNSChart.xcframework; path = "../../node_modules/nativescript-ui-chart/platforms/ios/TNSChart.xcframework"; sourceTree = "<group>"; };
-		0522AACAB30E4FB2878FD2B6 /* NSCNotificationHelper.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = NSCNotificationHelper.swift; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCNotificationHelper.swift"; sourceTree = "<group>"; };
-		080919139D2B4BC390F0E9DA /* NSCFirebaseMessagingCore.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = NSCFirebaseMessagingCore.h; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCFirebaseMessagingCore.h"; sourceTree = "<group>"; };
-		080D3B5696AC43A68C7331E7 /* NSCFirebaseMessagingCoreLoader.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = NSCFirebaseMessagingCoreLoader.h; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCFirebaseMessagingCoreLoader.h"; sourceTree = "<group>"; };
-		0CA3155E2831462CA9DF8EF1 /* NSCFirebaseMessagingCoreLoader.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = NSCFirebaseMessagingCoreLoader.m; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCFirebaseMessagingCoreLoader.m"; sourceTree = "<group>"; };
-		1590973207954BFDA1D39E61 /* TNSWidgets.xcframework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TNSWidgets.xcframework; path = "../../node_modules/@nativescript/core/platforms/ios/TNSWidgets.xcframework"; sourceTree = "<group>"; };
-		18DF0EFA14A0411E988C4149 /* NSCUNUserNotificationCenterDelegate.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = NSCUNUserNotificationCenterDelegate.swift; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCUNUserNotificationCenterDelegate.swift"; sourceTree = "<group>"; };
-		1A7FE1EBE44749928CA1F48A /* NativeScriptUtils.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = NativeScriptUtils.m; path = "../../node_modules/@nativescript/core/platforms/ios/src/NativeScriptUtils.m"; sourceTree = "<group>"; };
-		217BDA114CFCD55F707B1AC5 /* Pods-Ethrainativescript.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ethrainativescript.release.xcconfig"; path = "Target Support Files/Pods-Ethrainativescript/Pods-Ethrainativescript.release.xcconfig"; sourceTree = "<group>"; };
-		284A37F6396B4DB28DF9F214 /* UIView+NativeScript.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "UIView+NativeScript.m"; path = "../../node_modules/@nativescript/core/platforms/ios/src/UIView+NativeScript.m"; sourceTree = "<group>"; };
-		295CC8EEF2B94DB9BC8951F6 /* NSCFirebaseRemoteMessage.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = NSCFirebaseRemoteMessage.swift; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCFirebaseRemoteMessage.swift"; sourceTree = "<group>"; };
-		2AAE137946B94D2C95A6ADCD /* NSCFirebaseMessagingCore.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = NSCFirebaseMessagingCore.m; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCFirebaseMessagingCore.m"; sourceTree = "<group>"; };
-		34F72FFDB1664DAEA791432A /* NSCUIApplicationDelegate.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = NSCUIApplicationDelegate.swift; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCUIApplicationDelegate.swift"; sourceTree = "<group>"; };
-		364F7939835ABD86FB7DC988 /* Pods-Ethrainativescript.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ethrainativescript.debug.xcconfig"; path = "Target Support Files/Pods-Ethrainativescript/Pods-Ethrainativescript.debug.xcconfig"; sourceTree = "<group>"; };
-		36958086FD174BBBA2FB255B /* NativeScriptMainWindow.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = NativeScriptMainWindow.swift; path = "../../node_modules/@nativescript/core/platforms/ios/src/NativeScriptMainWindow.swift"; sourceTree = "<group>"; };
+		044C3D99FC0340959FCD63B5 /* NativeScriptEmbedder.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = NativeScriptEmbedder.m; path = "../../node_modules/@nativescript/core/platforms/ios/src/NativeScriptEmbedder.m"; sourceTree = "<group>"; };
+		0E44FD1EFC5F4D899A4F7452 /* UIApplicationDelegate+LaunchExtension.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "UIApplicationDelegate+LaunchExtension.m"; path = "../../node_modules/@nativescript/firebase-core/platforms/ios/src/UIApplicationDelegate+LaunchExtension.m"; sourceTree = "<group>"; };
+		1026DC0A4D3749AB9B9BB86A /* TNSChart.xcframework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TNSChart.xcframework; path = "../../node_modules/nativescript-ui-chart/platforms/ios/TNSChart.xcframework"; sourceTree = "<group>"; };
+		17742B15F046D9F937269A4C /* Pods-Ethrainativescript.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ethrainativescript.debug.xcconfig"; path = "Target Support Files/Pods-Ethrainativescript/Pods-Ethrainativescript.debug.xcconfig"; sourceTree = "<group>"; };
+		25C841C0F2D04075B3C3C534 /* TNSWidgets.xcframework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TNSWidgets.xcframework; path = "../../node_modules/@nativescript/core/platforms/ios/TNSWidgets.xcframework"; sourceTree = "<group>"; };
+		27E1D789DF104699A2F1481A /* GoogleService-Info.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Ethrainativescript/Resources/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		27F4E500A70D454781FA90C0 /* TNSAutoComplete.xcframework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TNSAutoComplete.xcframework; path = "../../node_modules/nativescript-ui-autocomplete/platforms/ios/TNSAutoComplete.xcframework"; sourceTree = "<group>"; };
+		2903BC20ED8A4020BFB29DF6 /* Assets.xcassets */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Ethrainativescript/Resources/Assets.xcassets; sourceTree = "<group>"; };
+		2A27D7FAE27A4721848F000F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = LaunchScreen.storyboard; path = Ethrainativescript/Resources/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		300F228E66204AF288412F66 /* Pods */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Pods; path = Ethrainativescript/Resources/Pods; sourceTree = "<group>"; };
 		391174B521F1D7BF00BA2583 /* nativescript-build.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "nativescript-build.xcconfig"; path = "internal/nativescript-build.xcconfig"; sourceTree = SOURCE_ROOT; };
 		391174B721F1D99900BA2583 /* plugins-release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "plugins-release.xcconfig"; sourceTree = SOURCE_ROOT; };
 		391174B821F1D99900BA2583 /* plugins-debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "plugins-debug.xcconfig"; sourceTree = SOURCE_ROOT; };
 		39940D8122C4E84C0050DDE1 /* Ethrainativescript.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ethrainativescript.entitlements; sourceTree = "<group>"; };
 		39940D8C22C4EAAA0050DDE1 /* NativeScript.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NativeScript.xcframework; path = internal/NativeScript.xcframework; sourceTree = "<group>"; };
 		39940E1B22C5DFFF0050DDE1 /* TKLiveSync.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TKLiveSync.xcframework; path = internal/TKLiveSync.xcframework; sourceTree = "<group>"; };
+		3DBF55517BD042DD98FB2B59 /* NSCFirebaseRemoteMessage.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = NSCFirebaseRemoteMessage.swift; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCFirebaseRemoteMessage.swift"; sourceTree = "<group>"; };
 		42C751E2232B769100186695 /* nativescript-pre-link */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "nativescript-pre-link"; path = "internal/nativescript-pre-link"; sourceTree = SOURCE_ROOT; };
 		42C751E3232B769100186695 /* strip-dynamic-framework-architectures.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "strip-dynamic-framework-architectures.sh"; path = "internal/strip-dynamic-framework-architectures.sh"; sourceTree = SOURCE_ROOT; };
 		42C751E4232B769100186695 /* nsld.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = nsld.sh; path = internal/nsld.sh; sourceTree = SOURCE_ROOT; };
 		42C751E5232B769100186695 /* nativescript-post-build */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "nativescript-post-build"; path = "internal/nativescript-post-build"; sourceTree = SOURCE_ROOT; };
 		42C751E6232B769100186695 /* nativescript-pre-build */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "nativescript-pre-build"; path = "internal/nativescript-pre-build"; sourceTree = SOURCE_ROOT; };
-		466623BDDD4B4BDE90DE67C2 /* module.modulemap */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/module.modulemap"; sourceTree = "<group>"; };
-		4779BC51EBE444099A0C7CE4 /* TNSFirebaseCore.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = TNSFirebaseCore.m; path = "../../node_modules/@nativescript/firebase-core/platforms/ios/src/TNSFirebaseCore.m"; sourceTree = "<group>"; };
-		4D1F28B9D48B4A4CB7B1FE5B /* Assets.xcassets */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Ethrainativescript/Resources/Assets.xcassets; sourceTree = "<group>"; };
-		58447E8E0253405FB73C734B /* build.xcconfig */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.xcconfig; name = build.xcconfig; path = Ethrainativescript/Resources/build.xcconfig; sourceTree = "<group>"; };
-		74AF6F589AD946149DC59580 /* module.modulemap */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = "../../node_modules/@nativescript/firebase-core/platforms/ios/src/module.modulemap"; sourceTree = "<group>"; };
-		78A1CCD5D867413DBA6F0910 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = LaunchScreen.storyboard; path = Ethrainativescript/Resources/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4B873A4A05C2490AA316F2C5 /* NSCFirebaseMessagingCoreUmbrella.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = NSCFirebaseMessagingCoreUmbrella.h; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCFirebaseMessagingCoreUmbrella.h"; sourceTree = "<group>"; };
+		4FEA11BC6F534E16A5BC9488 /* module.modulemap */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/module.modulemap"; sourceTree = "<group>"; };
+		57BC048C1A1C40429DF65BFB /* TNSListView.xcframework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TNSListView.xcframework; path = "../../node_modules/nativescript-ui-listview/platforms/ios/TNSListView.xcframework"; sourceTree = "<group>"; };
+		65D1735D0651311FFEB664A9 /* Pods_Ethrainativescript.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ethrainativescript.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C577B61D68948E08CDB8816 /* module.modulemap */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = "../../node_modules/@nativescript/core/platforms/ios/src/module.modulemap"; sourceTree = "<group>"; };
+		71C757DDE2174FBAA90C7A61 /* NativeScriptMainWindow.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = NativeScriptMainWindow.swift; path = "../../node_modules/@nativescript/core/platforms/ios/src/NativeScriptMainWindow.swift"; sourceTree = "<group>"; };
+		763E4932CF994FE49ACAAB05 /* NSCFirebaseMessagingCoreLoader.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = NSCFirebaseMessagingCoreLoader.m; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCFirebaseMessagingCoreLoader.m"; sourceTree = "<group>"; };
+		7660B0AA0C934462A5BA6650 /* TNSFirebaseCoreUmbrella.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = TNSFirebaseCoreUmbrella.h; path = "../../node_modules/@nativescript/firebase-core/platforms/ios/src/TNSFirebaseCoreUmbrella.h"; sourceTree = "<group>"; };
+		76CB8295B33A47A49CA208E0 /* NativeScriptEmbedder.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = NativeScriptEmbedder.h; path = "../../node_modules/@nativescript/core/platforms/ios/src/NativeScriptEmbedder.h"; sourceTree = "<group>"; };
+		7AD099A5597E471A8EA075AD /* TNSCore.xcframework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TNSCore.xcframework; path = "../../node_modules/nativescript-ui-core/platforms/ios/TNSCore.xcframework"; sourceTree = "<group>"; };
 		858B832E18CA111C00AB12DE /* Ethrainativescript.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ethrainativescript.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		858B833918CA111C00AB12DE /* Ethrainativescript-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ethrainativescript-Info.plist"; sourceTree = "<group>"; };
 		858B833B18CA111C00AB12DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		858B833F18CA111C00AB12DE /* Ethrainativescript-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ethrainativescript-Prefix.pch"; sourceTree = "<group>"; };
 		858B843318CA22B800AB12DE /* Ethrainativescript.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ethrainativescript.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		87D66AEB681042F0949AD417 /* TNSAutoComplete.xcframework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TNSAutoComplete.xcframework; path = "../../node_modules/nativescript-ui-autocomplete/platforms/ios/TNSAutoComplete.xcframework"; sourceTree = "<group>"; };
-		894CF59DA2924A2E894E5213 /* TNSFirebaseCoreUmbrella.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = TNSFirebaseCoreUmbrella.h; path = "../../node_modules/@nativescript/firebase-core/platforms/ios/src/TNSFirebaseCoreUmbrella.h"; sourceTree = "<group>"; };
-		8C28B1FFD90D463E968DBBC4 /* UIApplicationDelegate+LaunchExtension.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "UIApplicationDelegate+LaunchExtension.m"; path = "../../node_modules/@nativescript/firebase-core/platforms/ios/src/UIApplicationDelegate+LaunchExtension.m"; sourceTree = "<group>"; };
-		914C203E280B42E787F35120 /* NSCWinterTC.xcframework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = NSCWinterTC.xcframework; path = "../../node_modules/@nativescript/core/platforms/ios/NSCWinterTC.xcframework"; sourceTree = "<group>"; };
+		8C5AC85F2A69424BA458F79F /* NSCFirebaseMessagingCore.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = NSCFirebaseMessagingCore.m; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCFirebaseMessagingCore.m"; sourceTree = "<group>"; };
+		8C8A982326314C77A9E7D888 /* NativeScriptUtils.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = NativeScriptUtils.m; path = "../../node_modules/@nativescript/core/platforms/ios/src/NativeScriptUtils.m"; sourceTree = "<group>"; };
+		8EA882C9572A439E912392ED /* NSCFirebaseMessagingCore.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = NSCFirebaseMessagingCore.h; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCFirebaseMessagingCore.h"; sourceTree = "<group>"; };
+		90CB8C7C737049E2BC541DE1 /* NSCFIRMessagingUmbrella.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = NSCFIRMessagingUmbrella.h; path = "../../node_modules/@nativescript/firebase-messaging/platforms/ios/src/NSCFIRMessagingUmbrella.h"; sourceTree = "<group>"; };
+		90F32768B7D049C1807A9347 /* NSCUIApplicationDelegate.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = NSCUIApplicationDelegate.swift; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCUIApplicationDelegate.swift"; sourceTree = "<group>"; };
 		930F05DB22671AE300D269DC /* Swift-ObjC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Swift-ObjC-Bridging-Header.h"; path = "internal/Swift-ObjC-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		965A16E7402448059938A0EF /* app.entitlements */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = text.plist.entitlements; name = app.entitlements; path = Ethrainativescript/Resources/app.entitlements; sourceTree = "<group>"; };
-		98A008AAA1CC48C8A36CF980 /* TNSListView.xcframework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TNSListView.xcframework; path = "../../node_modules/nativescript-ui-listview/platforms/ios/TNSListView.xcframework"; sourceTree = "<group>"; };
-		A343CDD23A03489B9D981AB3 /* NSCFIRMessagingDelegate.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = NSCFIRMessagingDelegate.swift; path = "../../node_modules/@nativescript/firebase-messaging/platforms/ios/src/NSCFIRMessagingDelegate.swift"; sourceTree = "<group>"; };
-		A6A119DA8A3449F28A17B8E6 /* TNSFirebaseCore.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = TNSFirebaseCore.h; path = "../../node_modules/@nativescript/firebase-core/platforms/ios/src/TNSFirebaseCore.h"; sourceTree = "<group>"; };
+		93D1BB67CD764F70B8C95191 /* NativeScriptUtils.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = NativeScriptUtils.h; path = "../../node_modules/@nativescript/core/platforms/ios/src/NativeScriptUtils.h"; sourceTree = "<group>"; };
+		9D729836199A40D38357CF5F /* NSCNotificationHelper.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = NSCNotificationHelper.swift; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCNotificationHelper.swift"; sourceTree = "<group>"; };
+		9FEB1FDB74604C2492E4DA89 /* UIView+NativeScript.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "UIView+NativeScript.m"; path = "../../node_modules/@nativescript/core/platforms/ios/src/UIView+NativeScript.m"; sourceTree = "<group>"; };
+		A03B949A81AC4B77A47D25B9 /* UIApplicationDelegate+LaunchExtension.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "UIApplicationDelegate+LaunchExtension.h"; path = "../../node_modules/@nativescript/firebase-core/platforms/ios/src/UIApplicationDelegate+LaunchExtension.h"; sourceTree = "<group>"; };
+		A0D70F05A2654F1ABCB1F5B5 /* NSCFirebaseMessagingCoreLoader.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = NSCFirebaseMessagingCoreLoader.h; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCFirebaseMessagingCoreLoader.h"; sourceTree = "<group>"; };
+		A25C5D3E3CE647ED8AC62B24 /* UIView+NativeScript.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "UIView+NativeScript.h"; path = "../../node_modules/@nativescript/core/platforms/ios/src/UIView+NativeScript.h"; sourceTree = "<group>"; };
 		AA5E89E22B5C318D008AFA28 /* macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = macros.h; path = internal/macros.h; sourceTree = SOURCE_ROOT; };
 		AAA0AADA2A54B96B00EE55A4 /* NativeScriptStart.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NativeScriptStart.m; path = internal/NativeScriptStart.m; sourceTree = SOURCE_ROOT; };
 		AAA0AADC2A54B97E00EE55A4 /* NativeScriptStart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NativeScriptStart.h; path = internal/NativeScriptStart.h; sourceTree = SOURCE_ROOT; };
-		B72D88C56EC2484189883B28 /* NativeScriptUtils.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = NativeScriptUtils.h; path = "../../node_modules/@nativescript/core/platforms/ios/src/NativeScriptUtils.h"; sourceTree = "<group>"; };
-		C9872570E4B743D18C24327A /* GoogleService-Info.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Ethrainativescript/Resources/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B52EC4D565F847FD98FC62EE /* TNSFirebaseCore.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = TNSFirebaseCore.h; path = "../../node_modules/@nativescript/firebase-core/platforms/ios/src/TNSFirebaseCore.h"; sourceTree = "<group>"; };
+		BD4C262CFBC84040AA366789 /* module.modulemap */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = "../../node_modules/@nativescript/firebase-core/platforms/ios/src/module.modulemap"; sourceTree = "<group>"; };
+		C0B63601934B460882EF7BF5 /* TNSFirebaseCore.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = TNSFirebaseCore.m; path = "../../node_modules/@nativescript/firebase-core/platforms/ios/src/TNSFirebaseCore.m"; sourceTree = "<group>"; };
+		C5A2901A3BD540728CBD8A94 /* ar.lproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = ar.lproj; path = Ethrainativescript/Resources/ar.lproj; sourceTree = "<group>"; };
 		CD45EE7A18DC2D5800FB50C0 /* app */ = {isa = PBXFileReference; lastKnownFileType = folder; path = app; sourceTree = "<group>"; };
 		CD62955C1BB2678900AE3A93 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = internal/main.m; sourceTree = SOURCE_ROOT; };
-		CD9C6B03C8ED4C6ABA9E2D28 /* ar.lproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = ar.lproj; path = Ethrainativescript/Resources/ar.lproj; sourceTree = "<group>"; };
 		CDD59A261BB43B5D00EC2671 /* build-debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "build-debug.xcconfig"; sourceTree = "<group>"; };
 		CDD59A271BB43B5D00EC2671 /* build-release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "build-release.xcconfig"; sourceTree = "<group>"; };
+		CDDC6DE4BBBDC049ECDB2A5C /* Pods-Ethrainativescript.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ethrainativescript.release.xcconfig"; path = "Target Support Files/Pods-Ethrainativescript/Pods-Ethrainativescript.release.xcconfig"; sourceTree = "<group>"; };
 		CDF4743E1BA4855C0087EA85 /* build.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = build.xcconfig; sourceTree = "<group>"; };
-		D240B52BACE14B8A9B973506 /* UIView+NativeScript.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "UIView+NativeScript.h"; path = "../../node_modules/@nativescript/core/platforms/ios/src/UIView+NativeScript.h"; sourceTree = "<group>"; };
-		D9804A0AE95D47CFA3DDE9BD /* module.modulemap */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = "../../node_modules/@nativescript/firebase-messaging/platforms/ios/src/module.modulemap"; sourceTree = "<group>"; };
-		E1928BD6BEB844FBA680A02F /* NativeScriptEmbedder.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = NativeScriptEmbedder.m; path = "../../node_modules/@nativescript/core/platforms/ios/src/NativeScriptEmbedder.m"; sourceTree = "<group>"; };
-		EA585AE9CEF589584E73CA81 /* Pods_Ethrainativescript.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ethrainativescript.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EDDF9DAE06A849EC867A6AB2 /* module.modulemap */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = "../../node_modules/@nativescript/core/platforms/ios/src/module.modulemap"; sourceTree = "<group>"; };
-		F0BF8CC444DC4F8CA17942E1 /* NativeScriptEmbedder.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = NativeScriptEmbedder.h; path = "../../node_modules/@nativescript/core/platforms/ios/src/NativeScriptEmbedder.h"; sourceTree = "<group>"; };
-		F2430CD3FA064F91934BF9F6 /* Pods */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Pods; path = Ethrainativescript/Resources/Pods; sourceTree = "<group>"; };
-		F282BA58BE6D42CA9C449918 /* NSCFIRMessagingUmbrella.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = NSCFIRMessagingUmbrella.h; path = "../../node_modules/@nativescript/firebase-messaging/platforms/ios/src/NSCFIRMessagingUmbrella.h"; sourceTree = "<group>"; };
-		F91B14E4E0294A3BA87CDF4B /* NSCFirebaseMessagingCoreUmbrella.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = NSCFirebaseMessagingCoreUmbrella.h; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCFirebaseMessagingCoreUmbrella.h"; sourceTree = "<group>"; };
-		FCE8BECFB1A940E2BD87B8A5 /* TNSCore.xcframework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TNSCore.xcframework; path = "../../node_modules/nativescript-ui-core/platforms/ios/TNSCore.xcframework"; sourceTree = "<group>"; };
-		FD1502F2D99F4C86AECA7BC7 /* UIApplicationDelegate+LaunchExtension.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "UIApplicationDelegate+LaunchExtension.h"; path = "../../node_modules/@nativescript/firebase-core/platforms/ios/src/UIApplicationDelegate+LaunchExtension.h"; sourceTree = "<group>"; };
+		CFF1FE7BED174A8D847BF3AC /* NSCWinterTC.xcframework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = NSCWinterTC.xcframework; path = "../../node_modules/@nativescript/core/platforms/ios/NSCWinterTC.xcframework"; sourceTree = "<group>"; };
+		D4EF685638FE4509A351FC47 /* build.xcconfig */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.xcconfig; name = build.xcconfig; path = Ethrainativescript/Resources/build.xcconfig; sourceTree = "<group>"; };
+		D53F95BEC8E44CB28E5D095A /* NSCFIRMessagingDelegate.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = NSCFIRMessagingDelegate.swift; path = "../../node_modules/@nativescript/firebase-messaging/platforms/ios/src/NSCFIRMessagingDelegate.swift"; sourceTree = "<group>"; };
+		E34A0A429F19468AA3C4753B /* app.entitlements */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = text.plist.entitlements; name = app.entitlements; path = Ethrainativescript/Resources/app.entitlements; sourceTree = "<group>"; };
+		E94919E633634424B4EFC89E /* NSCUNUserNotificationCenterDelegate.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = NSCUNUserNotificationCenterDelegate.swift; path = "../../node_modules/@nativescript/firebase-messaging-core/platforms/ios/src/NSCUNUserNotificationCenterDelegate.swift"; sourceTree = "<group>"; };
+		FE825ACC9B7541C487BA2D82 /* module.modulemap */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = "../../node_modules/@nativescript/firebase-messaging/platforms/ios/src/module.modulemap"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,67 +145,78 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A20AFA7AD2EB4ACE8039B67A /* NSCWinterTC.xcframework in Frameworks */,
-				1FD9FF1A9A5941AFB0A73EE0 /* TNSWidgets.xcframework in Frameworks */,
-				99E35D4854B646E886B22F58 /* TNSAutoComplete.xcframework in Frameworks */,
-				3F68249E6ED74173BF7B3754 /* TNSChart.xcframework in Frameworks */,
-				5AEA1924DB43466FB9E54675 /* TNSListView.xcframework in Frameworks */,
-				B268938637394870A99486CF /* TNSCore.xcframework in Frameworks */,
-				9755B6D4BF238B4B07BFBACA /* Pods_Ethrainativescript.framework in Frameworks */,
+				F744F7856F124B438531D5A5 /* NSCWinterTC.xcframework in Frameworks */,
+				A26A5AB564CD4965B8259A40 /* TNSWidgets.xcframework in Frameworks */,
+				73F830410AA94EEF91CE9380 /* TNSAutoComplete.xcframework in Frameworks */,
+				3A94965889C0400593C634C5 /* TNSChart.xcframework in Frameworks */,
+				DF1B5B2AB1B444D8A3EFDBB9 /* TNSListView.xcframework in Frameworks */,
+				A96E8341D8714D59AF005B3D /* TNSCore.xcframework in Frameworks */,
+				67A0442076D3A0467FF021C2 /* Pods_Ethrainativescript.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0352A06939654E23AAA5C257 /* nativescript-star-ratings */ = {
+		0D210602BEBC47538469A2C9 /* nativescript-ui-core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "nativescript-ui-core";
+			sourceTree = "<group>";
+		};
+		0F9A08F7D9B94213B5881EAA /* nativescript-star-ratings */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = "nativescript-star-ratings";
 			sourceTree = "<group>";
 		};
-		0361E0FCD9DE49C490154696 /* nativescript-qr-generator */ = {
+		156474C0EF4F4285E938BC1C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				17742B15F046D9F937269A4C /* Pods-Ethrainativescript.debug.xcconfig */,
+				CDDC6DE4BBBDC049ECDB2A5C /* Pods-Ethrainativescript.release.xcconfig */,
 			);
-			name = "nativescript-qr-generator";
+			path = Pods;
 			sourceTree = "<group>";
 		};
-		0EFDE9453FAD40B9939EF81D /* @nativescript-community/ui-material-core */ = {
+		207D06EE1548427E9B706797 /* @nativescript/firebase-messaging */ = {
+			isa = PBXGroup;
+			children = (
+				D53F95BEC8E44CB28E5D095A /* NSCFIRMessagingDelegate.swift */,
+				90CB8C7C737049E2BC541DE1 /* NSCFIRMessagingUmbrella.h */,
+				FE825ACC9B7541C487BA2D82 /* module.modulemap */,
+			);
+			name = "@nativescript/firebase-messaging";
+			sourceTree = "<group>";
+		};
+		24D1564DC9D344A5B2A1F617 /* @nativescript-community/ui-material-core */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = "@nativescript-community/ui-material-core";
 			sourceTree = "<group>";
 		};
-		213C538893E24945B15F0525 /* nativescript-iqkeyboardmanager */ = {
+		293454A23AC941288BD274BC /* nativescript-ui-autocomplete */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = "nativescript-iqkeyboardmanager";
+			name = "nativescript-ui-autocomplete";
 			sourceTree = "<group>";
 		};
-		25C9217FAEFB4863ADDB1B6C /* @nativescript/firebase-auth */ = {
+		29C1A08B01C64BD09EB74D4E /* @nativescript/firebase-auth */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = "@nativescript/firebase-auth";
 			sourceTree = "<group>";
 		};
-		25FB51CA2BB648C8BC58377A /* @nativescript/core */ = {
+		37134E3B2D3447129EE51BDB /* nativescript-iqkeyboardmanager */ = {
 			isa = PBXGroup;
 			children = (
-				F0BF8CC444DC4F8CA17942E1 /* NativeScriptEmbedder.h */,
-				E1928BD6BEB844FBA680A02F /* NativeScriptEmbedder.m */,
-				36958086FD174BBBA2FB255B /* NativeScriptMainWindow.swift */,
-				B72D88C56EC2484189883B28 /* NativeScriptUtils.h */,
-				1A7FE1EBE44749928CA1F48A /* NativeScriptUtils.m */,
-				D240B52BACE14B8A9B973506 /* UIView+NativeScript.h */,
-				284A37F6396B4DB28DF9F214 /* UIView+NativeScript.m */,
-				EDDF9DAE06A849EC867A6AB2 /* module.modulemap */,
 			);
-			name = "@nativescript/core";
+			name = "nativescript-iqkeyboardmanager";
 			sourceTree = "<group>";
 		};
 		39940D8E22C4EBCC0050DDE1 /* Sources */ = {
@@ -220,6 +231,13 @@
 			name = Sources;
 			sourceTree = "<group>";
 		};
+		3C2038C9CCA743F9B9349E99 /* @nativescript-community/ui-material-slider */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "@nativescript-community/ui-material-slider";
+			sourceTree = "<group>";
+		};
 		42C751E1232B767700186695 /* Build Scripts */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,59 +250,47 @@
 			name = "Build Scripts";
 			sourceTree = "<group>";
 		};
-		49C93380CA484107B667AE52 /* @nativescript-community/ui-material-slider */ = {
+		4F7E11213DB94EA2A3113B1B /* @nativescript/core */ = {
 			isa = PBXGroup;
 			children = (
+				76CB8295B33A47A49CA208E0 /* NativeScriptEmbedder.h */,
+				044C3D99FC0340959FCD63B5 /* NativeScriptEmbedder.m */,
+				71C757DDE2174FBAA90C7A61 /* NativeScriptMainWindow.swift */,
+				93D1BB67CD764F70B8C95191 /* NativeScriptUtils.h */,
+				8C8A982326314C77A9E7D888 /* NativeScriptUtils.m */,
+				A25C5D3E3CE647ED8AC62B24 /* UIView+NativeScript.h */,
+				9FEB1FDB74604C2492E4DA89 /* UIView+NativeScript.m */,
+				6C577B61D68948E08CDB8816 /* module.modulemap */,
 			);
-			name = "@nativescript-community/ui-material-slider";
+			name = "@nativescript/core";
 			sourceTree = "<group>";
 		};
-		519EFBAE48914B73A2240EB4 /* @nativescript/firebase-analytics */ = {
+		51962123C12B469F9030EEC4 /* @nativescript-community/ui-material-tabs */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = "@nativescript/firebase-analytics";
+			name = "@nativescript-community/ui-material-tabs";
 			sourceTree = "<group>";
 		};
-		563625E3190B4ED0900FBCC8 /* @nativescript/firebase-messaging-core */ = {
+		52B3A93961494F45AA35DE89 /* @nativescript/imagepicker */ = {
 			isa = PBXGroup;
 			children = (
-				080919139D2B4BC390F0E9DA /* NSCFirebaseMessagingCore.h */,
-				2AAE137946B94D2C95A6ADCD /* NSCFirebaseMessagingCore.m */,
-				080D3B5696AC43A68C7331E7 /* NSCFirebaseMessagingCoreLoader.h */,
-				0CA3155E2831462CA9DF8EF1 /* NSCFirebaseMessagingCoreLoader.m */,
-				F91B14E4E0294A3BA87CDF4B /* NSCFirebaseMessagingCoreUmbrella.h */,
-				295CC8EEF2B94DB9BC8951F6 /* NSCFirebaseRemoteMessage.swift */,
-				0522AACAB30E4FB2878FD2B6 /* NSCNotificationHelper.swift */,
-				34F72FFDB1664DAEA791432A /* NSCUIApplicationDelegate.swift */,
-				18DF0EFA14A0411E988C4149 /* NSCUNUserNotificationCenterDelegate.swift */,
-				466623BDDD4B4BDE90DE67C2 /* module.modulemap */,
 			);
-			name = "@nativescript/firebase-messaging-core";
+			name = "@nativescript/imagepicker";
 			sourceTree = "<group>";
 		};
-		58B21987AEA44F5FB7F908B1 /* nativescript-ui-listview */ = {
+		61EAB904DD2048A19F4D033F /* @nativescript/fingerprint-auth */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = "nativescript-ui-listview";
+			name = "@nativescript/fingerprint-auth";
 			sourceTree = "<group>";
 		};
-		62BFE4A14DFD4C14AD5849EA /* @nstudio/nativescript-checkbox */ = {
+		78D5F56BFEB049BEA6DC3226 /* nativescript-store-ratings */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = "@nstudio/nativescript-checkbox";
-			sourceTree = "<group>";
-		};
-		678B0BA3D2C347FCA734DD2C /* @nativescript/firebase-messaging */ = {
-			isa = PBXGroup;
-			children = (
-				A343CDD23A03489B9D981AB3 /* NSCFIRMessagingDelegate.swift */,
-				F282BA58BE6D42CA9C449918 /* NSCFIRMessagingUmbrella.h */,
-				D9804A0AE95D47CFA3DDE9BD /* module.modulemap */,
-			);
-			name = "@nativescript/firebase-messaging";
+			name = "nativescript-store-ratings";
 			sourceTree = "<group>";
 		};
 		858B832518CA111C00AB12DE = {
@@ -294,32 +300,32 @@
 				858B833718CA111C00AB12DE /* Ethrainativescript */,
 				858B833018CA111C00AB12DE /* Frameworks */,
 				858B832F18CA111C00AB12DE /* Products */,
-				FD1EACD1BCCD4704866B1E47 /* AppResourcesSrc */,
-				0EFDE9453FAD40B9939EF81D /* @nativescript-community/ui-material-core */,
-				49C93380CA484107B667AE52 /* @nativescript-community/ui-material-slider */,
-				F954E21E7DD540A28F7EA5FE /* @nativescript-community/ui-material-tabs */,
-				FC9D532C719346B89BC7F2C8 /* @nativescript/animated-circle */,
-				25FB51CA2BB648C8BC58377A /* @nativescript/core */,
-				AE5612B210EA48A08367E5D4 /* @nativescript/fingerprint-auth */,
-				519EFBAE48914B73A2240EB4 /* @nativescript/firebase-analytics */,
-				25C9217FAEFB4863ADDB1B6C /* @nativescript/firebase-auth */,
-				9AE17F42D69E43F7A59ED92C /* @nativescript/firebase-core */,
-				678B0BA3D2C347FCA734DD2C /* @nativescript/firebase-messaging */,
-				AC3283D916234C07933599DF /* @nativescript/imagepicker */,
-				62BFE4A14DFD4C14AD5849EA /* @nstudio/nativescript-checkbox */,
-				D458A0D6DDB44471A631C21E /* @triniwiz/nativescript-star-ratings */,
-				CCA92FBC87A04CDF87259CA9 /* nativescript-in-app-purchase */,
-				A9BE66D251CC4F9AA09ED9F1 /* nativescript-inappbrowser */,
-				213C538893E24945B15F0525 /* nativescript-iqkeyboardmanager */,
-				0361E0FCD9DE49C490154696 /* nativescript-qr-generator */,
-				0352A06939654E23AAA5C257 /* nativescript-star-ratings */,
-				914C1251B6674ED6B764BF9E /* nativescript-store-ratings */,
-				CA6718E636CB4B97B2454A05 /* nativescript-ui-autocomplete */,
-				B7560095968047E8A1BCFC45 /* nativescript-ui-chart */,
-				58B21987AEA44F5FB7F908B1 /* nativescript-ui-listview */,
-				563625E3190B4ED0900FBCC8 /* @nativescript/firebase-messaging-core */,
-				B1436B0DB83344F9AA64C4CC /* nativescript-ui-core */,
-				FA7F55A8A2096CE1731D261D /* Pods */,
+				9F5FAB592DE84367986D3AC2 /* AppResourcesSrc */,
+				24D1564DC9D344A5B2A1F617 /* @nativescript-community/ui-material-core */,
+				3C2038C9CCA743F9B9349E99 /* @nativescript-community/ui-material-slider */,
+				51962123C12B469F9030EEC4 /* @nativescript-community/ui-material-tabs */,
+				8D6740A96FD44DC88957B573 /* @nativescript/animated-circle */,
+				4F7E11213DB94EA2A3113B1B /* @nativescript/core */,
+				61EAB904DD2048A19F4D033F /* @nativescript/fingerprint-auth */,
+				FE473658CC99457BAA611678 /* @nativescript/firebase-analytics */,
+				29C1A08B01C64BD09EB74D4E /* @nativescript/firebase-auth */,
+				E8EAB007BE4242B3ABE0EA36 /* @nativescript/firebase-core */,
+				207D06EE1548427E9B706797 /* @nativescript/firebase-messaging */,
+				52B3A93961494F45AA35DE89 /* @nativescript/imagepicker */,
+				F408BD2C30274985A7BDC476 /* @nstudio/nativescript-checkbox */,
+				98BD0DC2C61E454A85E8ABC4 /* @triniwiz/nativescript-star-ratings */,
+				94AE5727852F4862A4153043 /* nativescript-in-app-purchase */,
+				FDF3886251D040F39078D42F /* nativescript-inappbrowser */,
+				37134E3B2D3447129EE51BDB /* nativescript-iqkeyboardmanager */,
+				8A6819FE807649248F1149BD /* nativescript-qr-generator */,
+				0F9A08F7D9B94213B5881EAA /* nativescript-star-ratings */,
+				78D5F56BFEB049BEA6DC3226 /* nativescript-store-ratings */,
+				293454A23AC941288BD274BC /* nativescript-ui-autocomplete */,
+				F32C36C817D246DEA4CED9C0 /* nativescript-ui-chart */,
+				B8B2756663F743BB85FA6732 /* nativescript-ui-listview */,
+				FCA9622C0EBD4E4AB8971B3A /* @nativescript/firebase-messaging-core */,
+				0D210602BEBC47538469A2C9 /* nativescript-ui-core */,
+				156474C0EF4F4285E938BC1C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -337,13 +343,13 @@
 			children = (
 				39940E1B22C5DFFF0050DDE1 /* TKLiveSync.xcframework */,
 				39940D8C22C4EAAA0050DDE1 /* NativeScript.xcframework */,
-				914C203E280B42E787F35120 /* NSCWinterTC.xcframework */,
-				1590973207954BFDA1D39E61 /* TNSWidgets.xcframework */,
-				87D66AEB681042F0949AD417 /* TNSAutoComplete.xcframework */,
-				010082F48E4A45E7A93D5A6F /* TNSChart.xcframework */,
-				98A008AAA1CC48C8A36CF980 /* TNSListView.xcframework */,
-				FCE8BECFB1A940E2BD87B8A5 /* TNSCore.xcframework */,
-				EA585AE9CEF589584E73CA81 /* Pods_Ethrainativescript.framework */,
+				CFF1FE7BED174A8D847BF3AC /* NSCWinterTC.xcframework */,
+				25C841C0F2D04075B3C3C534 /* TNSWidgets.xcframework */,
+				27F4E500A70D454781FA90C0 /* TNSAutoComplete.xcframework */,
+				1026DC0A4D3749AB9B9BB86A /* TNSChart.xcframework */,
+				57BC048C1A1C40429DF65BFB /* TNSListView.xcframework */,
+				7AD099A5597E471A8EA075AD /* TNSCore.xcframework */,
+				65D1735D0651311FFEB664A9 /* Pods_Ethrainativescript.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -376,124 +382,118 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		914C1251B6674ED6B764BF9E /* nativescript-store-ratings */ = {
+		8A6819FE807649248F1149BD /* nativescript-qr-generator */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = "nativescript-store-ratings";
+			name = "nativescript-qr-generator";
 			sourceTree = "<group>";
 		};
-		9AE17F42D69E43F7A59ED92C /* @nativescript/firebase-core */ = {
-			isa = PBXGroup;
-			children = (
-				A6A119DA8A3449F28A17B8E6 /* TNSFirebaseCore.h */,
-				4779BC51EBE444099A0C7CE4 /* TNSFirebaseCore.m */,
-				894CF59DA2924A2E894E5213 /* TNSFirebaseCoreUmbrella.h */,
-				FD1502F2D99F4C86AECA7BC7 /* UIApplicationDelegate+LaunchExtension.h */,
-				8C28B1FFD90D463E968DBBC4 /* UIApplicationDelegate+LaunchExtension.m */,
-				74AF6F589AD946149DC59580 /* module.modulemap */,
-			);
-			name = "@nativescript/firebase-core";
-			sourceTree = "<group>";
-		};
-		A9BE66D251CC4F9AA09ED9F1 /* nativescript-inappbrowser */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "nativescript-inappbrowser";
-			sourceTree = "<group>";
-		};
-		AC3283D916234C07933599DF /* @nativescript/imagepicker */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "@nativescript/imagepicker";
-			sourceTree = "<group>";
-		};
-		AE5612B210EA48A08367E5D4 /* @nativescript/fingerprint-auth */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "@nativescript/fingerprint-auth";
-			sourceTree = "<group>";
-		};
-		B1436B0DB83344F9AA64C4CC /* nativescript-ui-core */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "nativescript-ui-core";
-			sourceTree = "<group>";
-		};
-		B7560095968047E8A1BCFC45 /* nativescript-ui-chart */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "nativescript-ui-chart";
-			sourceTree = "<group>";
-		};
-		CA6718E636CB4B97B2454A05 /* nativescript-ui-autocomplete */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "nativescript-ui-autocomplete";
-			sourceTree = "<group>";
-		};
-		CCA92FBC87A04CDF87259CA9 /* nativescript-in-app-purchase */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "nativescript-in-app-purchase";
-			sourceTree = "<group>";
-		};
-		D458A0D6DDB44471A631C21E /* @triniwiz/nativescript-star-ratings */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "@triniwiz/nativescript-star-ratings";
-			sourceTree = "<group>";
-		};
-		E070579D1B39A9D000214BF1 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				4D1F28B9D48B4A4CB7B1FE5B /* Assets.xcassets */,
-				C9872570E4B743D18C24327A /* GoogleService-Info.plist */,
-				78A1CCD5D867413DBA6F0910 /* LaunchScreen.storyboard */,
-				F2430CD3FA064F91934BF9F6 /* Pods */,
-				965A16E7402448059938A0EF /* app.entitlements */,
-				CD9C6B03C8ED4C6ABA9E2D28 /* ar.lproj */,
-				58447E8E0253405FB73C734B /* build.xcconfig */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		F954E21E7DD540A28F7EA5FE /* @nativescript-community/ui-material-tabs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "@nativescript-community/ui-material-tabs";
-			sourceTree = "<group>";
-		};
-		FA7F55A8A2096CE1731D261D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				364F7939835ABD86FB7DC988 /* Pods-Ethrainativescript.debug.xcconfig */,
-				217BDA114CFCD55F707B1AC5 /* Pods-Ethrainativescript.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		FC9D532C719346B89BC7F2C8 /* @nativescript/animated-circle */ = {
+		8D6740A96FD44DC88957B573 /* @nativescript/animated-circle */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = "@nativescript/animated-circle";
 			sourceTree = "<group>";
 		};
-		FD1EACD1BCCD4704866B1E47 /* AppResourcesSrc */ = {
+		94AE5727852F4862A4153043 /* nativescript-in-app-purchase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "nativescript-in-app-purchase";
+			sourceTree = "<group>";
+		};
+		98BD0DC2C61E454A85E8ABC4 /* @triniwiz/nativescript-star-ratings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "@triniwiz/nativescript-star-ratings";
+			sourceTree = "<group>";
+		};
+		9F5FAB592DE84367986D3AC2 /* AppResourcesSrc */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = AppResourcesSrc;
+			sourceTree = "<group>";
+		};
+		B8B2756663F743BB85FA6732 /* nativescript-ui-listview */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "nativescript-ui-listview";
+			sourceTree = "<group>";
+		};
+		E070579D1B39A9D000214BF1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2903BC20ED8A4020BFB29DF6 /* Assets.xcassets */,
+				27E1D789DF104699A2F1481A /* GoogleService-Info.plist */,
+				2A27D7FAE27A4721848F000F /* LaunchScreen.storyboard */,
+				300F228E66204AF288412F66 /* Pods */,
+				E34A0A429F19468AA3C4753B /* app.entitlements */,
+				C5A2901A3BD540728CBD8A94 /* ar.lproj */,
+				D4EF685638FE4509A351FC47 /* build.xcconfig */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		E8EAB007BE4242B3ABE0EA36 /* @nativescript/firebase-core */ = {
+			isa = PBXGroup;
+			children = (
+				B52EC4D565F847FD98FC62EE /* TNSFirebaseCore.h */,
+				C0B63601934B460882EF7BF5 /* TNSFirebaseCore.m */,
+				7660B0AA0C934462A5BA6650 /* TNSFirebaseCoreUmbrella.h */,
+				A03B949A81AC4B77A47D25B9 /* UIApplicationDelegate+LaunchExtension.h */,
+				0E44FD1EFC5F4D899A4F7452 /* UIApplicationDelegate+LaunchExtension.m */,
+				BD4C262CFBC84040AA366789 /* module.modulemap */,
+			);
+			name = "@nativescript/firebase-core";
+			sourceTree = "<group>";
+		};
+		F32C36C817D246DEA4CED9C0 /* nativescript-ui-chart */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "nativescript-ui-chart";
+			sourceTree = "<group>";
+		};
+		F408BD2C30274985A7BDC476 /* @nstudio/nativescript-checkbox */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "@nstudio/nativescript-checkbox";
+			sourceTree = "<group>";
+		};
+		FCA9622C0EBD4E4AB8971B3A /* @nativescript/firebase-messaging-core */ = {
+			isa = PBXGroup;
+			children = (
+				8EA882C9572A439E912392ED /* NSCFirebaseMessagingCore.h */,
+				8C5AC85F2A69424BA458F79F /* NSCFirebaseMessagingCore.m */,
+				A0D70F05A2654F1ABCB1F5B5 /* NSCFirebaseMessagingCoreLoader.h */,
+				763E4932CF994FE49ACAAB05 /* NSCFirebaseMessagingCoreLoader.m */,
+				4B873A4A05C2490AA316F2C5 /* NSCFirebaseMessagingCoreUmbrella.h */,
+				3DBF55517BD042DD98FB2B59 /* NSCFirebaseRemoteMessage.swift */,
+				9D729836199A40D38357CF5F /* NSCNotificationHelper.swift */,
+				90F32768B7D049C1807A9347 /* NSCUIApplicationDelegate.swift */,
+				E94919E633634424B4EFC89E /* NSCUNUserNotificationCenterDelegate.swift */,
+				4FEA11BC6F534E16A5BC9488 /* module.modulemap */,
+			);
+			name = "@nativescript/firebase-messaging-core";
+			sourceTree = "<group>";
+		};
+		FDF3886251D040F39078D42F /* nativescript-inappbrowser */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "nativescript-inappbrowser";
+			sourceTree = "<group>";
+		};
+		FE473658CC99457BAA611678 /* @nativescript/firebase-analytics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "@nativescript/firebase-analytics";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,7 +503,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 858B843018CA22B800AB12DE /* Build configuration list for PBXNativeTarget "Ethrainativescript" */;
 			buildPhases = (
-				348593C0E4877F627D4011B6 /* [CP] Check Pods Manifest.lock */,
+				16842DDFE3554090B55327A1 /* [CP] Check Pods Manifest.lock */,
 				C97FD7AC1ADE5369004DB2A4 /* NativeScript PreBuild */,
 				858B83F218CA22B800AB12DE /* Sources */,
 				CD62955B1BB2651D00AE3A93 /* NativeScript PreLink */,
@@ -511,7 +511,7 @@
 				858B842C18CA22B800AB12DE /* Resources */,
 				85F5BDFC1A9363BE006B9701 /* Embed Frameworks */,
 				CD3EAD351B05FF060042DBFC /* NativeScript PostBuild */,
-				BC5376C981B07BCE5D7EB5E7 /* [CP] Embed Pods Frameworks */,
+				2D2FA52C2BA6CD6591D6B15B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -564,20 +564,20 @@
 			files = (
 				CD45EE7C18DC2D5800FB50C0 /* app in Resources */,
 				858B842D18CA22B800AB12DE /* InfoPlist.strings in Resources */,
-				A160B3AF240C40FC961B61C5 /* Assets.xcassets in Resources */,
-				4A187FA74CB34ACA8D38F12C /* GoogleService-Info.plist in Resources */,
-				0CD79A1F8CCE4F1CAC4A8D0A /* LaunchScreen.storyboard in Resources */,
-				9FC0B3F9F79E46EBAE7D5798 /* Pods in Resources */,
-				D79D2C2F756C402498139597 /* app.entitlements in Resources */,
-				815B1ADFB6CB4873AE38835D /* ar.lproj in Resources */,
-				D2E9EB3BA3344B53A99A4A77 /* build.xcconfig in Resources */,
+				049B8AC7FB404D75B62848CE /* Assets.xcassets in Resources */,
+				7D9CDC3300554BF5A61A07FF /* GoogleService-Info.plist in Resources */,
+				7A3E3A311DBD4D5E84CD3C08 /* LaunchScreen.storyboard in Resources */,
+				9AE731C5C9134335AB5C00BB /* Pods in Resources */,
+				042AFC5F88F641CFAE91C136 /* app.entitlements in Resources */,
+				B9F575F6C3534F41A5DFC3D6 /* ar.lproj in Resources */,
+				6A38F1BFBB374FBDA74A2D1A /* build.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		348593C0E4877F627D4011B6 /* [CP] Check Pods Manifest.lock */ = {
+		16842DDFE3554090B55327A1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -599,7 +599,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BC5376C981B07BCE5D7EB5E7 /* [CP] Embed Pods Frameworks */ = {
+		2D2FA52C2BA6CD6591D6B15B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -722,19 +722,19 @@
 			files = (
 				CD62955D1BB2678900AE3A93 /* main.m in Sources */,
 				AAA0AADB2A54B96B00EE55A4 /* NativeScriptStart.m in Sources */,
-				3D21E62AB2094F6AB4D9F09E /* NativeScriptEmbedder.m in Sources */,
-				1F81201DA8824A37B997AE29 /* NativeScriptMainWindow.swift in Sources */,
-				B100E806B5DC4D31B83C46E2 /* NativeScriptUtils.m in Sources */,
-				BAC3546E29064B87B803A2A3 /* UIView+NativeScript.m in Sources */,
-				28F76C77724A4BC5B0EED0CD /* TNSFirebaseCore.m in Sources */,
-				3C4E9CA391AD4C1D9E326DB8 /* UIApplicationDelegate+LaunchExtension.m in Sources */,
-				5EF91C6A1A2C427B8C21DD97 /* NSCFIRMessagingDelegate.swift in Sources */,
-				58DF24E445C54822A0C3619C /* NSCFirebaseMessagingCore.m in Sources */,
-				241CF03C4005432F938BC487 /* NSCFirebaseMessagingCoreLoader.m in Sources */,
-				E1D4884DAA014D0D803CEC56 /* NSCFirebaseRemoteMessage.swift in Sources */,
-				B5E0945FCF6544B293FD5964 /* NSCNotificationHelper.swift in Sources */,
-				DFB0ADB0940647218269AF22 /* NSCUIApplicationDelegate.swift in Sources */,
-				9D1D62732FB84EA8A93367F6 /* NSCUNUserNotificationCenterDelegate.swift in Sources */,
+				1E188E4327AF47B1AE20F55F /* NativeScriptEmbedder.m in Sources */,
+				AE1C9FFA5C11493BAF44E5A0 /* NativeScriptMainWindow.swift in Sources */,
+				A6D8D29C24AA48FAB16C92C4 /* NativeScriptUtils.m in Sources */,
+				8159B8BB0D844BA7BBC320D3 /* UIView+NativeScript.m in Sources */,
+				6E949AC6C33F4C3ABD57A6C0 /* TNSFirebaseCore.m in Sources */,
+				AFD4410AABD4444A9F8F143E /* UIApplicationDelegate+LaunchExtension.m in Sources */,
+				9EC9ABEEFE104840A2ECCEE1 /* NSCFIRMessagingDelegate.swift in Sources */,
+				E5323A0F791B492AA716588C /* NSCFirebaseMessagingCore.m in Sources */,
+				128DCC966EDA46998AB5C3A9 /* NSCFirebaseMessagingCoreLoader.m in Sources */,
+				FC5AA858C4E24B31A49BBA8E /* NSCFirebaseRemoteMessage.swift in Sources */,
+				B3CF28BE544F4DC4B5F3FD09 /* NSCNotificationHelper.swift in Sources */,
+				C1BD4180457C42EA9F7C0EA3 /* NSCUIApplicationDelegate.swift in Sources */,
+				EA807CBB0A9F4F07B91ECCBB /* NSCUNUserNotificationCenterDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1171,7 +1171,7 @@
 #import "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/System/Library/Frameworks/CoreTransferable.framework/Headers/CoreTransferable.h"
 #import "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/System/Library/Frameworks/CoreImage.framework/Headers/CoreImage.h"
 #import "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/System/Library/Frameworks/CoreImage.framework/Headers/CIFilterBuiltins.h"
-#import "/Users/react/Library/Developer/Xcode/DerivedData/Ethrainativescript-fxtkkwjniwlindcugsuwsittvebn/Build/Intermediates.noindex/Ethrainativescript.build/Debug-iphonesimulator/Ethrainativescript.build/Objects-normal/x86_64/Ethrainativescript-Swift.h"
+#import "/Users/react/Library/Developer/Xcode/DerivedData/Ethrainativescript-fxtkkwjniwlindcugsuwsittvebn/Build/Intermediates.noindex/Ethrainativescript.build/Debug-iphonesimulator/Ethrainativescript.build/Objects-normal/arm64/Ethrainativescript-Swift.h"
 #import "/Users/react/Downloads/Ethrai-native-script/platforms/ios/build/Debug-iphonesimulator/XCFrameworkIntermediates/FirebaseAnalytics/AdIdSupport/FirebaseAnalytics.framework/Headers/FirebaseAnalytics-Swift.h"
 #import "/Users/react/Downloads/Ethrai-native-script/platforms/ios/build/Debug-iphonesimulator/FirebaseAuth/FirebaseAuth.framework/Headers/FirebaseAuth-Swift.h"
 #import "/Users/react/Downloads/Ethrai-native-script/platforms/ios/build/Debug-iphonesimulator/FirebaseCoreInternal/FirebaseCoreInternal.framework/Headers/FirebaseCoreInternal-Swift.h"

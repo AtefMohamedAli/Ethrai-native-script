@@ -1,101 +1,101 @@
 {
-  "FD1EACD1BCCD4704866B1E47": {
+  "9F5FAB592DE84367986D3AC2": {
     "path": "/Users/react/Downloads/Ethrai-native-script/App_Resources/iOS/src",
     "name": "AppResourcesSrc"
   },
-  "0EFDE9453FAD40B9939EF81D": {
+  "24D1564DC9D344A5B2A1F617": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/@nativescript-community/ui-material-core/platforms/ios/src",
     "name": "@nativescript-community/ui-material-core"
   },
-  "49C93380CA484107B667AE52": {
+  "3C2038C9CCA743F9B9349E99": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/@nativescript-community/ui-material-slider/platforms/ios/src",
     "name": "@nativescript-community/ui-material-slider"
   },
-  "F954E21E7DD540A28F7EA5FE": {
+  "51962123C12B469F9030EEC4": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/@nativescript-community/ui-material-tabs/platforms/ios/src",
     "name": "@nativescript-community/ui-material-tabs"
   },
-  "FC9D532C719346B89BC7F2C8": {
+  "8D6740A96FD44DC88957B573": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/@nativescript/animated-circle/platforms/ios/src",
     "name": "@nativescript/animated-circle"
   },
-  "25FB51CA2BB648C8BC58377A": {
+  "4F7E11213DB94EA2A3113B1B": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/@nativescript/core/platforms/ios/src",
     "name": "@nativescript/core"
   },
-  "AE5612B210EA48A08367E5D4": {
+  "61EAB904DD2048A19F4D033F": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/@nativescript/fingerprint-auth/platforms/ios/src",
     "name": "@nativescript/fingerprint-auth"
   },
-  "519EFBAE48914B73A2240EB4": {
+  "FE473658CC99457BAA611678": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/@nativescript/firebase-analytics/platforms/ios/src",
     "name": "@nativescript/firebase-analytics"
   },
-  "25C9217FAEFB4863ADDB1B6C": {
+  "29C1A08B01C64BD09EB74D4E": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/@nativescript/firebase-auth/platforms/ios/src",
     "name": "@nativescript/firebase-auth"
   },
-  "9AE17F42D69E43F7A59ED92C": {
+  "E8EAB007BE4242B3ABE0EA36": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/@nativescript/firebase-core/platforms/ios/src",
     "name": "@nativescript/firebase-core"
   },
-  "678B0BA3D2C347FCA734DD2C": {
+  "207D06EE1548427E9B706797": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/@nativescript/firebase-messaging/platforms/ios/src",
     "name": "@nativescript/firebase-messaging"
   },
-  "AC3283D916234C07933599DF": {
+  "52B3A93961494F45AA35DE89": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/@nativescript/imagepicker/platforms/ios/src",
     "name": "@nativescript/imagepicker"
   },
-  "62BFE4A14DFD4C14AD5849EA": {
+  "F408BD2C30274985A7BDC476": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/@nstudio/nativescript-checkbox/platforms/ios/src",
     "name": "@nstudio/nativescript-checkbox"
   },
-  "D458A0D6DDB44471A631C21E": {
+  "98BD0DC2C61E454A85E8ABC4": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/@triniwiz/nativescript-star-ratings/platforms/ios/src",
     "name": "@triniwiz/nativescript-star-ratings"
   },
-  "CCA92FBC87A04CDF87259CA9": {
+  "94AE5727852F4862A4153043": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/nativescript-in-app-purchase/platforms/ios/src",
     "name": "nativescript-in-app-purchase"
   },
-  "A9BE66D251CC4F9AA09ED9F1": {
+  "FDF3886251D040F39078D42F": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/nativescript-inappbrowser/platforms/ios/src",
     "name": "nativescript-inappbrowser"
   },
-  "213C538893E24945B15F0525": {
+  "37134E3B2D3447129EE51BDB": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/nativescript-iqkeyboardmanager/platforms/ios/src",
     "name": "nativescript-iqkeyboardmanager"
   },
-  "0361E0FCD9DE49C490154696": {
+  "8A6819FE807649248F1149BD": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/nativescript-qr-generator/platforms/ios/src",
     "name": "nativescript-qr-generator"
   },
-  "0352A06939654E23AAA5C257": {
+  "0F9A08F7D9B94213B5881EAA": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/nativescript-star-ratings/platforms/ios/src",
     "name": "nativescript-star-ratings"
   },
-  "914C1251B6674ED6B764BF9E": {
+  "78D5F56BFEB049BEA6DC3226": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/nativescript-store-ratings/platforms/ios/src",
     "name": "nativescript-store-ratings"
   },
-  "CA6718E636CB4B97B2454A05": {
+  "293454A23AC941288BD274BC": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/nativescript-ui-autocomplete/platforms/ios/src",
     "name": "nativescript-ui-autocomplete"
   },
-  "B7560095968047E8A1BCFC45": {
+  "F32C36C817D246DEA4CED9C0": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/nativescript-ui-chart/platforms/ios/src",
     "name": "nativescript-ui-chart"
   },
-  "58B21987AEA44F5FB7F908B1": {
+  "B8B2756663F743BB85FA6732": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/nativescript-ui-listview/platforms/ios/src",
     "name": "nativescript-ui-listview"
   },
-  "563625E3190B4ED0900FBCC8": {
+  "FCA9622C0EBD4E4AB8971B3A": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/@nativescript/firebase-messaging-core/platforms/ios/src",
     "name": "@nativescript/firebase-messaging-core"
   },
-  "B1436B0DB83344F9AA64C4CC": {
+  "0D210602BEBC47538469A2C9": {
     "path": "/Users/react/Downloads/Ethrai-native-script/node_modules/nativescript-ui-core/platforms/ios/src",
     "name": "nativescript-ui-core"
   }
