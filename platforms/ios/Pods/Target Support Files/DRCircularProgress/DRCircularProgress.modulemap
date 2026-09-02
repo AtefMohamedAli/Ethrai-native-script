@@ -1,6 +1,0 @@
-framework module DRCircularProgress {
-  umbrella header "DRCircularProgress-umbrella.h"
-
-  export *
-  module * { export * }
-}
