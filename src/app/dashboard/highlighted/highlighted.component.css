@@ -1,5 +1,10 @@
 @import './saudi-theme.css';
 
+.whiteback,
+.saudi-home {
+  background-color: #F8F5F4;
+}
+
 .fav-icon {
   text-shadow: 0 0 1 2 #166A45;
 }

@@ -90,6 +90,7 @@ import { NativeScriptMaterialSliderModule } from "@nativescript-community/ui-mat
 import { WebinarFilterComponent } from './dashboard/webinar-filter/webinar-filter.component';
 import { ProductFeedbackComponent } from './dashboard/product-feedback/product-feedback.component';
 import { PriceTemplateComponent } from './dashboard/price-template/price-template.component';
+import { SaudiDividerComponent } from './dashboard/saudi-divider/saudi-divider.component';
 import { NativeScriptAnimationsModule } from "@nativescript/angular";
 
 import { NativeScriptAnimatedCircleModule } from '@nativescript/animated-circle/angular';
@@ -128,7 +129,7 @@ import '@angular/compiler';
     NotificationsComponent, AboutEthraiComponent, MyProductsComponent, FavoritesComponent, DownloadedComponent, BookmarksComponent, TraingCourseComponent, ChangePasswordComponent, ShoppingCartComponent, CheckoutComponent, CourseDetailsComponent,
     CertificatesComponent, PurchasesComponent, DetailsTreeComponent, PaymentSuccessComponent, PaymentFailedComponent, UpcomingComponent, WebinarDetails, HelpCenterComponent, ContactUsComponent, CoursePathDetails
     , KnowledgeEnrichmentDetails, KnowledgeEnrichmentComponent, ChooseAccountComponent, PurchaseFilterComponent, BecomePartnerComponent, CorporateTrainingComponent, ModalComponent, TraingProgramCardComponent, TrainingProgramListComponent, RegiserConfirmComponent, KeWebinarCardComponent, HighlightedCardComponent,
-    TraingPathCardComponent, InstructorProfileComponent, WebinarInstructorComponent, CourseRatingModalComponent, SadadPopupComponent, KeFilterComponent, WebinarFilterComponent, ProductFeedbackComponent, PriceTemplateComponent, CasesStudyComponent, CasesStudyDetailsComponent, TrainingResourcesCardComponent, InteractiveExercisesComponent, TrainingGameComponent, TrainingResourcesDetailComponent,
+    TraingPathCardComponent, InstructorProfileComponent, WebinarInstructorComponent, CourseRatingModalComponent, SadadPopupComponent, KeFilterComponent, WebinarFilterComponent, ProductFeedbackComponent, PriceTemplateComponent, SaudiDividerComponent, CasesStudyComponent, CasesStudyDetailsComponent, TrainingResourcesCardComponent, InteractiveExercisesComponent, TrainingGameComponent, TrainingResourcesDetailComponent,
     SurveyComponent, SurveyModalComponent, InteractiveTrainingListComponent, InteractiveTrainingFormComponent, InteractiveTrainingViewComponent, InteractiveTrainingReportComponent, DeletConfirmComponent, DigitalLibraryComponent, FinishingConfirmComponent, ReportingComponent, LocalizePipe],
 
 

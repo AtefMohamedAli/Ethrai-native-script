@@ -56,12 +56,12 @@
             <!-- =============================== -->
             <!-- HERO IMAGE SLIDER               -->
             <!-- =============================== -->
-            <GridLayout class="slider-wrapper" rows="auto" *ngIf="currentSlide" (swipe)="onSliderSwipe($event)">
-                <!-- Full-width slide image (height 240) -->
-                <Image row="0" src="{{currentSlide.image}}" stretch="aspectFill" height="240" class="slider-full-image">
+            <GridLayout class="slider-wrapper" rows="220,auto" *ngIf="currentSlide" (swipe)="onSliderSwipe($event)">
+                <!-- Full-width slide image — row height drives the display height, stretch fills it perfectly -->
+                <Image row="0" src="{{currentSlide.image}}" stretch="aspectFill" class="slider-full-image">
                 </Image>
 
-                <!-- Dot indicators directly on the image at the bottom without any bar or background -->
+                <!-- Dot indicators sit inside the image row at the bottom -->
                 <StackLayout row="0" orientation="horizontal" horizontalAlignment="center" verticalAlignment="bottom"
                     class="slider-dots-overlay">
                     <StackLayout *ngFor="let slide of sliderSlides; let i = index"
@@ -71,6 +71,8 @@
                 </StackLayout>
             </GridLayout>
             <!-- =============================== -->
+
+            <saudi-divider></saudi-divider>
 
             <FlexboxLayout *ngIf="isLoggedIn && lastViewedCourses?.length>0" alignItems="center"
                 flexDirection="row-reverse" style="margin: 30 20 20;" justifyContent="space-between">
@@ -100,7 +102,7 @@
                             <FlexboxLayout *ngIf="course?.rating" flexDirection="row-reverse" alignItems="center"
                                 justifyContent="flex-start" margin="-5 0">
                                 <label text="&#xf005;" class="fas rate-icon"
-                                    *ngFor="let i of [].constructor(Math.round(course.rating))"></label>
+                                     *ngFor="let i of [].constructor(Math.round(course.rating))"></label>
                             </FlexboxLayout>
                             <FlexboxLayout *ngIf="course?.rating==0 ||course?.rating==undefined"
                                 flexDirection="row-reverse" alignItems="center" justifyContent="flex-start"
@@ -135,6 +137,9 @@
 
                 </WrapLayout>
             </ScrollView>
+
+            <saudi-divider *ngIf="isLoggedIn && lastViewedCourses?.length>0"></saudi-divider>
+
             <StackLayout style="margin: 0 20;">
                 <label text="{{'ourCategories' | L}}" class="sign-label"
                     style="margin-top:15 ;text-align: center; font-size: 18;"></label>
@@ -153,6 +158,9 @@
 
                 </WrapLayout>
             </ScrollView>
+
+            <saudi-divider></saudi-divider>
+
             <StackLayout style="margin: 0 20;" *ngIf="upcomingWebinars?.length>0">
                 <label text="{{'upcomingWebinars' |L}}" class="sign-label" style="margin-top:15"></label>
             </StackLayout>
@@ -196,6 +204,8 @@
 
                 </WrapLayout>
             </ScrollView>
+
+            <saudi-divider *ngIf="upcomingWebinars?.length>0"></saudi-divider>
             <!-- البراج الحديثه -->
             <StackLayout style="margin: 0 20;">
                 <label text="{{'traingprogram'| L}}" class="sign-label"
@@ -268,6 +278,8 @@
                 </WrapLayout>
             </ScrollView>
 
+            <saudi-divider *ngIf="upcomingCourses?.length>0"></saudi-divider>
+
             <!-- المؤتمرات الحديثة -->
 
             <StackLayout style="margin: 0 20;" *ngIf="isEthrai || !isLoggedIn">
@@ -321,6 +333,7 @@
                 </WrapLayout>
             </ScrollView>
 
+            <saudi-divider *ngIf="(isEthrai || !isLoggedIn) && suggestedWebinard?.length>0"></saudi-divider>
 
             <!-- <GridLayout *ngIf="isEthrai || !isLoggedIn" rows="auto,auto,auto,auto" class="partener-back"
             style="margin-bottom: 10; margin-top: 30; border-radius: 20 20 0 0;">
@@ -342,6 +355,7 @@
                     [nsRouterLink]="['/corporate-training']"></label>
             </GridLayout>
 
+            <saudi-divider *ngIf="isEthrai || !isLoggedIn"></saudi-divider>
 
             <StackLayout *ngIf="isLoggedIn" style="margin: 0 20;">
                 <label text=" المكتبة الرقمية " class="sign-label"
@@ -360,6 +374,8 @@
                     </GridLayout>
                 </WrapLayout>
             </ScrollView>
+
+            <saudi-divider *ngIf="(isEthrai || !isLoggedIn) && DigitalLibrary?.length>0"></saudi-divider>
             <!-- <StackLayout style="margin: 0 20;" *ngIf="highlyRatedCourses?.length>0">
                 <label text="{{'highlyRated'| L}}" class="sign-label" style="margin-top:15"></label>
             </StackLayout> -->
@@ -428,6 +444,9 @@
                     </StackLayout>
                 </WrapLayout>
             </ScrollView>
+
+            <saudi-divider *ngIf="isLoggedIn && recommendedCourses?.length>0"></saudi-divider>
+
             <FlexboxLayout alignItems="center" flexDirection="row-reverse" style="margin: 30 20 20;"
                 justifyContent="space-between">
                 <label text="{{'highlyRated'| L}}" *ngIf="highlyRatedCourses?.length>0" class=" "
@@ -495,6 +514,8 @@
 
                 </WrapLayout>
             </ScrollView>
+
+            <saudi-divider *ngIf="highlyRatedCourses?.length>0"></saudi-divider>
 
             <GridLayout rows="auto,auto,auto,auto" class="partener-back  album-image "
                 backgroundImage="~/images/partner.png" style=" margin: 30 20 0; border-radius: 20 20 0 0;">
