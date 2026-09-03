@@ -1,0 +1,313 @@
+/* ==========================================================================
+   SAUDI PLATFORMS DESIGN SYSTEM THEME (كود المنصات السعودية)
+   Temporary Theme for Home Page (الصفحة الرئيسية)
+   To remove or revert later: simply remove the @import from highlighted.component.css
+   ========================================================================== */
+
+/* --- Color Palette Constants ---
+   SA 950: #092A1E
+   SA 900: #104631
+   SA 800: #14573A
+   SA 700: #166A45
+   SA 600 (Primary): #1B8354
+   SA 500: #25935F
+   SA 50 (Light Tint): #EBF7F0
+   Neutral Border: #E5E7EB
+   Neutral Gray Text: #64748B
+   Dark Headings: #0F172A
+   --------------------------------- */
+
+/* 1. Page Background & Global Headings for Home */
+.whiteback {
+    background-color: #F8FAF9;
+    font-family: 'BahijTheSansArabic-Plain';
+}
+
+.sign-label {
+    color: #0F172A;
+    font-family: 'BahijTheSansArabic-Bold';
+    font-weight: 700;
+}
+
+/* 2. Buttons (الأزرار) */
+/* Primary Action Button (زر الإجراء الرئيسي) */
+.login-btn,
+.primary-btn,
+.saudi-btn-primary {
+    background-color: #1B8354;
+    background-image: linear-gradient(90deg, #1B8354 0%, #25935F 100%);
+    color: #FFFFFF;
+    font-size: 15;
+    font-weight: 700;
+    font-family: 'BahijTheSansArabic-Bold';
+    border-radius: 8;
+    border-width: 0;
+    height: 46;
+}
+
+/* Secondary / Outline Button (زر الإجراء الثانوي) */
+.secondary-btn,
+.saudi-btn-secondary {
+    background-color: #FFFFFF;
+    color: #1B8354;
+    border-color: #1B8354;
+    border-width: 1.5;
+    font-size: 15;
+    font-weight: 600;
+    font-family: 'BahijTheSansArabic-Plain';
+    border-radius: 8;
+    height: 46;
+}
+
+/* View All & Text Action Buttons (مشاهدة الكل / عرض الكل) - Primary Saudi Code */
+highlighted Button.view-all,
+highlighted .view-all,
+highlighted .view-all-pill,
+.saudi-home Button.view-all,
+.saudi-home .view-all,
+.saudi-home .view-all-pill,
+Button.view-all,
+.view-all,
+.view-all-pill {
+    background-color: #1B8354 !important;
+    background-image: none !important;
+    color: #FFFFFF !important;
+    border-radius: 8 !important;
+    border-width: 0 !important;
+    font-size: 14;
+    font-weight: 700;
+    font-family: 'BahijTheSansArabic-Bold';
+    text-align: center;
+}
+
+.view-all-pill {
+    padding: 6 18;
+    height: 36;
+}
+
+/* 1. View All button in Recently Viewed Section & Horizontal Lists */
+.course-block Button.view-all,
+highlighted .course-block Button.view-all,
+.saudi-home .course-block Button.view-all,
+.course-block .view-all-btn,
+highlighted .course-block .view-all-btn,
+.saudi-home .course-block .view-all-btn,
+.view-all-btn {
+    background-color: #1B8354 !important;
+    background-image: none !important;
+    color: #FFFFFF !important;
+    width: 140;
+    height: 44;
+    margin-top: 68;
+    border-radius: 8 !important;
+    border-width: 0 !important;
+    font-size: 14;
+    font-weight: 700;
+    font-family: 'BahijTheSansArabic-Bold';
+    text-align: center !important;
+    vertical-align: middle !important;
+    padding-top: 10;
+    transform: none !important;
+}
+
+/* 2. View All button in Our Domains / Categories Section */
+Button.cate-view-all,
+.cate-view-all,
+.saudi-home Button.cate-view-all {
+    background-color: #1B8354 !important;
+    background-image: none !important;
+    color: #FFFFFF !important;
+    border-color: #1B8354 !important;
+    border-radius: 8 !important;
+    border-width: 0 !important;
+    font-size: 13;
+    font-weight: 700;
+    font-family: 'BahijTheSansArabic-Bold';
+    text-align: center !important;
+    margin: 5 6 !important;
+    padding: 8 16 !important;
+    height: 38 !important;
+    width: auto !important;
+    direction: rtl;
+}
+
+/* 3. Cards Styling (شكل البطاقة) */
+.course-block {
+    margin-right: 15;
+    background-color: #FFFFFF;
+    border-radius: 12;
+    border-width: 1;
+    border-color: #E5E7EB;
+}
+
+.album-image {
+    border-radius: 12 12 0 0;
+    background-position: center center;
+    background-size: cover;
+}
+
+.course-details {
+    background-color: #FFFFFF;
+    border-radius: 0 0 12 12;
+    padding: 12;
+    width: 180;
+}
+
+/* Course Card Title */
+.course-na {
+    font-size: 13;
+    color: #0F172A;
+    font-weight: 700;
+    font-family: 'BahijTheSansArabic-Bold';
+    margin-bottom: 4;
+}
+
+/* Course Card Category / Tag */
+.course-cate {
+    font-size: 11;
+    color: #1B8354;
+    font-weight: 600;
+    font-family: 'BahijTheSansArabic-Plain';
+}
+
+/* Favorite Icon on Card */
+.fav-icon {
+    color: #FFFFFF;
+    text-shadow: 0 0 1 2 #166A45;
+}
+
+.fav-blue {
+    color: #1B8354;
+}
+
+.fav-white {
+    color: #FFFFFF;
+}
+
+/* Star Ratings */
+.rate-icon {
+    color: #F59E0B;
+}
+
+/* 4. Tags & Categories (الوسوم والتصنيفات) */
+.cate-tags {
+    color: #14573A;
+    background-color: #FFFFFF;
+    border-radius: 8;
+    border-width: 1;
+    border-color: #C2E7D3;
+    font-size: 13;
+    font-weight: 600;
+    font-family: 'BahijTheSansArabic-Plain';
+    text-align: center;
+    margin: 5 6;
+    padding: 8 16;
+}
+
+.cate-tags-active,
+.saudi-home .cate-tags-active {
+    background-color: #1B8354 !important;
+    border-color: #1B8354 !important;
+    color: #FFFFFF !important;
+    border-radius: 8 !important;
+    border-width: 1 !important;
+    font-size: 13;
+    font-weight: 700;
+    font-family: 'BahijTheSansArabic-Bold';
+    text-align: center;
+    margin: 5 6;
+    padding: 8 16;
+}
+
+/* 5. Simple Image Slider (صور السلايدر) */
+.slider-wrapper {
+    margin: 12 0 0;
+    padding: 0;
+}
+
+.slider-full-image {
+    width: 100%;
+    height: 250;
+    border-radius: 0;
+}
+
+.slider-dots-overlay {
+    background-color: transparent !important;
+    background: transparent !important;
+    padding: 0;
+    margin-bottom: 12;
+    width: 100%;
+}
+
+.slider-dot-on {
+    background-color: #1B8354;
+    border-radius: 100;
+    width: 10;
+    height: 10;
+    margin: 0 4;
+}
+
+.slider-dot-off {
+    background-color: #FFFFFF;
+    opacity: 0.75;
+    border-radius: 100;
+    width: 8;
+    height: 8;
+    margin: 0 4;
+}
+
+/* 6. Partner / Featured Banner Section */
+.partener-back {
+    background-color: #166A45;
+    background-image: linear-gradient(45deg, #166A45 0%, #1B8354 100%);
+    padding: 24 20;
+    border-radius: 16;
+}
+
+.part-label {
+    color: #FFFFFF;
+    font-size: 18;
+    font-weight: 700;
+    font-family: 'BahijTheSansArabic-Bold';
+}
+
+.part-btn {
+    background-color: #FFFFFF;
+    color: #166A45;
+    border-radius: 8;
+    font-weight: 700;
+    font-size: 14;
+    padding: 10 20;
+    text-align: center;
+}
+
+/* 7. Bottom Navigation Active Icon */
+.menu-active,
+.saudi-home .menu-active,
+highlighted .menu-active {
+    background-color: #1B8354 !important;
+    background-image: none !important;
+    color: #FFFFFF !important;
+    border-color: #1B8354 !important;
+    border-width: 3 !important;
+    border-radius: 100% !important;
+    width: 48;
+    height: 48;
+    margin-top: -20;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.menu-active label,
+.saudi-home .menu-active label,
+highlighted .menu-active label {
+    color: #FFFFFF !important;
+    font-size: 22;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.cart-badge {
+    background-color: #1B8354 !important;
+    color: #FFFFFF !important;
+}

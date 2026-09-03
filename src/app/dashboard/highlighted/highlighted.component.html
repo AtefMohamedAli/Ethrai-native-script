@@ -1,4 +1,4 @@
-<GridLayout class="whiteback">
+<GridLayout class="whiteback saudi-home">
     <!--  <GridLayout verticalAlignment="top"  class="top-bar" style="background-color: transparent; height: 60;">
         <GridLayout columns="*" width="100%">     
             
@@ -48,11 +48,29 @@
 
 
             <GridLayout rows="auto,auto" class="container" style="margin-top: 5;" *ngIf="isLoggedIn">
-                <label row="0" text="{{'hi'|L}} {{firstNameAr}} "
-                    style="font-size: 16px; color: #1056A5; font-weight: 600;"></label>
+                <label row="0" text="{{'hi'|L}} {{firstNameAr}} " class="user-welcome"></label>
                 <label row="1" text="{{'weltext'|L}}"
                     style="font-size: 14px; color: #989BAD; font-weight: 500;"></label>
             </GridLayout>
+
+            <!-- =============================== -->
+            <!-- HERO IMAGE SLIDER               -->
+            <!-- =============================== -->
+            <GridLayout class="slider-wrapper" rows="auto" *ngIf="currentSlide" (swipe)="onSliderSwipe($event)">
+                <!-- Full-width slide image (height 240) -->
+                <Image row="0" src="{{currentSlide.image}}" stretch="aspectFill" height="240" class="slider-full-image">
+                </Image>
+
+                <!-- Dot indicators directly on the image at the bottom without any bar or background -->
+                <StackLayout row="0" orientation="horizontal" horizontalAlignment="center" verticalAlignment="bottom"
+                    class="slider-dots-overlay">
+                    <StackLayout *ngFor="let slide of sliderSlides; let i = index"
+                        [class.slider-dot-on]="i === activeSlideIndex" [class.slider-dot-off]="i !== activeSlideIndex"
+                        (tap)="setSlideIndex(i)">
+                    </StackLayout>
+                </StackLayout>
+            </GridLayout>
+            <!-- =============================== -->
 
             <FlexboxLayout *ngIf="isLoggedIn && lastViewedCourses?.length>0" alignItems="center"
                 flexDirection="row-reverse" style="margin: 30 20 20;" justifyContent="space-between">
@@ -109,9 +127,9 @@
 
                     <StackLayout class="course-block rtl" iosOverflowSafeArea="false">
                         <GridLayout class="album-image" height="180" width="180">
-                            <Button class="view-all" text="{{'viewall' |L}}"
+                            <label class="view-all-btn" text="{{'viewall' |L}}" textAlignment="center"
                                 [nsRouterLink]="['/training-program-list','lastViewed']" *ngIf="!isLastViewedLoading"
-                                [screenName]="'last_viewed_courses'"></Button>
+                                [screenName]="'last_viewed_courses'"></label>
                         </GridLayout>
                     </StackLayout>
 
@@ -128,8 +146,8 @@
                     <FlexboxLayout alignItems="center" width="700" justifyContent="flex-start" flexWrap="wrap">
                         <label text="{{category.nameAr}}" class="cate-tags rtl" *ngFor="let category of categories"
                             [nsRouterLink]="['/category',category.id,category.nameAr]"></label>
-                        <Button class="view-all rtl" style="margin-top: 5;" text="{{'viewall' |L}}"
-                            [nsRouterLink]="['/explore']" *ngIf="!isCategoriesLoading"></Button>
+                        <label class="cate-tags-active rtl" text="{{'viewall' |L}}" textAlignment="center"
+                            [nsRouterLink]="['/explore']" *ngIf="!isCategoriesLoading"></label>
 
                     </FlexboxLayout>
 
@@ -186,10 +204,9 @@
             <FlexboxLayout alignItems="center" flexDirection="row-reverse" style="margin: 0 20 20;"
                 justifyContent="space-between">
                 <label text="{{'newCourses'| L}}" class=" " style="color: #979BAC; font-size: 15;"></label>
-                <label class="view-all "
-                    style="background-color:#f3fafe ;color: #54BDF8; font-size: 14; width: 180; margin-top: 0;"
-                    text="{{'showAllCourse'| L}}" [nsRouterLink]="['/training-program-list','latest']"
-                    *ngIf="!isUpcomingLoading" [screenName]="'latest_courses'"></label>
+                <label class="view-all-pill" text="{{'showAllCourse'| L}}"
+                    [nsRouterLink]="['/training-program-list','latest']" *ngIf="!isUpcomingLoading"
+                    [screenName]="'latest_courses'"></label>
 
             </FlexboxLayout>
             <ActivityIndicator class="spin" [busy]="isUpcomingLoading"></ActivityIndicator>
@@ -260,10 +277,8 @@
             <FlexboxLayout alignItems="center" flexDirection="row-reverse" style="margin: 0 20 20;"
                 justifyContent="space-between">
                 <label text="{{'newEvent'| L}}" class=" " style="color: #979BAC; font-size: 15;"></label>
-                <label class="view-all "
-                    style="background-color:#f3fafe ;color: #54BDF8; font-size: 14; width: 180; margin-top: 0;"
-                    text="{{'showAllEvents'| L}}" [nsRouterLink]="['/online-classes']" *ngIf="!isUpcomingLoading"
-                    [screenName]="'latest_courses'"></label>
+                <label class="view-all-pill" text="{{'showAllEvents'| L}}" [nsRouterLink]="['/online-classes']"
+                    *ngIf="!isUpcomingLoading" [screenName]="'latest_courses'"></label>
 
             </FlexboxLayout>
             <ActivityIndicator class="spin" [busy]="isSuggestedWebinarsLoading"></ActivityIndicator>
@@ -406,9 +421,9 @@
 
                     <StackLayout class="course-block rtl" iosOverflowSafeArea="false">
                         <GridLayout class="album-image" height="180" width="180">
-                            <Button class="view-all" text="{{'viewall' |L}}"
+                            <label class="view-all-btn" text="{{'viewall' |L}}" textAlignment="center"
                                 [nsRouterLink]="['/training-program-list','recommended']" *ngIf="!isHighlightedLoading"
-                                [screenName]="'recommended_courses'"></Button>
+                                [screenName]="'recommended_courses'"></label>
                         </GridLayout>
                     </StackLayout>
                 </WrapLayout>
@@ -472,9 +487,9 @@
 
                     <StackLayout class="course-block rtl" iosOverflowSafeArea="false">
                         <GridLayout class="album-image" height="180" width="180">
-                            <Button class="view-all" text="{{'viewall' |L}}"
+                            <label class="view-all-btn" text="{{'viewall' |L}}" textAlignment="center"
                                 [nsRouterLink]="['/training-program-list','highlyRated']" *ngIf="!isHighlyRatedLoading"
-                                [screenName]="'highly_rated_courses'"></Button>
+                                [screenName]="'highly_rated_courses'"></label>
                         </GridLayout>
                     </StackLayout>
 
@@ -487,9 +502,8 @@
                 <!--<HtmlView row="1" html="{{ htmlString }}" class=""  horizontalAlignment="right" width="100%" color="#fff"></HtmlView>-->
                 <label row="1" text="{{bepart?.split('.').join('. ')}}" horizontalAlignment="right"
                     style="font-size: 14;" color="#fff"></label>
-                <label row="2" text="مزيد من المعلومات"
-                    style="margin-top: 20; background-color: #1056A5; border-color: #1056A5; text-align: center;"
-                    class="part-btn" [nsRouterLink]="['/become-partner']"></label>
+                <label row="2" text="مزيد من المعلومات" style="margin-top: 20;" class="part-btn"
+                    [nsRouterLink]="['/become-partner']"></label>
             </GridLayout>
 
             <!-- <StackLayout style="margin-bottom: 70;"></StackLayout> -->

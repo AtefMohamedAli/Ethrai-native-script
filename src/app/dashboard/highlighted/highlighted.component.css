@@ -1,9 +1,10 @@
+@import './saudi-theme.css';
 
+.fav-icon {
+  text-shadow: 0 0 1 2 #166A45;
+}
 
-    .fav-icon   { 
-      text-shadow: 0 0 1 2 #1056a5;
-    }
-    .album-image{
-      background-position: center center;
-      background-size:cover;
-  }  
+.album-image {
+  background-position: center center;
+  background-size: cover;
+}

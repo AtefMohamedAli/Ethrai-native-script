@@ -39,15 +39,15 @@
         </GridLayout>
 
         <GridLayout class="course-block rtl" columns="*" rows="140" iosOverflowSafeArea="false">
-            <Button col="0" row="0" class="view-all" style="margin-top: 0;" text="{{'viewall' |L}}"
+            <Button col="0" row="0" class="view-all cate-view-all rtl" style="margin-top: 0;" text="{{'viewall' |L}}"
                 nsRouterLink="{{path}}"></Button>
         </GridLayout>
 
     </WrapLayout>
     <GridLayout class="course-block rtl" columns="*" rows="*" iosOverflowSafeArea="false">
 
-        <Button class="view-all" style="margin-top: 0;" text="{{'creatInteractiveTr'| L}}" (tap)="goToInterActiveForm()"
-            *ngIf="type=='TrainingSources'"></Button>
+        <Button class="view-all cate-view-all rtl" style="margin-top: 0;" text="{{'creatInteractiveTr'| L}}"
+            (tap)="goToInterActiveForm()" *ngIf="type=='TrainingSources'"></Button>
     </GridLayout>
 
 </ScrollView>

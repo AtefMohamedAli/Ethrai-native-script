@@ -61,8 +61,18 @@ export class HighlightedComponent implements OnInit, OnDestroy {
 	upcomingWebinars: EnrolledWebinar[];
 	isIOS: boolean;
 	bannerImages: any[] = [];
-	bannerIndex: number = 0
+	bannerIndex: number = 0;
 	timer: ReturnType<typeof setInterval>;
+	sliderTimer: ReturnType<typeof setInterval>;
+	activeSlideIndex: number = 0;
+	sliderSlides = [
+		{ image: '~/images/slider_1.png' },
+		{ image: '~/images/slider_2.png' },
+		{ image: '~/images/slider_3.png' },
+		{ image: '~/images/slider_4.png' },
+		{ image: '~/images/slider_5.png' },
+		{ image: '~/images/slider_6.png' }
+	];
 	trainingSources: any[] = [];
 	isTrainingSourcesLoading: boolean;
 	DigitalLibrary: any[] = []
@@ -76,6 +86,33 @@ export class HighlightedComponent implements OnInit, OnDestroy {
 		// Intl removed - not available on iOS
 	}
 	ngOnDestroy(): void {
+		if (this.sliderTimer) {
+			clearInterval(this.sliderTimer);
+		}
+		if (this.timer) {
+			clearInterval(this.timer);
+		}
+	}
+	get currentSlide() {
+		return this.sliderSlides && this.sliderSlides[this.activeSlideIndex]
+			? this.sliderSlides[this.activeSlideIndex]
+			: (this.sliderSlides ? this.sliderSlides[0] : null);
+	}
+	setSlideIndex(index: number) {
+		this.activeSlideIndex = index;
+	}
+	nextSlide() {
+		this.activeSlideIndex = (this.activeSlideIndex + 1) % this.sliderSlides.length;
+	}
+	prevSlide() {
+		this.activeSlideIndex = (this.activeSlideIndex - 1 + this.sliderSlides.length) % this.sliderSlides.length;
+	}
+	onSliderSwipe(args: any) {
+		if (args && (args.direction === 1 || args.direction === 4)) {
+			this.prevSlide();
+		} else if (args && (args.direction === 2 || args.direction === 8)) {
+			this.nextSlide();
+		}
 	}
 	goBack() {
 
@@ -90,6 +127,9 @@ export class HighlightedComponent implements OnInit, OnDestroy {
 		//{name:'الحالات الدراسية',Type:'CASESESTUDY',image:'~/images/cases_study.png'}, hidden from production
 		this.DigitalLibrary.push({ name: 'ألعاب تدربية', Type: 'TRAININGGAME', image: '~/images/games.png' }, { name: 'تمارين تفاعلية', Type: 'INTERACTIVEEX', image: '~/images/exersise.png' }, { name: 'تدريب تفاعلي', Type: 'TrainingSources', image: '~/images/inertactive.png' })
 		this.getBannerImages()
+		this.sliderTimer = setInterval(() => {
+			this.nextSlide();
+		}, 4500);
 		this.isLoggedIn = this.globalService.isLoggedIn
 		this.isEthrai = this.globalService.isEthrai
 		console.log('🔍 [HighlightedComponent] isLoggedIn:', this.isLoggedIn, '| isEthrai:', this.isEthrai)
