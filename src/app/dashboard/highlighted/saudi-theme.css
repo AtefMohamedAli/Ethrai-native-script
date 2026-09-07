@@ -222,17 +222,18 @@ Button.cate-view-all,
 
 /* 5. Simple Image Slider (صور السلايدر) */
 .slider-wrapper {
-    margin: 12 0 0;
+    margin: 12 16 0;
     padding: 0;
+    border-radius: 12;
+    background-color: #F0F2F5;
+    overflow: hidden;
 }
 
-/* Image fills whatever height is set by the GridLayout row.
-   stretch="aspectFill" on the Image element covers the full area — NativeScript equivalent of CSS background-size:cover */
+/* Height is set from each banner's aspect ratio in TS — full image, no side crop */
 .slider-full-image {
     width: 100%;
     height: 100%;
-    border-radius: 0;
-    vertical-align: stretch;
+    border-radius: 12;
 }
 
 .slider-dots-overlay {
@@ -321,7 +322,7 @@ highlighted .menu-active label {
    Built purely in code (NativeScript layouts & CSS)
    ========================================================================== */
 .saudi-divider {
-    margin: 22 0;
+    margin: 8 0;
     horizontal-align: center;
     vertical-align: middle;
 }

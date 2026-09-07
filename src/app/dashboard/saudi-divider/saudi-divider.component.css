@@ -1,55 +1,7 @@
 .saudi-divider {
-    margin: 20 0;
+    width: 100%;
+    height: 30;
+    margin: 8 0;
     horizontal-align: center;
     vertical-align: middle;
-}
-
-.saudi-dots {
-    margin: 0 14;
-    vertical-align: middle;
-}
-
-.saudi-dot {
-    width: 5;
-    height: 5;
-    border-radius: 2.5;
-    background-color: #A0A6AD;
-    horizontal-align: center;
-    vertical-align: middle;
-}
-
-.saudi-wing {
-    width: 46;
-    height: 16;
-    margin: 0 14;
-    vertical-align: middle;
-}
-
-.wing-arch {
-    width: 22;
-    height: 9;
-    border-top-width: 3;
-    border-left-width: 3;
-    border-right-width: 3;
-    border-bottom-width: 0;
-    border-top-color: #A0A6AD;
-    border-left-color: #A0A6AD;
-    border-right-color: #A0A6AD;
-    border-top-left-radius: 11;
-    border-top-right-radius: 11;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    background-color: transparent;
-}
-
-.wing-chevron {
-    width: 6;
-    height: 6;
-    border-bottom-width: 3;
-    border-right-width: 3;
-    border-bottom-color: #A0A6AD;
-    border-right-color: #A0A6AD;
-    background-color: transparent;
-    transform: rotate(45deg);
-    margin-bottom: 1;
 }

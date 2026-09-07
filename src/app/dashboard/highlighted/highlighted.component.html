@@ -56,14 +56,17 @@
             <!-- =============================== -->
             <!-- HERO IMAGE SLIDER               -->
             <!-- =============================== -->
-            <GridLayout class="slider-wrapper" rows="220,auto" *ngIf="currentSlide" (swipe)="onSliderSwipe($event)">
-                <!-- Full-width slide image — row height drives the display height, stretch fills it perfectly -->
-                <Image row="0" src="{{currentSlide.image}}" stretch="aspectFill" class="slider-full-image">
+            <GridLayout class="slider-wrapper" rows="*" [height]="sliderHeight"
+                *ngIf="sliderSlides?.length > 0 && currentSlide" (swipe)="onSliderSwipe($event)">
+                <!-- Full width, height follows image ratio so sides are not cropped -->
+                <Image row="0" src="{{currentSlide.image}}" stretch="aspectFit"
+                    horizontalAlignment="stretch" verticalAlignment="stretch"
+                    class="slider-full-image">
                 </Image>
 
                 <!-- Dot indicators sit inside the image row at the bottom -->
                 <StackLayout row="0" orientation="horizontal" horizontalAlignment="center" verticalAlignment="bottom"
-                    class="slider-dots-overlay">
+                    class="slider-dots-overlay" *ngIf="sliderSlides?.length > 1">
                     <StackLayout *ngFor="let slide of sliderSlides; let i = index"
                         [class.slider-dot-on]="i === activeSlideIndex" [class.slider-dot-off]="i !== activeSlideIndex"
                         (tap)="setSlideIndex(i)">
@@ -75,7 +78,7 @@
             <saudi-divider></saudi-divider>
 
             <FlexboxLayout *ngIf="isLoggedIn && lastViewedCourses?.length>0" alignItems="center"
-                flexDirection="row-reverse" style="margin: 30 20 20;" justifyContent="space-between">
+                flexDirection="row-reverse"                 style="margin: 12 20 12;" justifyContent="space-between">
                 <label text="{{'lastViewed'| L}}" class=" " style="color: #979BAC; font-size: 15;"></label>
             </FlexboxLayout>
             <ActivityIndicator class="spin" [busy]="isLastViewedLoading"></ActivityIndicator>
@@ -209,7 +212,7 @@
             <!-- البراج الحديثه -->
             <StackLayout style="margin: 0 20;">
                 <label text="{{'traingprogram'| L}}" class="sign-label"
-                    style="margin-top:30 ;text-align: center; font-size: 18;"></label>
+                    style="margin-top:12 ;text-align: center; font-size: 18;"></label>
             </StackLayout>
             <FlexboxLayout alignItems="center" flexDirection="row-reverse" style="margin: 0 20 20;"
                 justifyContent="space-between">
@@ -284,7 +287,7 @@
 
             <StackLayout style="margin: 0 20;" *ngIf="isEthrai || !isLoggedIn">
                 <label text="{{'webinars'| L}}" class="sign-label"
-                    style="margin-top:30 ;text-align: center; font-size: 18;"></label>
+                    style="margin-top:12 ;text-align: center; font-size: 18;"></label>
             </StackLayout>
             <FlexboxLayout alignItems="center" flexDirection="row-reverse" style="margin: 0 20 20;"
                 justifyContent="space-between">
@@ -359,7 +362,7 @@
 
             <StackLayout *ngIf="isLoggedIn" style="margin: 0 20;">
                 <label text=" المكتبة الرقمية " class="sign-label"
-                    style="margin-top:30 ;text-align: center; font-size: 18;"></label>
+                    style="margin-top:12 ;text-align: center; font-size: 18;"></label>
             </StackLayout>
 
             <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false" class="rtl" style="margin: 0 20;">

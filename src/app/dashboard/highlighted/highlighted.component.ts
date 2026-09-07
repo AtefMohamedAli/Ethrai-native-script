@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Frame, Page, Utils, isAndroid, isIOS } from "@nativescript/core";
+import { Frame, ImageSource, Page, Screen, Utils, isAndroid, isIOS } from "@nativescript/core";
 import { localize } from '@nativescript/localize';
 import { GlobalService } from '../../shared/services/global.service';
 import { DashboardService } from '../dashboard.service'
@@ -62,20 +62,16 @@ export class HighlightedComponent implements OnInit, OnDestroy {
 	isIOS: boolean;
 	bannerImages: any[] = [];
 	bannerIndex: number = 0;
-	timer: ReturnType<typeof setInterval>;
 	sliderTimer: ReturnType<typeof setInterval>;
 	activeSlideIndex: number = 0;
-	sliderSlides = [
-		{ image: '~/images/slider_1.png' },
-		{ image: '~/images/slider_2.png' },
-		{ image: '~/images/slider_3.png' },
-		{ image: '~/images/slider_4.png' },
-		{ image: '~/images/slider_5.png' },
-		{ image: '~/images/slider_6.png' }
-	];
+	sliderHeight = 180;
+	sliderSlides: { image: string; title?: string; subTitle?: string; id?: string; displayHeight?: number }[] = [];
 	trainingSources: any[] = [];
 	isTrainingSourcesLoading: boolean;
 	DigitalLibrary: any[] = []
+	private readonly sliderSideMargin = 32; // margin 16 left + 16 right
+	private readonly sliderMinHeight = 140;
+	private readonly sliderMaxHeight = 320;
 	constructor(private page: Page, private accountService: AccountService, public globalService: GlobalService, private dashboardService: DashboardService,
 		private paymentService: PaymentService, private router: RouterExtensions, private firebaseEventService: FirebaseEventService,
 		private settingsService: SettingsService) {
@@ -90,23 +86,33 @@ export class HighlightedComponent implements OnInit, OnDestroy {
 		if (this.sliderTimer) {
 			clearInterval(this.sliderTimer);
 		}
-		if (this.timer) {
-			clearInterval(this.timer);
-		}
 	}
 	get currentSlide() {
-		return this.sliderSlides && this.sliderSlides[this.activeSlideIndex]
-			? this.sliderSlides[this.activeSlideIndex]
-			: (this.sliderSlides ? this.sliderSlides[0] : null);
+		if (!this.sliderSlides?.length) {
+			return null;
+		}
+		return this.sliderSlides[this.activeSlideIndex] || this.sliderSlides[0];
 	}
 	setSlideIndex(index: number) {
+		if (!this.sliderSlides?.length) {
+			return;
+		}
 		this.activeSlideIndex = index;
+		this.updateSliderHeightForCurrentSlide();
 	}
 	nextSlide() {
+		if (!this.sliderSlides?.length) {
+			return;
+		}
 		this.activeSlideIndex = (this.activeSlideIndex + 1) % this.sliderSlides.length;
+		this.updateSliderHeightForCurrentSlide();
 	}
 	prevSlide() {
+		if (!this.sliderSlides?.length) {
+			return;
+		}
 		this.activeSlideIndex = (this.activeSlideIndex - 1 + this.sliderSlides.length) % this.sliderSlides.length;
+		this.updateSliderHeightForCurrentSlide();
 	}
 	onSliderSwipe(args: any) {
 		if (args && (args.direction === 1 || args.direction === 4)) {
@@ -114,6 +120,33 @@ export class HighlightedComponent implements OnInit, OnDestroy {
 		} else if (args && (args.direction === 2 || args.direction === 8)) {
 			this.nextSlide();
 		}
+	}
+	private updateSliderHeightForCurrentSlide() {
+		const slide = this.currentSlide;
+		if (!slide?.image) {
+			return;
+		}
+		if (slide.displayHeight) {
+			this.sliderHeight = slide.displayHeight;
+			return;
+		}
+
+		ImageSource.fromUrl(slide.image)
+			.then(source => {
+				if (!source?.width || !source?.height) {
+					return;
+				}
+				const availableWidth = Screen.mainScreen.widthDIPs - this.sliderSideMargin;
+				let height = availableWidth * (source.height / source.width);
+				height = Math.max(this.sliderMinHeight, Math.min(this.sliderMaxHeight, Math.round(height)));
+				slide.displayHeight = height;
+				if (this.currentSlide?.image === slide.image) {
+					this.sliderHeight = height;
+				}
+			})
+			.catch(() => {
+				// keep current/default height if image metadata fails
+			});
 	}
 	goBack() {
 
@@ -127,10 +160,7 @@ export class HighlightedComponent implements OnInit, OnDestroy {
 	async ngOnInit() {
 		//{name:'الحالات الدراسية',Type:'CASESESTUDY',image:'~/images/cases_study.png'}, hidden from production
 		this.DigitalLibrary.push({ name: 'ألعاب تدربية', Type: 'TRAININGGAME', image: '~/images/games.png' }, { name: 'تمارين تفاعلية', Type: 'INTERACTIVEEX', image: '~/images/exersise.png' }, { name: 'تدريب تفاعلي', Type: 'TrainingSources', image: '~/images/inertactive.png' })
-		this.getBannerImages()
-		this.sliderTimer = setInterval(() => {
-			this.nextSlide();
-		}, 4500);
+		this.getBannerImages();
 		this.isLoggedIn = this.globalService.isLoggedIn
 		this.isEthrai = this.globalService.isEthrai
 		console.log('🔍 [HighlightedComponent] isLoggedIn:', this.isLoggedIn, '| isEthrai:', this.isEthrai)
@@ -188,16 +218,36 @@ export class HighlightedComponent implements OnInit, OnDestroy {
 	getBannerImages() {
 		this.dashboardService.getBannerImages().subscribe(
 			res => {
-				this.bannerImages = res as any[];
-				this.timer = setInterval(() => {
-					if (this.bannerIndex + 1 < this.bannerImages.length) {
-						this.bannerIndex += 1;
-					} else {
-						this.bannerIndex = 0
-					}
-				}, 4000)
+				const banners = (res as any[]) || [];
+				this.bannerImages = banners;
+				this.sliderSlides = banners
+					.filter(banner => !!banner?.imageUrl)
+					.sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+					.map(banner => ({
+						image: banner.imageUrl,
+						title: banner.title,
+						subTitle: banner.subTitle,
+						id: banner.id
+					}));
+				this.activeSlideIndex = 0;
+				this.bannerIndex = 0;
+				this.updateSliderHeightForCurrentSlide();
+
+				if (this.sliderTimer) {
+					clearInterval(this.sliderTimer);
+					this.sliderTimer = null;
+				}
+				if (this.sliderSlides.length > 1) {
+					this.sliderTimer = setInterval(() => {
+						this.nextSlide();
+					}, 4500);
+				}
+			},
+			err => {
+				console.log('getBannerImages error', err);
+				this.sliderSlides = [];
 			}
-		)
+		);
 	}
 	getSuggestedWebinars() {
 		this.isSuggestedWebinarsLoading = true;

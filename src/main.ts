@@ -3,6 +3,10 @@ import '@angular/compiler';
 import { AppModule } from './app/app.module'
 import { registerElement } from '@nativescript/angular';
 import { ModalStack, overrideModalViewMethod } from 'nativescript-windowed-modal';
+import { Theme } from '@nativescript/theme';
+
+Theme.setMode(Theme.Light);
+
 overrideModalViewMethod()
 registerElement("ModalStack", () => ModalStack)
 
