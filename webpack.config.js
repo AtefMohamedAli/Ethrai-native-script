@@ -10,7 +10,8 @@ module.exports = (env) => {
 	webpack.chainWebpack((config) => {
 		config.resolve.set('fallback', {
 			...config.resolve.get('fallback'),
-			"util": require.resolve("util/")
+			"util": require.resolve("util/"),
+			"crypto": false
 		});
 
 		// Provide process.env for Node.js polyfills

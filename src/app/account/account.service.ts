@@ -2,25 +2,70 @@ import { Injectable } from '@angular/core';
 import { LoginPayload } from '../shared/models/login-payload';
 import { HttpService } from '../shared/services/http.service';
 import { SignUpPayload } from '../shared/models/signUp-payload';
-// import { InAppBrowser } from 'nativescript-inappbrowser';
 import { Utils } from '@nativescript/core';
 import { forkJoin, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { buildSecureLoginPayload } from '../shared/utils/aes-crypto.util';
 
-
+export interface PendingLoginContext {
+    usernameOrEmail: string;
+    password: string;
+    countryCode?: string;
+    saveBiometricCredentials?: boolean;
+}
 
 @Injectable({
     providedIn: 'root',
 })
 export class AccountService {
 
+    /** Temporary credentials held between secure login and OTP validation. */
+    private pendingLoginContext: PendingLoginContext | null = null;
 
     constructor(private httpService: HttpService) {
-
     }
 
+    setPendingLoginContext(context: PendingLoginContext | null) {
+        this.pendingLoginContext = context;
+    }
+
+    getPendingLoginContext(): PendingLoginContext | null {
+        return this.pendingLoginContext;
+    }
+
+    clearPendingLoginContext() {
+        this.pendingLoginContext = null;
+    }
+
+    /**
+     * Secure login: AES-encrypt credentials and POST to Account/login/secure.
+     * Success without access_token means OTP verification is required.
+     */
     login(body: LoginPayload) {
-        return this.httpService.postRequest('Account/login/mobile', body);
+        const payload = buildSecureLoginPayload({
+            usernameOrEmail: body.usernameOrEmail,
+            password: body.password,
+            countryCode: body.countryCode,
+            rememberme: body.rememberme
+        });
+        return this.httpService.postRequest('Account/login/secure', payload);
+    }
+
+    validateOtp(emailOrNationalId: string, code: string) {
+        return this.httpService.postRequest('Account/validateOtp', {
+            emailOrNationalId,
+            code
+        });
+    }
+
+    resendOtp(emailOrNationalId: string) {
+        return this.httpService.postRequest('Account/resendOtp', {
+            emailOrNationalId
+        });
+    }
+
+    getOtpResendTimer() {
+        return this.httpService.getRequest('Account/hideresendotpbutton');
     }
 
     refreshToken(token: string) {
@@ -40,7 +85,7 @@ export class AccountService {
     }
 
     forgetPassword(body) {
-        return this.httpService.postRequest('Account/forgotpassword', body);
+        return this.httpService.postRequest('account/resetpassword', body);
     }
     getCountryCode() {
         return this.httpService.get('https://api.country.is/')
@@ -78,7 +123,7 @@ export class AccountService {
         return this.httpService.getAuthRequest('');
     }
     changePassword(body) {
-        return this.httpService.postAuthRequest('Account/changepassword', body);
+        return this.httpService.postAuthRequest('account/changepassword', body);
     }
     getProfilePrefrences() {
         return this.httpService.getAuthRequest('Profile/preferences');
@@ -110,8 +155,8 @@ export class AccountService {
         return this.httpService.postRequest('Account/HandleIamChecking', { dataEncoded: data })
     }
     async openIamWindow(url: string) {
-        
-            Utils.openUrl(url);
-            
+
+        Utils.openUrl(url);
+
     }
 }

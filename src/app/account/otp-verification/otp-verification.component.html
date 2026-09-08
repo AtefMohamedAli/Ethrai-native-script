@@ -1,0 +1,54 @@
+<GridLayout class="otp-page">
+
+  <ActionBar visibility="collapsed" title=""></ActionBar>
+
+  <ScrollView scrollBarIndicatorVisible="false">
+    <StackLayout>
+
+      <!-- Header -->
+      <FlexboxLayout class="otp-header" flexDirection="row-reverse" alignItems="center"
+        justifyContent="flex-start">
+        <GridLayout class="otp-back-btn" (tap)="goBack()">
+          <Label text="&#xf060;" class="fas otp-back-icon" horizontalAlignment="center"
+            verticalAlignment="middle"></Label>
+        </GridLayout>
+        <Label text="{{ 'LogIn' | L }}" class="otp-title"></Label>
+      </FlexboxLayout>
+
+      <Label text="{{ 'OtpInstruction' | L }}" class="otp-instruction" textWrap="true"></Label>
+
+      <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapsed'"
+        class="otp-loader"></ActivityIndicator>
+
+      <!-- OTP boxes: LTR order so index 0 is left and focus moves left -> right -->
+      <GridLayout class="otp-boxes" columns="*,*,*,*,*,*" rows="auto">
+        <TextField *ngFor="let i of otpIndexes" #otpField [col]="i" class="otp-box"
+          keyboardType="number" maxLength="1" textAlignment="center"
+          (textChange)="onOtpChange(i, $event)" [editable]="!isLoading"
+          [returnKeyType]="i === 5 ? 'done' : 'next'">
+        </TextField>
+      </GridLayout>
+
+      <!-- Actions directly under OTP fields -->
+      <FlexboxLayout class="otp-actions" flexDirection="row-reverse" justifyContent="space-between"
+        alignItems="center">
+
+        <Button class="otp-action-btn"
+          [ngClass]="isOtpComplete && !isLoading ? 'otp-submit-enabled' : 'otp-submit-btn'"
+          text="{{ 'LogIn' | L }}" [isEnabled]="isOtpComplete && !isLoading" (tap)="verifyOtp()">
+        </Button>
+
+        <GridLayout class="otp-action-btn otp-resend-btn"
+          [opacity]="canResend && !isResending && !isLoading ? 1 : 0.85" (tap)="resendOtp()">
+          <FlexboxLayout flexDirection="row-reverse" justifyContent="center" alignItems="center">
+            <Label text="{{ 'ResendOtp' | L }}" class="otp-resend-label"></Label>
+            <Label [text]="' ' + timerDisplay" class="otp-timer"></Label>
+          </FlexboxLayout>
+        </GridLayout>
+
+      </FlexboxLayout>
+
+    </StackLayout>
+  </ScrollView>
+
+</GridLayout>

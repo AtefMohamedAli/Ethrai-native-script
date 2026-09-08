@@ -168,13 +168,36 @@ export class LoginByMailComponent implements OnInit {
 				return;
 			}
 			this.isLoading = true;
+			this.loginPayload.rememberme = this.globalService.getIsKeepLogged();
 
 			this.accountService.login(this.loginPayload).subscribe(
 				async response => {
 					let result = response as LoginResponse
 					if (result.success) {
+						const accessToken = result.extraData?.access_token;
 
-						this.globalService.setToken(result.extraData.access_token);
+						// Secure login requires OTP when the token is not returned yet
+						if (!accessToken) {
+							this.accountService.setPendingLoginContext({
+								usernameOrEmail: this.loginPayload.usernameOrEmail,
+								password: this.loginPayload.password,
+								countryCode: this.loginPayload.countryCode,
+								saveBiometricCredentials: this.isBiometricAvailable
+							});
+							this.isLoading = false;
+							this.ngZone.run(() => {
+								this.router.navigate(
+									['/otp-verification'],
+									{
+										queryParams: { usernameOrEmail: this.loginPayload.usernameOrEmail },
+										clearHistory: false
+									}
+								);
+							});
+							return;
+						}
+
+						this.globalService.setToken(accessToken);
 						this.globalService.setTokenExpiryDuration(result.extraData.expires_in);
 						this.globalService.setTokenStartDate();
 						this.globalService.setRefreshToken(result.extraData.refresh_token);
@@ -210,34 +233,40 @@ export class LoginByMailComponent implements OnInit {
 							this.firebaseEventService.logLoginEvent(true, this.globalService.getUserStats(), 'signin_email', null)
 
 						}
+					} else {
+						this.isLoading = false;
+						this.globalService.toast(localize('EmailOrPasswordFailed'));
 					}
 				},
 				error => {
 					this.isLoading = false
-					let err = (error as any).error;
-					console.log('Login error:', err?.errorCode || 'unknown');
-					if (err == null) {
-						this.globalService.toast(localize('EmailOrPasswordFailed'))
-					}
-					else if (err.errorCode && err.errorCode?.includes("EmailNotConfirmed")) {
-						this.globalService.toast(localize('EmailNotConfirmed'))
-
-					} else if (err.errorCode && err.errorCode?.includes("WrongUsernameOrPassword") || err.errorCode?.includes("ProfileNotFound")) {
-						this.globalService.toast(localize('EmailOrPasswordFailed'))
-
-					}
-					else if (err.errorCode && err.errorCode?.includes("LoginWithIam")) {
-						this.globalService.toast(localize('LoginWithIam'))
-
-					} else {
-						this.globalService.toast(localize('EmailOrPasswordFailed'))
-
-					}
-
+					this.handleLoginError(error);
 				}
 			);
 		}
 
+	}
+
+	private handleLoginError(error: any) {
+		const err = error?.error;
+		const code = err?.errorCode || '';
+		console.log('Login error:', code || 'unknown');
+
+		if (!err) {
+			this.globalService.toast(localize('EmailOrPasswordFailed'));
+		} else if (code.includes('EmailNotConfirmed')) {
+			this.globalService.toast(localize('EmailNotConfirmed'));
+		} else if (code.includes('WrongUsernameOrPassword') || code.includes('ProfileNotFound')) {
+			this.globalService.toast(localize('EmailOrPasswordFailed'));
+		} else if (code.includes('AccountLocked')) {
+			this.globalService.toast(localize('AccountLocked'));
+		} else if (code.includes('LoginWithIam')) {
+			this.globalService.toast(localize('LoginWithIam'));
+		} else if (code.includes('InvalidModel')) {
+			this.globalService.toast(localize('InvalidModel'));
+		} else {
+			this.globalService.toast(localize('EmailOrPasswordFailed'));
+		}
 	}
 
 	getUserPrefrences(result) {
