@@ -1,4 +1,4 @@
-<GridLayout class="whiteback saudi-home">
+<GridLayout class="whiteback saudi-home" backgroundColor="#FFFFFF">
     <!--  <GridLayout verticalAlignment="top"  class="top-bar" style="background-color: transparent; height: 60;">
         <GridLayout columns="*" width="100%">     
             
@@ -10,9 +10,9 @@
 
      </GridLayout>  -->
 
-    <ActionBar flat="true" style="background-color: #fff;" title="">
+    <ActionBar flat="true" style="background-color: #FFFFFF;" title="">
         <NavigationButton visibility="collapsed"></NavigationButton>
-        <GridLayout columns="*,auto,auto" width="100%">
+        <GridLayout columns="*,auto,auto" width="100%" backgroundColor="#FFFFFF">
             <AbsoluteLayout col="1" horizontalAlignment="right" *ngIf="isLoggedIn&&isEthrai"
                 [nsRouterLink]="['/notifications']">
                 <label text="&#xf0f3;" class="fas" style="font-size: 18px; margin: 0 10; color: #000;"></label>
@@ -30,8 +30,10 @@
         </GridLayout>
     </ActionBar>
 
-    <ScrollView style="height: 100%;" scrollBarIndicatorVisible="false">
-        <StackLayout class="page-layout" style="margin-bottom: 60;">
+    <ScrollView style="height: 100%; background-color: #FFFFFF;" backgroundColor="#FFFFFF"
+        scrollBarIndicatorVisible="false">
+        <StackLayout class="page-layout" style="margin-bottom: 60; background-color: #FFFFFF;"
+            backgroundColor="#FFFFFF">
 
             <!-- visitor -->
             <GridLayout rows="auto,auto,auto,auto" class="container" *ngIf="!isLoggedIn" style="margin-top:50;">

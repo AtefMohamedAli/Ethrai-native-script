@@ -76,7 +76,7 @@ export class HighlightedComponent implements OnInit, OnDestroy {
 		private paymentService: PaymentService, private router: RouterExtensions, private firebaseEventService: FirebaseEventService,
 		private settingsService: SettingsService) {
 		page.actionBarHidden = true;
-		page.backgroundColor = '#F8F5F4';
+		page.backgroundColor = '#FFFFFF';
 		this.isAndroid = isAndroid;
 		this.isIOS = isIOS
 		this.Math = Math

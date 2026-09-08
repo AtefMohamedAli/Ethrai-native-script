@@ -1,8 +1,9 @@
 @import './saudi-theme.css';
 
 .whiteback,
-.saudi-home {
-  background-color: #F8F5F4;
+.saudi-home,
+.page-layout {
+  background-color: #FFFFFF;
 }
 
 .fav-icon {
