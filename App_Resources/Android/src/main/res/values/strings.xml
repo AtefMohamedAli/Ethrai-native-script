@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <string name="AccountLocked">"تم قفل الحساب مؤقتاً، يرجى المحاولة لاحقاً"</string>
+  <string name="ExpiryOTPCode">"انتهت صلاحية رمز التحقق، يرجى طلب رمز جديد"</string>
+  <string name="InvalidOTP">"رمز التحقق غير صحيح"</string>
+  <string name="OtpResent">"تم إعادة إرسال رمز التحقق"</string>
+  <string name="ResendOtp">"إعادة الإرسال"</string>
+  <string name="OtpInstruction">"الرجاء إدخال رمز التحقق المرسل عبر البريد الإلكتروني/ رقم الجوال"</string>
   <string name="TouchIDLogin">"تسجيل الدخول بالبصمة"</string>
   <string name="FaceIDLogin">"تسجيل الدخول بالوجه"</string>
   <string name="biometricLoginMessage">"قم بمسح بصمتك لتسجيل الدخول"</string>

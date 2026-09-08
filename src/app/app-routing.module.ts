@@ -6,6 +6,7 @@ import { ItemsComponent } from './item/items.component'
 import { ItemDetailComponent } from './item/item-detail.component'
 import { LoginComponent } from './account/login/login.component';
 import { LoginByMailComponent } from './account/login-by-mail/login-by-mail.component';
+import { OtpVerificationComponent } from './account/otp-verification/otp-verification.component';
 import { RegisterComponent } from './account/register/register.component';
 import { SplashScreenComponent } from './account/splash-screen/splash-screen.component';
 import { ForgotPasswordComponent } from './account/forgot-password/forgot-password.component';
@@ -90,6 +91,8 @@ const routes: Routes = [
   { path: 'splash', component: SplashScreenComponent },
   { path: 'login', component: LoginComponent },
   { path: 'login-by-mail', component: LoginByMailComponent },
+  { path: 'otp-verification/:usernameOrEmail', component: OtpVerificationComponent },
+  { path: 'otp-verification', component: OtpVerificationComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'new-password', component: NewPasswordComponent },

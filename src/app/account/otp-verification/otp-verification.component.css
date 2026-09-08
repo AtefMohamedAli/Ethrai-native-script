@@ -1,0 +1,109 @@
+.otp-page {
+    background-color: #FFFFFF;
+    padding: 0 20;
+}
+
+.otp-header {
+    margin-top: 45;
+    margin-bottom: 22;
+}
+
+.otp-back-btn {
+    width: 40;
+    height: 40;
+    border-radius: 20;
+    border-width: 1.5;
+    border-color: #31C0CC;
+    background-color: #FFFFFF;
+    margin-left: 12;
+}
+
+.otp-back-icon {
+    font-family: "Font Awesome 5 Free", "fa-solid-900";
+    font-weight: 900;
+    font-size: 16;
+    color: #31C0CC;
+    text-align: center;
+}
+
+.otp-title {
+    font-size: 18;
+    font-weight: 700;
+    color: #1F2937;
+    font-family: 'BahijTheSansArabic-Bold';
+    text-align: right;
+}
+
+.otp-instruction {
+    font-size: 14;
+    color: #374151;
+    text-align: right;
+    margin-bottom: 24;
+    line-height: 22;
+}
+
+.otp-loader {
+    margin-bottom: 8;
+}
+
+.otp-boxes {
+    width: 100%;
+    margin-bottom: 18;
+}
+
+.otp-box {
+    width: 46;
+    height: 52;
+    margin: 0 4;
+    border-width: 1.5;
+    border-color: #D1D5DB;
+    border-radius: 10;
+    background-color: #FFFFFF;
+    color: #111827;
+    font-size: 20;
+    font-weight: 600;
+    text-align: center;
+    padding: 0;
+    horizontal-align: center;
+}
+
+.otp-actions {
+    margin-top: 8;
+    margin-bottom: 24;
+    width: 100%;
+}
+
+.otp-action-btn {
+    height: 48;
+    border-radius: 100;
+    font-size: 14;
+    font-weight: 600;
+    font-family: 'BahijTheSansArabic-Bold';
+    margin: 0 6;
+    border-width: 0;
+    width: 48%;
+}
+
+.otp-submit-btn {
+    background-color: #E5E7EB;
+    color: #6B7280;
+}
+
+.otp-submit-enabled {
+    background-color: #31C0CC;
+    color: #FFFFFF;
+}
+
+.otp-resend-btn {
+    background-color: #E5E7EB;
+    color: #374151;
+}
+
+.otp-resend-label {
+    color: #374151;
+}
+
+.otp-timer {
+    color: #22C55E;
+    font-weight: 700;
+}

@@ -8,6 +8,7 @@ import { ItemsComponent } from './item/items.component'
 import { ItemDetailComponent } from './item/item-detail.component'
 import { LoginComponent } from './account/login/login.component';
 import { LoginByMailComponent } from './account/login-by-mail/login-by-mail.component';
+import { OtpVerificationComponent } from './account/otp-verification/otp-verification.component';
 import { RegisterComponent } from './account/register/register.component';
 import { SplashScreenComponent } from './account/splash-screen/splash-screen.component';
 import { ForgotPasswordComponent } from './account/forgot-password/forgot-password.component';
@@ -47,6 +48,8 @@ import { AuthGuard } from './shared/services/auth.guard'
 import { HttpService } from './shared/services/http.service'
 import { GlobalService } from './shared/services/global.service'
 import { FirebaseEventService } from './shared/services/firebase.event.service'
+import { ApiLoggingInterceptor } from './shared/services/api-logging.interceptor'
+import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { NativeScriptHttpClientModule } from '@nativescript/angular'
 
 import { TNSCheckBoxModule } from '@nstudio/nativescript-checkbox/angular';
@@ -122,7 +125,7 @@ import '@angular/compiler';
     NativeScriptMaterialSliderModule, NativeScriptAnimatedCircleModule, NativeScriptAnimationsModule,
   ],
 
-  declarations: [AppComponent, ItemsComponent, ItemDetailComponent, LoginComponent, LoginByMailComponent, RegisterComponent, SplashScreenComponent, ForgotPasswordComponent, NewPasswordComponent,
+  declarations: [AppComponent, ItemsComponent, ItemDetailComponent, LoginComponent, LoginByMailComponent, OtpVerificationComponent, RegisterComponent, SplashScreenComponent, ForgotPasswordComponent, NewPasswordComponent,
     CategoriesComponent, DurationComponent, KnowledgeComponent, RegisterConfirmComponent, HighlightedComponent, ExploreComponent, SearchResultComponent, FilterComponent, CategoryComponent, TabNavigationComponent,
     TraingPathComponent, OnlineClassesComponent, AccountPageComponent, ProfileViewComponent, ProfileFormComponent, VideoSettingsComponent, DownloadSettingsComponent, ContentLanguageComponent, LearningReminderComponent,
     NotificationsComponent, AboutEthraiComponent, MyProductsComponent, FavoritesComponent, DownloadedComponent, BookmarksComponent, TraingCourseComponent, ChangePasswordComponent, ShoppingCartComponent, CheckoutComponent, CourseDetailsComponent,
@@ -132,7 +135,14 @@ import '@angular/compiler';
     SurveyComponent, SurveyModalComponent, InteractiveTrainingListComponent, InteractiveTrainingFormComponent, InteractiveTrainingViewComponent, InteractiveTrainingReportComponent, DeletConfirmComponent, DigitalLibraryComponent, FinishingConfirmComponent, ReportingComponent, LocalizePipe],
 
 
-  providers: [GlobalService, HttpService, DatePipe, AuthGuard, FirebaseEventService],//Printer],
+  providers: [
+    GlobalService,
+    HttpService,
+    DatePipe,
+    AuthGuard,
+    FirebaseEventService,
+    { provide: HTTP_INTERCEPTORS, useClass: ApiLoggingInterceptor, multi: true },
+  ],//Printer],
   schemas: [NO_ERRORS_SCHEMA],
 })
 export class AppModule { }

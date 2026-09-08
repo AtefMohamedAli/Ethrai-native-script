@@ -1,5 +1,6 @@
 export const environment = {
     production: false,
+    enableApiLogs: true,
      API_URL: 'https://ethrai.sa/api/',
     EMAIL_REGEX: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     PASSWORD_REGEX:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,

@@ -60,6 +60,7 @@
     "@nstudio/nativescript-checkbox": "^2.0.4",
     "@triniwiz/nativescript-star-ratings": "^2.0.3",
     "country-data": "0.0.31",
+    "crypto-js": "^4.2.0",
     "g": "^2.0.1",
     "intl": "^1.2.5",
     "nativescript": "^8.8.0",
@@ -88,6 +89,7 @@
     "@nativescript/types": "~8.8.0",
     "@nativescript/webpack": "~5.0.0",
     "@ngtools/webpack": "~18.0.0",
+    "@types/crypto-js": "^4.2.2",
     "@types/jasmine": "^5.1.13",
     "typescript": "~5.4.0"
   },
