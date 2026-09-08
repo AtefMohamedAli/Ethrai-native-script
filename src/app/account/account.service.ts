@@ -85,7 +85,7 @@ export class AccountService {
     }
 
     forgetPassword(body) {
-        return this.httpService.postRequest('account/resetpassword', body);
+        return this.httpService.postRequest('Account/forgotpassword', body);
     }
     getCountryCode() {
         return this.httpService.get('https://api.country.is/')
@@ -123,7 +123,7 @@ export class AccountService {
         return this.httpService.getAuthRequest('');
     }
     changePassword(body) {
-        return this.httpService.postAuthRequest('account/changepassword', body);
+        return this.httpService.postAuthRequest('Account/changepassword', body);
     }
     getProfilePrefrences() {
         return this.httpService.getAuthRequest('Profile/preferences');
