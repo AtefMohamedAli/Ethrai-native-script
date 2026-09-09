@@ -64,44 +64,29 @@ export class LoginComponent implements OnInit, OnDestroy {
     startNafathLogin() {
         this.showNafathWebView = true;
     }
+
     onWebViewLoaded(args) {
         const webView: WebView = args.object;
-        
+
         const iamURL = 'https://iam.ipa.edu.sa/auth/login?returnUrl=';
-		const returnUrl = this.globalService.getCurrentTenant()?.currentUrl + '/api/Account/IamChecking?pId=';
-		const provideID = this.globalService.getCurrentTenant()?.provideID;
-		const finalURLToNav = iamURL + returnUrl + provideID;
-		console.log('finalURLToNav', finalURLToNav);
-        webView.src=finalURLToNav
-       // webView.src = "https://ethrai.sa/iamchecking?d=sCpKgSosVJwB1jOlJNGxBtul1Viq3YTcI1hVkPDGBnE8sO1C0B7d6oauclYsAg0lHWeDBJeJUZpY%2biz4tO6%2b5LUpqXPrKm5Bu%2bJ5FXhzbWcj4g6B96qyVRaGGvcGFi6nzDl9yloPDQIaEuXOXlfpnELoWhykiljtKLBcBmDXYCKrbPAOL1QdCkgUM9wqPObj9wa%2bX7DpvuAg41n%2bVx3V9jFukYh7mnfuLWS06LefJVXv38wTIrb2uZWovf4wwmckpLLqlJVwybWhpykQAXI2028Zi5UIHSwjbH7DVTFvFC6m3gaTwjUkDK4S8iBofaq%2bxYFtofkEAYA2oFZt1lHE4nomjDNJCz%2f9MIenp7TRkZZlSRJcPDspgN1WNL9nh6r2m7K9v9wX5o2Dk%2fUaANLAQABmieWqDU2ZDMdZGxxlLPRBk0GS1tLbbbF4E9xLjtEPmvUYRxWOkIyzj6KzwelcZPKjwkB%2f6xh8SqZoBW%2bujsT2bgzIv7KsbknWALDfmHjfxBdEoZUIY1ziJI0%2bdmwWZgAbWB4xqrx2z7yneacP2ehOVOcK5frizpcnEWbS3sqalFGNksKa0Mnv17gpRuzGkfpH3NqUs13ZMPSECEjVXsv05U%2fvcDu4K%2bgEFVyT0r7ZYbb0Jztfl51%2blVxyBVHDGGqc32N2atZV5JhQjrcHwIr4taYMqX21srdY%2bYiQGaFWaz1YkPlehFck2YLRCKA28FyL0H0NkVC4jMcmcJxaeGT1WiWcDEGyBXt7%2b29Aqvzl8Js9zpjvLAfXUymjXE8WbPEUNvVVq5pmlVQbMueYk%2fMiom52SalrGctrKYyGOdB5D1OuPaTk0vCFDHJKWcr7%2fThvG2MRkq3PEICryouqUUYTZuoUvVcCqWvwDOlM74MhN1Xn4Osyvol3TClQcSIH4SGSMbc1qUEAimkCTndZ7OYOSwluOot4uyq5eE0mli4UlUxK5e0WNHao5%2bskA3hLHczX0S8WUGHgQesn1PGwvJWpkM4%2b8U4kVVB7WOgB80WA4kdsKZGauXdQbv4l3PYnhHUB7BTCbd7zXcsxEYTo9nsf14bjV7%2f8nm3PzebhXwRF%2flD0RDcTqRBtR5WJ5PCoxQ%3d%3d";
-  
+        const returnUrl = this.globalService.getCurrentTenant()?.currentUrl + '/api/Account/IamChecking?pId=';
+        const provideID = this.globalService.getCurrentTenant()?.provideID;
+        const finalURLToNav = iamURL + returnUrl + provideID;
+        console.log('finalURLToNav', finalURLToNav);
+        webView.src = finalURLToNav
+        // webView.src = "https://ethrai.sa/iamchecking?d=sCpKgSosVJwB1jOlJNGxBtul1Viq3YTcI1hVkPDGBnE8sO1C0B7d6oauclYsAg0lHWeDBJeJUZpY%2biz4tO6%2b5LUpqXPrKm5Bu%2bJ5FXhzbWcj4g6B96qyVRaGGvcGFi6nzDl9yloPDQIaEuXOXlfpnELoWhykiljtKLBcBmDXYCKrbPAOL1QdCkgUM9wqPObj9wa%2bX7DpvuAg41n%2bVx3V9jFukYh7mnfuLWS06LefJVXv38wTIrb2uZWovf4wwmckpLLqlJVwybWhpykQAXI2028Zi5UIHSwjbH7DVTFvFC6m3gaTwjUkDK4S8iBofaq%2bxYFtofkEAYA2oFZt1lHE4nomjDNJCz%2f9MIenp7TRkZZlSRJcPDspgN1WNL9nh6r2m7K9v9wX5o2Dk%2fUaANLAQABmieWqDU2ZDMdZGxxlLPRBk0GS1tLbbbF4E9xLjtEPmvUYRxWOkIyzj6KzwelcZPKjwkB%2f6xh8SqZoBW%2bujsT2bgzIv7KsbknWALDfmHjfxBdEoZUIY1ziJI0%2bdmwWZgAbWB4xqrx2z7yneacP2ehOVOcK5frizpcnEWbS3sqalFGNksKa0Mnv17gpRuzGkfpH3NqUs13ZMPSECEjVXsv05U%2fvcDu4K%2bgEFVyT0r7ZYbb0Jztfl51%2blVxyBVHDGGqc32N2atZV5JhQjrcHwIr4taYMqX21srdY%2bYiQGaFWaz1YkPlehFck2YLRCKA28FyL0H0NkVC4jMcmcJxaeGT1WiWcDEGyBXt7%2b29Aqvzl8Js9zpjvLAfXUymjXE8WbPEUNvVVq5pmlVQbMueYk%2fMiom52SalrGctrKYyGOdB5D1OuPaTk0vCFDHJKWcr7%2fThvG2MRkq3PEICryouqUUYTZuoUvVcCqWvwDOlM74MhN1Xn4Osyvol3TClQcSIH4SGSMbc1qUEAimkCTndZ7OYOSwluOot4uyq5eE0mli4UlUxK5e0WNHao5%2bskA3hLHczX0S8WUGHgQesn1PGwvJWpkM4%2b8U4kVVB7WOgB80WA4kdsKZGauXdQbv4l3PYnhHUB7BTCbd7zXcsxEYTo9nsf14bjV7%2f8nm3PzebhXwRF%2flD0RDcTqRBtR5WJ5PCoxQ%3d%3d";
+        const settings = webView.android.getSettings();
+        settings.setDomStorageEnabled(true);
+        settings.setUseWideViewPort(true);
+        settings.setLoadWithOverviewMode(true);
+        settings.setMixedContentMode(0);
+
+        settings.setJavaScriptEnabled(true);
         webView.on(WebView.loadStartedEvent, (event: LoadEventData) => {
-            console.log('URL',event.url)
-			this.handleUrlChange(event.url);
+            console.log('URL', event.url)
+            this.handleUrlChange(event.url);
         });
     }
-    // onWebViewLoaded(args) {
-    //     const webView: WebView = args.object;
-
-    //     const iamURL = 'https://iam.ipa.edu.sa/auth/login?returnUrl=';
-    //     const returnUrl = this.globalService.getCurrentTenant()?.currentUrl + '/api/Account/IamChecking?pId=';
-    //     const provideID = this.globalService.getCurrentTenant()?.provideID;
-    //     const finalURLToNav = iamURL + returnUrl + provideID;
-    //     console.log('finalURLToNav', finalURLToNav);
-    //     webView.src = finalURLToNav
-    //     // webView.src = "https://ethrai.sa/iamchecking?d=sCpKgSosVJwB1jOlJNGxBtul1Viq3YTcI1hVkPDGBnE8sO1C0B7d6oauclYsAg0lHWeDBJeJUZpY%2biz4tO6%2b5LUpqXPrKm5Bu%2bJ5FXhzbWcj4g6B96qyVRaGGvcGFi6nzDl9yloPDQIaEuXOXlfpnELoWhykiljtKLBcBmDXYCKrbPAOL1QdCkgUM9wqPObj9wa%2bX7DpvuAg41n%2bVx3V9jFukYh7mnfuLWS06LefJVXv38wTIrb2uZWovf4wwmckpLLqlJVwybWhpykQAXI2028Zi5UIHSwjbH7DVTFvFC6m3gaTwjUkDK4S8iBofaq%2bxYFtofkEAYA2oFZt1lHE4nomjDNJCz%2f9MIenp7TRkZZlSRJcPDspgN1WNL9nh6r2m7K9v9wX5o2Dk%2fUaANLAQABmieWqDU2ZDMdZGxxlLPRBk0GS1tLbbbF4E9xLjtEPmvUYRxWOkIyzj6KzwelcZPKjwkB%2f6xh8SqZoBW%2bujsT2bgzIv7KsbknWALDfmHjfxBdEoZUIY1ziJI0%2bdmwWZgAbWB4xqrx2z7yneacP2ehOVOcK5frizpcnEWbS3sqalFGNksKa0Mnv17gpRuzGkfpH3NqUs13ZMPSECEjVXsv05U%2fvcDu4K%2bgEFVyT0r7ZYbb0Jztfl51%2blVxyBVHDGGqc32N2atZV5JhQjrcHwIr4taYMqX21srdY%2bYiQGaFWaz1YkPlehFck2YLRCKA28FyL0H0NkVC4jMcmcJxaeGT1WiWcDEGyBXt7%2b29Aqvzl8Js9zpjvLAfXUymjXE8WbPEUNvVVq5pmlVQbMueYk%2fMiom52SalrGctrKYyGOdB5D1OuPaTk0vCFDHJKWcr7%2fThvG2MRkq3PEICryouqUUYTZuoUvVcCqWvwDOlM74MhN1Xn4Osyvol3TClQcSIH4SGSMbc1qUEAimkCTndZ7OYOSwluOot4uyq5eE0mli4UlUxK5e0WNHao5%2bskA3hLHczX0S8WUGHgQesn1PGwvJWpkM4%2b8U4kVVB7WOgB80WA4kdsKZGauXdQbv4l3PYnhHUB7BTCbd7zXcsxEYTo9nsf14bjV7%2f8nm3PzebhXwRF%2flD0RDcTqRBtR5WJ5PCoxQ%3d%3d";
-    //     const settings = webView.android.getSettings();
-    //     settings.setDomStorageEnabled(true);
-    //     settings.setUseWideViewPort(true);
-    //     settings.setLoadWithOverviewMode(true);
-    //     settings.setMixedContentMode(0);
-
-    //     settings.setJavaScriptEnabled(true);
-    //     webView.on(WebView.loadStartedEvent, (event: LoadEventData) => {
-    //         console.log('URL', event.url)
-    //         this.handleUrlChange(event.url);
-    //     });
-    // }
 
     handleUrlChange(url: string) {
         if (url.includes('iamchecking')) {
