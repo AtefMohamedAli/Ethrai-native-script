@@ -55,7 +55,8 @@ export class ChangePasswordComponent implements OnInit {
 			}
 			this.accountService.changePassword(body).subscribe(
 				response => {
-					if ((response as any).success) {
+					const result = response as any;
+					if (result?.success) {
 						if (this.globalService.isEthrai) {
 							this.firebaseEventService.logPasswordUpdateEvent(true, this.globalService.getUserStats(), 'ar/password_update', this.globalService.getUserProfile())
 						}
@@ -63,6 +64,8 @@ export class ChangePasswordComponent implements OnInit {
 						this.globalService.setToken("");
 						this.globalService.setIsKeepLogged(false);
 						this.routerExtensions.navigate(["/login"], { clearHistory: true });
+					} else {
+						this.globalService.toast(localize('CheckInfo'))
 					}
 				},
 				err => {
