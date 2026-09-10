@@ -5,7 +5,7 @@ import { SignUpPayload } from '../shared/models/signUp-payload';
 import { Utils } from '@nativescript/core';
 import { forkJoin, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { buildSecureLoginPayload } from '../shared/utils/aes-crypto.util';
+import { buildSecureDataPayload, buildSecureLoginPayload } from '../shared/utils/aes-crypto.util';
 
 export interface PendingLoginContext {
     usernameOrEmail: string;
@@ -85,7 +85,8 @@ export class AccountService {
     }
 
     forgetPassword(body) {
-        return this.httpService.postRequest('account/resetpassword', body);
+        const payload = buildSecureDataPayload(body);
+        return this.httpService.postRequestParsed('Account/resetpassword/secure', payload);
     }
     getCountryCode() {
         return this.httpService.get('https://api.country.is/')
@@ -123,7 +124,8 @@ export class AccountService {
         return this.httpService.getAuthRequest('');
     }
     changePassword(body) {
-        return this.httpService.postAuthRequest('account/changepassword', body);
+        const payload = buildSecureDataPayload(body);
+        return this.httpService.postAuthRequestParsed('Account/changepassword/secure', payload);
     }
     getProfilePrefrences() {
         return this.httpService.getAuthRequest('Profile/preferences');

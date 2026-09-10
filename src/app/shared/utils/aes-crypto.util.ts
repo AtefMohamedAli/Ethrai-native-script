@@ -20,6 +20,13 @@ export function encryptAesCbcToBase64(plainText: string): string {
 }
 
 /**
+ * Serialize any object to JSON, encrypt it, and wrap as { Data: "<base64>" }.
+ */
+export function buildSecureDataPayload(data: Record<string, any>): { Data: string } {
+    return { Data: encryptAesCbcToBase64(JSON.stringify(data)) };
+}
+
+/**
  * Serialize login credentials and wrap them in the secure login payload shape.
  */
 export function buildSecureLoginPayload(credentials: {
@@ -28,12 +35,10 @@ export function buildSecureLoginPayload(credentials: {
     countryCode?: string;
     rememberme?: boolean;
 }): { Data: string } {
-    const json = JSON.stringify({
+    return buildSecureDataPayload({
         usernameOrEmail: credentials.usernameOrEmail,
         password: credentials.password,
         countryCode: credentials.countryCode || '',
         rememberme: !!credentials.rememberme
     });
-
-    return { Data: encryptAesCbcToBase64(json) };
 }
