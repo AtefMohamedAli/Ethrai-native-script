@@ -85,8 +85,7 @@ export class AccountService {
     }
 
     forgetPassword(body) {
-        const payload = buildSecureDataPayload(body);
-        return this.httpService.postRequestParsed('Account/resetpassword/secure', payload);
+        return this.httpService.postRequestParsed('Account/forgotpassword', body);
     }
     getCountryCode() {
         return this.httpService.get('https://api.country.is/')
